@@ -1,0 +1,183 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse in" id="collapseExample" aria-expanded="false">
+   <div style="margin-top:10px;">
+      <div class="col-lg-12 no-padding">
+         <h4 class="" style="font-size:16px;margin-top:20px;"><i class="fa fa-bars ar-blue"></i> Followup Template</h4>
+         <form class="form-horizontal"  #modalform=ngForm [formGroup]="followUp">
+         <div class="col-lg-12 no-padding" style="border-bottom: 1px solid #f3f4f9;">
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-padding">
+               <div class="box-body no-padding">
+                  <div class="col-lg-11">
+                     <div class="form-group ">
+
+                        <label>Rep Name<span class="ar-red">*</span></label>
+                        <input type="text" formControlName="rep_name"  class="form-control">
+                        <!-- <div *ngIf="followUp.controls['rep_name'].touched">
+                           <div *ngIf="followUp.controls['rep_name'].hasError('required')" class="error">
+                               Rep Name is required
+                             </div>
+                           </div> -->
+                     </div>
+                  </div>
+               </div>
+               <!-- /.box-body -->
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-padding">
+               <div class="box-body no-padding">
+                  <div class="col-lg-11">
+                     <div class="form-group ">
+                        <label>Date<span class="ar-red">*</span></label>
+                           <div class="">
+                            <div class="">
+                              <input class="form-control" placeholder="MM-DD-YYYY" formControlName="entry_date" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()">
+                            </div>
+                           </div>
+
+
+                        <!-- <input type="text"  ngxDaterangepickerMd singleDatePicker="true"  placeholder="MM-DD-YYYY" formControlName="entry_date" [locale]="{applyLabel: 'Ok', format: 'DD/MM/YYYY'}" class="form-control"/> -->
+
+                        <!-- <div *ngIf="followUp.controls['entry_date'].touched">
+                           <div *ngIf="followUp.controls['entry_date'].hasError('required')" class="error">
+                            Date of birth is required
+                             </div>
+                           </div> -->
+                     </div>
+                  </div>
+               </div>
+               <!-- /.box-body -->
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-padding">
+               <div class="box-body no-padding">
+                  <div class="col-lg-11">
+                     <div class="form-group ">
+                        <label>Phone<span class="ar-red">*</span></label>
+                        <input type="text" formControlName="phone" class="form-control" maxlength="10">
+                        <!-- <div *ngIf="followUp.controls['phone'].touched">
+                           <div *ngIf="followUp.controls['phone'].hasError('required')" class="error">
+                            Phone Number is required
+                             </div>
+                           </div> -->
+                     </div>
+                  </div>
+               </div>
+               <!-- /.box-body -->
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-padding">
+               <div class="box-body no-padding">
+                  <div class="col-lg-11 ">
+                     <div class="form-group ">
+                        <label>Insurance<span class="ar-red">*</span></label>
+                        <input type="text" formControlName="insurance" class="form-control">
+                        <!-- <ngx-select-dropdown formControlName="insurance" (change)="status_code_changed($event)" [config]="config" [options]="insurance" ></ngx-select-dropdown> -->
+
+                        <!-- <select class="form-control select2 select2-hidden-accessible" formControlName="insurance" style="width:100%" tabindex="-1" aria-hidden="true">
+                           <option>-- Select --</option>
+                           <option>Cigna Healthcare</option>
+                           <option>Atena</option>
+                           <option>123 Insurance Health</option>
+                        </select> -->
+
+                        <!-- <div *ngIf="followUp.controls['insurance'].touched" class="error">
+                           <div *ngIf="followUp.controls['insurance'].hasError('required')" class="error">
+                               Insurance is required
+                             </div>
+                           </div> -->
+                        <!-- <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 100%;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-vf75-container"><span class="select2-selection__rendered" id="select2-vf75-container" title="-- Select --">-- Select --</span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span> -->
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="ar-blue" style="border-bottom: 1px solid #f3f4f9;">
+            <!-- <label for="nis"> <input type="radio" id="nis" name="ca" checked="checked"> <span class="ar-blue">Claim NIS</span></label>&emsp;&emsp;&emsp; <label for="ca2"> <input type="radio" id="ca2" name="ca"> <span class="ar-blue">Claim In Process</span></label>&emsp;&emsp;&emsp; <label for="ca3"> <input type="radio" id="ca3" name="ca"> <span class="ar-blue">Claim Paid</span></label> &emsp;&emsp;&emsp; <label for="ca4"> <input type="radio" id="ca4" name="ca"> <span class="ar-blue">Claim Denied</span></label> &emsp;&emsp;&emsp; <label for="ca5"> <input type="radio" id="ca5" name="ca"> <span class="ar-blue">Claim Pending</span></label> -->
+            <!-- <label *ngFor="let x of values" for="{{x.label_name}}"> <input type="radio" id="{{x.label_name}}" formControlName="{{x.label_name}}" name="{{x.label_name}}" (click)="change_category(x.id)" > <span class="ar-blue">{{x.name}}</span>&emsp;&emsp;&emsp;</label>                                      -->
+            <table>
+               <tr>
+                  <td *ngFor="let x of values; let i = index;">
+                     <span *ngIf="x.status== 'Active'">
+                     <label for="{{x.label_name}}" class="f-templates">
+                     <input type="radio" id="{{x.label_name}}" formControlName="label_name" (click)="change_category(x.id)" value="{{x.id}}" [checked]="i === 0"> &nbsp;&nbsp;
+                     <span class="ar-blue ">{{x.name}}</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                     </label>
+                     </span>
+                  </td>
+               </tr>
+            </table>
+         </div>
+         <div class="box-body" style="margin-top:20px;">
+            <div class="form-group" *ngFor="let quest of questions;let i=index">
+               <label for="quest.question_label" class="col-sm-6 control-label">{{i+1}}.{{quest.question}}</label>
+               <div class="col-sm-3" *ngIf="quest.date_type == 'single_date'">
+                  <!-- <input type="date" class="form-control" id="quest.question_label" placeholder="Date"> -->
+                  <!-- <input type="text" id="quest.question_label" placeholder="MM-DD-YYYY" ngxDaterangepickerMd singleDatePicker="true"  formControlName="{{quest.question_label}}" [locale]="{applyLabel: 'Ok', format: 'DD/MM/YYYY'}" class="form-control" autocomplete="off"/> -->
+                  <input id="quest.question_label" class="form-control" placeholder="yyyy-mm-dd"
+                  formControlName="{{quest.question_label}}" ngbDatepicker #d="ngbDatepicker" (click)="d.toggle()" placeholder="MM-DD-YYYY">
+               </div>
+               <div class="col-sm-3" *ngIf="quest.date_type == 'double_date'">
+                  <!-- <input type="date" class="form-control" id="quest.question_label" placeholder="D Date"> -->
+                  <input type="text" id="quest.question_label" ngxDaterangepickerMd   formControlName="{{quest.question_label}}"  [(ngModel)]="selected"
+                        [alwaysShowCalendars]="true" [linkedCalendars]="false"  [showClearButton]="true" />
+                  </div>
+                  <div class="col-sm-3" *ngIf="quest.field_validation == 'Number'">
+                  <input type="text" class="form-control" id="quest.question_label" formControlName="{{quest.question_label}}" placeholder="">
+               </div>
+               <div class="col-sm-3" *ngIf="quest.field_validation == 'Text'">
+                  <input type="text" class="form-control" id="quest.question_label"  formControlName="{{quest.question_label}}" placeholder="">
+               </div>
+            </div>
+            <!-- <div class="form-group">
+               <label for="inputPassword3" class="col-sm-6 control-label">2. What's the insurance COB priority?</label>
+
+               <div class="col-sm-3">
+                   <input type="text" class="form-control" id="inputPassword3" placeholder="">
+               </div>
+               </div>
+
+               <div class="form-group">
+               <label for="inputEmail3" class="col-sm-6 control-label">3. What's the filing limit?</label>
+
+               <div class="col-sm-3">
+                   <input type="email" class="form-control" id="inputEmail3" placeholder="">
+               </div>
+               </div>
+               <div class="form-group">
+               <label for="inputPassword3" class="col-sm-6 control-label">4. What's the claim mailing address?</label>
+
+               <div class="col-sm-3">
+                   <input type="text" class="form-control" id="inputPassword3" placeholder="">
+               </div>
+               </div>
+               <div class="form-group">
+               <label for="inputPassword3" class="col-sm-6 control-label">5. What's the claim fax number and department?</label>
+
+               <div class="col-sm-3">
+                   <input type="text" class="form-control" id="inputPassword3" placeholder="">
+               </div>
+               </div>
+               <div class="form-group">
+               <label for="inputPassword3" class="col-sm-6 control-label">6. What's electronic payer Id?</label>
+
+               <div class="col-sm-3">
+                   <input type="text" class="form-control" id="inputPassword3" placeholder="">
+               </div>
+               </div>
+               <div class="form-group">
+               <label for="inputPassword3" class="col-sm-6 control-label">7. What's the reference number?</label>
+
+               <div class="col-sm-3">
+                   <input type="text" class="form-control" id="inputPassword3" placeholder="">
+               </div>
+               </div> -->
+            <div class="col-md-12">
+               <div class="pull-right">
+                  <button type="reset" class="btn btn-default btn-sm text-center cancel collapsed" data-toggle="collapse" data-target="#followup-list3" aria-expanded="false" aria-controls="collapseExample" (click)="radioClear()">Cancel</button>
+                  <button type="submit" class="btn btn-info btn-sm text-center" [disabled] = "!modalform.valid" (click)="submit()">Submit</button>
+               </div>
+            </div>
+         </div>
+         <!-- /.box-body -->
+         <!-- /.box-footer -->
+         </form>
+         <!-- /.box-body -->
+      </div>
+   </div>
+</div>

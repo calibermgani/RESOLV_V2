@@ -1,0 +1,223 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+   <div style="margin-top:10px;">
+      <div class="col-lg-12 no-padding">
+         <h4 class="" style="font-size:16px;margin-top:20px;"><i class="fa fa-bars ar-blue"></i> Followup Template View</h4>
+         <div class="box-body no-padding" style="margin-top:10px;">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" >
+               <div  *ngFor="let x of active_claim" class="col-lg-12 no-padding" style="border-bottom: 1px dashed #f0f0f0;">
+                  <p class="text-justify" style="margin-bottom: 10px;">
+                     <span class="ar-blue font600">{{x.rep_name}} <span style="margin-left:3px;margin-right:3px;color:#ccc">/</span> {{x.phone}} <span style="margin-left:3px;margin-right:3px;color:#ccc">/</span></span> <span class="pull-right" style="font-size: 14px;"> {{ x.date | date:'MM/dd/yyyy' }}  </span><span class="ar-blue font600"> {{ x.insurance.ins_name }} </span>
+                  </p>
+                  <p *ngIf="active_data[x.id].length" class="text-justify" style="margin-bottom: 10px;">
+                     <span *ngFor="let y of active_data[x.id];let i= index;"><b> {{y.hint}}:</b>{{y.answer}} <span *ngIf="active_data[x.id][i+1]"> || </span> </span>
+                     <a *ngIf="cur_router =='/followup'" data-toggle="collapse" data-target="#followup-list" class="cur-pointer collapsed" title="Followup Template" style="margin-right: 15px;font-size: 16px;" aria-expanded="false" (click)="edittemplate(x.id)"><i class="fa fa-edit ar-blue" style="margin-left:10px; font-size:16px;cursor: pointer;" title="Edit"  ></i></a>
+                     <a *ngIf="cur_router =='/followup'" style="margin-right: 15px;font-size: 16px;" (click)="deletetemplate(x.id)"><i class="fa fa-trash" style=" font-size:16px;cursor: pointer;" title="Delete"  ></i></a>
+                     <!-- <a data-toggle="collapse" data-target="#followup-list3" class="cur-pointer collapsed" title="Followup Template" style="margin-right: 15px;font-size: 16px;" aria-expanded="false" (click)="send_calim_det('followup')"><i class="fa fa-headphones" title="Followup Template"></i>&nbsp;<span style="text-decoration: underline">F.Template</span></a> -->
+                  </p>
+               </div>
+               <div class="col-lg-12 no-padding" style="margin-top:5px;" *ngIf="!active_claim.length">
+                  <p class="text-center text-gray" style="margin-bottom: 10px;">No Records Found</p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<div class="col-lg-12 no-padding" style="margin-top:0px;">
+   <div class="col-lg-12 no-padding collapse" id="followup-list" style="border-top: 15px solid #e9ecf3">
+      <!-- <app-followup-template [data] = 'template_data'></app-followup-template> -->
+      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 collapse in" id="collapseExample" aria-expanded="false">
+         <div style="margin-top:10px;">
+            <div class="col-lg-12 no-padding">
+               <h4 class="" style="font-size:16px;margin-top:20px;"><i class="fa fa-bars ar-blue"></i> Followup Template</h4>
+               <form class="form-horizontal" #modalform=ngForm [formGroup]="followUp">
+               <div class="col-lg-12 no-padding" style="border-bottom: 1px solid #f3f4f9;">
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-padding">
+                     <div class="box-body no-padding">
+                        <div class="col-lg-11">
+                           <div class="form-group ">
+                              <label>Rep Name<span class="ar-red">*</span></label>
+                              <input type="text" formControlName="rep_name" class="form-control">
+                           </div>
+                        </div>
+                     </div>
+                     <!-- /.box-body -->
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-padding">
+                     <div class="box-body no-padding">
+                        <div class="col-lg-11">
+                           <div class="form-group ">
+                              <label>Date<span class="ar-red">*</span></label>
+                              <!-- <input type="text" formControlName="entry_date" ngxDaterangepickerMd [(ngModel)]="selected"  [autoApply]="true" class="form-control"/> -->
+                              <div class="">
+                               <div class="">
+                                 <input class="form-control" placeholder="MM/dd/yyyy" formControlName="entry_date" [(ngModel)]="singleSelected" ngbDatepicker #date="ngbDatepicker" (click)="date.toggle()">
+                               </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <!-- /.box-body -->
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-padding">
+                     <div class="box-body no-padding">
+                        <div class="col-lg-11">
+                           <div class="form-group ">
+                              <label>Phone<span class="ar-red">*</span></label>
+                              <input type="text" formControlName="phone" class="form-control" maxlength="10">
+                           </div>
+                        </div>
+                     </div>
+                     <!-- /.box-body -->
+                  </div>
+                  <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12 no-padding">
+                     <div class="box-body no-padding">
+                        <div class="col-lg-11 ">
+                           <div class="form-group ">
+                              <label>Insurance<span class="ar-red">*</span></label>
+                              <input type="text" formControlName="insurance" class="form-control">
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="ar-blue" style="border-bottom: 1px solid #f3f4f9;">
+                  <table>
+                     <tr>
+                        <td *ngFor="let x of values; let i = index;">
+                           <span *ngIf="x.status== 'Active'">
+                           <label for="{{x.label_name}}" class="f-templates">
+                           <input type="radio" id="{{x.label_name}}" formControlName="label_name" (click)="change_category(x.id)" [checked]="x.id === category" value="{{x.id}}"> &nbsp;&nbsp;
+                           <span class="ar-blue ">{{x.name}}</span><span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                           </label>
+                           </span>
+                        </td>
+                     </tr>
+                  </table>
+               </div>
+               <!-- <h2>{{main_category}} -- {{category}}</h2> -->
+               <div class="box-body" style="margin-top:20px;" *ngIf="main_category === category">
+                  <div class="form-group" *ngFor="let quest of questions;let i=index">
+                    <!-- <h3>{{quest.question}}: {{quest.question_label}}</h3> -->
+                     <label for="quest.question_label" class="col-sm-6 control-label">{{i+1}}.{{quest.question}}</label>
+                     <div class="col-sm-3" *ngIf="quest.date_type == 'single_date'">
+                        <!-- <input type="text" id="quest.question_label" ngxDaterangepickerMd singleDatePicker="true"  formControlName="{{quest.question_label}}" [locale]="{applyLabel: 'Ok', format: 'MM/DD/YYYY'}" class="form-control" autocomplete="off" /> -->
+                        <input class="form-control" id="quest.question_label" placeholder="MM/dd/yyyy" formControlName="{{quest.question_label}}"  ngbDatepicker #date="ngbDatepicker" (click)="date.toggle()">
+                     </div>
+                     <div class="col-sm-3" *ngIf="quest.date_type == 'double_date'">
+                        <input type="text" class="form-control" id="quest.question_label" ngxDaterangepickerMd   formControlName="{{quest.question_label}}"  [(ngModel)]="selected"
+                          [alwaysShowCalendars]="true" [linkedCalendars]="false"  [showClearButton]="true" />
+                     </div>
+                     <div class="col-sm-3" *ngIf="quest.field_validation == 'Number'">
+                        <input type="text" class="form-control" id="quest.question_label"  formControlName="{{quest.question_label}}" placeholder="">
+                     </div>
+                     <div class="col-sm-3" *ngIf="quest.field_validation == 'Text'">
+                        <input type="text" class="form-control" id="quest.question_label"  formControlName="{{quest.question_label}}" placeholder="" >
+                     </div>
+                  </div>
+               </div>
+               <div class="box-body" style="margin-top:20px;" *ngIf="main_category != category">
+                  <div class="form-group" *ngFor="let quest of questions;let i=index">
+                     <label for="quest.question_label" class="col-sm-6 control-label">{{i+1}}.{{quest.question}}</label>
+                     <div class="col-sm-3" *ngIf="quest.date_type == 'single_date'">
+                        <!-- <input type="date" class="form-control" id="quest.question_label" placeholder="Date"> -->
+                        <!-- <input type="text" id="quest.question_label" ngxDaterangepickerMd singleDatePicker="true"  formControlName="{{quest.question_label}}" [locale]="{applyLabel: 'Ok', format: 'MM/DD/YYYY'}" class="form-control" autocomplete="off"/> -->
+                     </div>
+                     <div class="col-sm-3" *ngIf="quest.date_type == 'double_date'">
+                        <!-- <input type="date" class="form-control" id="quest.question_label" placeholder="D Date"> -->
+                        <input type="text" id="quest.question_label" ngxDaterangepickerMd  formControlName="{{quest.question_label}}" [locale]="{applyLabel: 'Ok', format: 'MM/DD/YYYY'}" class="form-control"  autocomplete="off"/>
+                     </div>
+                     <div class="col-sm-3" *ngIf="quest.field_validation == 'Number'">
+                        <input type="text" class="form-control" id="quest.question_label"  formControlName="{{quest.question_label}}" placeholder="">
+                     </div>
+                     <div class="col-sm-3" *ngIf="quest.field_validation == 'Text'">
+                        <input type="text" class="form-control" id="quest.question_label"  formControlName="{{quest.question_label}}" placeholder="">
+                     </div>
+                  </div>
+                  <!-- <div class="form-group">
+                     <label for="inputPassword3" class="col-sm-6 control-label">2. What's the insurance COB priority?</label>
+
+                     <div class="col-sm-3">
+                         <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                     </div>
+                     </div>
+
+                     <div class="form-group">
+                     <label for="inputEmail3" class="col-sm-6 control-label">3. What's the filing limit?</label>
+
+                     <div class="col-sm-3">
+                         <input type="email" class="form-control" id="inputEmail3" placeholder="">
+                     </div>
+                     </div>
+                     <div class="form-group">
+                     <label for="inputPassword3" class="col-sm-6 control-label">4. What's the claim mailing address?</label>
+
+                     <div class="col-sm-3">
+                         <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                     </div>
+                     </div>
+                     <div class="form-group">
+                     <label for="inputPassword3" class="col-sm-6 control-label">5. What's the claim fax number and department?</label>
+
+                     <div class="col-sm-3">
+                         <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                     </div>
+                     </div>
+                     <div class="form-group">
+                     <label for="inputPassword3" class="col-sm-6 control-label">6. What's electronic payer Id?</label>
+
+                     <div class="col-sm-3">
+                         <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                     </div>
+                     </div>
+                     <div class="form-group">
+                     <label for="inputPassword3" class="col-sm-6 control-label">7. What's the reference number?</label>
+
+                     <div class="col-sm-3">
+                         <input type="text" class="form-control" id="inputPassword3" placeholder="">
+                     </div>
+                     </div> -->
+               </div>
+               <div class="col-md-12">
+                  <div class="pull-right">
+                     <button type="reset" class="btn btn-default btn-sm text-center  cancel collapsed" data-toggle="collapse" data-target="#followup-list" aria-expanded="false" aria-controls="collapseExample" (click)="edittemplate(edit_id)">Cancel</button>
+                     <button type="submit" class="btn btn-info btn-sm text-center" [disabled] = "!modalform.valid" (click)="update()">Update</button>
+                  </div>
+               </div>
+               <!-- /.box-body -->
+               <!-- /.box-footer -->
+               </form>
+               <!-- /.box-body -->
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<ng-template #processnotes let-modal >
+   <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss()">
+      <span aria-hidden="true">×</span></button>
+      <h4 class="modal-title list-heading">Process Notes</h4>
+   </div>
+   <div class="modal-body">
+      <!-- <div class="col-lg-12 no-padding" style="margin-top:0px;">
+         <form class="form-horizontal" #modalform=ngForm [formGroup]="processNotes">
+         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="box-body no-padding" >
+               <div class="col-lg-12 no-padding">
+                  <div class="form-group ">
+                     <textarea class="form-control text-space"  formControlName="processnotes"  placeholder="Enter your notes.." value="{{editnote_value}}" style="height:90px;"></textarea>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+         </form>
+      </div> -->
+   </div>
+   <div class="modal-footer">
+      <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" (click)="modal.dismiss()">Close</button>
+      <!-- <button type="button" [disabled] = "!modalform.valid" (click)="savenotes('processnotes');modal.dismiss()"  class="btn btn-info btn-sm" *ngIf="!editnote_value">Save</button>
+      <button type="button" [disabled] = "!modalform.valid" (click)="updatenotes('processnotes');modal.dismiss()"  class="btn btn-info btn-sm" *ngIf="editnote_value">Update</button> -->
+   </div>
+</ng-template>

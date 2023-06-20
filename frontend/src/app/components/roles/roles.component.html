@@ -1,0 +1,244 @@
+<div class="row">
+  <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-md-offset-1">
+   <div class="tabs nav-tabs-custom mb-4">
+    <ul class="tabs nav nav-tabs">
+        <li class="active"><a href="#tab_1" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-file-text"></i> Role Creation <span class="tab-divider">|</span></a></li>
+
+        <li (click)="get_user_role()"><a href="#tab_2" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-user"  ></i> Roles List </a></li>
+
+      </ul>
+
+    <div class="tab-content no-padding">
+
+      <div class="tab-pane active" id="tab_1">
+<div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+  <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+          <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Role Creation</h3>
+
+          <!-- <div class="box-tools pull-right">
+              <input type="text" class="form-control pull-right" style="width:300px;margin-top:1px;font-weight:normal" placeholder="Search..">
+          </div> -->
+      </div>
+
+<!-- /.box-header -->
+<div class="mt-4 col-8 offset-s">
+
+      <!-- <div class="alert alert-success" [hidden]="!notify">
+                  {{notify}}
+              </div>  -->
+        <div class="card">
+<div>
+&nbsp;
+</div>
+          <div class="card-body" >
+<div class="mt-4 col-8 offset-s">
+
+  <!-- <div class="alert alert-success" [hidden]="!notify">
+              {{notify}}
+          </div>  -->
+    <div class="card">
+      <!-- <div class="card-header">
+
+      </div> -->
+      <div class="card-body">
+        <form #RoleCreation=ngForm [formGroup]="formGroup" (ngSubmit)="onSubmit()" >
+      <!--     <div class="alert alert-danger" [hidden]="!error">
+  {{error}}
+          </div>  -->
+          <div class="form-group row">
+            <label for="roleName" class="col-sm-3 col-form-label text-center">Role Name <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+              <input type="text" name="roleName" class="form-control" id="roleName" placeholder="Role Name"  formControlName="roleName" autocomplete="off" required >
+              <div *ngIf="formGroup.controls['roleName'].touched || submitted">
+                  <div *ngIf="formGroup.controls['roleName'].hasError('required')" class="error">
+                      Role Name is required
+                    </div>
+                    <!-- <div *ngIf="formGroup.controls['customer_name'].hasError('pattern')">
+                        Special characters not Allowed.
+                      </div> -->
+                  </div>
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="status" class="col-sm-3 col-form-label text-center">Status </label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+              <div class="role-creation status">
+                <div  class="form-group status-radio">
+                   <div class="custom-control custom-radio">
+                      <input id="status" class="custom-control-input" name="status" formControlName="status" type="radio" value="Active">
+                      &nbsp;<label class="custom-control-label" for="active">Active</label>
+                   </div>
+                   <div class="custom-control custom-radio">
+                      <input id="status" class="custom-control-input" name="status" formControlName="status" type="radio" value="Inactive">
+                      &nbsp;<label class="custom-control-label" for="inactive">Inactive</label>
+                   </div>
+                </div>
+              <!-- <input type="radio" value="Active" formControlName="status" id="status"> &nbsp; Active &nbsp;
+              <input type="radio" value="Inactive" formControlName="status" id="status"> &nbsp; Inactive -->
+              <!-- <select class="form-control" formControlName="status" id="status" required>
+                <option value="Active"> Active </option>
+                <option value="Inactive" > Inactive </option>
+             </select> -->
+               <!-- <bfv-messages>
+               </bfv-messages> -->
+            </div>
+          </div>
+          </div>
+
+
+
+        </form>
+          <div class="form-group row">
+            <div class="col-sm-12">
+              <div class="text-center">
+              <button type="submit" class="btn btn-info submit-btn" (click)="onSubmit()">Create</button>
+            </div>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
+</div>
+</div>
+
+
+</div>
+</div>
+
+<div class="tab-pane" id="tab_2">
+    <div class="box no-shadow no-border no-bottom">
+
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+            <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                  <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                    <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Users Listing</h3>
+
+                    <!-- <div class="box-tools pull-right">
+                        <input type="text" class="form-control pull-right" style="width:300px;margin-top:1px;font-weight:normal" placeholder="Search..">
+                    </div> -->
+                </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding listing-table">
+                      <div class="table-responsive" style="margin-top:20px;">
+<table class="table-striped1 table role-table">
+<thead>
+  <tr>
+  <th>Role Name</th>
+  <th>Status</th>
+  <th>Options</th>
+</tr>
+</thead>
+<tbody>
+<tr *ngFor="let role of roles" >
+
+<td>{{role.role_name}}</td>
+<td>{{role.status}}</td>
+<td>
+   <button data-toggle="modal" (click)="edit_roles(role);open(role_edit);" class="cur-pointer font600 btn btn-sm btn-info">Edit&nbsp; <i class="fa fa-pencil"></i>
+  </button>
+</td>
+<!-- <td>{{vendor.customer_name}}</td><td> <a data-toggle="modal" data-target="#vendor_edit" (click)="edit_vendor_details(vendor);" class="cur-pointer" style="font-size:16px;"><i class="fa fa-pencil"></i>  <span style="text-decoration: underline">Edit</span></a> </td> -->
+</tr>
+</tbody>
+</table>
+  </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+<div class="col-md-12">
+<ng-template #role_edit let-modal>
+<div class="modal-content update-role">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true">×</span></button>
+        <h4 class="modal-title list-heading">Update Roles</h4>
+    </div>
+    <div class="modal-body">
+
+
+      <form #RoleCreation=ngForm [formGroup]="formGroup" (ngSubmit)="onUpdate()" >
+        <!--     <div class="alert alert-danger" [hidden]="!error">
+    {{error}}
+            </div>  -->
+            <div class="form-group row">
+              <label for="roleName" class="col-sm-3 col-form-label text-center">Role Name <span class="ar-red">*</span></label>
+              <div class="col-sm-1"><strong>:</strong></div>
+              <div class="col-sm-4">
+                <input type="text" name="roleName" class="form-control" id="roleName" placeholder="Role Name"  formControlName="roleName" autocomplete="off" required >
+                <div *ngIf="formGroup.controls['roleName'].touched">
+                    <div *ngIf="formGroup.controls['roleName'].hasError('required')" class="error">
+                        Role Name is required
+                      </div>
+                      <!-- <div *ngIf="formGroup.controls['customer_name'].hasError('pattern')">
+                          Special characters not Allowed.
+                        </div> -->
+                    </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="status" class="col-sm-3 col-form-label text-center">Status </label>
+              <div class="col-sm-1"><strong>:</strong></div>
+              <div class="col-sm-4">
+                <div class="role-creation status">
+                  <div  class="form-group status-radio">
+                     <div class="custom-control custom-radio">
+                        <input id="status" class="custom-control-input" required formControlName="status" type="radio" value="Active">
+                        &nbsp;<label class="custom-control-label" for="active">Active</label>
+                     </div>
+                     <div class="custom-control custom-radio">
+                        <input id="status" class="custom-control-input" required formControlName="status" type="radio" value="Inactive">
+                        &nbsp;<label class="custom-control-label" for="inactive">Inactive</label>
+                     </div>
+                  </div>
+                  <!-- <input type="radio" formControlName="status" value="Active" id="status" required>  &nbsp;Active &nbsp;
+                  <input type="radio" formControlName="status" value="Inactive" id="status" required> &nbsp; Inactive -->
+                </div>
+                <!-- <select class="form-control" formControlName="status" id="status" required>
+                  <option value="Active" selected> Active </option>
+                  <option value="Inactive" > Inactive </option>
+               </select> -->
+                 <!-- <bfv-messages>
+                 </bfv-messages> -->
+              </div>
+            </div>
+
+
+
+          </form>
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="text-center">
+                <button type="submit" class="btn btn-info" (click)="onUpdate()" >Update</button>
+              </div>
+              </div>
+            </div>
+
+
+        </div>
+      </div>
+
+
+
+</ng-template>
+
+</div>

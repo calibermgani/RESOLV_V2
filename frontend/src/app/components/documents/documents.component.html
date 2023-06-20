@@ -1,0 +1,388 @@
+<div class="row">
+    <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-md-offset-1 col-lg-offset-1">
+
+<div class="box no-shadow no-border no-bottom">
+
+  <!-- /.box-header -->
+  <div class="no-padding">
+      <div class="tabs nav-tabs-custom">
+          <ul class="tabs nav nav-tabs">
+              <li class="active"><a href="#tab_2" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-file-text"></i>Documents </a></li>
+          </ul>
+
+          <div class="tab-content no-padding">
+
+              <div class="tab-pane active" id="tab_2">
+                  <div class="box no-shadow no-border">
+                      <!-- /.box-header -->
+                      <div class="box-body no-padding">
+                          <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+
+                              <!-- /.box-header -->
+
+                              <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                  <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Find My Search</h3>
+
+                                  <div class="box-tools pull-right">
+                                      <!-- <input type="text" class="form-control pull-right" style="width:300px;margin-top:1px;font-weight:normal" placeholder="Search.."  [(ngModel)]="term"> -->
+
+                                  </div>
+                              </div>
+
+                              <div class="box-body no-padding" style="margin-top:20px;">
+                                <form [formGroup]="searchformGroup" (ngSubmit)="document_search(1)">
+                                  <div class="col-lg-12 no-padding">
+                                      <div class="form-group col-lg-3">
+                                        <label>Created Date</label>
+                                        <!-- <input type="text" class="form-control" ngxDaterangepickerMd   formControlName="created_at"  [(ngModel)]="selecteds" [alwaysShowCalendars]="true" [linkedCalendars]="false"  [showClearButton]="true" > -->
+                                        <input type="text" class="form-control" formControlName="created_at" formControlName="date"
+                                        [(ngModel)]="selecteds" class="form-control" id="data-picker"
+                                          bsDaterangepicker [bsConfig]="bsConfig">
+                                      </div>
+
+                                      <div class="form-group col-lg-3">
+                                          <label>Document Name</label>
+                                          <input type="text" class="form-control" formControlName="document_name">
+                                      </div>
+
+                                      <div class="form-group col-lg-3">
+                                          <label>Category</label>
+                                          <input type="text" class="form-control" formControlName="category">
+                                      </div>
+                                  </div>
+                                  </form>
+                                      <div class="col-lg-12 form-group">
+                                         <input type="button" class="pull-right btn btn-search" value="Search" (click)="document_search(1)">
+                                     </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+
+                  <div class="box no-shadow no-border mb-3">
+                      <!-- /.box-header -->
+                      <div class="box-body no-padding">
+                          <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                              <!-- /.box-header -->
+                              <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                  <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Documents</h3>
+
+                                  <div class="box-tools pull-right">
+                                    <p class="" style="margin-top:5px;"><i (click)="open(upload_modal)" class="fa fa-user-plus" style="cursor:pointer;" title="Assign Claims"></i></p>
+                                  </div>
+                              </div>
+
+                              <div class="box-body no-padding" style="margin-top:20px;">
+                                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
+                                        <div class="table-responsive">
+                                      <table class="table-striped1 table">
+                                          <thead>
+                                              <tr>
+                                                  <!-- <th style="width:1%"></th>
+                                                  <th class="font600  line-height-24">Created By/On</th>
+                                                  <th class="font600  line-height-24">Title </th>
+                                                  <th>Patient Name</th>
+                                                  <th class="font600 line-height-24">Claim No</th>
+                                                  <th class="font600 line-height-24">Check Date</th>
+                                                  <th class="font600 line-height-24">Payer</th>
+                                                  <th class="font600 line-height-24">Assigned To</th>
+                                                  <th class="font600 line-height-24">Followup Date</th>
+                                                  <th class="font600 line-height-24">Status</th> -->
+
+                                                  <th style="width:1%"></th>
+                                                  <th class="font600  line-height-24">S.No </th>
+                                                  <th (click)="sorting_data('document_name')" class="font600  line-height-24">Document Name <i class="fa fa-fw fa-sort"></i></th>
+                                                  <th (click)="sorting_data('category')">Category <i class="fa fa-fw fa-sort"></i></th>
+                                                  <th class="font600 line-height-24">Created By|On </th>
+                                                  <th class="font600 line-height-24">Modified By|On</th>
+                                                  <th (click)="sort_data('file_no')" class="font600 line-height-24">Files</th>
+                                                  <th class="font600 line-height-24">Functions</th>
+                                              </tr>
+
+                                          </thead>
+
+                                            <tbody>
+                                              <tr *ngFor="let doc of document_list | paginate: { id: 'docs',itemsPerPage: 15, currentPage: pages, totalItems:total_list} ; let i = index ">
+                                                  <td><input type="checkbox" style="margin-top:0px;"></td>
+                                                  <td *ngIf="pages == 1 " >{{i + 1}}</td>
+                                                  <td *ngIf="pages>1" >{{(pages-1) * 15 + i + 1}}</td>
+                                                  <td >{{doc.document_name}}</td>
+                                                  <td >{{doc.category}}</td>
+                                                  <td >{{doc.created_by_name}} | {{doc.created_at | date: 'medium'}}</td>
+                                                  <td >{{doc.updated_by_name}} | {{doc.updated_at_date  | date: 'medium'}}</td>
+                                                  <td >{{doc.file_nos}}</td>
+                                                  <td class="cur-pointer ar-blue">
+                                                      <p><i class="fa fa-eye" (click)="view_doc_details(doc.id);open(document_view_modal);" ></i><span style="padding:5px">|</span><i class="fa fa-edit" (click)="edit_doc_details(doc.id);open(upload_modal);" ></i><span style="padding:5px">|</span><i *ngIf="doc.file_nos==1" (click)="download_file(doc.id,doc.file_name)" class="fa fa-download"></i><i *ngIf="doc.file_nos>1" (click)="display_files_list(i);open(files_list_modal)" class="fa fa-download"></i><span style="padding:5px">|</span><i *ngIf="doc.file_nos==1" class="fa fa-trash" (click)="delete_file(doc.id,doc.file_name)"></i><i *ngIf="doc.file_nos>1" class="fa fa-trash" (click)="delete_files_list(i);open(files_list_modal);"></i></p></td>
+
+                                              </tr>
+
+                                              <!-- <tr class="">
+                                                  <td><input type="checkbox" style="margin-top:0px;"></td>
+                                                  <td class="cur-pointer">MAS/08-09-18</td>
+                                                  <td class="cur-pointer">Oliver SSN</td>
+                                                  <td class="cur-pointer">David Miller</td>
+                                                  <td class="cur-pointer">CH534</td>
+                                                  <td class="cur-pointer">09/07/18</td>
+                                                  <td class="cur-pointer">Cigna Healthcare</td>
+                                                  <td class="cur-pointer">ERA</td>
+                                                  <td class="cur-pointer">09-23-18</td>
+                                                  <td>Assigned</td>
+
+                                              </tr>
+
+                                              <tr class="">
+                                                  <td><input type="checkbox" style="margin-top:0px;"></td>
+                                                  <td class="cur-pointer">MAS/08-09-18</td>
+                                                  <td class="cur-pointer">Oliver Document</td>
+                                                  <td class="cur-pointer">Oscar John</td>
+                                                  <td class="cur-pointer">CH534</td>
+                                                  <td class="cur-pointer">09/07/18</td>
+                                                  <td class="cur-pointer">Cigna Healthcare</td>
+                                                  <td class="cur-pointer">ERA</td>
+                                                  <td class="cur-pointer">09-23-18</td>
+                                                  <td>Completed</td>
+
+                                              </tr>
+
+                                              <tr class="">
+                                                  <td><input type="checkbox" style="margin-top:0px;"></td>
+                                                  <td class="cur-pointer">MAS/08-09-18</td>
+                                                  <td class="cur-pointer">Oliver Document</td>
+                                                  <td class="cur-pointer">Oscar John</td>
+                                                  <td class="cur-pointer">CH534</td>
+                                                  <td class="cur-pointer">09/07/18</td>
+                                                  <td class="cur-pointer">Cigna Healthcare</td>
+                                                  <td class="cur-pointer">ERA</td>
+                                                  <td class="cur-pointer">09-23-18</td>
+                                                  <td>Assigned</td>
+
+                                              </tr> -->
+
+                                              <tr *ngIf="total_list == 0">
+                                                  <td align="center" colspan="10">
+                                                      <b>No Records Found</b>
+                                                  </td>
+                                              </tr>
+
+                                          </tbody>
+                                      </table>
+                                        </div>
+
+                                        <div class="row">
+                                          <div class="col-md-6">
+                                             <div class="has-text-centered">
+                                                <pagination-controls id="docs" (pageChange)="get_document_list_pagination($event);">
+                                                </pagination-controls>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-6" style="text-align: right;" class="showing_count" *ngIf="total_row != 0">
+                                             <div><span>Showing {{skip_row}}  </span>  <span>to {{current_row}} </span> <span> of {{total_row}} records</span> </div>
+                                          </div>
+                                          <div class="col-md-6" style="text-align: right;" class="showing_count" *ngIf="total_row == 0">
+                                             <div><span>Showing 0  </span>  <span>to 0 </span> <span> of 0 records</span> </div>
+                                          </div>
+                                       </div>
+
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- /.box-body -->
+</div>
+
+</div>
+</div>
+<ng-template #upload_modal let-modal >
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss();clear();">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    <h4 *ngIf="edit_file_details.length==0" class="modal-title list-heading" id="modal-basic-title">  Document Upload </h4>
+    <h4 *ngIf="edit_file_details.length>0" class="modal-title" id="modal-basic-title"> Edit Document Details </h4>
+  </div>
+  <div class="modal-body">
+    <form #modalform=ngForm [formGroup]="formGroup">
+   <div class="col-lg-12 no-padding">
+    <div class="form-group">
+        <label>User - <span class="ar-blue">Admin</span> </label>
+           <span class="pull-right ar-blue font600"> {{myDate | date:'longDate'}}</span>
+    </div>
+
+    <div class="col-lg-12 no-padding">
+        <div class="row form-group">
+            <div class="col-sm-2"><label>Document Name</label>  <span class="ar-red">*</span></div>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-9">
+            <input *ngIf="edit_file_details.length==0" type="text" class="form-control" formControlName="document_name" value="" autocomplete="off" (blur)="check_availability('new')" >
+            <input *ngIf="edit_file_details.length>0" type="text" class="form-control" formControlName="document_name" value="" autocomplete="off" (blur)="check_availability('edit')" >
+            <div *ngIf="formGroup.controls['document_name'].touched">
+                <div *ngIf="formGroup.controls['document_name'].hasError('required')" class="error">
+                    Document Name is required
+                  </div>
+                  <!-- <div *ngIf="formGroup.controls['document_name'].hasError('pattern')" class="error">
+                    Space is not allowed
+                  </div> -->
+                </div>
+        </div>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-2"><label>Category <span class="ar-red">*</span></label></div>
+        <div class="col-sm-1"><strong>:</strong></div>
+        <div class="col-sm-9">
+      <select class="form-control" formControlName="category" >
+      <option>Medical Records</option>
+      <option>ERA/EOB</option>
+      <option>Superbills / Chargesheet</option>
+      <option>Patient Documents</option>
+      <option>Provider Documents</option>
+      <option>Miscellenous</option>
+      <option>Billing Documents</option>
+      <option>Others</option>
+      </select>
+      <div *ngIf="formGroup.controls['category'].touched">
+        <div *ngIf="formGroup.controls['category'].hasError('required')" class="error">
+            Category is required
+          </div>
+          </div>
+  </div>
+</div>
+
+    <div class="row form-group">
+        <div class="col-sm-2">
+        <label *ngIf="edit_file_details.length==0">File <span class="ar-red">*</span></label>
+        <label *ngIf="edit_file_details.length>0">Add Additional Files</label>
+    </div>
+    <div class="col-sm-1"><strong>:</strong></div>
+    <div class="col-sm-9">
+        <input type="file" class="form-control file-upload" formControlName="file" (change)="file_validation($event)" value="" multiple>
+        <div *ngIf="formGroup.controls['file'].touched">
+            <div *ngIf="formGroup.controls['file'].hasError('required')" class="error">
+                File is required
+              </div>
+              </div>
+    </div>
+    </div>
+    <div *ngIf="edit_file_details.length>0">
+        <label>Files in Document:</label>
+<table>
+    <tbody>
+        <tr *ngFor="let edit_files of edit_file_details">
+            <td>{{edit_files}}</td>
+        </tr>
+    </tbody>
+</table>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+  </form>
+  </div>
+  <div class="modal-footer">
+   <!--  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button> -->
+    <button type="button" class="btn btn-default btn-flat btn-sm" style="margin-top:20px;"(click)="modal.dismiss();clear();">Close</button>
+    <button *ngIf="edit_file_details.length==0" type="button" [disabled] = "!modalform.valid" class="btn btn-info btn-flat btn-sm"(click)="file_upload('upload');modal.dismiss();"  style="margin-top:20px;">Upload</button>
+    <button *ngIf="edit_file_details.length>0" type="button" [disabled] = "!modalform.valid" class="btn btn-info btn-flat btn-sm"(click)="file_upload('update');modal.dismiss();"  style="margin-top:20px;">Update</button>
+  </div>
+</ng-template>
+
+
+<ng-template #document_view_modal let-modal >
+  <div class="modal-header">
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss();clear();">
+        <span aria-hidden="true">&times;</span>
+    </button>
+    <h4 *ngIf="edit_file_details.length>0" class="modal-title" id="modal-basic-title">  Document Details </h4>
+  </div>
+  <div class="modal-body" *ngFor="let x of document_names; ">
+    <form #modalform=ngForm [formGroup]="formGroup">
+   <div class="col-lg-12 no-padding">
+    <div class="form-group">
+        <label>User - <span class="ar-blue">Admin</span> </label>
+           <span class="pull-right ar-blue font600"> {{myDate | date:'longDate'}}</span>
+    </div>
+
+    <div class="col-lg-12 no-padding">
+        <div class="row form-group">
+            <div class="col-sm-2"><label>Document Name</label>  <span class="ar-red">*</span></div>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-9">
+              {{x.document_name}}
+        </div>
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-sm-2"><label>Category <span class="ar-red">*</span></label></div>
+        <div class="col-sm-1"><strong>:</strong></div>
+        <div class="col-sm-9">
+          {{x.category}}
+
+        </div>
+    </div>
+
+    <div class="row form-group">
+        <div class="col-sm-2">
+        <label *ngIf="edit_file_details.length==0">File <span class="ar-red">*</span></label>
+        <label *ngIf="edit_file_details.length>0">Add Additional Files</label>
+    </div>
+    <div class="col-sm-1"><strong>:</strong></div>
+    <div class="col-sm-9">
+        {{x.file_name}}
+    </div>
+    </div>
+    <div *ngIf="edit_file_details.length>0">
+        <label>Files in Document:</label>
+
+    </div>
+</div>
+
+  </form>
+  </div>
+  <div class="modal-footer">
+   <!--  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button> -->
+    <button type="button" class="btn btn-default btn-flat btn-sm" style="margin-top:20px;"(click)="modal.dismiss();clear();">Close</button>
+  </div>
+</ng-template>
+
+
+<ng-template #files_list_modal let-modal >
+    <div class="modal-header">
+        <button type="button" class="close" (click)="modal.dismiss();" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true" >×</span></button>
+        <h4 class="modal-title list-heading">{{list_type}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="col-lg-12 no-padding">
+            <table class="table no-border no-bottom">
+                <tbody>
+                        <tr *ngFor="let down of download_file_list">
+                                <td>{{down}}</td>
+                                <td><i *ngIf="list_type_nos==1" style="cursor: pointer;" (click)="download_file(download_id,down)" title="Download" class="fa fa-download"></i></td>
+                                <td *ngIf="list_type_nos==2"><input type="checkbox" (click)="add_to_delete($event,down)"></td>
+                            </tr>
+
+
+            </tbody>
+        </table>
+        <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-flat btn-sm" style="margin-top:20px;" data-dismiss="modal" (click)="modal.dismiss()">Close</button>
+            <button *ngIf="list_type_nos==2" type="button" [disabled]="delete_selected.length==0" class="btn btn-info btn-flat btn-sm" style="margin-top:20px;" (click)="delete_file(delete_id,'down');modal.dismiss();">Delete</button>
+        </div>
+    </div>
+    </div>
+
+
+</ng-template>

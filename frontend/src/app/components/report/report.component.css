@@ -1,0 +1,76 @@
+
+.reset{
+	font-size: 25px;
+	position: relative;
+	top: -33px;
+	cursor: pointer;
+	float: right;
+	text-align: right;
+	padding-right: 10px;
+}
+
+
+.tooltip-feedback {
+  background-color: #9ad9e4 !important;
+  color: #646464 !important;
+  /* overflow: visible !important;
+  margin-left: -25px !important;
+  margin-top: -20px !important; */
+}
+
+.new-tooltip-class {
+  background-color: #fff !important;
+  color: #646464 !important;
+  margin-top: -20px !important;
+}
+
+.md-datepicker-input-container {
+    width: 1000px;
+}
+
+
+.md-drppicker{
+  top: 37px !important;
+  left: -98px !important;
+  right: auto !important;
+  width: 500px !important;
+}
+
+.ar-total {
+	padding: 5px 5px !important;
+}
+
+.report-time {
+	margin-right: 10px;
+}
+
+.report-textbox {
+	max-width: 108%;
+}
+
+
+.btn-search {
+  background-color: #00beda;
+  border-color: #00beda;
+  color: #fff;
+  max-width: 66px;
+  margin-top: 15px;
+}
+.btn-search:hover {
+  color: #fff !important;
+  background-color: #04a1b8 !important;
+}
+.md-drppicker {
+    position: fixed !important;
+}
+.md-drppicker.double {
+    width: auto;
+    margin-top: 2px !important;
+    margin-left: 20% !important;
+}
+
+.alignment .md-drppicker.double {
+    width: auto;
+    margin-top: 2px !important;
+    margin-left: 36% !important;
+}

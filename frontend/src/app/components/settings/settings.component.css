@@ -1,0 +1,112 @@
+.custom-class .modal-content {
+    right: -178px;
+    top: 80px;
+
+  }
+  .custom-class .close {
+    color: #000;
+    opacity: .2;
+  }
+#question{
+  resize: vertical;
+}
+
+.custom-btn{
+  padding: 12px 25px !important;
+  font-size: 13px;
+  border: none !important;
+  box-shadow: 0px 20px 30px 0px rgba(41,112,250,0.2) !important;
+}
+.add-status{
+  display: flex;
+}
+input[type=checkbox], input[type=radio] {
+  margin-top: 1px\9;
+  line-height: normal;
+}
+.collapsed{
+  vertical-align: sub;
+}
+.new-status{
+  padding: 3px 10px !important;
+}
+.mb-4{
+  margin-bottom: 4% !important;
+}
+.edit thead tr th:nth-child(2){
+  padding-right: 30px !important;
+}
+fieldset[disabled] input[type=checkbox], fieldset[disabled] input[type=radio], input[type=checkbox].disabled, input[type=checkbox][disabled], input[type=radio].disabled, input[type=radio][disabled]::after {
+  cursor: not-allowed;
+  background-color: #cccccc !important;
+}
+.custom-control {
+  padding-right: 15px;
+}
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #804a96 !important;
+    background-color: #804a96!important;
+}
+.status-radio {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -1px;
+}
+.status-column {
+  padding-left: 29px !important;
+  margin-top: -13px !important;
+}
+.status {
+  display: inline-flex;
+  width: 100%;
+}
+/* .module-checkbox {
+  margin-top: -5px !important;
+  padding-right: 2px !important;
+} */
+.checkbox-label {
+  padding-left: 5px;
+  padding-right: 6px;
+}
+.add-checkbox label {
+  padding-right: 15px;
+}
+.text-space {
+  resize: vertical;
+}
+.fa-plus-cir:before {
+  content: "\f055" !important;
+  font-family: FontAwesome !important;
+}
+.fa-minus-cir:before {
+  content: "\f056" !important;
+  font-family: FontAwesome !important;
+}
+
+.box-tools {
+  margin-left: -15px;
+}
+td {
+  padding: 9px 8px 1px !important;
+}
+
+td:last-child {
+  padding: 5px 8px !important;
+}
+
+.box-header > .box-settings {
+  right: 80px !important;
+  top: 7px !important;
+}
+
+.btn-add{
+  color: #ffffff;
+  background-color: #5bc0de;
+  border-color: #46b8da;
+}
+.btn-remove{
+  color: #ffffff;
+  background-color: #fd2b2b;
+  border-color: #990000;
+}

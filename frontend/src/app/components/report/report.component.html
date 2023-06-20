@@ -1,0 +1,249 @@
+<div class="row">
+   <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+      <div class="tabs nav-tabs-custom">
+         <ul class="tabs nav nav-tabs">
+            <li class="active"><a href="#tab_2"  data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-file-text-o p-r-5 text-gray"></i>  Claims <span class="tab-divider">|</span></a></li>
+         </ul>
+         <div class="tab-content no-padding">
+            <div class="tab-pane active" id="tab_2">
+               <div class="box no-shadow no-border">
+                  <!-- /.box-header -->
+                  <div class="box-body no-padding mb-2">
+                     <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                        <!-- /.box-header -->
+                        <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                           <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Claim Report</h3>
+
+                           <!-- <div class="box-tools pull-right">
+                              <input type="text" name="search_data" class="form-control pull-right" style="margin-top:1px;font-weight:normal" placeholder="Search.."  name="term" [(ngModel)]="term">
+                           </div> -->
+                        </div>
+                        <div class="box-body no-padding" style="margin-top:20px;">
+                           <div class="col-lg-12 no-padding">
+                              <form [formGroup]="reportSearch">
+                                    <div class="form-group col-lg-4 report-time">
+                                       <label>Transaction</label>
+                                       <!-- <input type="text" id="transaction_date" formControlName="transaction_date"
+                                         ngxDaterangepickerMd
+                                         [alwaysShowCalendars]="true"
+                                         [linkedCalendars]="true"
+                                         [timePicker]="true"
+                                         [timePickerSeconds]="true"
+                                         [timePickerIncrement]="15"
+                                         [timePicker24Hour]="true"
+                                         [isInvalidDate] = "isInvalidDate"
+                                         [showClearButton]="true" [readonly]="true" class="form-control report-textbox"
+                                             [locale]="{format: 'MM/DD/YYYY HH:mm:ss', firstDay: 1}"
+                                         placeholder="MM/DD/YYYY"/> -->
+                                         <input type="text" id="transaction_date" formControlName="transaction_date"
+                                    class="form-control" id="data-picker" bsDaterangepicker autocomplete="off"
+                                    [bsConfig]="bsConfig">
+
+                                    </div>
+                                    <div class="form-group col-lg-4 report-time">
+                                       <label>DOS</label>
+<!--
+                                       <input type="text" id="dos" formControlName="dos"
+                                         ngxDaterangepickerMd
+                                         [alwaysShowCalendars]="true"
+                                         [linkedCalendars]="true"
+                                         [isInvalidDate] = "isInvalidDate"
+                                         [showClearButton]="true" [readonly]="true" class="form-control report-textbox alignment"
+                                         [locale]="{applyLabel: 'Apply', format: 'MM/DD/YYYY'}"
+                                         placeholder="MM/DD/YYYY"/> -->
+                                         <input type="text"  id="dos" formControlName="dos"
+                                    class="form-control" id="data-picker" bsDaterangepicker autocomplete="off"
+                                    [bsConfig]="bsConfig">
+                                    </div>
+                                    <div class="form-group col-lg-1" style="display:none">
+                                       <label>Buyer</label>
+                                       <!-- <ngx-select-dropdown formControlName="buyer"  [config]="config" [multiple]="true" [options]="" ></ngx-select-dropdown> -->
+                                    </div>
+                              </form>
+                              <div class="form-group col-lg-3 pull-right">
+                                 <input type="button" href="#tab_3" (click)="get_report_claims(1, 'null','null')" data-toggle="tab" class="btn btn-search pull-right" style="margin-top: 20px;" value="Search">
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="tab-content no-padding">
+            <div class="tab-pane " id="tab_3">
+               <div class="box no-shadow no-border">
+                  <!-- /.box-header -->
+                  <div class="box-body no-padding mb-2">
+                     <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                        <!-- /.box-header -->
+                        <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                           <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Claim Report</h3>
+						    <div class="box-tools pull-right" style="margin-top: 5px;"  *ngIf="total_row != 0 ">
+						       <span style="margin-left:10px;color:#ccc;margin-right:20px;" ></span> <i  class="fa fa-file-excel-o" style="cursor:pointer;" (click)="export_files('excel')" title="Excel"></i>
+						   </div>
+
+                        </div>
+
+                     </div>
+                  </div>
+                  <div class="box-body no-padding" style="margin-top:20px;">
+                                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
+                                    <div class="table-responsive">
+                                       <table class="table-striped1 table">
+                                          <thead>
+                                                <tr>
+                                                   <!--<th style="width:1%">
+                                                      <input type="checkbox" style="margin-top:0px;" [checked]="check_all[pages]==true" (click)="selected($event,'all','all');check_all_assign(pages,$event)" title="Select All" >
+                                                   </th>-->
+
+
+                                                   <th class="font600  line-height-24">Claim No </th>
+
+                                                   <th class="font600 line-height-24">DOS </th>
+
+                                                   <th class="font600  line-height-24">Acc No </th>
+
+                                                   <th>Patient Name </th>
+
+                                                   <th class="font600 line-height-24" >Rendering Provider</th>
+
+                                                   <th class="font600 line-height-24">Responsibility</th>
+
+                                                   <th class="font600 line-height-24">Primary Insurance </th>
+
+                                                   <th class="font600 line-height-24">Secondary Insurance</th>
+
+                                                   <th class="font600 line-height-24" class="font600 line-height-24">Tertiary Insurance </th>
+
+                                                   <th  class="font600 line-height-24">Total Charges</th>
+
+                                                   <th  class="font600 line-height-24">Total AR</th>
+
+                                                   <th  class="font600 line-height-24">Claim Status</th>
+
+                                                   <th  class="font600 line-height-24">Claim Note</th>
+
+                                                   <th class="font600 line-height-24">Process Note</th>
+
+                                                   <th class="font600 line-height-24">Qc Note</th>
+
+                                                  <!--  <th (click)="order_list('assigned_to', sort_type)" class="font600 line-height-24">Assigned To/ Assigned By<i class="fa fa-fw fa-sort"></i></th> -->
+
+                                                   <!-- <th class="font600 line-height-24">Assign.By</th>
+                                                      <th class="font600 line-height-24">Assign.Date</th> -->
+                                                </tr>
+                                             </thead>
+                                          <tbody *ngIf="total == 0">
+                                             <tr>
+                                                <td colspan="12" align="center">
+                                                   <b>No Records Found</b>
+                                                </td>
+                                             </tr>
+                                          </tbody>
+                                          <tbody *ngIf="total !==0 ">
+                                                <tr *ngFor="let x of report_claims  | paginate: { id: 'report_id',itemsPerPage: 15, currentPage: pages, totalItems:total}">
+                                                   <td (mouseover)="tooltip(x)"><span *ngIf="x.claim_no==null">-Nil-</span><span *ngIf="x.claim_no!=null" tooltip="HtmlContent" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" tooltip-append-to-body="true">{{x.claim_no}}</span></td>
+
+                                                   <td (mouseover)="tooltip(x)" ><span *ngIf="x.dos==null">-Nil-</span><span *ngIf="x.dos!=null" tooltip="HtmlContent" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" tooltip-append-to-body="true">{{x.dos | date: 'medium'}}</span></td>
+
+                                                   <td (mouseover)="tooltip(x)" ><span *ngIf="x.acct_no==null">-Nil-</span><span *ngIf="x.acct_no!=null" tooltip="AccNo" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" tooltip-append-to-body="true">{{x.acct_no}}</span></td>
+
+                                                   <td (mouseover)="tooltip(x)"><span *ngIf="x.patient_name==null">-Nil-</span><span *ngIf="x.patient_name!=null" tooltip="AccNo" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" tooltip-append-to-body="true">{{x.patient_name}}</span></td>
+
+
+                                                   <td (mouseover)="tooltip(x)"><span *ngIf="x.rendering_prov==null">-Nil-</span><span *ngIf="x.rendering_prov!=null">{{x.rendering_prov}}</span></td>
+
+                                                   <td (mouseover)="tooltip(x)"><span *ngIf="x.responsibility==null">-Nil-</span><span *ngIf="x.responsibility!=null">{{x.responsibility}}</span></td>
+
+                                                   <td data-toggle="modal" (mouseover)="tooltip(x)"><span tooltip="PriInsurance" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" tooltip-append-to-body="true"><span *ngIf="!x.prim_ins_name ">-Nil-</span><span *ngIf="x.prim_ins_name">{{x.prim_ins_name}}</span></span></td>
+
+                                                   <td (mouseover)="tooltip(x)"><span tooltip="SecInsurance" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" tooltip-append-to-body="true"><span *ngIf="x.sec_ins_name==null">-Nil-</span><span *ngIf="x.sec_ins_name!=null">{{x.sec_ins_name}}</span></span></td>
+
+                                                   <td (mouseover)="tooltip(x)"><span tooltip="TerInsurance" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" tooltip-append-to-body="true"><span *ngIf="x.ter_ins_name==null">-Nil-</span><span *ngIf="x.ter_ins_name!=null">{{x.ter_ins_name}}</span></span></td>
+
+                                                   <td><span *ngIf="x.total_charges==null" (mouseover)="tooltip(x)">-Nil-</span><span *ngIf="x.total_charges!=null">{{x.total_charges | number:'1.2-2'}}</span></td>
+
+                                                   <td class="ar-total"><span *ngIf="x.total_ar==null" (mouseover)="tooltip(x)">-Nil-</span>
+                                                     <span *ngIf="x.total_ar!=null" tooltip="TotalAr" content-type="template" tooltip-class="tooltip-feedback"
+                                                     [options]="tooltipOptions" tooltip-append-to-body="true">{{x.total_ar | number:'1.2-2'}}</span></td>
+
+                                                   <td><span *ngIf="x.claim_Status==null" (mouseover)="tooltip(x)">-Nil-</span><span *ngIf="x.claim_Status!=null">{{x.claim_Status}}</span></td>
+
+                                                   <td><span *ngIf="x.claims_notes==null" (mouseover)="tooltip(x)">-Nil-</span><span *ngIf="x.claims_notes!=null">{{x.claims_notes}}</span></td>
+
+                                                   <td><span *ngIf="x.process_notes==null" (mouseover)="tooltip(x)">-Nil-</span><span *ngIf="x.process_notes!=null">{{x.process_notes}}</span></td>
+
+                                                   <td><span *ngIf="x.qc_notes==null" (mouseover)="tooltip(x)">-Nil-</span><span *ngIf="x.qc_notes!=null">{{x.qc_notes}}</span></td>
+
+                                                </tr>
+                                             </tbody>
+                                       </table>
+                                    </div>
+                                    <div class="row">
+                                       <div class="col-md-6">
+
+                                          <div class="has-text-centered">
+                                             <pagination-controls id="report_id" (pageChange)="get_report_claims($event, 'null', 'null');" [maxSize]="9" ></pagination-controls>
+                                          </div>
+
+                                       </div>
+                                       <div class="col-md-6" style="text-align: right;" class="showing_count" *ngIf="total != 0 && total_issue != 1">
+                                          <div><span>Showing {{skip_rows}}  </span>  <span>to {{current_rows}} </span> <span> of {{total_row}} records</span> </div>
+                                       </div>
+
+                                       <div class="col-md-6" style="text-align: right;" class="showing_count" *ngIf="total == 0 ">
+                                          <div><span>Showing 0  </span>  <span>to 0 </span> <span> of 0 records</span> </div>
+                                       </div>
+
+                                       <div class="col-md-6" style="text-align: right;" class="showing_count" *ngIf="total_issue == 1">
+                                          <div><span>Showing 0  </span>  <span>to 0 </span> <span> of 0 records</span> </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<ng-template #HtmlContent>
+  <div><p>Auth No : {{claim_data.auth_no ? claim_data.auth_no : '-Nil-'}}<br />
+  Admit Date : {{claim_data.admit_date  ? (claim_data.admit_date | date:'MM/dd/yyyy') : '-Nil-'}}<br />Discharge Date : {{claim_data.discharge_date ? (claim_data.discharge_date | date:'MM/dd/yyyy') : '-Nil-'}}<br />
+  CPT : {{claim_data.cpt ? claim_data.cpt: '-Nil-'}}<br /> ICD : {{claim_data.icd ? claim_data.icd: '-Nil-'}}<br />
+  Modifiers : {{claim_data.modifiers ? claim_data.modifiers: '-Nil-'}}<br /> Units : {{claim_data.units ? claim_data.units: '-Nil-'}}<br />
+  Facility : {{claim_data.facility ? claim_data.facility: '-Nil-'}}<br /> Billing Provider : {{claim_data.billing_prov ? claim_data.billing_prov:'-Nil-'}}</p></div>
+</ng-template>
+<ng-template #AccNo>
+    <div><p>Guarantor : {{claim_data.guarantor ? claim_data.guarantor: '-Nil-'}}<br />
+    DOB : {{claim_data.dob ? (claim_data.dob | date:'MM/dd/yyyy'): '-Nil-'}} | Age : {{calculateAge }}<br />
+    SSN : {{claim_data.ssn ? claim_data.ssn: '-Nil-'}} | Gender : {{claim_data.gender ? claim_data.gender: '-Nil-'}}<br />
+    Address Line 1 : {{claim_data.address_1 ? claim_data.address_1: '-Nil-'}}<br /> Address Line 2 : {{claim_data.address_2 ? claim_data.address_2: '-Nil-'}}<br />
+    City : {{claim_data.city ? claim_data.city: '-Nil-'}} | State : {{claim_data.state ? claim_data.state: '-Nil-'}} <br />
+    Zip Code : {{claim_data.zipcode ? claim_data.zipcode: '-Nil-'}}<br />
+    Phone Number : {{claim_data.phone_no ? claim_data.phone_no:'Nill--'}}
+    Employer : {{claim_data.employer ? claim_data.employer: '-Nil-'}}</p></div>
+</ng-template>
+<ng-template #PriInsurance>
+    <div><p>Primary Policy ID : {{claim_data.prim_pol_id ? claim_data.prim_pol_id: '-Nil-'}}<br />
+    Primary Group ID : {{claim_data.prim_group_id ? claim_data.prim_group_id: '-Nil-'}}<br />Primary Address 1 : {{claim_data.prim_address_1 ? claim_data.prim_address_1:'-Nil-'}}<br />
+    Primary Address 2 : {{claim_data.prim_address_2 ? claim_data.prim_address_2:'-Nil-'}}<br /> Primary City : {{claim_data.prim_city ? claim_data.prim_city:'-Nil-'}}<br />
+    Primary State : {{claim_data.prim_state ? claim_data.prim_state: '-Nil-'}}<br /> Primary Zip Code : {{claim_data.prim_zipcode ? claim_data.prim_zipcode:'-Nil-'}}</p></div>
+</ng-template>
+<ng-template #SecInsurance>
+  <div><p>Secondary Policy ID : {{claim_data.sec_pol_id ? claim_data.sec_pol_id:'-Nil-'}}<br />
+  Secondary Group ID : {{claim_data.sec_group_id ? claim_data.sec_group_id:'-Nil-'}}<br />Secondary Address 1 : {{claim_data.sec_address_1 ? claim_data.sec_address_1:'-Nil-'}}<br />
+  Secondary Address 2 : {{claim_data.sec_address_2 ? claim_data.sec_address_2:'-Nil-'}}<br /> Secondary City : {{claim_data.sec_city ? claim_data.sec_city:'-Nil-'}}<br />
+  Secondary State : {{claim_data.sec_state ? claim_data.sec_state:'-Nil-'}}<br /> Secondary Zip Code : {{claim_data.sec_zipcode}}</p></div>
+</ng-template>
+<ng-template #TerInsurance>
+  <div><p>Tertiary Policy ID : {{claim_data.ter_pol_id ? claim_data.ter_pol_id:'-Nil-'}}<br />
+  Tertiary Group ID : {{claim_data.ter_group_id ? claim_data.ter_group_id:'-Nil-'}}<br />Tertiary Address 1 : {{claim_data.ter_address_1 ? claim_data.ter_address_1:'-Nil-'}}<br />
+  Tertiary Address 2 : {{claim_data.ter_address_2 ? claim_data.ter_address_2:'-Nil-'}}<br /> Tertiary City : {{claim_data.ter_city ? claim_data.ter_city:'-Nil-'}}<br />
+  Tertiary State : {{claim_data.ter_state ? claim_data.ter_state:'-Nil-'}}<br /> Tertiary Zip Code : {{claim_data.ter_zipcode ? claim_data.ter_zipcode:'-Nil-'}}</p></div>
+</ng-template>
+<ng-template #TotalAr>
+    <div><p>Patient AR : {{claim_data.pat_ar ? claim_data.pat_ar:'-Nil-'}}<br />
+    Insurance AR : {{claim_data.ins_ar ? claim_data.ins_ar:'-Nil-'}}</p></div>
+</ng-template>

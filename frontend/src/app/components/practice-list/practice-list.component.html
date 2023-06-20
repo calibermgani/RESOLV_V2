@@ -1,0 +1,217 @@
+<div class="row no-padding" class="container">
+  <!-- ./col -->
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <!-- small box -->
+    <section class="content no-padding">
+      <div class="row">
+        <h3 class="text-aqua" style="text-align:center"><b><i><span style="color:#404558">Welcome</span>
+              {{user_name}}</i></b></h3>
+      </div>
+      <div class="row" style="margin-top:15px;">
+        <!-- <div class="alert alert-info alert-dismissible">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <i class="icon fa fa-check"></i> User Alert message will be displayed here..
+              </div> -->
+
+        <div class="tabs nav-tabs-custom">
+          <ul class="tabs nav nav-tabs">
+            <li class="active"><a href="#tab_4" data-toggle="tab"></a> </li>
+          </ul>
+          <div class="tab-content no-padding">
+            <div class="tab-pane active" id="tab_4">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+                <div class="box no-shadow no-border">
+                  <!-- /.box-header -->
+                  <div class="box-body no-padding">
+                    <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                      <!-- /.box-header -->
+                      <div class="box-header" style="border-bottom: 1px solid #d3d3d3;">
+                        <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Practice List</h3>
+                        <div class="box-tools pull-right">
+                        </div>
+                      </div>
+                      <div class="box-body no-padding" style="margin-top:20px;">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
+                          <div class="table-responsive">
+                            <table class="table table-hover" id="example">
+                              <!-- <colgroup>
+                                <col span="1" style="background-color:#e8e8e8 !important;">
+                                <col span="1" style="background-color:#e8e8e8 !important;">
+                                <col span="2" style="background-color:#eddfd0 !important;">
+                                <col span="2" style="background-color:#d5e3b4 !important;">
+                                <col span="2" style="background-color:#f5d1c5 !important">
+                                <col span="2" style="background-color:#ccdc8f !important">
+                                <col span="2" style="background-color:#a5c5e5 !important">
+                              </colgroup> -->
+                              <thead>
+                                <tr>
+                                  <th class="font600  line-height-24" style="border-right: 1px solid #fff;">
+                                    Name</th>
+                                  <th class="font600  line-height-24">Total Claims</th>
+                                  <th class="font600 line-height-24"
+                                    style="border-left: 1px solid #fff;border-right: 1px solid #fff;">
+                                    Assigned Claims</th>
+                                  <th class="font600 line-height-24"
+                                    style="border-right: 1px solid #fff;">Unassigned Claims</th>
+                                    <th class="font600  line-height-24">Audit Claims</th>
+                                  <!-- <th class="font600 line-height-24" colspan="1"
+                                    style="border-right: 1px solid #fff;">Pending Claims</th> -->
+                                  <th class="font600 line-height-24"
+                                    style="border-right: 1px solid #fff;">Closed Claims</th>
+                                </tr>
+                              </thead><br>
+                              <tbody>
+                                <tr *ngFor="let practice of practice_list" class="clickable-row cur-pointer"
+                                  data-href="index.html" routerLink="dashboard" (click)="selectPractice(practice.id)">
+                                  <td>{{practice.practice_name}}</td>
+                                  <td>{{practice.total_count}}</td>
+                                  <td>{{practice.assigned_count}}</td>
+                                  <td>{{practice.unassigned_count}}</td>
+                                  <td>{{practice.audit_count}}</td>
+                                  <td>{{practice.closed_count}}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane" id="tab_5">
+              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+                <div class="box no-shadow no-border">
+                  <!-- /.box-header -->
+                  <div class="box-body no-padding">
+                    <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                      <!-- /.box-header -->
+                      <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                        <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Vendor</h3>
+                        <div class="box-tools pull-right">
+                        </div>
+                      </div>
+                      <div class="box-body no-padding" style="margin-top:20px;">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
+                          <div class="table-responsive">
+                            <table class="table-striped1 table table-hover" id="example">
+                              <colgroup>
+                                <col span="1" style="background-color:#fff !important;">
+                                <col span="1" style="background-color:#fff !important;">
+                                <col span="2" style="background-color:#fff9f3 !important;">
+                                <col span="2" style="background-color:#fcfef7 !important;">
+                                <col span="2" style="background-color:#fef8f6 !important">
+                                <col span="2" style="background-color:#fafcf0 !important">
+                                <col span="2" style="background-color:#f5f9fd !important">
+                              </colgroup>
+                              <thead>
+                                <tr>
+                                  <th class="font600  line-height-24" style="border-right: 1px solid #fff;" colspan="1">
+                                    Name</th>
+                                  <th class="font600  line-height-24">Total Claims</th>
+                                  <th class="font600 text-center line-height-24"
+                                    style="border-left: 1px solid #fff;border-right: 1px solid #fff;" colspan="2">
+                                    Assigned Claims</th>
+                                  <th class="font600 text-center line-height-24" colspan="2"
+                                    style="border-right: 1px solid #fff;">Unassigned Claims</th>
+                                  <th class="font600 text-center line-height-24" colspan="2"
+                                    style="border-right: 1px solid #fff;">Worked Claims</th>
+                                  <th class="font600 text-center line-height-24" colspan="2"
+                                    style="border-right: 1px solid #fff;">Pending Claims</th>
+                                  <th class="font600 text-center line-height-24" colspan="2">Audit Claims</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr class="clickable-row cur-pointer" data-href="index.html">
+                                  <td>Demo Vendor 1</td>
+                                  <td>32123</td>
+                                  <td class="">864</td>
+                                  <td class="text-right">3,466.00</td>
+                                  <td class="">453</td>
+                                  <td class="text-right">684.01</td>
+                                  <td class="">346</td>
+                                  <td class="text-right">1,113.00</td>
+                                  <td class="">34</td>
+                                  <td class="text-right">3,333.00</td>
+                                  <td class="">46</td>
+                                  <td class="text-right">2,121.00</td>
+                                </tr>
+                                <tr>
+                                  <td>Demo Vendor 2</td>
+                                  <td>32123</td>
+                                  <td class="">577</td>
+                                  <td class="text-right">1,745.00</td>
+                                  <td class="">452</td>
+                                  <td class="text-right">4,353.01</td>
+                                  <td class="">342</td>
+                                  <td class="text-right">4,534.00</td>
+                                  <td class="">33</td>
+                                  <td class="text-right">3,745.00</td>
+                                  <td class="">623</td>
+                                  <td class="text-right">7,234.00</td>
+                                </tr>
+                                <tr>
+                                  <td class="">Demo Vendor 3</td>
+                                  <td>32123</td>
+                                  <td class="">975</td>
+                                  <td class="text-right">3,745.00</td>
+                                  <td class="">75</td>
+                                  <td class="text-right">8,684.01</td>
+                                  <td class="">436</td>
+                                  <td class="text-right">1,113.00</td>
+                                  <td class="">57</td>
+                                  <td class="text-right">3,745.00</td>
+                                  <td class="">753</td>
+                                  <td class="text-right">2,980.00</td>
+                                </tr>
+                                <tr>
+                                  <td>Demo Vendor 4</td>
+                                  <td>32123</td>
+                                  <td class="">345</td>
+                                  <td class="text-right">124.00</td>
+                                  <td class="">235</td>
+                                  <td class="text-right">3,464.01</td>
+                                  <td class="">785</td>
+                                  <td class="text-right">353.00</td>
+                                  <td class="">733</td>
+                                  <td class="text-right">3,888.00</td>
+                                  <td class="">642</td>
+                                  <td class="text-right">1,242.00</td>
+                                </tr>
+                                <tr>
+                                  <td class="">Test Vendor</td>
+                                  <td>32123</td>
+                                  <td class="">845</td>
+                                  <td class="text-right">3,547.00</td>
+                                  <td class="">34</td>
+                                  <td class="text-right">8,866.01</td>
+                                  <td class="">744</td>
+                                  <td class="text-right">3,362.00</td>
+                                  <td class="">462</td>
+                                  <td class="text-right">1,864.00</td>
+                                  <td class="">543</td>
+                                  <td class="text-right">1,535.00</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <!-- /.row -->
+    </section>
+  </div>
+  <!-- ./col -->
+</div>

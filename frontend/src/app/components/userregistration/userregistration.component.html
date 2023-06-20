@@ -1,0 +1,281 @@
+<div class="mt-4 col-8 offset-s">
+   <!-- <div class="alert alert-success" [hidden]="!notify">
+      {{notify}}
+      </div>  -->
+   <div class="card">
+      <!-- <div class="card-header">
+         </div> -->
+      <div class="card-body">
+         <form #RegisterForm=ngForm [formGroup]="formGroup" (ngSubmit)="onSubmit()" >
+         <!--     <div class="alert alert-danger" [hidden]="!error">
+            {{error}}
+                    </div>  -->
+         <div class="form-group row" >
+            <label for="username" class="col-sm-3 col-form-label text-center">User Name <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="username" class="form-control" id="username" placeholder="User Name"  formControlName="username" (blur)="onBlur()" autocomplete="off" required>
+               <div *ngIf="(formGroup.controls['username'].touched || submitted)">
+                  <div *ngIf="formGroup.controls['username'].hasError('required')" class="error">
+                     User Name is required
+                  </div>
+                  <div *ngIf="formGroup.controls['username'].hasError('pattern')" class="error">
+                     Special characters are not Allowed.
+                  </div>
+                  <div *ngIf="formGroup.controls['username'].hasError('minlength')" class="error">
+                     User Name Should be Min 5 Characters.
+                  </div>
+                  <div *ngIf="formGroup.controls['username'].hasError('maxlength')" class="error">
+                     User Name Should be Max 20 Characters.
+                  </div>
+               </div>
+               <!-- <div class="alert-danger" style="font-size: 13px !important" [hidden]="!error">
+                  {{error}}
+                  </div>  -->
+            </div>
+         </div>
+         <div class="form-group row" >
+            <label for="password" class="col-sm-3 col-form-label text-center">Password <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="password" name="password" class="form-control" id="password" placeholder="Password" formControlName="password" autocomplete="new-password" required maxlength="15">
+               <div *ngIf="(formGroup.controls['password'].touched || submitted)">
+                  <div *ngIf="formGroup.controls['password'].hasError('required')" class="error">
+                     Password is required
+                  </div>
+               </div>
+               <div *ngIf="formGroup.controls['password'].hasError('maxLength')" class="error">
+                  Password should be Max 15 characters long.
+               </div>
+               <div *ngIf="formGroup.controls['password'].hasError('minlength')" class="error">
+                  Password should be Min 5 characters long.
+               </div>
+            </div>
+         </div>
+         <div class="form-group row" >
+            <label for="firstname" class="col-sm-3 col-form-label text-center">First Name <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="firstname" class="form-control" id="firstname" placeholder="First Name" formControlName="firstname" required maxlength="15">
+               <div *ngIf="(formGroup.controls['firstname'].touched || submitted)">
+                  <div *ngIf="formGroup.controls['firstname'].hasError('required')" class="error">
+                     First Name is required
+                  </div>
+                  <div *ngIf="formGroup.controls['firstname'].hasError('minlength')" class="error">
+                     First Name should be Min 2 characters long.
+                  </div>
+                  <div *ngIf="formGroup.controls['firstname'].hasError('maxlength')" class="error">
+                     First Name should be Max 20 characters long.
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="form-group row" >
+            <label for="lastname" class="col-sm-3 col-form-label text-center">Last Name <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Last Name" formControlName="lastname" required maxlength="15">
+               <div *ngIf="(formGroup.controls['lastname'].touched || submitted)">
+                  <div *ngIf="formGroup.controls['lastname'].hasError('required')" class="error">
+                     Last Name is required
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="form-group row" >
+            <label for="dob" class="col-sm-3 col-form-label text-center">Date Of Birth <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <!-- <input type="text" name="dob" class="form-control" id="dob" placeholder="MM-DD-YYYY" formControlName="dob" [minDate]="minDate" (focus)="dob.toggle()"  ngbDatepicker #dob="ngbDatepicker" autocomplete="off"> -->
+               <input type="text" class="form-control" formControlName="created_at" placement="right" formControlName="dob"
+                                         class="form-control" id="dob"
+                                          bsDatepicker [bsConfig]="bsConfig"  autocomplete="off">
+               <div *ngIf="(formGroup.controls['dob'].touched || submitted)">
+                  <div *ngIf="formGroup.controls['dob'].hasError('required')" class="error">
+                     Date of birth is required
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="card-title box-header">
+            <!-- <b>  Contact Information</b> -->
+            <h3 _ngcontent-c13="" class="box-title list-heading "><i _ngcontent-c13="" class="fa fa-bars ar-blue"></i> Contact Information</h3>
+         </div>
+         <div class="form-group row" >
+            <label for="phone" class="col-sm-3 col-form-label text-center">Phone <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone Number" maxLength='10' formControlName="phone">
+               <div *ngIf="(formGroup.controls['phone'].touched || submitted)">
+                  <div *ngIf="formGroup.controls['phone'].hasError('required')" class="error">
+                     Phone Number is required
+                  </div>
+                  <div *ngIf="formGroup.controls['phone'].hasError('minlength') && !formGroup.get('phone')?.hasError('pattern')" class="error">
+                     Phone Number Should be Minimum 10 Numbers.
+                  </div>
+                  <div *ngIf=" formGroup.get('phone')?.hasError('pattern')" class="error">
+                     Phone Number Should be Numbers.
+                  </div>
+               </div>
+               <!-- <bfv-messages>
+                  </bfv-messages> -->
+            </div>
+         </div>
+         <div class="form-group row" >
+            <label for="address" class="col-sm-3 col-form-label text-center">Address 1<span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="address1" class="form-control" id="address" placeholder="Address Line 1" formControlName="address1" required>
+               <div *ngIf="(formGroup.controls['address1'].touched || submitted)">
+                  <div *ngIf="formGroup.controls['address1'].hasError('required')" class="error">
+                     Address is required
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="form-group row" >
+            <label for="address" class="col-sm-3 col-form-label text-center">Address 2<span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="address2" class="form-control" id="address2" placeholder="Address Line 2" formControlName="address2" required>
+               <div *ngIf="(formGroup.controls['address2'].touched || submitted)">
+                  <div *ngIf="formGroup.controls['address2'].hasError('required')" class="error">
+                     Address is required
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="form-group row" >
+            <label for="city" class="col-sm-3 col-form-label text-center">City <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="city" class="form-control" id="city" placeholder="City" formControlName="city" required maxlength="15">
+               <div *ngIf="(formGroup.controls['city'].touched || submitted)">
+                  <div *ngIf="formGroup.controls['city'].hasError('required')" class="error">
+                     City is required
+                  </div>
+                  <div *ngIf="formGroup.controls['city'].hasError('minlength')" class="error">
+                     City Should be Minimum 2 Characters.
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="form-group row" >
+            <label for="state" class="col-sm-3 col-form-label text-center">State <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="state" class="form-control" id="state" placeholder="State" formControlName="state" required maxlength="15">
+               <div *ngIf="(formGroup.controls['state'].touched || submitted)">
+                  <div *ngIf="formGroup.controls['state'].hasError('required')" class="error">
+                     State is required
+                  </div>
+                  <div *ngIf="formGroup.controls['state'].hasError('minlength')" class="error">
+                     State Should be Minimum 2 Characters.
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="form-group row" >
+            <label for="zip" class="col-sm-3 col-form-label text-center">Zip Code <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="zip" class="form-control" id="zip" placeholder="Zip" formControlName="zip" maxLength='6' required>
+               <div *ngIf="(formGroup.controls['zip'].touched || submitted)">
+                  <div *ngIf="formGroup.controls['zip'].hasError('required')" class="error">
+                     Zip Code is required
+                  </div>
+                   <div *ngIf="formGroup.controls['zip'].hasError('pattern')" class="error">
+                     Only Numbers are Allowed for ZipCode.
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- <div class="form-group row">
+            <label for="role" class="col-sm-2 col-form-label">Role</label>
+
+               <div class="col-sm-4">
+
+
+            <select class="form-control" formControlName="role" id="role" required>
+            <option  *ngFor="let r of roles" [ngValue]="r.id" > {{r.role_name}} </option>
+            </select>
+            <div *ngIf="formGroup.controls['role'].touched">
+            <div *ngIf="formGroup.controls['role'].hasError('required')">
+            Please Select a Role.
+            </div>
+
+            </div>
+
+               </div>
+             </div> -->
+         <div class="card-title box-header">
+            <!-- <b>  Contact Information</b> -->
+            <h3 _ngcontent-c13="" class="box-title list-heading"><i _ngcontent-c13="" class="fa fa-bars ar-blue"></i> Processing Details</h3>
+         </div>
+         <div  formGroupName="process_details" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table" style="padding:10px">
+            <table class="table-striped1 table table-responsive">
+               <thead>
+                  <tr>
+                     <th>Practice</th>
+                     <th>Role</th>
+                     <th>Assign Limit</th>
+                     <th>Caller Benchmark</th>
+                     <th>Action</th>
+                  </tr>
+               </thead>
+               <tr   *ngFor="let fields of field_details;let i=index">
+                  <td>
+                     <select class="form-control" formControlName="{{fields.practice}}" id="{{fields.practice}}" (change)="check_dup_prac()" required>
+                        <option *ngFor="let r of practice_list" value="{{r.id}}" > {{r.practice_name}} </option>
+                     </select>
+                      <div *ngIf="(process_fields.controls[fields.practice].touched || submitted) && process_fields.controls[fields.practice].errors" class="invalid-feedback">
+                        <div *ngIf="process_fields.controls[fields.practice].hasError('required')">Please Select a Role.</div>
+                      </div>
+                  </td>
+                  <td>
+                     <select class="form-control" formControlName="{{fields.role}}" id="{{fields.role}}" required>
+                        <option  *ngFor="let r of roles" value="{{r.id}}" > {{r.role_name}} </option>
+                     </select>
+                     <div *ngIf="(process_fields.controls[fields.role].touched || submitted) && process_fields.controls[fields.role].errors" class="invalid-feedback">
+                        <div *ngIf="process_fields.controls[fields.role].hasError('required')">Please Select a Role.</div>
+                      </div>
+                  </td>
+                  <td>
+                     <input type="number" name="{{fields.assign_lim}}" class="form-control" id="{{fields.assign_lim}}" placeholder="Assign Limit" formControlName="{{fields.assign_lim}}" required>
+                     <div *ngIf="(process_fields.controls[fields.assign_lim].touched || submitted) && process_fields.controls[fields.assign_lim].errors" class="invalid-feedback">
+                        <div *ngIf="process_fields.controls[fields.assign_lim].hasError('required')">Please Select a Assign Limit.</div>
+                        <div *ngIf="process_fields.controls[fields.assign_lim].hasError('pattern')">Only Numbers are Allowed.</div>
+                      </div>
+                  </td>
+                  <td>
+                     <input type="number" name="{{fields.caller_bm}}" class="form-control" id="{{fields.caller_bm}}" formControlName="{{fields.caller_bm}}" placeholder="%" required>
+                     <div *ngIf="(process_fields.controls[fields.caller_bm].touched || submitted) && process_fields.controls[fields.caller_bm].errors" class="invalid-feedback">
+                        <div *ngIf="process_fields.controls[fields.caller_bm].hasError('required')">Caller Benchmark is required</div>
+                        <div *ngIf="process_fields.controls[fields.caller_bm].hasError('pattern')">Only Numbers are Allowed.</div>
+                      </div>
+                  </td>
+                  <td style="padding-left: 16px;">
+                     <span *ngIf="field_details.length ==  i+1 && practice.length > practice_nos">
+                     <button type="button" class="add btn btn-info btn-sm" aria-label="Add" (click)="add_practice()">
+                     <span aria-hidden="true"><i class="fa fa-plus"></i></span></button>
+                     </span>
+                     <!-- <span *ngIf="field_details.length !=  i+1">  -->
+                     <span *ngIf="i != 0">
+                     <button type="button" class="btn btn-danger btn-sm" aria-label="Close" (click)="delete_row(fields)">
+                     <span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                     </span>
+                  </td>
+               </tr>
+            </table>
+         </div>
+         </form>
+         <div class="form-group row" >
+            <div class="col-sm-12">
+               <div class="text-center">
+                  <button type="submit" class="btn btn-info submit-btn" [disabled]="formGroup.invalid" (click)="onSubmit()">Create User</button>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

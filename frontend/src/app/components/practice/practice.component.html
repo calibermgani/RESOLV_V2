@@ -1,0 +1,1046 @@
+<div class="mt-4 col-8 offset-s"></div>
+<!-- Content Wrapper. Contains page content -->
+<div class="card">
+   <!-- Content Header (Page header) -->
+   <!-- Main content -->
+   <div class="row">
+      <div class="col-lg-1 col-md-1"></div>
+      <section class="content">
+         <!-- Small boxes (Stat box) -->
+         <div class="row no-padding">
+            <!-- ./col -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+               <!-- small box -->
+               <section class="content no-padding">
+                  <div class="row hide" style="margin-bottom: 30px;">
+                     <div class="col-lg-4 no-padding" style="border-right: 1px solid #ccc">
+                        <h5 style="font-weight: 600;">Filter By</h5>
+                        <div class="btn-group">
+                           <button type="button" class="btn btn-default active">Projects</button>
+                           <button type="button" class="btn btn-default">Associates</button>
+                           <button type="button" class="btn btn-default">Vendors</button>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 " style="border-right: 1px solid #ccc;padding-bottom: 10px;">
+                        <h5 style="font-weight: 600;">Status</h5>
+                        <input type="radio" name="r" id="submitted"> <label for="submitted" style="font-weight:normal">Submitted</label>
+                        &emsp;&emsp; <input type="radio" name="r" id="rejected"> <label for="rejected" style="font-weight: normal;">Rejected</label>
+                        &emsp;&emsp; <input type="radio" name="r" id="hold"> <label for="hold" style="font-weight: normal">Hold</label>
+                     </div>
+                     <div class="col-lg-4">
+                        <h5 style="font-weight: 600;">Sort By</h5>
+                        <div class="btn-group ">
+                           <button type="button" class="btn btn-default">Projects</button>
+                           <button type="button" class="btn btn-default">Associates</button>
+                           <button type="button" class="btn btn-default">Vendors</button>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+                        <div class="tabs nav-tabs-custom">
+                           <ul class="tabs nav nav-tabs">
+                              <li class="active"><a href="#tab_4" data-toggle="tab"><i class="fa fa-envelope"></i> Emails <span class="tab-divider">|</span></a> </li>
+                              <li><a href="#tab_2" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-file-text"></i> SOP <span class="tab-divider">|</span></a></li>
+                              <li><a href="#tab_3" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-clock-o"></i> Meetings <span class="tab-divider">|</span></a></li>
+                              <li><a href="#tab_1" data-toggle="tab"><i class="fa fa-medkit"></i> Practice </a> </li>
+                           </ul>
+                           <div class="tab-content no-padding">
+                              <div class="tab-pane" id="tab_1">
+                                 <form  [formGroup]="formGroup" (ngSubmit)="onSubmit()" >
+                                    <div class="box no-shadow no-border">
+                                       <!-- /.box-header -->
+                                       <div class="box-body no-padding">
+                                          <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                                             <!-- /.box-header -->
+                                             <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                                <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i>
+                                                   Business Details
+                                                </h3>
+                                                <div class="box-tools pull-right">
+                                                   <button type="button" class="btn btn-box-tool collapsed" style="margin-left:10px;"
+                                                   (click)="isCollapsed_business_details = !isCollapsed_business_details" [attr.aria-expanded]="!isCollapsed_business_details"
+                                                   aria-controls="collapseBasic">
+                                                   <i class="fa fa-plus" *ngIf="isCollapsed_business_details"></i>
+                                                   <i class="fa fa-minus" *ngIf="!isCollapsed_business_details"></i>
+                                                   </button>
+                                                </div>
+                                             </div>
+                                             <div class="box-body no-padding collapse in" style="margin-top:20px;" [collapse]="isCollapsed_business_details" [isAnimated]="true">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table ">
+                                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 no-padding">
+                                                      <div class="box-body">
+                                                         <div class="col-lg-9 no-padding">
+                                                            <div class="form-group ">
+                                                               <label>Doing Business As<span class="ar-red">*</span></label>
+                                                               <input type="text" class="form-control" formControlName="business_name"
+                                                                  name="business_name" id="business_name" >
+                                                               <div *ngIf="(f.business_name.touched || submitted) && f.business_name.errors" class="invalid-feedback">
+                                                                  <div *ngIf="f.business_name.errors.required">Business Name is required</div>
+                                                               </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                               <label>Specialty</label>
+                                                               <select class="form-control"  formControlName="speciality_id" id="spec">
+                                                                  <option>-- Select --</option>
+                                                                  <option>Specialty 1</option>
+                                                                  <option>Specialty 2</option>
+                                                                  <option>Specialty 3</option>
+                                                               </select>
+                                                            </div>
+                                                            <div class="form-group">
+                                                               <label>Taxonomy</label>
+                                                               <select class="form-control"  formControlName="taxanomy_id" id="taxonomy">
+                                                                  <option>-- Select --</option>
+                                                                  <option>Taxonomy 1</option>
+                                                                  <option>Taxonomy 2</option>
+                                                                  <option>Taxonomy 3</option>
+                                                               </select>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 no-padding">
+                                                      <div class="box-body">
+                                                         <div class="col-lg-9">
+                                                         <div class="form-group">
+                                                            <label>Billing Entity</label>
+                                                               <div class="status-column status">
+                                                               <div class="status">
+                                                                  <div class="status-radio">
+                                                                     <div class="custom-control custom-radio">
+                                                                        <input id="true" class="custom-control-input" formControlName="billing_entity" type="radio" value="true">
+                                                                        &nbsp;<label class="custom-control-label" for="true">Yes</label>
+                                                                     </div>
+                                                                     <div class="custom-control custom-radio">
+                                                                        <input id="false" class="custom-control-input" formControlName="billing_entity" type="radio" value="false">
+                                                                        &nbsp;<label class="custom-control-label" for="false">No</label>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                                  <!-- <input type="radio" formControlName="billing_entity" value="true"><p>Yes</p>
+                                                                  <input type="radio" name="billing_entity" value="false" ><p>No</p> -->
+                                                               </div>
+                                                            </div>
+                                                            <div class="form-group">
+                                                               <label>Entity Type</label>
+                                                               <!-- <div class="practice">
+                                                                  <input type="radio"  formControlName="entity_type" value="Individual" ><p>Individual</p>
+                                                                  <input type="radio" name="entity_type" value="Group"><p>Group</p>
+                                                               </div> -->
+                                                               <div class="status-column status">
+                                                               <div class="status">
+                                                                  <div class="status-radio">
+                                                                     <div class="custom-control custom-radio">
+                                                                        <input id="group" class="custom-control-input" name="entity_type" formControlName="entity_type" type="radio" value="Group">
+                                                                        &nbsp;<label class="custom-control-label" for="group">Group</label>
+                                                                     </div>
+                                                                     <div class="custom-control custom-radio">
+                                                                        <input id="individual" class="custom-control-input" name="entity_type" formControlName="entity_type" type="radio" value="Individual">
+                                                                        &nbsp;<label class="custom-control-label" for="ndividual">Individual</label>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="box no-shadow no-border">
+                                       <!-- /.box-header -->
+                                       <div class="box-body no-padding">
+                                          <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                                             <!-- /.box-header -->
+                                             <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                                <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i>
+                                                   Pay to Address
+                                                </h3>
+                                                <div class="box-tools pull-right">
+                                                   <button type="button" class="btn btn-box-tool collapsed" style="margin-left:10px;"
+                                                   (click)="isCollapsed_payTo_addresss = !isCollapsed_payTo_addresss" [attr.aria-expanded]="!isCollapsed_payTo_addresss"
+                                                   aria-controls="collapseBasic">
+                                                   <i class="fa fa-minus" *ngIf="!isCollapsed_payTo_addresss"></i>
+                                                   <i class="fa fa-plus" *ngIf="isCollapsed_payTo_addresss"></i>
+                                                   </button>
+                                                </div>
+                                             </div>
+                                             <div class="box-body no-padding collapse in" style="margin-top:20px;" [collapse]="isCollapsed_payTo_addresss" [isAnimated]="true" >
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table ">
+                                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 no-padding">
+                                                      <div class="box-body">
+                                                         <div class="col-lg-9 no-padding">
+                                                            <div class="form-group ">
+                                                               <label>Address Line1<span class="ar-red">*</span></label>
+                                                               <input type="text" class="form-control" formControlName="pay_address_1"
+                                                                  name="pay_address_1" id="pay_address_1">
+                                                               <div *ngIf="(f.pay_address_1.touched || submitted) && f.pay_address_1.errors" class="invalid-feedback">
+                                                                  <div *ngIf="f.pay_address_1.errors.required">Address line 1 is required</div>
+                                                               </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                               <label>Address Line2<span class="ar-red">*</span></label>
+                                                               <input type="text" class="form-control" formControlName="pay_address_2"
+                                                                  name="pay_address_2" id="pay_address_2">
+                                                               <div *ngIf="(f.pay_address_2.touched || submitted) && f.pay_address_2.errors" class="invalid-feedback">
+                                                                  <div *ngIf="f.pay_address_2.errors.required">Address line 1 is required</div>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 no-padding">
+                                                      <div class="box-body">
+                                                         <div class="col-lg-9 no-padding">
+                                                            <div class="col-lg-12 no-padding">
+                                                               <div class="col-lg-6">
+                                                                  <div class="form-group ">
+                                                                     <label>City<span class="ar-red">*</span></label>
+                                                                     <input type="text" class="form-control" formControlName="pay_city"
+                                                                        name="pay_city" id="city">
+                                                                     <div *ngIf="(f.pay_city.touched || submitted) && f.pay_city.errors" class="invalid-feedback">
+                                                                        <div *ngIf="f.pay_city.errors.required">City is required</div>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                               <div class="col-lg-6">
+                                                                  <div class="form-group ">
+                                                                     <label>State<span class="ar-red">*</span></label>
+                                                                     <input type="text" class="form-control" formControlName="pay_state"
+                                                                        name="pay_state" id="pay_state">
+                                                                     <div *ngIf="(f.pay_state.touched || submitted) && f.pay_state.errors" class="invalid-feedback">
+                                                                        <div *ngIf="f.pay_state.errors.required">State is required</div>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                            <div class="col-lg-12 no-padding">
+                                                               <div class="col-lg-6">
+                                                                  <div class="form-group ">
+                                                                     <label>Zip Code<span class="ar-red">*</span></label>
+                                                                     <input type="text" class="form-control" formControlName="pay_zip_code"
+                                                                        name="pay_zip_code" id="pay_zip_code" >
+                                                                     <div *ngIf="(f.pay_zip_code.touched || submitted) && f.pay_zip_code.errors" class="invalid-feedback">
+                                                                        <div *ngIf="f.pay_zip_code.errors.required">Zip Code is required</div>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="box no-shadow no-border">
+                                       <div class="box-body no-padding">
+                                          <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                                             <!-- /.box-header -->
+                                             <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                                <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i>
+                                                   Primary Location
+                                                </h3>
+                                                <div class="box-tools pull-right">
+                                                   <button type="button" class="btn btn-box-tool collapsed" style="margin-left:10px;"
+                                                   (click)="isCollapsed_primary_location = !isCollapsed_primary_location" [attr.aria-expanded]="!isCollapsed_primary_location"
+                                                   aria-controls="collapseBasic">
+                                                   <i class="fa fa-plus" *ngIf="isCollapsed_primary_location"></i>
+                                                   <i class="fa fa-minus" *ngIf="!isCollapsed_primary_location"></i>
+                                                   </button>
+                                                </div>
+                                             </div>
+                                             <div class="box-body no-padding collapse in" style="margin-top:20px;" [collapse]="isCollapsed_primary_location" [isAnimated]="true" >
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table ">
+                                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 no-padding">
+                                                      <div class="box-body">
+                                                         <div class="col-lg-9 no-padding">
+                                                            <div class="form-group ">
+                                                               <label>Address Line1<span class="ar-red">*</span></label>
+                                                               <input type="text" class="form-control" formControlName="primary_address_1"
+                                                                  name="primary_address_1" id="primary_address_1">
+                                                               <div *ngIf="(f.primary_address_1.touched || submitted) && f.primary_address_1.errors" class="invalid-feedback">
+                                                                  <div *ngIf="f.primary_address_1.errors.required">Address line 1 is required</div>
+                                                               </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                               <label>Address Line2<span class="ar-red">*</span></label>
+                                                               <input type="text" class="form-control" formControlName="primary_address_2"
+                                                                  name="primary_address_2" id="primary_address_2">
+                                                               <div *ngIf="(f.primary_address_2.touched || submitted) && f.primary_address_2.errors" class="invalid-feedback">
+                                                                  <div *ngIf="f.primary_address_2.errors.required">Address line 2 is required</div>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 no-padding">
+                                                      <div class="box-body">
+                                                         <div class="col-lg-9 no-padding">
+                                                            <div class="col-lg-12 no-padding">
+                                                               <div class="col-lg-6">
+                                                                  <div class="form-group ">
+                                                                     <label>City<span class="ar-red">*</span></label>
+                                                                     <input type="text" class="form-control" formControlName="primary_city"
+                                                                        name="primary_city" id="primary_city">
+                                                                     <div *ngIf="(f.primary_city.touched || submitted) && f.primary_city.errors" class="invalid-feedback">
+                                                                        <div *ngIf="f.primary_city.errors.required">City is required</div>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                               <div class="col-lg-6">
+                                                                  <div class="form-group ">
+                                                                     <label>State<span class="ar-red">*</span></label>
+                                                                     <input type="text" class="form-control" formControlName="primary_state"
+                                                                        name="primary_state" id="primary_state">
+                                                                     <div *ngIf="(f.primary_state.touched || submitted) && f.primary_state.errors" class="invalid-feedback">
+                                                                        <div *ngIf="f.primary_city.errors.required">State is required</div>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                            <div class="col-lg-12 no-padding">
+                                                               <div class="col-lg-6">
+                                                                  <div class="form-group ">
+                                                                     <label>Zip Code<span class="ar-red">*</span></label>
+                                                                     <input type="text" class="form-control" formControlName="primary_zip_code"
+                                                                        name="primary_zip_code" id="primary_zip_code">
+                                                                     <div *ngIf="(f.primary_zip_code.touched || submitted) && f.primary_zip_code.errors" class="invalid-feedback">
+                                                                        <div *ngIf="f.primary_zip_code.errors.required">Zip Code is required</div>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="box no-shadow no-border">
+                                       <!-- /.box-header -->
+                                       <div class="box-body no-padding">
+                                          <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                                             <!-- /.box-header -->
+                                             <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                                <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i>
+                                                   Credentials
+                                                </h3>
+                                                <div class="box-tools pull-right">
+                                                   <button  type="button" class="btn btn-box-tool collapsed" style="margin-left:10px;"
+                                                   (click)="isCollapsed_Credentials = !isCollapsed_Credentials" [attr.aria-expanded]="!isCollapsed_Credentials"
+                                                   aria-controls="collapseBasic">
+                                                   <i class="fa fa-plus" *ngIf="isCollapsed_Credentials"></i>
+                                                   <i class="fa fa-minus" *ngIf="!isCollapsed_Credentials"></i>
+                                                   </button>
+                                                </div>
+                                             </div>
+                                             <div class="box-body no-padding collapse in" style="margin-top:20px;" id="box43" [collapse]="isCollapsed_Credentials" [isAnimated]="true" >
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table ">
+                                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 no-padding">
+                                                      <div class="box-body">
+                                                         <div class="col-lg-9 no-padding">
+                                                            <div class="form-group ">
+                                                               <label>Tax ID</label>
+                                                               <input type="text" class="form-control" formControlName="tax_id" id="tax_id"> <!-- formControlName="tax_id" -->
+                                                            </div>
+                                                            <div class="form-group ">
+                                                               <label>NPI</label>
+                                                               <input type="text" class="form-control" formControlName="npi" id="npi">
+                                                            </div>
+                                                            <div class="form-group ">
+                                                               <label>Medicare PTAN</label>
+                                                               <input type="text" class="form-control" formControlName="medicare_ptan" id="medicare_ptan">
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                   <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 no-padding">
+                                                      <div class="box-body">
+                                                         <div class="col-lg-9 no-padding">
+                                                            <div class="col-lg-8 no-padding">
+                                                               <div class="form-group ">
+                                                                  <label>Medicaid ID</label>
+                                                                  <input type="text" class="form-control" formControlName="medicare_id" id="medicare_id">
+                                                               </div>
+                                                               <div class="form-group ">
+                                                                  <label>Medicaid ID</label>
+                                                                  <input type="text" class="form-control" formControlName="medicare_id2" id="medicare_id2">
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="box no-shadow no-border">
+                                       <div class="box-body no-padding">
+                                          <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                                             <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                                <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i>
+                                                   Mailing Address
+                                                </h3>
+                                                <div class="box-tools pull-right">
+                                                   <button type="button" class="btn btn-box-tool collapsed" style="margin-left:10px;"
+                                                   (click)="isCollapsed_mailing_address = !isCollapsed_mailing_address" [attr.aria-expanded]="!isCollapsed_mailing_address"
+                                                   aria-controls="collapseBasic">
+                                                   <i class="fa fa-plus" *ngIf="isCollapsed_mailing_address"></i>
+                                                   <i class="fa fa-minus" *ngIf="!isCollapsed_mailing_address"></i>
+                                                   </button>
+                                                </div>
+                                             </div>
+                                             <div class="box-body no-padding collapse in" style="margin-top:20px;" id="box44" [collapse]="isCollapsed_mailing_address" [isAnimated]="true" >
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table ">
+                                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 no-padding">
+                                                      <div class="box-body">
+                                                         <div class="col-lg-9 no-padding">
+                                                            <div class="form-group ">
+                                                               <label>Address Line1<span class="ar-red">*</span></label>
+                                                               <input type="text" class="form-control" formControlName="mail_address_1"
+                                                                  name="mail_address_1" id="mail_address_1">
+                                                               <div *ngIf="(f.mail_address_1.touched || submitted) && f.mail_address_1.errors" class="invalid-feedback">
+                                                                  <div *ngIf="f.mail_address_1.errors.required">Address Line1 is required</div>
+                                                               </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                               <label>Address Line2<span class="ar-red">*</span></label>
+                                                               <input type="text" class="form-control" formControlName="mail_address_2"
+                                                                  name="mail_address_2" id="mail_address_2">
+                                                               <div *ngIf="(f.mail_address_1.touched || submitted) && f.mail_address_1.errors" class="invalid-feedback">
+                                                                  <div *ngIf="f.mail_address_1.errors.required">Address Line2 is required</div>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 no-padding">
+                                                      <div class="box-body">
+                                                         <div class="col-lg-9 no-padding">
+                                                            <div class="col-lg-12 no-padding">
+                                                               <div class="col-lg-6">
+                                                                  <div class="form-group ">
+                                                                     <label>City<span class="ar-red">*</span></label>
+                                                                     <input type="text" class="form-control" formControlName="mail_city"
+                                                                        name="mail_city" id="mail_city">
+                                                                     <div *ngIf="(f.mail_city.touched || submitted) && f.mail_city.errors" class="invalid-feedback">
+                                                                        <div *ngIf="f.mail_city.errors.required">City is required</div>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                               <div class="col-lg-6">
+                                                                  <div class="form-group ">
+                                                                     <label>State<span class="ar-red">*</span></label>
+                                                                     <input type="text" class="form-control" formControlName="mail_state"
+                                                                        name="mail_state" id="mail_state">
+                                                                     <div *ngIf="(f.mail_state.touched || submitted) && f.mail_state.errors" class="invalid-feedback">
+                                                                        <div *ngIf="f.mail_state.errors.required">State is required</div>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                            <div class="col-lg-12 no-padding">
+                                                               <div class="col-lg-6">
+                                                                  <div class="form-group ">
+                                                                     <label>Zip Code<span class="ar-red">*</span></label>
+                                                                     <input type="text" class="form-control" formControlName="mail_zip"
+                                                                        name="mail_zip" id="mail_zip">
+                                                                     <div *ngIf="(f.mail_zip.touched || submitted) && f.mail_zip.errors" class="invalid-feedback">
+                                                                        <div *ngIf="f.mail_zip.errors.required"> Zip Code is required</div>
+                                                                     </div>
+                                                                  </div>
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="box no-shadow no-border">
+                                       <!-- /.box-header -->
+                                       <div class="box-body no-padding">
+                                          <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                                             <!-- /.box-header -->
+                                             <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                                <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i>
+                                                   General Details
+                                                </h3>
+                                                <div class="box-tools pull-right">
+                                                   <button type="button" class="btn btn-box-tool collapsed" style="margin-left:10px;"
+                                                   (click)="isCollapsed_general_details = !isCollapsed_general_details" [attr.aria-expanded]="!isCollapsed_general_details"
+                                                   aria-controls="collapseBasic">
+                                                   <i class="fa fa-plus" *ngIf="isCollapsed_general_details"></i>
+                                                   <i class="fa fa-minus" *ngIf="!isCollapsed_general_details"></i>
+                                                   </button>
+                                                </div>
+                                             </div>
+                                             <div class="box-body no-padding collapse in" style="margin-top:20px;" id="box45" [collapse]="isCollapsed_general_details" [isAnimated]="true">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table ">
+                                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 no-padding">
+                                                      <div class="box-body">
+                                                         <div class="col-lg-9 no-padding">
+                                                            <div class="form-group ">
+                                                               <label>Practice Start Date</label>
+                                                               <input type="text" class="form-control" formControlName="practice_start" id="practice_start">
+                                                            </div>
+                                                            <div class="form-group ">
+                                                               <label>Primary Language</label>
+                                                               <input type="text" class="form-control"  formControlName="primary_language" id="primary_language">
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                      <!-- /.box-body -->
+                                                   </div>
+                                                   <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 no-padding">
+                                                      <div class="box-body">
+                                                         <div class="col-lg-9 no-padding">
+                                                            <div class="col-lg-8 no-padding">
+                                                               <div class="form-group ">
+                                                                  <label>Providers</label>
+                                                                  <input type="text" class="form-control" formControlName="providers" id="providers">
+                                                               </div>
+                                                               <div class="form-group ">
+                                                                  <label>Facilities</label>
+                                                                  <input type="text" class="form-control" formControlName="facilities" id="facilities">
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="box no-shadow no-border">
+                                       <!-- /.box-header -->
+                                       <div class="box-body no-padding">
+                                          <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                                             <!-- /.box-header -->
+                                             <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                                <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i>
+                                                   Practice Info
+                                                </h3>
+                                                <div class="box-tools pull-right">
+                                                   <button type="button" class="btn btn-box-tool collapsed" style="margin-left:10px;"
+                                                   (click)="isCollapsed_practice_info = !isCollapsed_practice_info" [attr.aria-expanded]="!isCollapsed_practice_info"
+                                                   aria-controls="collapseBasic">
+                                                   <i class="fa fa-plus" *ngIf="isCollapsed_practice_info"></i>
+                                                   <i class="fa fa-minus" *ngIf="!isCollapsed_practice_info"></i>
+                                                   </button>
+                                                </div>
+                                             </div>
+                                             <div class="box-body no-padding collapse in" style="margin-top:20px;" id="box46" [collapse]="isCollapsed_practice_info" [isAnimated]="true" >
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table ">
+                                                   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 no-padding">
+                                                      <div class="box-body">
+                                                         <div class="col-lg-9 no-padding">
+                                                            <div class="form-group ">
+                                                               <label>Practice Name</label><span _ngcontent-c5="" class="ar-red">*</span>
+                                                               <input type="text" class="form-control" formControlName="practice_name"
+                                                                  name="practice_name" id="practice_name">
+                                                               <div *ngIf="(f.practice_name.touched || submitted) && f.practice_name.errors" class="invalid-feedback">
+                                                                  <div *ngIf="f.practice_name.errors.required">Practice Name is required</div>
+                                                               </div>
+                                                            </div>
+                                                            <div class="form-group ">
+                                                               <label>Practice Description</label>
+                                                               <input type="textarea" class="form-control" formControlName="practice_desc" id="practice_desc">
+                                                            </div>
+                                                            <div class="form-group ">
+                                                               <label>Avatar Name</label>
+                                                               <input type="text" class="form-control" formControlName="avatar_name" id="avatar_name">
+                                                            </div>
+                                                            <div class="form-group ">
+                                                               <label>Practice Link</label>
+                                                               <input type="text" class="form-control" formControlName="practice_link" id="practice_link">
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                   <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12 no-padding">
+                                                      <div class="box-body">
+                                                         <div class="col-lg-9 no-padding">
+                                                            <div class="col-lg-9 no-padding">
+                                                               <div class="form-group ">
+                                                                  <label>Email Id</label><span _ngcontent-c5="" class="ar-red">*</span>
+                                                                  <input type="email" class="form-control" formControlName="email"
+                                                                     name="email" id="email" required>
+                                                                  <div *ngIf="(f.email.touched || submitted) && f.email.errors" class="invalid-feedback">
+                                                                     <div *ngIf="f.email.errors.required"> Email is required</div>
+                                                                     <div *ngIf="f.email.errors?.pattern"> Enter Valid email Address</div>
+                                                                  </div>
+                                                               </div>
+                                                               <div class="form-group ">
+                                                                  <label>Phone</label>
+                                                                  <input type="text" class="form-control" formControlName="phone_no" id="phone_no">
+                                                               </div>
+                                                               <div class="form-group ">
+                                                                  <label>Fax</label>
+                                                                  <input type="text" class="form-control" formControlName="fax_no" id="fax_no">
+                                                               </div>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </form>
+                                 <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                                    <!-- /.box-header -->
+                                    <div class="box-body no-padding">
+                                       <div class="box no-shadow no-bottom no-border">
+                                          <!-- /.box-header -->
+                                          <div class="box-body no-padding">
+                                             <div class="col-lg-12 text-center" style="margin-bottom:20px;margin-top:20px;">
+                                                <button class="btn btn-info submit-btn" [disabled]="formGroup.invalid" (click)="onSubmit()" type="submit">Sumbit</button>
+                                                <button class="btn btn-default" type="reset">Clear</button>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <!-- /.box-body -->
+                                 </div>
+                              </div>
+                              <div class="tab-pane" id="tab_2">
+                                 <div class="box no-shadow no-border">
+                                    <!-- /.box-header -->
+                                    <div class="box-body no-padding">
+                                       <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                                          <!-- /.box-header -->
+                                          <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                             <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i>
+                                                SOP
+                                             </h3>
+                                             <div class="box-tools pull-right">
+                                                <button class="btn btn-info btn-xs btn-flat" style="margin-top:4px;"
+                                                   data-toggle="modal" data-target="#modal_default" (click)="open(modal_default)"><i
+                                                   class="fa fa-plus-circle"></i> New SOP</button>
+                                             </div>
+                                          </div>
+                                          <div class="box-body no-padding" style="margin-top:20px;">
+                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
+                                                <div class="table-responsive">
+                                                   <table class="table-striped1 table ">
+                                                      <thead>
+                                                         <tr>
+                                                            <th class="font600" style="width: 15%">Date</th>
+                                                            <th class="font600" style="width: 30%">Name</th>
+                                                            <th class="font600">Claim No</th>
+                                                            <th class="font600">Created By/On</th>
+                                                            <th style="width: 1%"></th>
+                                                         </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                         <tr>
+                                                            <td>08/22/2018</td>
+                                                            <td>SOP file name</td>
+                                                            <td>CN424</td>
+                                                            <td>MAS/09/12/18</td>
+                                                            <td><i class="fa fa-file-text ar-blue"></i></td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td>08/12/2018</td>
+                                                            <td>SOP file name</td>
+                                                            <td>CN357</td>
+                                                            <td>EDR/09/25/18</td>
+                                                            <td><i class="fa fa-file-text ar-blue"></i></td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td>09/06/2018</td>
+                                                            <td>SOP file name</td>
+                                                            <td>CN234</td>
+                                                            <td>ADM/08/21/18</td>
+                                                            <td><i class="fa fa-file-text ar-blue"></i></td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td>08/22/2018</td>
+                                                            <td>SOP file name</td>
+                                                            <td>CN234</td>
+                                                            <td>ERM/09/12/18</td>
+                                                            <td><i class="fa fa-file-text ar-blue"></i></td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td>09/06/2018</td>
+                                                            <td>SOP file name</td>
+                                                            <td>CN234</td>
+                                                            <td>ADM/08/21/18</td>
+                                                            <td><i class="fa fa-file-text ar-blue"></i></td>
+                                                         </tr>
+                                                         <tr>
+                                                            <td>08/22/2018</td>
+                                                            <td>SOP file name</td>
+                                                            <td>CN234</td>
+                                                            <td>MAS/09/12/18</td>
+                                                            <td><i class="fa fa-file-text ar-blue"></i></td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="tab-pane" id="tab_3">
+                                 <div class="box no-shadow no-border">
+                                    <!-- /.box-header -->
+                                    <div class="box-body no-padding">
+                                       <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                                          <!-- /.box-header -->
+                                          <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                             <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i>
+                                                Meeting History
+                                             </h3>
+                                             <div class="box-tools pull-right">
+                                                <button class="btn btn-info btn-flat btn-xs" style="margin-top:4px;"
+                                                   data-toggle="modal" data-target="#modal_meeting" (click)="open(modal_meeting)"><i
+                                                   class="fa fa-plus-circle"></i> New Meeting</button>
+                                             </div>
+                                          </div>
+                                          <div class="box-body no-padding" style="margin-top:20px;">
+                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
+                                                <div class="table-responsive">
+                                                   <table class="table-striped1 table ">
+                                                      <thead>
+                                                         <tr>
+                                                            <th style="width: 10%;">Date</th>
+                                                            <th style="width: 16%">Topic</th>
+                                                            <th style="width:20%">Agenda </th>
+                                                            <th style="width: 5%">Participants</th>
+                                                         </tr>
+                                                      </thead>
+                                                      <tbody>
+                                                         <tr class='clickable-row cur-pointer' data-toggle="modal"
+                                                            data-target="#modal_meeting1" (click)="open(modal_meeting1)">
+                                                            <td>08/2/2018 </td>
+                                                            <td>Client Demo</td>
+                                                            <td>Demo for practice module </td>
+                                                            <td><a data-content="Name1, Name2, Name3, Name4"
+                                                               id="popoverOption" rel="popover"
+                                                               data-placement="right" class="cur-pointer">4</a></td>
+                                                         </tr>
+                                                         <tr class='clickable-row cur-pointer' data-toggle="modal"
+                                                            data-target="#modal_meeting1" (click)="open(modal_meeting1)">
+                                                            <td>08/2/2018 </td>
+                                                            <td>Client Demo</td>
+                                                            <td>Product demo </td>
+                                                            <td><a data-content="Name1, Name2, Name3, Name4, Name5, Name6"
+                                                               id="popoverOption1" rel="popover"
+                                                               data-placement="right" class="cur-pointer">6</a></td>
+                                                         </tr>
+                                                         <tr class='clickable-row cur-pointer' data-toggle="modal"
+                                                            data-target="#modal_meeting1" (click)="open(modal_meeting1)">
+                                                            <td>08/2/2018 </td>
+                                                            <td>Product</td>
+                                                            <td>Clarification needed for admin side </td>
+                                                            <td><a data-content="Name1, Name2, Name3" id="popoverOption2"
+                                                               rel="popover" data-placement="right"
+                                                               class="cur-pointer">3</a></td>
+                                                         </tr>
+                                                         <tr class='clickable-row cur-pointer' data-toggle="modal"
+                                                            data-target="#modal_meeting1" (click)="open(modal_meeting1)">
+                                                            <td>08/2/2018 </td>
+                                                            <td>Client Demo</td>
+                                                            <td>Demo for practice module </td>
+                                                            <td><a data-content="Name1, Name2, Name3, Name4"
+                                                               id="popoverOption3" rel="popover"
+                                                               data-placement="right" class="cur-pointer">4</a></td>
+                                                         </tr>
+                                                         <tr class='clickable-row cur-pointer' data-toggle="modal"
+                                                            data-target="#modal_meeting1" (click)="open(modal_meeting1)">
+                                                            <td>08/2/2018 </td>
+                                                            <td>Software Demo</td>
+                                                            <td>Reviewing the AR tool </td>
+                                                            <td><a data-content="Name1, Name2" id="popoverOption4"
+                                                               rel="popover" data-placement="right"
+                                                               class="cur-pointer">2</a></td>
+                                                         </tr>
+                                                         <tr class='clickable-row cur-pointer' data-toggle="modal"
+                                                            data-target="#modal_meeting1" (click)="open(modal_meeting1)">
+                                                            <td>08/2/2018 </td>
+                                                            <td>Client Demo</td>
+                                                            <td>Demo for practice module </td>
+                                                            <td><a data-content="Name1, Name2, Name3, Name4, Name5"
+                                                               id="popoverOption5" rel="popover"
+                                                               data-placement="right" class="cur-pointer">5</a></td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="tab-pane active" id="tab_4">
+                                 <div class="box no-shadow no-border">
+                                    <!-- /.box-header -->
+                                    <div class="box-body no-padding">
+                                       <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                                          <!-- /.box-header -->
+                                          <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                             <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i>
+                                                Emails
+                                             </h3>
+                                             <div class="box-tools pull-right">
+                                                <button class="btn btn-info btn-flat btn-xs" style="margin-top:4px;"
+                                                   data-toggle="modal" data-target="#"><i class="fa fa-plus-circle"></i>
+                                                New Email</button>
+                                             </div>
+                                          </div>
+                                          <div class="box-body no-padding" style="margin-top:20px;">
+                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table ">
+                                                <div class="table-responsive">
+                                                   <table class="table-striped1 table table-hover">
+                                                      <tbody>
+                                                         <tr class='clickable-row cur-pointer font600 ar-black'
+                                                            data-toggle="modal" data-target="#modal_meeting1" (click)="open(modal_meeting1)">
+                                                            <td>David </td>
+                                                            <td>Sub : Client Demo - Demo for practice
+                                                               module..
+                                                            </td>
+                                                            <td>08/22/2018 </td>
+                                                         </tr>
+                                                         <tr class='clickable-row cur-pointer' data-toggle="modal"
+                                                            data-target="#modal_meeting1"(click)="open(modal_meeting1)">
+                                                            <td>David Miller </td>
+                                                            <td>Sub : In-house meeting - Demo for practice
+                                                               module..
+                                                            </td>
+                                                            <td>08/22/2018 </td>
+                                                         </tr>
+                                                         <tr class='clickable-row cur-pointer' data-toggle="modal"
+                                                            data-target="#modal_meeting1" (click)="open(modal_meeting1)">
+                                                            <td>Mike </td>
+                                                            <td>Sub : Client Demo - Admin module demo..</td>
+                                                            <td>08/22/2018 </td>
+                                                         </tr>
+                                                         <tr class='clickable-row cur-pointer' data-toggle="modal"
+                                                            data-target="#modal_meeting1" (click)="open(modal_meeting1)">
+                                                            <td>Warner </td>
+                                                            <td>Sub : User Credentials - Please find the
+                                                               attached..
+                                                            </td>
+                                                            <td>08/22/2018 </td>
+                                                         </tr>
+                                                         <tr class='clickable-row cur-pointer font600 ar-black'
+                                                            data-toggle="modal" data-target="#modal_meeting1" (click)="open(modal_meeting1)">
+                                                            <td>John Willamson </td>
+                                                            <td>Sub : Client Demo - Demo for practice
+                                                               module..
+                                                            </td>
+                                                            <td>08/22/2018 </td>
+                                                         </tr>
+                                                         <tr class='clickable-row cur-pointer' data-toggle="modal"
+                                                            data-target="#modal_meeting1" (click)="open(modal_meeting1)">
+                                                            <td>David Miller </td>
+                                                            <td>Sub : Client Demo - Demo for practice
+                                                               module..
+                                                            </td>
+                                                            <td>08/22/2018 </td>
+                                                         </tr>
+                                                      </tbody>
+                                                   </table>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- /.row -->
+               </section>
+            </div>
+            <!-- ./col -->
+            <!-- ./col -->
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+               <div class="box-body" style="margin-top: -3px;">
+               </div>
+            </div>
+            <!-- ./col -->
+         </div>
+         <!-- /.row -->
+         <!-- Main row -->
+         <!-- /.row (main row) -->
+      </section>
+   </div>
+   <div class="col-lg-1 col-md-1"></div>
+</div>
+<ng-template #modal_default let-modal>
+   <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef?.hide()">
+         <span aria-hidden="true">&times;</span></button>
+         <h4 class="modal-title list-heading">New SOP</h4>
+      </div>
+      <div class="modal-body">
+         <div class="col-lg-12">
+            <div class="row form-group">
+               <div class="col-sm-2 text-center"><label>Filename</label></div>
+               <div class="col-sm-1"><strong>:</strong></div>
+               <div class="col-sm-9">
+                  <input type="text" class="form-control">
+               </div>
+            </div>
+            <div class="row form-group">
+               <div class="col-sm-2 text-center"><label>Claim Number</label></div>
+               <div class="col-sm-1"><strong>:</strong></div>
+               <div class="col-sm-9">
+                  <input type="text" class="form-control">
+               </div>
+            </div>
+            <div class="row form-group">
+               <div class="col-sm-2 text-center">
+                  <label>Status</label>
+               </div>
+               <div class="col-sm-1"><strong>:</strong></div>
+               <div class="col-sm-9">
+                  <div class="sop status">
+                       <div  class="form-group status-radio">
+                          <div class="custom-control custom-radio">
+                             <input id="submitted" class="custom-control-input" name="r" type="radio" value="submitted">
+                             &nbsp;<label class="custom-control-label" for="submitted">Submitted</label>
+                          </div>
+                          <div class="custom-control custom-radio">
+                             <input id="rejected" class="custom-control-input" name="r" type="radio" value="rejected">
+                             &nbsp;<label class="custom-control-label" for="rejected">Rejected</label>
+                          </div>
+                          <div class="custom-control custom-radio">
+                             <input id="hold" class="custom-control-input" name="r" type="radio" value="hold">
+                             &nbsp;<label class="custom-control-label" for="hold">Hold</label>
+                          </div>
+                       </div>
+                     <!-- <input type="radio" name="r" id="submitted">
+                     <label for="submitted" style="font-weight:normal">&nbsp; Submitted</label>
+                     &nbsp;&nbsp; <input type="radio" name="r" id="rejected">
+                     <label for="rejected" style="font-weight: normal;">&nbsp; Rejected</label>
+                     &nbsp;&nbsp; <input type="radio" name="r" id="hold">
+                     <label for="hold" style="font-weight: normal">&nbsp; Hold</label> -->
+                  </div>
+               </div>
+            </div>
+            <div class="row form-group">
+               <div class="col-sm-2 text-center"><label>Attachment<span class="ar-red">*</span></label></div>
+               <div class="col-sm-1"><strong>:</strong></div>
+               <div class="col-sm-9">
+                  <input type="file" class="form-control file-upload">
+               </div>
+            </div>
+            <div class="row form-group">
+               <div class="col-sm-2 text-center">
+                  <label>Notes<span class="ar-red">*</span></label>
+               </div>
+               <div class="col-sm-1"><strong>:</strong></div>
+               <div class="col-sm-9">
+                  <textarea class="form-control notes"></textarea>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-default btn-sm btn-flat" data-dismiss="modal" (click)="modalRef?.hide()">Close</button>
+         <button type="button" class="btn btn-info btn-sm btn-flat">Save</button>
+      </div>
+   </div>
+   <!-- /.modal-content -->
+</ng-template>
+<ng-template #modal_meeting let-modal>
+   <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef?.hide()">
+         <span aria-hidden="true">&times;</span></button>
+         <h4 class="modal-title list-heading">New Meeting</h4>
+      </div>
+      <div class="modal-body">
+         <div class="col-lg-12">
+            <div class="row form-group">
+               <div class="col-sm-2 text-center"><label>Date</label></div>
+               <div class="col-sm-1"><strong>:</strong></div>
+               <div class="col-sm-9">
+                  <input type="text" class="form-control" placeholder="MM-DD-YYYY">
+               </div>
+            </div>
+            <div class="row form-group" style="margin-top:20px;">
+               <div class="col-sm-2 text-center"><label>Topic</label></div>
+               <div class="col-sm-1"><strong>:</strong></div>
+               <div class="col-sm-9">
+                  <input type="text" class="form-control">
+               </div>
+            </div>
+            <div class="row form-group" style="margin-top:20px;">
+               <div class="col-sm-2 text-center">
+                  <label>Participants</label>
+               </div>
+               <div class="col-sm-1"><strong>:</strong></div>
+               <div class="col-sm-9">
+                  <select class="form-control">
+                     <option>-- Select --</option>
+                     <option>Name 1</option>
+                     <option>Name 2</option>
+                     <option>Name 3</option>
+                     <option>Name 4</option>
+                     <option>Name 5</option>
+                     <option>Name 6</option>
+                     <option>Name 7</option>
+                  </select>
+               </div>
+            </div>
+            <div class="row form-group ">
+               <div class="col-sm-2 text-center">
+                  <label>Agenda<span class="ar-red">*</span></label>
+               </div>
+               <div class="col-sm-1"><strong>:</strong></div>
+               <div class="col-sm-9">
+                  <textarea class="form-control notes" style="height: 100px;"></textarea>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-default btn-flat btn-sm" data-dismiss="modal" (click)="modalRef?.hide()">Close</button>
+         <button type="button" class="btn btn-info btn-flat btn-sm">Save</button>
+      </div>
+   </div>
+   <!-- /.modal-content -->
+</ng-template>
+<ng-template #modal_meeting1 let-modal>
+   <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" (click)="modalRef?.hide()" aria-label="Close">
+         <span aria-hidden="true">&times;</span></button>
+         <h4 class="modal-title list-heading">Client Demo</h4>
+      </div>
+      <div class="modal-body">
+         <div class="col-lg-12 no-padding">
+            <h5><b>Date</b> : 08/2/2018 <span class="pull-right"><b>No of Participants</b> : 4</span></h5>
+            <h5 style="margin-top :20px;"><b>Agenda</b></h5>
+            <h5>Demo for practice module</h5>
+         </div>
+      </div>
+      <div class="modal-footer">
+         <button type="button" class="btn btn-default btn-flat btn-sm" data-dismiss="modal" (click)="modalRef?.hide()">Close</button>
+      </div>
+   </div>
+</ng-template>

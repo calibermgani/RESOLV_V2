@@ -1,0 +1,24 @@
+.alert-class .modal-content {
+    right: 212px;
+    top: 263px;
+    width: auto;
+
+  }
+  .alert-class .close {
+    color: white;
+  }
+  .prac-name {
+    color: #0093a9;
+    text-align: center;
+    padding: 3px 5px 2px;
+    display: inline-block;
+    font-size: 12px;
+    margin-top: 13px;
+    background-color: #dbdfe7;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    max-width: 80px;
+    cursor: default;
+  }
+

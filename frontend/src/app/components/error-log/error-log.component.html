@@ -1,0 +1,247 @@
+<div class="mt-4 col-8 offset-s"></div>
+<!-- Content Wrapper. Contains page content -->
+<div class="card">
+    <!-- Content Header (Page header) -->
+
+
+    <!-- Main content -->
+    <div class="row">
+        <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-md-offset-1">
+    <section class="content">
+        <!-- Small boxes (Stat box) -->
+        <div class="row no-padding">
+
+            <!-- ./col -->
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+                <!-- small box -->
+                <section class="content no-padding">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+
+                            <div class="tabs nav-tabs-custom">
+                                <ul class="tabs nav nav-tabs">
+                                    <li class="active"><a href="#tab_1" data-toggle="tab"><i class="fa fa-exclamation-triangle ar-blue"></i>
+                                            Error Logs </a> </li>
+                                </ul>
+                              </div>
+                                <div class="tab-content no-padding">
+                                    <div class="tab-pane active" id="tab_1">
+                                        <div class="box no-shadow no-border">
+                                            <div class="box-body no-padding">
+                                                <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                                                    <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                                        <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Error Logs</h3>
+
+                                                            <div class="box-tools pull-right">
+                                                                <p class="" style="margin-top:5px;"><span class="fa fa-refresh" style="cursor:pointer;" title="Reload" (click)="getLogs()"></span>
+                                                                 </p>
+                                                        </div>
+                                                    </div>
+
+                                        <div class="box-body no-padding" style="margin-top:20px;">
+                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
+                                      <table class="table-striped1 table" id="example">
+
+                                          <colgroup>
+
+                                              <col span="2" style="background-color:#fff9f3 !important;">
+                                              <col span="2" style="background-color:#fcfef7 !important;">
+                                              <col span="1" style="background-color:#fef8f6 !important">
+
+                                          </colgroup>
+
+                                          <thead>
+                                              <tr>
+                                                  <th class="font600  line-height-24" style="border-right: 1px solid #fff;" colspan="1">Log Name</th>
+                                                  <th class="font600  line-height-24">Log Date</th>
+                                                  <th class="font600 line-height-24" colspan="2">Action</th>
+
+
+                                              </tr>
+
+                                          </thead>
+                                          <tbody>
+
+                                              <tr *ngFor="let logs of logs_list" class="clickable-row cur-pointer" >
+                                                  <td>{{logs.file_name}}</td>
+                                                  <td>{{logs.date}}</td>
+                                                  <td>  <p data-toggle="collapse" data-target="#followup-list3" class="cur-pointer collapsed"  style="margin-top:5px;">
+                                                    <span class="fa fa-eye" title="View" (click)="viewLog(logs.file_name)"></span>
+                                                  </p>
+                                                  <!-- <a  title="Followup Template" style="margin-right: 15px;font-size: 16px;" aria-expanded="false" (click)="send_calim_det('followup')"><i class="fa fa-headphones" title="Followup Template"></i> <span style="text-decoration: underline">F.Template</span></a>                                                  -->
+                                                </td>
+
+                                              </tr>
+
+                                          </tbody>
+                                      </table>
+                                      <div class="col-lg-12 no-padding" style="margin-top:0px;">
+                                        <div class="col-lg-12 no-padding collapse" id="followup-list3" style="border-top: 15px solid #e9ecf3">
+                                         {{logInfo}}
+                                      </div>
+                                      </div>
+                                  </div>
+                                </div>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+
+
+                    <!-- /.row -->
+                </section>
+            </div>
+            <!-- ./col -->
+
+            <!-- ./col -->
+            <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
+
+                <div class="box-body" style="margin-top: -3px;">
+
+                </div>
+
+            </div>
+            <!-- ./col -->
+        </div>
+        <!-- /.row -->
+        <!-- Main row -->
+
+        <!-- /.row (main row) -->
+
+    </section>
+</div>
+</div>
+
+    <div class="modal fade" id="modal-default">
+        <div class="modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title list-heading">New SOP</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12 no-padding">
+                        <div class="form-group">
+                            <label>Filename</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label>Status</label><br>
+                            <label for="submitted" style="font-weight:normal"><input type="radio" name="r" id="submitted">
+                                Submitted</label>
+                            &emsp;&emsp; <input type="radio" name="r" id="rejected"> <label for="rejected" style="font-weight: normal;">Rejected</label>
+                            &emsp;&emsp; <input type="radio" name="r" id="hold"> <label for="hold" style="font-weight: normal">Hold</label>
+                        </div>
+                        <div class="form-group " style="margin-top:20px;">
+                            <label>Claim Number</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group ">
+                            <label>Attachment<span class="ar-red">*</span></label>
+                            <input type="file" class="form-control">
+                        </div>
+                        <div class="form-group ">
+                            <label>Notes<span class="ar-red">*</span></label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-sm btn-flat pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-info btn-sm btn-flat">Save</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+
+
+
+
+
+
+    <div class="modal fade" id="modal-meeting">
+        <div class="modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title list-heading">New Meeting</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12 no-padding">
+                        <div class="form-group">
+                            <label>Date</label>
+                            <input type="text" class="form-control">
+                        </div>
+
+                        <div class="form-group " style="margin-top:20px;">
+                            <label>Topic</label>
+                            <input type="text" class="form-control">
+                        </div>
+                        <div class="form-group " style="margin-top:20px;">
+                            <label>Participants</label>
+                            <select class="form-control">
+                                <option>-- Select --</option>
+                                <option>Name 1</option>
+                                <option>Name 2</option>
+                                <option>Name 3</option>
+                                <option>Name 4</option>
+                                <option>Name 5</option>
+                                <option>Name 6</option>
+                                <option>Name 7</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group ">
+                            <label>Agenda<span class="ar-red">*</span></label>
+                            <textarea class="form-control" style="height: 100px;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-flat btn-sm pull-left" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-info btn-flat btn-sm">Save</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <div class="modal fade" id="modal-meeting1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal-meeting1" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title list-heading">Client Demo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="col-lg-12 no-padding">
+
+                        <h5><b>Date</b> : 08/2/2018 <span class="pull-right"><b>No of Participants</b> : 4</span></h5>
+                        <h5 style="margin-top :20px;"><b>Agenda</b></h5>
+                        <h5>Demo for practice module</h5>
+
+                    </div>
+                </div>
+                </div>
+                </div>
+                </div>

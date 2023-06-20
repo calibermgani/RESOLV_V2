@@ -1,0 +1,1259 @@
+  <div class="row">
+   <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-lg-offset-1 col-md-offset-1">
+      <div class="tabs nav-tabs-custom">
+         <ul class="tabs nav nav-tabs">
+            <li class="active"><a href="#tab_2" (click)="getfields();" data-toggle="tab" style="padding-left: 0px;"><i
+                     class="fa fa-file-text"></i> Import Settings <span class="tab-divider">|</span></a></li>
+            <!-- <li *ngIf="edit_permission==true"><a href="#tab_5" data-toggle="tab"><i class="fa fa-file-text-o"></i> Create User <span class="tab-divider">|</span></a> </li> -->
+            <li><a href="#tab_3" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-cogs"></i> Followup
+                  Template <span class="tab-divider">|</span></a></li>
+            <li><a href="#tab_4" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-line-chart"></i> Status
+                  Code <span class="tab-divider">|</span></a></li>
+            <!-- <li (click)="get_users_list()"><a href="#tab_6" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-user"  ></i> Users <span class="tab-divider">|</span></a></li> -->
+            <li (click)="get_root_cause_states()"><a href="#tab_7" data-toggle="tab" style="padding-left: 0px;"><i
+                     class="fa fa-street-view"></i> Root Cause Analysis<span class="tab-divider">|</span></a></li>
+            <li (click)="get_error_type()"><a href="#tab_8" data-toggle="tab" style="padding-left: 0px;"><i
+                     class="fa fa-exclamation-triangle"></i> Error Types</a></li>
+            <li (click)="sampling_usrlist()"><a href="#sampling" data-toggle="tab" style="padding-left: 0px;"><i
+                     class="fa fa-random"></i> Audit
+                  Sampling</a></li>
+            <!-- <li (click)="get_practice_stats()"><a href="#tab_9" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-street-view"></i> Practice Settings <span class="tab-divider">|</span></a></li> -->
+         </ul>
+         <div class="tab-content no-padding">
+            <div class="tab-pane" id="tab_7">
+               <div class="box no-shadow no-border">
+                  <!-- /.box-header -->
+                  <div class="box-body no-padding">
+                     <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                        <!-- /.box-header -->
+                        <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                           <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Root Cause Status</h3>
+                           <div class="box-settings pull-right">
+                              <a *ngIf="edit_permission==true" data-toggle="modal"
+                                 (click)="stay_clear();open(status_codes);set_stat_type('root_cause')"
+                                 class="cur-pointer">
+                                 <button class="btn btn-sm btn-info new-status"><i class="fa fa-plus-circle"></i> Add
+                                    New Status </button>
+                              </a>
+                           </div>
+                        </div>
+                        <div class="box-body no-padding" style="margin-top: 20px;">
+                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
+                              <div class="table-responsive">
+                                 <table class="table-striped1 table">
+                                    <thead>
+                                       <tr>
+                                          <th>Status Name</th>
+                                          <th>Status</th>
+                                          <th>Created Date</th>
+                                          <th>Edit</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr *ngFor="let state of root_cause_data">
+                                          <td style="padding: 9px 8px 1px !important;">{{state.name}}</td>
+                                          <td *ngIf="state.status == 1" style="padding: 9px 8px 1px !important;">Active
+                                          </td>
+                                          <td *ngIf="state.status == 0" style="padding: 9px 8px 1px !important;">
+                                             InActive</td>
+                                          <td style="padding: 9px 8px 1px !important;">{{state.created_at | date:
+                                             'MM/dd/yyyy'}}</td>
+                                          <td>
+                                             <div class="box-tools">
+                                                <a *ngIf="edit_permission==true" data-toggle="modal"
+                                                   (click)="set_stat_type('root_cause');edit_status_codes(state,'root_cause');open(status_codes);"
+                                                   class="cur-pointer">
+                                                   <!-- <button class="btn btn-sm btn-info" (click)="status_edit(state.id)">Edit <i class="fa fa-pencil"></i></button> --></a>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                       <tr *ngIf="root_cause_data.length == 0">
+                                          <td colspan="10" align="center">
+                                             <b>No Records Found</b>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="tab-pane" id="tab_8">
+               <div class="box no-shadow no-border no-bottom">
+                  <!-- /.box-header -->
+                  <div class="box-body no-padding mb-4">
+                     <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                        <!-- /.box-header -->
+                        <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                           <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Error Types</h3>
+                           <div class="box-settings pull-right">
+                              <a *ngIf="edit_permission==true" data-toggle="modal"
+                                 (click)="stay_clear();open(status_codes);set_stat_type('error_type')"
+                                 class="cur-pointer">
+                                 <button class="btn btn-sm btn-info new-status"><i class="fa fa-plus-circle"></i>
+                                    &nbsp;Add New Status </button></a>
+                           </div>
+                        </div>
+                        <div class="box-body no-padding" style="margin-top: 20px;">
+                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
+                              <div class="table-responsive">
+                                 <table class="table-striped1 table">
+                                    <thead>
+                                       <tr>
+                                          <th>Status Name</th>
+                                          <th>Status</th>
+                                          <th>Created Date</th>
+                                          <th>Edit</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <tr *ngFor="let state of root_cause_data">
+                                          <td style="padding: 9px 8px 1px !important;">{{state.name}}</td>
+                                          <td *ngIf="state.status == 1" style="padding: 9px 8px 1px !important;">Active
+                                          </td>
+                                          <td *ngIf="state.status == 0" style="padding: 9px 8px 1px !important;">
+                                             InActive</td>
+                                          <td style="padding: 9px 8px 1px !important;">{{state.created_at |
+                                             date:'longDate'}}</td>
+                                          <td>
+                                             <div class="box-tools">
+                                                <a *ngIf="edit_permission==true" data-toggle="modal"
+                                                   (click)="set_stat_type('error_type');edit_status_codes(state,'error_type');open(status_codes);"
+                                                   class="cur-pointer">
+                                                   <button class="btn btn-sm btn-info edit-btn">Edit <i
+                                                         class="fa fa-pencil"></i> </button></a>
+                                             </div>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                    <tbody>
+                                       <tr *ngIf="root_cause_data.length == 0">
+                                          <td colspan="10" align="center">
+                                             <b>No Records Found</b>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="tab-pane active" id="tab_2">
+               <div class="box no-shadow no-border">
+                  <!-- /.box-header -->
+                  <div class="box-body no-padding mb-2">
+                     <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                        <!-- /.box-header -->
+                        <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                           <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Import Category</h3>
+                           <div class="box-settings pull-right">
+                              <!-- <input type="text" [formControl]="search_data" class="form-control pull-right" style="margin-top:1px;font-weight:normal" placeholder="Search.."  name="term" [(ngModel)]="term"> -->
+                              <form [formGroup]="settingSearch">
+                                 <input type="text" formControlName="search_data" class="form-control pull-right"
+                                    style="margin-top:1px;font-weight:normal" placeholder="Search.."
+                                    (input)="onSearchChange($event)">
+                              </form>
+                           </div>
+                        </div>
+                        <div class="mt-4 col-8 offset-s">
+                           <!-- <div class="alert alert-success" [hidden]="!notify">
+                              {{notify}}
+                              </div>  -->
+                           <div class="card">
+                              <div class="card-body">
+                                 <form #RegisterForm=ngForm (ngSubmit)="onSubmit()">
+                                    <div class="form-group">
+                                       <div class="table-responsive">
+                                          <table class="table-striped1 table " style="border-spacing: 13px !important;
+                                          border-collapse: inherit !important;">
+                                             <tr>
+                                                <th>Column Name</th>
+                                                <th>Check</th>
+                                                <th>Ignore</th>
+                                                <th>Notify</th>
+                                             </tr>
+                                             <tr *ngFor="let f of fields  ;let i=index">
+
+                                                <!-- |filter:term update above  -->
+
+                                                <label for="{{i}}"
+                                                   class="col-sm-8 col-form-label">{{field_name[f]}}</label>
+
+                                                <td style="left: 16px;"><input class="checkbox" type="checkbox"
+                                                      id="{{i}}" name="{{f}}"
+                                                      [disabled]="f === 'acct_no' || f === 'claim_no' || f === 'dos' || f === 'dob'"
+                                                      (click)="check(f)" [(ngModel)]="form[f]"> </td>
+
+                                                <td style="left: 16px;"><input type="radio" [disabled]="!form[f]"
+                                                      name="{{f}}option" value="ignore" [(ngModel)]="form[f+'_option']">
+                                                </td>
+
+                                                <td style="left: 16px;"><input type="radio" [disabled]="!form[f]"
+                                                      name="{{f}}opt2" value="notify" [(ngModel)]="form[f+'_option']">
+                                                </td>
+
+                                             </tr>
+                                             <span *ngIf="fields == undefined">
+                                                 <!-- <app-atom-spinner [size]="60"
+                                                   [color]="'#1fa5be'"></app-atom-spinner> -->
+                                                </span>
+                                          </table>
+                                       </div>
+                                    </div>
+                                    <div class="form-group row">
+                                       <div class="col-sm-12">
+                                          <div class="text-center">
+                                             <button type="submit" *ngIf="edit_permission==true"
+                                                class="btn btn-info custom-btn" [disabled]="!RegisterForm.valid">Update
+                                                Settings</button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="tab-pane" id="tab_9">
+               <div class="box no-shadow no-border no-bottom">
+                  <!-- /.box-header -->
+                  <div class="box-body no-padding">
+                     <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                        <!-- /.box-header -->
+                        <div class="box-body no-padding">
+                           <h4 class="list-heading"
+                              style="background: #e2e6ef;padding: 10px 10px;margin-top: 0px;margin-bottom:0px;border-bottom: 2px solid #fff;border-radius: 2px 2px 0px 0px;">
+                              Practice Settings
+                              <div class="box-tools pull-right">
+                              </div>
+                           </h4>
+                           <div class="card">
+                              <div class="card-body">
+                                 <form #modalform=ngForm [formGroup]="practiceGroup"
+                                    (ngSubmit)="update_prac_settings()">
+                                    <div class="col-lg-3">
+                                       <div class="form-group" style="margin-bottom: 10px;">
+                                          <label>Touch Limit<span class="ar-red">*</span></label>
+                                          <input type="number" min="1" name="touch_limit" class="form-control"
+                                             id="touch_limit" placeholder="Touch Limit" formControlName="touch_limit">
+                                       </div>
+                                    </div>
+                                    <div class="form-group row">
+                                       <div class="col-sm-10">
+                                          <button type="submit" *ngIf="edit_permission==true" class="btn btn-primary"
+                                             [disabled]="!modalform.valid">Change Settings</button>
+                                       </div>
+                                    </div>
+                                 </form>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="tab-pane" id="tab_3">
+               <div class="box no-shadow no-border">
+                  <!-- /.box-header -->
+                  <div class="box-body no-padding">
+                     <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                        <!-- /.box-header -->
+                        <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                           <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> FollowUp Category </h3>
+                           <div class="box-settings pull-right">
+                              <a *ngIf="edit_permission==true" data-toggle="modal"
+                                 (click)="open(newcategory);stay_clear();" class="cur-pointer font500">
+                                 <button class="btn btn-sm btn-info new-status"><i class="fa fa-plus-circle"></i>
+                                    &nbsp;New Category</button></a>
+                           </div>
+                        </div>
+                        <div class="box-body no-padding" style="margin-top:20px;margin-bottom: 10px;">
+                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
+                              <div class="table-responsive">
+                                 <table class="table-striped1 table edit">
+                                    <thead>
+                                       <tr>
+                                          <th>Category Name</th>
+                                          <th>Status</th>
+                                          <th>Created Date</th>
+                                          <th>Edit</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       <ng-container *ngFor="let x of category">
+                                          <tr (click)="x.expanded = !x.expanded">
+                                             <td style="padding: 9px 8px 1px !important;">
+                                                <a class="cur-pointer" title="{{x.name}}">{{x.name}}&nbsp;&nbsp;
+                                                   <span
+                                                      [ngClass]="{'fa-minus-cir' :  x.expanded, 'fa-plus-cir' : !x.expanded}"></span></a>
+                                             </td>
+                                             <!-- <td>active</td> -->
+                                             <td style="padding: 9px 8px 1px !important;">{{x.status}}</td>
+                                             <td style="padding: 9px 8px 1px !important;">{{x.created_at | date:
+                                                'MM/dd/yyyy'}}</td>
+                                             <td>
+                                                <div class="box-tools">
+                                                   <button *ngIf="edit_permission==true"
+                                                      class="btn btn-sm btn-info edit-btn" title="Edit"
+                                                      (click)="open(newcategory);edit_category(x.id);">
+                                                      Edit <i class="fa fa-pencil"></i></button>
+                                                </div>
+                                             </td>
+                                          </tr>
+                                          <ng-container *ngIf="x.expanded">
+                                             <tr>
+                                                <td colspan="4">
+                                                   <div class="col-lg-12 no-padding" id="{{x.id+'tab'}}"
+                                                      style="border-top: 15px solid #e9ecf3">
+                                                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                         <div style="margin-top:10px;">
+                                                            <div class="box-header"
+                                                               style="border-bottom: 1px solid #e9ecf3;">
+                                                               <h3 class="box-title list-heading"><i
+                                                                     class="fa fa-bars ar-blue"></i> Questions </h3>
+                                                               <div class="box-settings pull-right">
+                                                                  <a *ngIf="edit_permission==true" data-toggle="modal"
+                                                                     (click)="stay_clear();open(newquestion);clicked_category(x.id);"
+                                                                     class="cur-pointer"><i
+                                                                        class="fa fa-plus-circle"></i> Add Question</a>
+                                                               </div>
+                                                            </div>
+                                                            <div class="box-body no-padding" style="margin-top:20px;">
+                                                               <div class="table-responsive">
+                                                                  <table
+                                                                     class="table table-striped1 table listing-table">
+                                                                     <thead>
+                                                                        <tr>
+                                                                           <th>Question</th>
+                                                                           <th>Hint</th>
+                                                                           <th>Field Type</th>
+                                                                           <th>Field Validation Type</th>
+                                                                           <th>Status</th>
+                                                                           <th>Created Date </th>
+                                                                           <th>User</th>
+                                                                           <th>Edit</th>
+                                                                        </tr>
+                                                                     </thead>
+                                                                     <tbody *ngIf="questions!=null">
+                                                                        <!-- <span  *ngFor='let quest of questions;quest ==  x.id' >
+                                                                     <tr *ngIf="quest.category_id == x.id"  > -->
+                                                                        <tr *ngFor='let quest of questions[x.id]'>
+                                                                           <td style="padding: 9px 8px 1px !important;">
+                                                                              {{quest.question}}</td>
+                                                                           <td style="padding: 9px 8px 1px !important;">
+                                                                              {{quest.hint}}</td>
+                                                                           <td style="padding: 9px 8px 1px !important;">
+                                                                              {{quest.field_type}}</td>
+                                                                           <td style="padding: 9px 8px 1px !important;">
+                                                                              {{quest.field_validation}}{{quest.date_type}}
+                                                                           </td>
+                                                                           <td style="padding: 9px 8px 1px !important;">
+                                                                              {{quest.status}}</td>
+                                                                           <td style="padding: 9px 8px 1px !important;">
+                                                                              {{quest.created_at | date: 'MM/dd/yyyy'}}
+                                                                           </td>
+                                                                           <td style="padding: 9px 8px 1px !important;">
+                                                                              {{quest.creator}}</td>
+                                                                           <td><button *ngIf="edit_permission==true"
+                                                                                 class="btn btn-sm btn-info"
+                                                                                 style="font-size:16px;cursor: pointer;"
+                                                                                 title="Edit"
+                                                                                 (click)="open(newquestion);edit_question(quest);"><i
+                                                                                    class="fa fa-edit"></i></button>
+                                                                           </td>
+                                                                        </tr>
+                                                                        <!-- </span> -->
+                                                                     </tbody>
+                                                                  </table>
+                                                               </div>
+                                                            </div>
+                                                            <!-- /.box-body -->
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </td>
+                                             </tr>
+                                          </ng-container>
+                                       </ng-container>
+                                    </tbody>
+                                    <tbody *ngIf="category_count == 0">
+                                       <tr>
+                                          <td colspan="10" align="center">
+                                             <b>No Records Found</b>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="tab-pane" id="tab_4">
+               <div class="box no-shadow no-border">
+                  <!-- /.box-header -->
+                  <div class="box-body no-padding">
+                     <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                        <!-- /.box-header -->
+                        <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                           <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Status And Sub Status
+                              Code </h3>
+                           <div class="box-settings pull-right">
+                              <a *ngIf="edit_permission==true" data-toggle="modal"
+                                 (click)="stay_clear();open(create_status_code);"
+                                 class="cur-pointer btn btn-sm btn-info new-status"><i class="fa fa-plus-circle"></i>
+                                 Add New Status</a>
+                           </div>
+                        </div>
+                        <div class="box-body no-padding" style="margin-top: 20px;">
+                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
+                              <div class="table-responsive">
+                                 <table class="table-striped1 table">
+                                    <thead>
+                                       <tr>
+                                          <th>Status Name</th>
+                                          <th>Status</th>
+                                          <th>Created Date</th>
+                                          <th>Edit</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody *ngIf="status_list">
+                                       <ng-container *ngFor="let state of status_list">
+                                          <tr (click)="state.expanded = !state.expanded">
+                                             <td style="padding: 9px 8px 1px !important;">
+                                                <a class="cur-pointer" title="{{state.description}}">
+                                                   {{state.description}} -- {{state.status_code}}&nbsp;&nbsp;
+                                                   <span
+                                                      [ngClass]="{'fa-minus-cir' :  state.expanded, 'fa-plus-cir' : !state.expanded}"></span>
+                                                </a>
+                                             </td>
+                                             <td style="padding: 9px 8px 1px !important;"><span
+                                                   *ngIf="state.status == 1">Active</span>
+                                                <span *ngIf="state.status == 0">InActive</span>
+                                             </td>
+                                             <td style="padding: 9px 8px 1px !important;">{{state.created_at | date:
+                                                'MM/dd/yyyy'}}</td>
+                                             <td>
+                                                <div class="box-tools">
+                                                   <button *ngIf="edit_permission==true"
+                                                      class="btn btn-info btn-sm edit-btn" title="Edit"
+                                                      (click)="edit_statuscode(state.id,'statuscode');open(create_status_code);"
+                                                      (click)="status_edit(state.id)">Edit<i class="fa fa-pencil"
+                                                         aria-hidden="true"></i>
+                                                   </button>
+                                                </div>
+                                             </td>
+                                          </tr>
+                                          <ng-container *ngIf="state.expanded">
+                                             <tr>
+                                                <td colspan="4">
+                                                   <div class="col-lg-12 no-padding" id="{{state.status_code}}"
+                                                      style="border-top: 15px solid #e9ecf3">
+                                                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                         <div style="margin-top:10px;">
+                                                            <div class="col-lg-12 no-padding">
+                                                               <div class="box-header"
+                                                                  style="border-bottom: 1px solid #e9ecf3;">
+                                                                  <h3 class="box-title list-heading"><i
+                                                                        class="fa fa-bars ar-blue"></i> Sub Status </h3>
+                                                                  <div class="box-settings pull-right">
+                                                                     <a *ngIf="edit_permission==true"
+                                                                        data-toggle="modal"
+                                                                        (click)="stay_clear();clicked_status(state.id);open(sub_status_code);"
+                                                                        class="cur-pointer">
+                                                                        <i class="fa fa-plus-circle"></i> Add
+                                                                        Sub-Status</a>
+                                                                  </div>
+                                                               </div>
+                                                               <div class="table-responsive">
+                                                                  <table class="table-striped1 table "
+                                                                     *ngIf="sub_status_list[state.id]"
+                                                                     style="margin-top:20px">
+                                                                     <thead>
+                                                                        <tr>
+                                                                           <th>Sub-Status Name</th>
+                                                                           <th>Sub-Status Code</th>
+                                                                           <th>Status</th>
+                                                                           <th>Allowed</th>
+                                                                           <th>Edit</th>
+                                                                           <th></th>
+                                                                        </tr>
+                                                                     </thead>
+                                                                     <tbody *ngIf="sub_status_list !=null">
+                                                                        <tr
+                                                                           *ngFor="let sub_state of sub_status_list[state.id]">
+                                                                           <td style="padding: 9px 8px 1px !important;">
+                                                                              {{sub_state.description}}</td>
+                                                                           <td style="padding: 9px 8px 1px !important;">
+                                                                              {{sub_state.status_code}}</td>
+                                                                           <td style="padding: 9px 8px 1px !important;">
+                                                                              <span
+                                                                                 *ngIf="sub_state.status==1">Active</span><span
+                                                                                 *ngIf="sub_state.status==0">InActive</span>
+                                                                           </td>
+                                                                           <td style="padding: 9px 8px 1px !important;">
+                                                                              <span
+                                                                                 *ngIf="sub_state.modules['followup']==true">Followup,</span><span
+                                                                                 *ngIf="sub_state.modules['audit']==true">Audit,</span><span
+                                                                                 *ngIf="sub_state.modules['ca']==true">Client
+                                                                                 Assistance,</span><span
+                                                                                 *ngIf="sub_state.modules['rcm']==true">RCM</span>
+                                                                           </td>
+                                                                           <td> <button *ngIf="edit_permission==true"
+                                                                                 class="btn btn-sm btn-info"
+                                                                                 style="font-size:16px;cursor: pointer;"
+                                                                                 title="Edit"
+                                                                                 (click)="open(sub_status_code);clicked_status(state.id);edit_statuscode(sub_state,'sub_statuscode');"><i
+                                                                                    class="fa fa-edit"
+                                                                                    (click)="status_edit(state.id)"></i></button>
+                                                                           </td>
+                                                                        </tr>
+                                                                     </tbody>
+                                                                  </table>
+                                                               </div>
+                                                               <span *ngIf="!sub_status_list[state.id]">
+                                                                  <b> No Sub-Status to Show.</b>
+                                                               </span>
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                </td>
+                                             </tr>
+                                          </ng-container>
+                                       </ng-container>
+                                    </tbody>
+                                    <tbody *ngIf="!status_list">
+                                       <tr>
+                                          <td colspan="10" align="center">
+                                             <b>No Records Found</b>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="tab-pane" id="sampling">
+               <div class="box no-shadow no-border no-bottom">
+                  <div class="box-body no-padding mb-4">
+                     <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                        <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                           <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Priority Status
+                              Settings</h3>
+                        </div>
+                        <div class="box-body no-padding" style="margin: 5px 0 8px 0;">
+                           <form [formGroup]="statusPriority">
+                              <div formArrayName="priority">
+                                 <div *ngFor="let prior of priority.controls; let i=index;" class="form-group">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding"
+                                       style="margin-bottom:10px;">
+                                       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12" style="padding:0 10px">
+                                          <label style="font-size:13px;padding:4px 5px 0 0">Status Code</label>
+                                       </div>
+                                       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12 no-padding">
+                                          <select [formControlName]="i" class="form-control ngx-dropdown-button">
+                                             <option value="">--Select Status--</option>
+                                             <option *ngFor="let data of status_list; let j = index;"
+                                                [ngValue]="{priority: i+1, statusCode: data.description}">{{
+                                                data.description }}
+                                             </option>
+                                          </select>
+                                       </div>
+                                       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                          <span *ngIf="i != 0">
+                                             <button type="button" class="add btn btn-remove btn-xs"
+                                                style="margin: 3px 10px 0 5px;" aria-label="Remove"
+                                                (click)="removeStatusField(i)">
+                                                <span aria-hidden="true"><i class="fa fa-trash"></i></span>
+                                             </button>
+                                          </span>
+                                          <span *ngIf="priority.length == i+1">
+                                             <button type="button" class="add btn btn-add btn-xs"
+                                                style="margin-top:3px;" aria-label="Add" (click)="addStatusField()">
+                                                <span aria-hidden="true"><i class="fa fa-plus"></i></span>
+                                             </button>
+                                          </span>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div class="box no-shadow no-border no-bottom">
+                  <div class="box-body no-padding" style="margin-bottom:15px">
+                     <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4;padding-bottom:15px;">
+                        <!-- /.box-header -->
+                        <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                           <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Audit Sampling</h3>
+                        </div>
+                        <div class="box-body no-padding" style="margin-top: 20px;">
+                           <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding" style="margin-bottom:10px">
+                              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12" style="padding:0 10px;">
+                                 <label>Users</label>
+                              </div>
+                              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                 <label>Experience</label>
+                              </div>
+                              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                 <label>Month</label>
+                              </div>
+                              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                 <label>Audit %</label>
+                              </div>
+                              <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                              </div>
+                           </div>
+                           <form [formGroup]="audit_sampling">
+                              <div formArrayName="sampling">
+                                 <div *ngFor="let sample of samplingArray.controls; let i = index" [formGroupName]="i">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding"
+                                       style="margin-bottom:10px;">
+                                       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12" style="padding:0 10px;">
+                                          <p>{{ p_Users[i].user_name }}</p>
+                                       </div>
+                                       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                          <select class="form-control ngx-dropdown-button" style="width:100%"
+                                             aria-hidden="true" formControlName="experience">
+                                             <option value="">--Select Experience--</option>
+                                             <option value="Fresher">Fresher</option>
+                                             <option value="Experienced">Experienced</option>
+                                          </select>
+                                       </div>
+                                       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                          <input class="form-control month" placeholder="Select Month" type="month"
+                                             formControlName="month" />
+                                       </div>
+                                       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                          <input class="form-control" type="number" min="1" max="100"
+                                             formControlName="audit_percentage" />
+                                       </div>
+                                       <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                          <button type="button" class="btn btn-primary btn-sm" (click)="save(i)">
+                                             Save
+                                          </button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </form>
+                           <!-- {{this.audit_sampling.value | json}} -->
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+<ng-template #newcategory let-modal>
+   <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss()">
+         <span aria-hidden="true">×</span></button>
+      <h4 class="modal-title list-heading">New Category</h4>
+   </div>
+   <div class="modal-body">
+      <div class="col-lg-12" style="margin-top:0px;">
+         <form class="form-horizontal" #modalform=ngForm [formGroup]="formGroup">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+               <div class="box-body no-padding">
+                  <div class="form-group row">
+                     <label for="category_name" class="col-sm-2 col-form-label">Category Name <span
+                           class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9">
+                        <input type="text" name="category_name" class="form-control" id="category_name"
+                           placeholder="Category Name" formControlName="category_name" required>
+                        <div *ngIf="formGroup.controls['category_name'].touched">
+                           <div *ngIf="formGroup.controls['category_name'].hasError('required')" class="error">
+                              Category Name is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group row">
+                     <label for="label_name" class="col-sm-2 col-form-label">Label Name <span
+                           class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9">
+                        <input type="text" name="label_name" class="form-control" id="label_name"
+                           placeholder="Label Name" formControlName="label_name" required>
+                        <div *ngIf="formGroup.controls['label_name'].touched">
+                           <div *ngIf="formGroup.controls['label_name'].hasError('required')" class="error">
+                              Label Name is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group row">
+                     <label for="status" class="col-sm-2 col-form-label">Status <span class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9 status-column">
+                        <div class="status">
+                           <div class="add-status form-group status-radio">
+                              <!-- <input type="radio" value="Active" formControlName="status" name="status" id="status">&nbsp; Active &nbsp; -->
+                              <div class="custom-control custom-radio">
+                                 <input id="status" class="custom-control-input" name="status" formControlName="status"
+                                    type="radio" value="Active">
+                                 &nbsp;<label class="custom-control-label" for="active">Active</label>
+                              </div>
+                              <!-- <input type="radio" value="Inactive" formControlName="status" name="status" id="status">&nbsp; Inactive &nbsp; -->
+                              <div class="custom-control custom-radio">
+                                 <input id="status" class="custom-control-input" name="status" formControlName="status"
+                                    type="radio" value="Inactive">
+                                 &nbsp;<label class="custom-control-label" for="inactive">Inactive</label>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- <select class="form-control" formControlName="status" id="status"  required>
+                        <option  value="Active" > Active </option>
+                        <option  value="Inactive" > Inactive </option>
+                        </select> -->
+                        <div *ngIf="formGroup.controls['status'].touched">
+                           <div *ngIf="formGroup.controls['status'].hasError('required')" class="error">
+                              Status is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- /.box-body-->
+            </div>
+         </form>
+      </div>
+   </div>
+   <div class="modal-footer">
+      <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" (click)="modal.dismiss()">Close</button>
+      <button type="button" class="btn btn-info btn-sm" [disabled]="!modalform.valid"
+         (click)="create_category();modal.dismiss()" *ngIf="!category_edit">Create</button>
+      <button type="button" [disabled]="!modalform.valid" (click)="modal.dismiss();edit_update_category();"
+         class="btn btn-info btn-sm" *ngIf="category_edit">Update</button>
+   </div>
+</ng-template>
+
+
+<ng-template #newquestion let-modal>
+   <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss()">
+         <span aria-hidden="true">×</span></button>
+      <h4 class="modal-title list-heading">Add Question</h4>
+   </div>
+   <div class="modal-body">
+      <div class="col-lg-12 no-padding" style="margin-top:0px;">
+         <form class="form-horizontal" #modalform=ngForm [formGroup]="questionGroup">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+               <div class="box-body no-padding">
+                  <div class="form-group row">
+                     <label for="question" class="col-sm-2 col-form-label">Question <span
+                           class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9">
+                        <textarea name="question text-space" class="form-control" id="question" placeholder="Question"
+                           formControlName="question" size="70"></textarea>
+                        <div *ngIf="questionGroup.controls['question'].touched">
+                           <div *ngIf="questionGroup.controls['question'].hasError('required')" class="error">
+                              Question is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group row">
+                     <label for="hint" class="col-sm-2 col-form-label">Hint <span class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9">
+                        <input type="text" name="hint" class="form-control" id="hint" placeholder="Hint"
+                           formControlName="hint" />
+                        <div *ngIf="questionGroup.controls['hint'].touched">
+                           <div *ngIf="questionGroup.controls['hint'].hasError('required')" class="error">
+                              Hint is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group row">
+                     <label for="field_type" class="col-sm-2 col-form-label">Field Type <span
+                           class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9">
+                        <select class="form-control" formControlName="field_type" id="field_type" required
+                           (change)="change_format($event);">
+                           <option value="Date"> Date </option>
+                           <option value="Number"> Number </option>
+                           <option value="Text"> Text </option>
+                        </select>
+                        <div *ngIf="questionGroup.controls['field_type'].touched">
+                           <div *ngIf="questionGroup.controls['field_type'].hasError('required')" class="error">
+                              Field Type is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group row" *ngIf="question_format!='Date'">
+                     <label for="field_validation" class="col-sm-2 col-form-label">Field Validation <span
+                           class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9">
+                        <select class="form-control" formControlName="field_validation" id="field_validation">
+                           <option value="Number"> Number </option>
+                           <option value="Text"> Text </option>
+                           <option value="Both"> Both </option>
+                        </select>
+                        <div *ngIf="questionGroup.controls['field_validation'].touched">
+                           <div *ngIf="questionGroup.controls['field_validation'].hasError('required')" class="error">
+                              Field Validation is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group row" *ngIf="question_format=='Date'">
+                     <label for="date_type" class="col-sm-2 col-form-label">Date Type <span
+                           class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9">
+                        <select class="form-control" formControlName="date_type" id="date_type">
+                           <option value="single_date"> Single Date </option>
+                           <option value="double_date"> Double Date </option>
+                        </select>
+                        <div *ngIf="questionGroup.controls['date_type'].touched">
+                           <div *ngIf="questionGroup.controls['date_type'].hasError('required')" class="error">
+                              Date Type is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group row">
+                     <label for="status" class="col-sm-2 col-form-label">Status <span class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9 status-column">
+                        <div class="status">
+                           <div class="add-status form-group status-radio">
+                              <div class="custom-control custom-radio">
+                                 <input id="status" class="custom-control-input" required name="status"
+                                    formControlName="status" type="radio" value="Active">
+                                 &nbsp;<label class="custom-control-label" for="active">Active</label>
+                              </div>
+                              <div class="custom-control custom-radio">
+                                 <input id="status" class="custom-control-input" name="status" formControlName="status"
+                                    type="radio" value="Inactive">
+                                 &nbsp;<label class="custom-control-label" for="inactive">Inactive</label>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- <div class="add-status">
+                        <input type="radio" formControlName="status" required name="status" value="Active" id="status">&nbsp; Active &nbsp;
+                        <input type="radio" formControlName="status" required name="status" value="Inactive" id="status"> Inactive
+                     </div> -->
+                        <div *ngIf="questionGroup.controls['status'].touched">
+                           <div *ngIf="questionGroup.controls['status'].hasError('required')" class="error">
+                              Status is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- /.box-body-->
+            </div>
+         </form>
+      </div>
+   </div>
+   <div class="modal-footer">
+      <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" (click)="modal.dismiss()">Close</button>
+      <button type="button" class="btn btn-info btn-sm" [disabled]="!modalform.valid"
+         (click)="create_questions();modal.dismiss()" *ngIf="!question_edit">Create</button>
+      <button type="button" [disabled]="!modalform.valid" (click)="modal.dismiss();edit_update_question();"
+         class="btn btn-info btn-sm" *ngIf="question_edit">Update</button>
+      <!--
+         <button type="button" [[disabled]] = "!modalform.valid" class="btn btn-info btn-sm" (click)="savenotes('claimnotes');modal.dismiss()"  *ngIf="!editnote_value">Save</button>
+         <button type="button" [[disabled]] = "!modalform.valid" (click)="updatenotes('claimnotes');modal.dismiss()"  class="btn btn-info btn-sm" *ngIf="editnote_value">Update</button> -->
+   </div>
+</ng-template>
+
+
+<ng-template #create_status_code let-modal>
+   <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss()">
+         <span aria-hidden="true">×</span></button>
+      <h4 class="modal-title list-heading">Add Status</h4>
+   </div>
+   <div class="modal-body">
+      <div class="col-lg-12 no-padding" style="margin-top:0px;">
+         <form class="form-horizontal" #modalform=ngForm [formGroup]="statusCode">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+               <div class="box-body no-padding">
+
+                  <div class="form-group row" *ngIf="status_id == 1 || status_id == 2; else status_name">
+                     <label for="state_name" class="col-sm-2 col-form-label">Status Name <span
+                           class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9">
+                        <input type="text" name="state_name" class="form-control" id="state_name"
+                           placeholder="Status Name" formControlName="state_name" [disabled]="true">
+                        <div *ngIf="statusCode.controls['state_name'].touched">
+                           <div *ngIf="statusCode.controls['state_name'].hasError('required')" class="error">
+                              State Name is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group row ">
+                     <ng-template class="form-group row tested_class" #status_name>
+                        <label for="state_name" class="col-sm-2 col-form-label">Status Name <span
+                              class="ar-red">*</span></label>
+                        <div class="col-sm-1"><strong>:</strong></div>
+                        <div class="col-sm-9">
+                           <input type="text" name="state_name" class="form-control" id="state_name"
+                              placeholder="Status Name" formControlName="state_name">
+                           <div *ngIf="statusCode.controls['state_name'].touched">
+                              <div *ngIf="statusCode.controls['state_name'].hasError('required')" class="error">
+                                 State Name is required
+                              </div>
+                           </div>
+                        </div>
+                     </ng-template>
+                  </div>
+                  <div class="form-group row" *ngIf="status_id == 1 || status_id == 2; else status_code">
+                     <label for="status_code" class="col-sm-2 col-form-label">Status Code <span
+                           class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9">
+                        <input type="text" name="status_code" class="form-control" id="status_code"
+                           placeholder="Status Code" formControlName="status_code" [disabled]="true">
+                        <div *ngIf="statusCode.controls['status_code'].touched">
+                           <div *ngIf="statusCode.controls['status_code'].hasError('required')" class="error">
+                              State Code is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group row">
+                     <ng-template class="form-group row tested_class" #status_code>
+                        <label for="status_code" class="col-sm-2 col-form-label">Status Code <span
+                              class="ar-red">*</span></label>
+                        <div class="col-sm-1"><strong>:</strong></div>
+                        <div class="col-sm-9">
+                           <input type="text" name="status_code" class="form-control" id="status_code"
+                              placeholder="Status Code" formControlName="status_code">
+                           <div *ngIf="statusCode.controls['status_code'].touched">
+                              <div *ngIf="statusCode.controls['status_code'].hasError('required')" class="error">
+                                 State Code is required
+                              </div>
+                           </div>
+                        </div>
+                     </ng-template>
+                  </div>
+                  <div class="form-group row">
+                     <label for="state_status" class="col-sm-2 col-form-label">Status <span
+                           class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9 status-column">
+                        <div class="status">
+                           <div class="add-status form-group status-radio">
+                              <div class="custom-control custom-radio">
+                                 <input id="state_status" [value]="1" class="custom-control-input" required
+                                    name="state_status" formControlName="state_status" type="radio" value="Active">
+                                 &nbsp;<label class="custom-control-label" for="active">Active</label>
+                              </div>
+                              <div class="custom-control custom-radio">
+                                 <input id="state_status" [value]="0" class="custom-control-input" name="state_status"
+                                    formControlName="state_status" type="radio" value="Inactive">
+                                 &nbsp;<label class="custom-control-label" for="inactive">Inactive</label>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- <div class="add-status">
+                        <input type="radio"  [value]="1" formControlName="state_status" required name="state_status" id="state_status"> &nbsp;Active
+                        <input type="radio" [value]="0" formControlName="state_status" required name="state_status" id="state_status"> &nbsp;Inactive
+                     </div> -->
+                        <!-- <select class="form-control" formControlName="state_status" id="state_status" required>
+                        <option  value="1" > Active </option>
+                        <option  value="0" > Inactive </option>
+                        </select> -->
+                        <div *ngIf="statusCode.controls['state_status'].touched">
+                           <div *ngIf="statusCode.controls['state_status'].hasError('required')" class="error">
+                              Status is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group row">
+                     <label for="state_status" class="col-sm-2 col-form-label">Active Modules</label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9">
+                        <!-- <select class="form-control" formControlName="state_status" id="state_status" required>
+                        <option  value="1" > Active </option>
+                        <option  value="0" > Inactive </option>
+                        </select> -->
+                        <!-- <input type="checkbox" class="form-control" formControlName="modules" id="modules"> -->
+                        <!-- <div *ngFor="let module of statusCode.controls['modules'].controls; let i = index">
+                        <input type="checkbox" formControlName="{{module}}">
+                          <label>{{ module_names[i].name }}</label>
+                        </div> -->
+                        <!-- <mat-checkbox class = "example-margin" [(ngModel)] = "myModel">
+                        <label>Printer </label>
+                        </mat-checkbox> -->
+                        <div class="add-checkbox">
+                           <span><input type="checkbox" formControlName="foll_chk"
+                                 class="checkbox-label module-checkbox" data-md-icheck />
+                              <label>&nbsp;Follow Up</label></span>
+                           <span><input type="checkbox" formControlName="aud_chk" class="checkbox-label module-checkbox"
+                                 data-md-icheck />
+                              <label>&nbsp;Audit</label></span>
+                           <span><input type="checkbox" formControlName="ca_chk" class="checkbox-label module-checkbox"
+                                 data-md-icheck />
+                              <label>&nbsp;Client Assistance</label></span>
+                           <span><input type="checkbox" formControlName="rcm_chk" class="checkbox-label module-checkbox"
+                                 data-md-icheck />
+                              <label>&nbsp;RCM</label></span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- /.box-body-->
+            </div>
+         </form>
+      </div>
+   </div>
+   <div class="modal-footer">
+      <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" (click)="modal.dismiss()">Close</button>
+      <button type="button" class="btn btn-info btn-sm" [disabled]="!modalform.valid"
+         (click)="create_statuscode('status');modal.dismiss()" *ngIf="!status_code_edit">Create</button>
+      <button type="button" [disabled]="!modalform.valid" (click)="modal.dismiss();update_status('status_code');"
+         class="btn btn-info btn-sm" *ngIf="status_code_edit">Update</button>
+   </div>
+</ng-template>
+
+
+
+<ng-template #sub_status_code let-modal>
+   <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss()">
+         <span aria-hidden="true">×</span></button>
+      <h4 class="modal-title list-heading">Add Sub-Status</h4>
+   </div>
+   <div class="modal-body">
+      <div class="col-lg-12 no-padding" style="margin-top:0px;">
+         <form class="form-horizontal" #modalform=ngForm [formGroup]="subStatusCode">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+               <div class="box-body no-padding">
+                  <div class="form-group row" *ngIf="status_id == 1 || status_id == 2; else status_name1">
+                     <label for="state_name" class="col-sm-2 col-form-label">Sub-Status Name <span
+                           class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9">
+                        <input type="text" name="state_name" class="form-control" id="state_name"
+                           placeholder="Sub-Status Name" formControlName="state_name" [disabled]="true">
+                        <div *ngIf="subStatusCode.controls['state_name'].touched">
+                           <div *ngIf="subStatusCode.controls['state_name'].hasError('required')" class="error">
+                              Substatus Name is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group row">
+                     <ng-template class="form-group row tested_class" #status_name1>
+                        <label for="state_name" class="col-sm-2 col-form-label">Sub-Status Name <span
+                              class="ar-red">*</span></label>
+                        <div class="col-sm-1"><strong>:</strong></div>
+                        <div class="col-sm-9">
+                           <input type="text" name="state_name" class="form-control" id="state_name"
+                              placeholder="Sub-Status Name" formControlName="state_name">
+                           <div *ngIf="subStatusCode.controls['state_name'].touched">
+                              <div *ngIf="subStatusCode.controls['state_name'].hasError('required')" class="error">
+                                 Substatus Name is required
+                              </div>
+                           </div>
+                        </div>
+                     </ng-template>
+                  </div>
+                  <div class="form-group row" *ngIf="status_id == 1 || status_id == 2; else status_code1">
+                     <label for="status_code" class="col-sm-2 col-form-label">Code <span class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9">
+                        <input type="text" name="status_code" class="form-control" id="status_code"
+                           placeholder="Status Code" formControlName="status_code" [disabled]="true">
+                        <div *ngIf="subStatusCode.controls['status_code'].touched">
+                           <div *ngIf="subStatusCode.controls['status_code'].hasError('required')" class="error">
+                              Substatus Code is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+
+                  <div class="form-group row">
+                     <ng-template class="form-group row tested_class" #status_code1>
+                        <label for="status_code" class="col-sm-2 col-form-label">Code <span
+                              class="ar-red">*</span></label>
+                        <div class="col-sm-1"><strong>:</strong></div>
+                        <div class="col-sm-9">
+                           <input type="text" name="status_code" class="form-control" id="status_code"
+                              placeholder="Status Code" formControlName="status_code">
+                           <div *ngIf="subStatusCode.controls['status_code'].touched">
+                              <div *ngIf="subStatusCode.controls['status_code'].hasError('required')" class="error">
+                                 Substatus Code is required
+                              </div>
+                           </div>
+                        </div>
+                     </ng-template>
+                  </div>
+                  <div class="form-group row">
+                     <label for="state_status" class="col-sm-2 col-form-label">Status <span
+                           class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9 status-column">
+                        <div class="status">
+                           <div class="add-status form-group status-radio">
+                              <div class="custom-control custom-radio">
+                                 <input id="state_status" [value]="1" class="custom-control-input" required
+                                    formControlName="state_status" type="radio" value="Active">
+                                 &nbsp;<label class="custom-control-label" for="active">Active</label>
+                              </div>
+                              <div class="custom-control custom-radio">
+                                 <input id="state_status" [value]="0" class="custom-control-input" required
+                                    formControlName="state_status" type="radio" value="Inactive">
+                                 &nbsp;<label class="custom-control-label" for="inactive">Inactive</label>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- <div class="add-status">
+                        <input type="radio" formControlName="state_status" [value]="1" required id="state_status"> Active &nbsp;
+                        <input type="radio" formControlName="state_status" [value]="0" required id="state_status"> Inactive &nbsp;
+                     </div> -->
+                        <!-- <select class="form-control" formControlName="state_status" id="state_status" required>
+                        <option  value="1" > Active </option>
+                        <option  value="0" > Inactive </option>
+                        </select> -->
+                        <div *ngIf="subStatusCode.controls['state_status'].touched">
+                           <div *ngIf="subStatusCode.controls['state_status'].hasError('required')" class="error">
+                              Status is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group row">
+                     <label for="state_status" class="col-sm-2 col-form-label">Modules</label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9">
+                        <div class="add-checkbox">
+                           <span *ngIf="allowed_modules['followup'] == true">
+                              <input type="checkbox" formControlName="foll_chk" data-md-icheck
+                                 class="checkbox-label" /><label>&nbsp;Follow Up</label></span>
+                           <span *ngIf="allowed_modules['audit'] == true">
+                              <input type="checkbox" formControlName="aud_chk" data-md-icheck
+                                 class="checkbox-label" /><label>&nbsp;Audit</label></span>
+                           <span *ngIf="allowed_modules['ca'] == true">
+                              <input type="checkbox" formControlName="ca_chk" data-md-icheck
+                                 class="checkbox-label" /><label>&nbsp;Client Assistance</label></span>
+                           <span *ngIf="allowed_modules['rcm'] == true">
+                              <input type="checkbox" formControlName="rcm_chk" data-md-icheck
+                                 class="checkbox-label" /><label>&nbsp;RCM</label></span>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- /.box-body-->
+            </div>
+         </form>
+      </div>
+   </div>
+   <div class="modal-footer">
+      <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" (click)="modal.dismiss()">Close</button>
+      <button type="button" class="btn btn-info btn-sm" [disabled]="!modalform.valid"
+         (click)="create_statuscode('substatus');modal.dismiss()" *ngIf="!sub_status_code_edit">Create</button>
+      <button type="button" [disabled]="!modalform.valid" (click)="modal.dismiss();update_status('sub_status_code');"
+         class="btn btn-info btn-sm" *ngIf="sub_status_code_edit">Update</button>
+   </div>
+</ng-template>
+
+
+
+
+<ng-template #status_codes let-modal>
+   <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modal.dismiss()">
+         <span aria-hidden="true">×</span></button>
+      <h4 class="modal-title list-heading">Add Status</h4>
+   </div>
+   <div class="modal-body">
+      <div class="col-lg-12" style="margin-top:0px;">
+         <form class="form-horizontal" #modalform=ngForm [formGroup]="statusCodes">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+               <div class="box-body no-padding">
+                  <div class="form-group row">
+                     <label for="name" class="col-sm-2 col-form-label">Status Name <span class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9">
+                        <input type="text" name="name" class="form-control" id="name" placeholder="Status Name"
+                           formControlName="name">
+                        <div *ngIf="statusCodes.controls['name'].touched">
+                           <div *ngIf="statusCodes.controls['name'].hasError('required')" class="error">
+                              Status Name is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="form-group row">
+                     <label for="status" class="col-sm-2 col-form-label">Status <span class="ar-red">*</span></label>
+                     <div class="col-sm-1"><strong>:</strong></div>
+                     <div class="col-sm-9 status-column">
+                        <div class="status">
+                           <div class="add-status form-group status-radio">
+                              <div class="custom-control custom-radio">
+                                 <input id="status" [value]="1" class="custom-control-input" name="status"
+                                    formControlName="status" type="radio" value="Active">
+                                 &nbsp;<label class="custom-control-label" for="active">Active</label>
+                              </div>
+                              <div class="custom-control custom-radio">
+                                 <input id="status" [value]="0" class="custom-control-input" name="status"
+                                    formControlName="status" type="radio" value="Inactive">
+                                 &nbsp;<label class="custom-control-label" for="inactive">Inactive</label>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- <div class="add-status">
+                        <input type="radio" [value]="1" formControlName="status" name="status" required id="status"> Active &nbsp;
+                        <input type="radio" [value]="0" formControlName="status" name="status" required id="status"> &nbsp;Inactive
+                     </div> -->
+                        <!-- <select class="form-control" formControlName="status" id="status" required>
+                        <option  value="1" > Active </option>
+                        <option  value="0" > Inactive </option>
+                        </select> -->
+                        <div *ngIf="statusCodes.controls['status'].touched">
+                           <div *ngIf="statusCodes.controls['status'].hasError('required')" class="error">
+                              Status is required
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <!-- /.box-body-->
+            </div>
+         </form>
+      </div>
+   </div>
+   <div class="modal-footer">
+      <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" (click)="modal.dismiss()">Close</button>
+      <button type="button" class="btn btn-info btn-sm" [disabled]="!modalform.valid"
+         (click)="create_states();modal.dismiss()" *ngIf="!audit_status_edit">Create</button>
+      <button type="button" [disabled]="!modalform.valid" (click)="modal.dismiss();update_states();"
+         class="btn btn-info btn-sm" *ngIf="audit_status_edit">Update</button>
+   </div>
+</ng-template>

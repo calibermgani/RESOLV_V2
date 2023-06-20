@@ -1,0 +1,122 @@
+@media print
+{
+.noprint {display:none !important;
+    visibility: hidden !important;
+}
+}
+
+.custom-class .modal-content {
+    right: -178px;
+    top: 80px;
+
+  }
+  .custom-class .close {
+    color: #000;
+    opacity: .2;
+  }
+
+  .red-alert{
+    transition: 0.5s all ease-in-out;
+  }
+
+  .ng-sidebar--right[_ngcontent-c8] {
+    bottom: 0;
+    right: 0;
+    top: 0;
+    position: relative !important;
+    overflow: hidden !important;
+  }
+
+  .ng-sidebar[_ngcontent-c7] {
+    -webkit-overflow-scrolling: touch;
+    overflow: auto;
+    pointer-events: auto;
+    position: relative !important;
+    touch-action: auto;
+    will-change: initial;
+    z-index: 2;
+    overflow: hidden !important;
+  }
+  .a {
+    top: 27%;
+    position: absolute;
+    width: 106px;
+    height: 40px;
+    background-color: #dd4b39;
+    color: white;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    right: -33px;
+    z-index: 155;
+    text-decoration: none;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding-top: 0px;
+    text-align: center;
+    cursor: pointer;
+  }
+  .a p , .b p{
+    font-size: 17px;
+
+  }
+  .b{
+    top: 77%;
+    cursor: pointer;
+    position: absolute;
+    width: 106px;
+    height: 40px;
+    background-color: #00c0ef;
+    color: white;
+    -webkit-transform: rotate(90deg);
+    transform: rotate(90deg);
+    right: -33px;
+    z-index: 155;
+    text-decoration: none;
+    text-align: center;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    padding-top: 9px;
+  }
+  .a p{
+    padding-top: 7px;
+  }
+  .tooltip-feedback {
+    background-color: #9ad9e4 !important;
+    color: #646464 !important;
+    overflow: visible !important;
+     /*margin-left: -25px !important; 
+    margin-top: 20px !important;*/
+  }
+  .new-tooltip-class {
+    background-color: #9ad9e4 !important;
+    color: #646464 !important;
+    margin-top: -20px !important;
+  }
+  .text-space {
+    resize: vertical;
+  }
+
+  .dos-date {
+    min-width: 82px;
+  }
+
+  .btn-search {
+    background-color: #00beda;
+    border-color: #00beda;
+    color: #fff;
+    max-width: 66px;
+    margin-top: 15px;
+  }
+  .btn-search:hover {
+    color: #fff !important;
+    background-color: #04a1b8 !important;
+  }
+.close-btn button{
+    left: 10%;
+    top: -54px;
+    position: relative;
+      }
+ .closed-btn button{
+  top: -54px;
+  position: relative;
+ }

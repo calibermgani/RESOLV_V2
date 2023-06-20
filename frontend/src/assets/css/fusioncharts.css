@@ -1,0 +1,15 @@
+svg:not(:root) {
+  background-color: transparent !important;
+}
+.pie-chart span, .pie3d-chart span {
+  margin-left: -55px !important;
+}
+.pie-chart rect, .pyramid-chat rect, .pie3d-chart rect, .overlap-chat rect {
+  fill: transparent !important;
+}
+.pie-chart text, .pie3d-chart text {
+  display: none !important;
+}
+/* svg g text {
+  display: none !important;
+} */

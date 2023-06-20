@@ -1,0 +1,391 @@
+<div class="row">
+   <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-md-offset-1">
+      <div class="tabs nav-tabs-custom mb-3">
+         <ul class="tabs nav nav-tabs">
+            <li class="active"><a href="#tab_1" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-user-plus"></i> User Creation <span class="tab-divider">|</span></a></li>
+            <li (click)="get_users_list()"><a href="#tab_2" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-users"></i> Users List</a></li>
+            <!-- <li (click)="get_aimsusers_list()"><a href="#aims_user" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-users"></i> Aims Users List </a></li> -->
+         </ul>
+         <div class="tab-content no-padding">
+            <div class="tab-pane active" id="tab_1">
+               <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                  <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                     <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> User Registration</h3>
+                     <!-- <div class="box-tools pull-right">
+                        <input type="text" class="form-control pull-right" style="width:300px;margin-top:1px;font-weight:normal" placeholder="Search..">
+                        </div> -->
+                  </div>
+                  <!-- /.box-header -->
+                  <div class="mt-4 col-8 offset-s">
+                     <!-- <div class="alert alert-success" [hidden]="!notify">
+                        {{notify}}
+                        </div>  -->
+                     <div class="card">
+                        <div>
+                           &nbsp;
+                        </div>
+                        <div class="card-body" >
+                           <app-userregistration></app-userregistration>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="tab-pane" id="tab_2">
+               <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4; width: 65%">
+                  <!-- /.box-header -->
+                  <div class="box-body no-padding">
+                     <div class="box-header" style="border-bottom: 1px solid #e9ecf3;height:45px">
+                        <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Users Listing</h3>
+                     </div>
+                     <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12" style="left: 518px;">
+                      <span>Search : </span>
+                      <input type="text"  name="search" [(ngModel)]="search_values_user_list"
+                        (keyup)="onSearch()" class="search_box" autocomplete="off">
+                    </div>
+                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding listing-table">
+                        <!-- <div class="table-responsive" style="margin-top: 20px;">
+                           <table class="table-striped1 table">
+                              <thead>
+                                 <tr>
+                                    <th>User Name</th>
+                                    <th>Edit</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr *ngFor="let user of user_details_list" >
+                                    <td>{{user.user_name}}</td>
+                                    <td>
+                                       <button data-toggle="modal" (click)="edit_user_details(user);open(edit_user);" class="btn btn-sm btn-info">Edit &nbsp;<i class="fa fa-pencil"></i></button>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div> -->
+                        <ag-grid-angular class="ag-theme-alpine no-grid-lines" [columnDefs]="columnDefs1" [gridOptions]="gridOptions1" #myGrid_1  style="width:56%"
+                (gridReady)="onGridReady_1($event)" [defaultColDef]="defaultColDef"
+                (selectionChanged)="onSelectionChanged($event)"></ag-grid-angular>
+                     </div>
+                  </div>
+               </div>
+            </div>
+
+            <!-- <div class="tab-pane" id="aims_user">
+               <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                  <div class="box-body no-padding">
+                     <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                        <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i>Aims Users Listing</h3>
+                     </div>
+                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding listing-table">
+                        <div class="table-responsive" style="margin-top: 20px;">
+                           <table class="table-striped1 table">
+                              <thead>
+                                 <tr>
+                                    <th>User Name</th>
+                                    <th>Edit</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr *ngFor="let user of aims_list" >
+                                    <td>{{user.user_name}}</td>
+                                    <td>
+                                       <button data-toggle="modal" (click)="edit_user_details(user);open(edit_user);" class="btn btn-sm btn-info">Edit &nbsp;<i class="fa fa-pencil"></i></button>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div> -->
+         </div>
+      </div>
+   </div>
+</div>
+<ng-template #edit_user let-modal >
+   <div class="modal-content">
+      <div class="modal-header">
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef?.hide()">
+         <span aria-hidden="true">×</span></button>
+         <h4 class="modal-title list-heading">Update User</h4>
+      </div>
+      <div class="modal-body">
+         <form #RegisterForm=ngForm [formGroup]="userEdit" (ngSubmit)="update_user()" >
+         <!--     <div class="alert alert-danger" [hidden]="!error">
+            {{error}}
+                    </div>  -->
+         <div class="card-title box-header">
+            <!-- <b>  Contact Information</b> -->
+            <h3 _ngcontent-c13="" class="box-title list-heading"><i _ngcontent-c13="" class="fa fa-bars ar-blue"></i>  User Registration</h3>
+         </div>
+         <div class="form-group row">
+            <label for="username" class="col-sm-3 col-form-label">User Name <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="username" class="form-control" id="username" placeholder="User Name"  formControlName="username"   (blur)="onBlur()" autocomplete="off" required >
+               <div *ngIf="userEdit.controls['username'].touched || submitted">
+                  <div *ngIf="userEdit.controls['username'].hasError('required')" class="error">
+                     User Name is required
+                  </div>
+                  <div *ngIf="userEdit.controls['username'].hasError('pattern')" class="error">
+                     Special characters are not Allowed.
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="firstname" class="col-sm-3 col-form-label">First Name <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="firstname" class="form-control" id="firstname" placeholder="First Name" formControlName="firstname" required>
+               <div *ngIf="userEdit.controls['firstname'].touched || submitted">
+                  <div *ngIf="userEdit.controls['firstname'].hasError('required')" class="error">
+                     First Name is required
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="lastname" class="col-sm-3 col-form-label">Last Name <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="lastname" class="form-control" id="lastname" placeholder="Last Name" formControlName="lastname" required>
+               <div *ngIf="userEdit.controls['lastname'].touched || submitted">
+                  <div *ngIf="userEdit.controls['lastname'].hasError('required')" class="error">
+                     Last Name is required
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="dob" class="col-sm-3 col-form-label">Date Of Birth <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <!-- <input type="text" name="dob" class="form-control" id="dob" placeholder="dob" formControlName="dob" ngxDaterangepickerMd singleDatePicker="true" autocomplete="off"> -->
+               <!-- <input type="text" name="dob" class="form-control" id="dob" placeholder="MM/DD/YYYY" formControlName="dob" (focus)="dob.toggle()"  ngbDatepicker #dob="ngbDatepicker" [minDate]="minDate" autocomplete="off">
+               <div *ngIf="userEdit.controls['dob'].touched || submitted">
+                  <div *ngIf="userEdit.controls['dob'].hasError('required')" class="error">
+                     Date of birth is required
+                  </div>
+               </div> -->
+            </div>
+         </div>
+         <div class="card-title box-header">
+            <!-- <b>  Contact Information</b> -->
+            <h3 _ngcontent-c13="" class="box-title list-heading"><i _ngcontent-c13="" class="fa fa-bars ar-blue"></i> Contact Information</h3>
+         </div>
+         <div class="form-group row">
+            <label for="phone" class="col-sm-3 col-form-label">Phone <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone Number" formControlName="phone" maxLength='10' required>
+               <div *ngIf="userEdit.controls['phone'].touched || submitted">
+                  <div *ngIf="userEdit.controls['phone'].hasError('required')" class="error">
+                     Phone Number is required
+                  </div>
+                  <div *ngIf="userEdit.controls['phone'].hasError('minlength') && !userEdit.get('phone')?.hasError('pattern')" class="error">
+                     Phone Number Should Minimum 10 Numbers.
+                  </div>
+                  <div *ngIf=" userEdit.get('phone')?.hasError('pattern')" class="error">
+                     Phone Number Should be Numbers.
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="address" class="col-sm-3 col-form-label">Address <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="address1" class="form-control" id="address" placeholder="Address Line 1" formControlName="address1" required>
+               <div *ngIf="userEdit.controls['address1'].touched || submitted">
+                  <div *ngIf="userEdit.controls['address1'].hasError('required')" class="error">
+                     Address is required
+                  </div>
+               </div>
+               <br>
+               <input type="text" name="address2" class="form-control" id="address2" placeholder="Address Line 2" formControlName="address2" required>
+               <div *ngIf="userEdit.controls['address2'].touched || submitted">
+                  <div *ngIf="userEdit.controls['address2'].hasError('required')" class="error">
+                     Address is required
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="city" class="col-sm-3 col-form-label">City <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="city" class="form-control" id="city" placeholder="City" formControlName="city" required>
+               <div *ngIf="userEdit.controls['city'].touched || submitted">
+                  <div *ngIf="userEdit.controls['city'].hasError('required')" class="error">
+                     City is required
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="state" class="col-sm-3 col-form-label">State <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="state" class="form-control" id="state" placeholder="State" formControlName="state" required>
+               <div *ngIf="userEdit.controls['state'].touched || submitted">
+                  <div *ngIf="userEdit.controls['state'].hasError('required')" class="error">
+                     State is required
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="form-group row">
+            <label for="zip" class="col-sm-3 col-form-label">Zip Code <span class="ar-red">*</span></label>
+            <div class="col-sm-1"><strong>:</strong></div>
+            <div class="col-sm-4">
+               <input type="text" name="zip" class="form-control" id="zip" placeholder="Zip" formControlName="zip" maxLength='6' required>
+               <div *ngIf="userEdit.controls['zip'].touched || submitted">
+                  <div *ngIf="userEdit.controls['zip'].hasError('required')" class="error">
+                     Zip Code is required
+                  </div>
+                  <div *ngIf="userEdit.controls['zip'].hasError('pattern')" class="error">
+                     Only Numbers are Allowed.
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- <div class="form-group row">
+            <label for="role" class="col-sm-2 col-form-label">Role</label>
+
+               <div class="col-sm-4">
+
+
+            <select class="form-control" formControlName="role" id="role" required>
+            <option  *ngFor="let r of roles" [ngValue]="r.id" > {{r.role_name}} </option>
+            </select>
+            <div *ngIf="userEdit.controls['role'].touched">
+            <div *ngIf="userEdit.controls['role'].hasError('required')">
+            Please Select a Role.
+            </div>
+
+            </div>
+               </div>
+             </div>
+             <div class="card-title">
+                 <b> Contact Information</b> -->
+         <!-- <h3 _ngcontent-c13="" class="box-title list-heading"><i _ngcontent-c13="" class="fa fa-bars ar-blue"></i> Processing Details</h3>
+            </div>
+
+            <div class="form-group row">
+            <label for="phone" class="col-sm-2 col-form-label">Assign Limit </label>
+            <div class="col-sm-4">
+              <input type="number" name="assign_limit" class="form-control" id="assign_limit" placeholder="Assign Limit" formControlName="assign_limit" required>
+              <div *ngIf="userEdit.controls['assign_limit'].touched">
+                  <div *ngIf="userEdit.controls['assign_limit'].hasError('required')">
+                      Assign Limit Should Not be Empty.
+                    </div>
+                    <div *ngIf="userEdit.controls['assign_limit'].hasError('pattern')">
+                        Only Numbers are Allowed.
+                      </div>
+                  </div>
+            </div>
+            </div>
+            <div class="form-group row">
+            <label for="caller_benchmark" class="col-sm-2 col-form-label">Caller Benchmark </label>
+            <div class="col-sm-4">
+              <input type="number" name="caller_benchmark" class="form-control" id="caller_benchmark" placeholder="%" formControlName="caller_benchmark" required>
+              <div *ngIf="userEdit.controls['caller_benchmark'].touched">
+                  <div *ngIf="userEdit.controls['caller_benchmark'].hasError('required')">
+                      Caller Benchmark Should Not be Empty.
+                    </div>
+                    <div *ngIf="userEdit.controls['caller_benchmark'].hasError('pattern')">
+                        Only Numbers are Allowed.
+                      </div>
+                  </div>
+            </div>
+            </div> -->
+         <div class="card-title box-header">
+            <!-- <b>  Contact Information</b> -->
+            <h3  class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Processing Details</h3>
+         </div>
+         <div  formGroupName="process_details" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table">
+            <table class="table-striped1 table table-responsive">
+               <thead>
+                  <tr>
+                     <th>Practice</th>
+                     <th>Role</th>
+                     <th>Assign Limit</th>
+                     <th>Caller Benchmark</th>
+                     <th>Action</th>
+                  </tr>
+               </thead>
+               <tr *ngFor="let fields of field_details;let i=index">
+                  <td>
+                     <select class="form-control" formControlName="{{fields.practice}}" id="{{fields.practice}}" (change)="check_dup_prac()"(change)="check_dup_prac()" required>
+                     <option *ngFor="let r of practice" value="{{r.id}}" > {{r.practice_name}} </option>
+                     </select>
+                     <div *ngIf="process_fields.controls[fields.practice].touched || submitted">
+                        <div *ngIf="process_fields.controls[fields.practice].hasError('required')" class="error">
+                           Please Select a Practice.
+                        </div>
+                     </div>
+                  </td>
+                  <td>
+                     <select class="form-control" formControlName="{{fields.role}}" id="{{fields.role}}" required>
+                        <option  *ngFor="let r of roles" value="{{r.id}}" > {{r.role_name}} </option>
+                     </select>
+                     <div *ngIf="process_fields.controls[fields.role].touched">
+                        <div *ngIf="process_fields.controls[fields.role].hasError('required')"class="error">
+                           Please Select a Role.
+                        </div>
+                     </div>
+                  </td>
+                  <td>
+                     <input type="number" name="{{fields.assign_lim}}" class="form-control" id="{{fields.assign_lim}}" placeholder="Assign Limit" formControlName="{{fields.assign_lim}}" required>
+                     <div *ngIf="process_fields.controls[fields.assign_lim].touched || submitted">
+                        <div *ngIf="process_fields.controls[fields.assign_lim].hasError('required')" class="error">
+                           Assign Limit is required
+                        </div>
+                        <div *ngIf="process_fields.controls[fields.assign_lim].hasError('pattern')" class="error">
+                           Only Numbers are Allowed.
+                        </div>
+                     </div>
+                  </td>
+                  <td>
+                     <input type="number" name="{{fields.caller_bm}}" class="form-control" id="{{fields.caller_bm}}" formControlName="{{fields.caller_bm}}" placeholder="%" required>
+                     <div *ngIf="process_fields.controls[fields.caller_bm].touched">
+                        <div *ngIf="process_fields.controls[fields.caller_bm].hasError('required')" class="error">
+                           Caller Benchmark is required
+                        </div>
+                        <div *ngIf="process_fields.controls[fields.caller_bm].hasError('pattern')" class="error">
+                           Only Numbers are Allowed.
+                        </div>
+                     </div>
+                  </td>
+                  <td style="padding-left: 16px;">
+                     <span *ngIf="field_details.length ==  i+1 && practice.length > practice_nos">
+                     <button type="button" class="add btn btn-info btn-sm" aria-label="Add" (click)="add_practice()">
+                     <span aria-hidden="true"><i class="fa fa-plus"></i></span></button>
+                     </span>
+                     <span *ngIf="i != 0">
+                     <button type="button" class="btn btn-danger btn-sm" aria-label="Close" (click)="delete_row(fields)">
+                     <span aria-hidden="true"><i class="fa fa-times"></i></span></button>
+                     </span>
+                  </td>
+               </tr>
+            </table>
+         </div>
+         </form>
+         <div class="form-group row">
+            <div class="col-sm-12">
+               <div class="text-center">
+                  <button type="submit" class="btn btn-info btn-sm register-btn" (click)="update_user()">Update</button>
+                  <!-- <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" >Close</button> -->
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- <div class="modal-footer">
+      <button type="button" class="btn btn-info btn-sm"  [disabled] = "!modalform.valid" (click)="create_statuscode('substatus');modal.dismiss()" *ngIf="!sub_status_code_edit">Create</button>
+      <button type="button" [disabled] = "!modalform.valid" (click)="modal.dismiss();update_status('sub_status_code');"  class="btn btn-info btn-sm" *ngIf="sub_status_code_edit">Update</button>
+
+      </div> -->
+</ng-template>

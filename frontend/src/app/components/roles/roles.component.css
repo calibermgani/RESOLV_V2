@@ -1,0 +1,43 @@
+.modal-content {
+    /* right:21% !important; */
+    top: 80px !important;
+  }
+.submit-btn{
+    margin-top: 3%;
+    margin-bottom: 3%;
+}
+  .role-creation{
+      display: flex;
+  }
+  input[type=checkbox] {
+    margin: 2px 0 0 !important;
+}
+
+.mb-4{
+    margin-bottom: 7%;
+}
+.modal-dialog {
+  width: 310px;
+}
+
+.custom-control {
+  padding-right: 15px;
+}
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #804a96 !important;
+    background-color: #804a96!important;
+}
+.status-radio {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -1px;
+}
+
+.status {
+  display: inline-flex;
+  width: 100%;
+}
+
+
+

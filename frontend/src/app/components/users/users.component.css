@@ -1,0 +1,77 @@
+.modal-content {
+    left: -100px;
+    top: 30px;
+  }
+  .custom-class .close {
+    color: white;
+  }
+.card-title{
+  border-bottom: 1px solid #e9ecf3;
+  margin-bottom: 10px;
+}
+.col-form-label{
+  text-align: center;
+}
+.register-btn{
+  margin-right: 5px;
+}
+.add{
+  margin-right: 8px;
+}
+.form-control:hover {
+  color: #495057;
+  border-color: #00beda;
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(0,190,218,.25);
+}
+.mb-3{
+  margin-bottom: 5%;
+}
+
+
+
+ @import 'ag-grid-community/styles/ag-grid.css';
+ @import 'ag-grid-community/styles/ag-theme-alpine.css';
+
+    .ag-theme-alpine {
+      position: relative;
+      /* width: 113%; */
+      height: 730px;
+      /* border: none;
+      border-radius: 10px; */
+      /* margin-left: -220px; */
+
+      /* font-size: 13px !important; */
+      border: none !important;
+      font-weight:100;
+      font-family: 'sans-serif';
+      /* width: 56%; */
+      /* bottom: 49px; */
+    }
+
+    .no-grid-lines .ag-cell, .no-grid-lines .ag-row, .no-grid-lines .ag-header , .no-grid-lines .ag-root-wrapper, .no-grid-lines .ag-paging-panel {
+      border: none  !important;
+
+    }
+
+    .no-grid-lines .ag-paging-panel{
+      text-align: center;
+    }
+
+    .no-grid-lines .ag-header-row{
+      font-size: 12px !important;
+     border: none !important;
+     font-weight: 652;
+    }
+
+    .search_box
+    {
+      border: 2px solid #d8dbe4;
+      height: 45px;
+      width: 70%;
+      padding-left: 10px;
+      margin-top: -2px;
+      border-radius: 5px;
+    }
+
+

@@ -1,0 +1,40 @@
+<div class="box no-shadow no-border">
+  <!-- /.box-header -->
+  <div class="box-body no-padding">
+    <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+      <!-- /.box-header -->
+      <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+        <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Summary</h3>
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="collapse"
+            data-target="#box13">
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
+
+      <div class="box-body no-padding collapse in" style="margin-top:10px;margin-bottom: 10px;" id="box13">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table ">
+          <div class="col-lg-6" style="border-right: 1px dashed #ccc">
+            <h5 class="ar-blue" style="font-weight: 600;"><i class="fa fa-bars ar-blue margin-r-5"></i> MTD Work Status</h5>
+            <p class="text-dark">Total Assigned <span class="pull-right">{{work_status['assigned']}}</span></p>
+            <p class="text-dark">Total Worked <span class="pull-right">{{work_status['worked']}}</span></p>
+            <p class="text-dark">Today Pending <span class="pull-right">{{work_status['pending']}}</span></p>
+          </div>
+          <div class="col-lg-6">
+            <h5 class="ar-blue" style="font-weight: 600;"><i class="fa fa-bars ar-blue margin-r-5"></i> Alerts</h5>
+            <p class="text-dark">Followup Claims <span class="pull-right ">{{work_status['followup']}}</span></p>
+            <p class="text-dark">Audit Claims <span class="pull-right">{{work_status['auditclaims']}}</span></p>
+            <p class="text-dark">&gt;3 Touches <span class="pull-right">{{work_status['3touches']}}</span></p>
+          </div>
+          <!-- <div class="col-lg-4">
+            <h5 class="ar-blue" style="font-weight: 600;"><i class="fa fa-bars ar-blue margin-r-5"></i> MTD Production &amp; Quality</h5>
+            <p class="text-dark">Production Score <span class="pull-right">98%</span></p>
+            <p class="text-dark">Quality Score <span class="pull-right">92%</span></p>
+            <p class="text-dark">Resolution Score <span class="pull-right">79%</span></p>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

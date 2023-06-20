@@ -1,0 +1,15 @@
+frontend/node_modules
+backend/public/hot
+backend/public/storage
+backend/uploads
+backend/public/exports
+backend/storage/*.key
+backend/storage
+backend/vendor
+backend/.env
+backend/.env.backup
+backend/.phpunit.result.cache
+backend/Homestead.json
+backend/Homestead.yaml
+frontend/npm-debug.log
+frontend/yarn-error.log

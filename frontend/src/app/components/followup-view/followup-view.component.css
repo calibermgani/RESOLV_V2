@@ -1,0 +1,13 @@
+.text-space {
+  resize: vertical;
+}
+
+.md-datepicker-input-container {
+    width: 300px;
+}
+
+.mat-datepicker-content .mat-calendar
+{ 
+     zoom: 0.85;
+}
+

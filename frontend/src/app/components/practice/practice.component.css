@@ -1,0 +1,54 @@
+.modal-content {
+   right: 200px !important;
+    top: 80px !important;
+}
+.submit-btn{
+    margin-right: 15px;
+}
+.notes{
+    resize: vertical;
+}
+.file-upload::before{
+    width: 0px;
+    height: 0px;
+    border: none;
+  }
+  .sop{
+      display: inline-flex;
+      width: 100%;
+  }
+  /* input[type=checkbox], input[type=radio] {
+    margin: 2px 0 0 !important;
+    margin-top: 1px\9;
+    line-height: normal;
+} */
+/* .practice{
+    display: flex;
+    margin-top: 8px;
+}
+.practice p {
+  margin: -2px 15px 0 5px;
+}
+.practice input[type=radio] {
+  margin: 4px 0px 0px !important;
+} */
+.custom-control {
+  padding-right: 15px;
+}
+.custom-control-input:checked~.custom-control-label::before {
+    color: #fff;
+    border-color: #804a96 !important;
+    background-color: #804a96!important;
+}
+.status-radio {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: -1px;
+}
+.status-column {
+  margin-top: 5px !important;
+}
+.status {
+  display: inline-flex;
+  width: 100%;
+}

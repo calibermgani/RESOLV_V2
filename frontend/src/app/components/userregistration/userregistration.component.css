@@ -1,0 +1,18 @@
+.card-title{
+    margin-bottom: 15px;
+    border-bottom: 1px solid #e9ecf3;
+}
+.submit-btn{
+    margin-top: 5%;
+    margin-bottom: 3%;
+}
+.add{
+    margin-right: 5px;
+}
+.form-control:hover {
+    color: #495057;
+    border-color: #00beda;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,190,218,.25);
+  }
+

@@ -1,0 +1,121 @@
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding" style="border-top:15px solid #e9ecf3">
+
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
+    <div class="box-body no-padding" style="margin-top:20px;">
+      <form #modalform=ngForm [formGroup]="formGroup">
+        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
+          <div class="form-group" style="margin-bottom: 10px;">
+            <label>Status Code<span class="ar-red">*</span></label>
+            <ngx-select-dropdown formControlName="status_code"  [disabled]="claimed() || fclaim()"
+              (change)="status_code_changed($event)" [config]="config" [options]="options"></ngx-select-dropdown>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
+          <div class="form-group" style="margin-bottom: 10px;">
+            <label>Sub Status Code<span class="ar-red">*</span></label>
+            <ngx-select-dropdown formControlName="sub_status_code"  [config]="config"  [disabled]="claimed() || fclaim()"
+              [options]="sub_options"></ngx-select-dropdown>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12" *ngIf="router.url != '/followup'">
+          <div class="form-group" style="margin-bottom: 10px;">
+            <label>Associates<span class="ar-red">*</span></label>
+            <ngx-select-dropdown formControlName="associates" [disabled]="claimed()" [config]="config"
+              [options]="associates_options"></ngx-select-dropdown>
+          </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
+          <div class="form-group" style="margin-bottom: 10px;" *ngIf="router.url == '/followup'">
+            <label>Followup Date<span class="ar-red">*</span></label>
+            <!-- <input class="form-control followupDateField" id="myInput" placeholder="MM-DD-YYYY"
+              formControlName="followup_date" [minDate]="minDate" [(ngModel)]="model" ngbDatepicker
+              #followup_date="ngbDatepicker" (click)="followup_date.toggle()"
+              (click)="followup_closed();check_follow_date()" [minDate]="minDate" autocomplete="off"
+              [disabled]="claimed()"> -->
+              <input type="text"  placement="right"  formControlName="followup_date" class="form-control "
+              [(ngModel)]="model" id="myInput" bsDatepicker  (click)="followup_closed();check_follow_date()" [minDate]="startDate"
+                                    [bsConfig]="bsConfig"  autocomplete="off"  [disabled]="claimed()">
+            <div class="error" *ngIf="followdate_invalid==true">Please Change followup Date</div>
+          </div>
+          <div class="form-group" style="margin-bottom: 10px;" *ngIf="router.url != '/followup'">
+            <label>Followup Date<span class="ar-red">*</span></label>
+            <!-- <input class="form-control followupDateField" id="myInput" placeholder="MM-DD-YYYY" [disabled]="claimed()"
+              formControlName="followup_date" [minDate]="minDate" [(ngModel)]="model" ngbDatepicker
+              #followup_date="ngbDatepicker" (click)="followup_date.toggle()"
+              (click)="followup_closed();check_follow_date()" [minDate]="minDate" autocomplete="off"
+              [disabled]="claimed() || fclaim()"> -->
+
+              <input type="text"  placement="right"  formControlName="followup_date" class="form-control "
+              [(ngModel)]="model" id="myInput" bsDatepicker  (click)="check_follow_date()"  [disabled]="claimed() || fclaim()"
+                                    [bsConfig]="bsConfig" [minDate]="startDate"   autocomplete="off">
+            <div class="error" *ngIf="followdate_invalid==true">Please Change followup Date</div>
+          </div>
+        </div>
+        <!-- <span *ngIf="this.claim_closed == false"></span> -->
+        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12 pull-right" *ngIf="router.url != '/followup'">
+          <div class="form-group contact100-form-checkbox" style="display: inline-block">
+            <input formControlName="closed" class="input-checkbox100 claim-checkbox" id="closed" [(ngModel)]="claimeds"
+              type="checkbox" name="closed" (click)="closed_event($event)"
+              [disabled]="disableClaim()"><span>&nbsp;&nbsp;&nbsp;</span>
+          </div>
+          <div class="claim-closed"><label>Claim Closed</label>
+          </div>
+          <div class="error" *ngIf="closed_claim_cdtn" style="margin-top:-10px" [(ngModel)]="closed_claim_cdtn">If there is no error, Please check Claim Closed to continue</div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12 pull-right followup-claim"
+          *ngIf="(router.url == '/followup') && (this.selected_claim_data['claim_closing'] == 1)">
+          <div class="form-group contact100-form-checkbox" style="display: inline-block">
+            <input formControlName="closed" class="input-checkbox100 claim-checkbox" id="closed" [(ngModel)]="claimeds"
+              type="checkbox" name="closed" [disabled]="disableClaim()"><span>&nbsp;&nbsp;&nbsp;</span>
+          </div>
+          <div class="claim-closed"><label>Claim Closed</label>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" style="margin-bottom: 20px;margin-top:30px;"
+  *ngIf="tab_status == false">
+  <!-- <button type="button" class="btn btn-default text-center btn-md btn-flat" (click)="modal.dismiss()" style="min-width: 80px;">Cancel</button> -->
+  <button type="button" [disabled]="!modalform.valid || !note_validation"
+    class="btn btn-info text-center btn-md btn-flat" (click)="save_alert_function(alert_modal);"
+    style="min-width: 80px;">Save</button>
+  <!-- followup_process();finish_followup(); -->
+</div>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center status-message" *ngIf="tab_status == true ">
+  {{message}}
+</div>
+<ng-template #confirm_modal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Notes Update Alert</h4>
+    <!-- <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="modal.dismiss()">
+          <span aria-hidden="true">&times;</span>
+        </button> -->
+  </div>
+  <div class="modal-body">
+    <p><strong> Claim data has been edited and Notes will be reloaded.</strong></p>
+
+  </div>
+  <div class="modal-footer">
+    <!-- <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Cancel</button> -->
+    <button type="button" ngbAutofocus class="btn btn-danger" (click)="modalRef?.hide()">Ok</button>
+  </div>
+</ng-template>
+<ng-template #alert_modal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-title">Save Alert</h4>
+    <!-- <button type="button" class="close" aria-label="Close button" aria-describedby="modal-title" (click)="modal.dismiss()">
+        <span aria-hidden="true">&times;</span>
+      </button> -->
+  </div>
+  <div class="modal-body">
+    <p><strong> {{alert_message}}</strong></p>
+  </div>
+  <div class="modal-footer">
+    <!-- <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss()">Cancel</button> -->
+    <button type="button" class="btn btn-danger"
+      (click)="modalRef?.hide();check_updates();save_ref(confirm_modal)">Yes</button>
+    <button type="button" ngbAutofocus class="btn btn-danger" (click)="modalRef?.hide()">No</button>
+  </div>
+</ng-template>

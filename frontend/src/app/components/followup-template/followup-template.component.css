@@ -1,0 +1,13 @@
+.f-templates {
+    display: inline-flex;
+    margin-top: 2px;
+}
+input[type=checkbox], input[type=radio] {
+    margin: 3px 0 0 !important;
+    margin-top: 1px\9;
+    line-height: normal;
+}
+.invalid-feedback{
+    display: block;
+    color: #dd4b39 !important;
+}

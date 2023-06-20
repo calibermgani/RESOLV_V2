@@ -1,0 +1,68 @@
+.dark-modal_footer .modal-content {
+    right: 25px;
+    top: 161px;
+    width:500px !important;
+  }
+  .dark-modal_footer .close {
+    color: white;
+  }
+  .reset{
+    font-size: 25px;
+    position: relative;
+    top: -33px;
+    cursor: pointer;
+    float: right;
+    text-align: right;
+    padding-right: 10px;
+  }
+.claim-checkbox {
+  margin-bottom: -4px !important;
+}
+.claim-closed {
+  display: inline-block;
+}
+.followup-claim {
+  margin-top: 23px;
+}
+input[type=checkbox], input[type=radio] {
+  margin-bottom: -4px !important;
+}
+.status-message {
+   margin-bottom: 20px;
+   margin-top:30px;
+   right: 3% !important;
+   top: -7px !important;
+ }
+
+.ngx-dropdown-container .ngx-dropdown-button {
+  /* max-height: 32px !important; */
+  text-align: left;
+}
+
+.ngx-dropdown-container button span {
+    /* word-break: break-word;
+    white-space: normal;
+    margin-right: 15px; */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: 178px;
+  }
+
+.ngx-dropdown-container button .nsdicon-angle-down {
+  /* position: absolute;
+  right: -14px;
+  top: 9px; */
+  overflow: none;
+  text-overflow: none;
+  width: auto;
+}
+
+/* .ngx-dropdown-container button .nsdicon-angle-down {
+  position: fixed !important;
+  margin-left: 20px !important;
+} */
+
+/* .nsdicon-angle-down:before {
+  position: fixed;
+  margin-left: -12px;
+} */

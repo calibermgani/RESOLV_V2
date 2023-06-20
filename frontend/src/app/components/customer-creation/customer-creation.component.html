@@ -1,0 +1,565 @@
+<div class="row" >
+  <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12 col-md-offset-1 col-lg-offset-1">
+   <div class="tabs nav-tabs-custom">
+    <ul class="tabs nav nav-tabs">
+        <li class="active"><a href="#tab_1" (click)="clear_data()" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-file-text"></i> Vendor Creation <span class="tab-divider">|</span></a></li>
+
+        <li (click)="get_vendors()"><a href="#tab_2" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-user"  ></i> Vendors List </a></li>
+
+      </ul>
+
+    <div class="tab-content no-padding mb-3">
+
+      <div class="tab-pane active" id="tab_1">
+        <div class="box no-shadow no-border">
+          <div class="box-body no-padding">
+
+            <div class="box no-shadow  no-bottom" style="border: 1px solid #d8dbe4;">
+              <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                      <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Vendor Registration</h3>
+
+                      <!-- <div class="box-tools pull-right">
+                          <input type="text" class="form-control pull-right" style="width:300px;margin-top:1px;font-weight:normal" placeholder="Search..">
+                      </div> -->
+                  </div>
+            <div class="box-body no-padding">
+            <!-- /.box-header -->
+            <div class="mt-4 col-sm-8 col-sm-offset-2">
+
+                  <!-- <div class="alert alert-success" [hidden]="!notify">
+                              {{notify}}
+                          </div>  -->
+                    <div class="card">
+                      <div class="card-body" >
+            <div class="mt-4 col-8 offset-s">
+              <!-- <div class="alert alert-success" [hidden]="!notify">
+                          {{notify}}
+                      </div>  -->
+                <div class="card">
+                  <!-- <div class="card-header">
+
+                  </div> -->
+                  <div class="card-body">
+                    <div class="col-lg-12 col-md-9 col-sm-12 col-xs-12">
+                    <form #UserCreation=ngForm [formGroup]="formGroup" (ngSubmit)="onSubmit()" >
+                  <!--     <div class="alert alert-danger" [hidden]="!error">
+              {{error}}
+                      </div>  -->
+                      <div class="form-group row">
+                        <label for="customer_name" class="col-sm-4 col-form-label">Customer Name <span class="ar-red">*</span></label>
+                        <div class="col-sm-1"><strong>:</strong></div>
+                        <div class="col-sm-7">
+                          <input type="text" name="customer_name" class="form-control" id="customer_name" placeholder="Customer Name"
+                          formControlName="customer_name" autocomplete="off" required [ngClass]="{ 'is-invalid': submitted && f['customer_name'].errors }">
+                          <div *ngIf="submitted && f['customer_name'].errors" class="invalid-feedback">
+                            <div *ngIf="f['customer_name'].errors['required']">Customer Name is required</div>
+                            <div *ngIf="formGroup.controls['customer_name'].hasError('pattern')" class="error">
+                              Special characters not Allowed.
+                            </div>
+                        </div>
+
+                          <!-- <div *ngIf="!formGroup.get('customer_name').valid && formGroup.get('customer_name').touched">
+                              <div *ngIf="formGroup.controls['customer_name'].hasError('required')" class="error">
+                                  Customer Name is required
+                                </div>
+                             </div> -->
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="short_name" class="col-sm-4 col-form-label">Short Name <span class="ar-red">*</span></label>
+                        <div class="col-sm-1"><strong>:</strong></div>
+                        <div class="col-sm-7">
+                          <input type="text" name="short_name" class="form-control" id="short_name" placeholder="Short Name"  formControlName="short_name" autocomplete="off" required
+                          [ngClass]="{ 'is-invalid': submitted && f['short_name'].errors }">
+                          <div *ngIf="submitted && f['short_name'].errors" class="invalid-feedback">
+                            <div *ngIf="f['short_name'].errors['required']">Short Name is required</div>
+                            <div *ngIf="formGroup.controls['short_name'].hasError('pattern')" class="error">
+                              Special characters are not Allowed.
+                            </div>
+                        </div>
+
+                          <!-- <div *ngIf="formGroup.controls['short_name'].touched">
+                              <div *ngIf="formGroup.controls['short_name'].hasError('required')" class="error">
+                                  Short Name is required
+                                </div>
+                                </div> -->
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="customer_desc" class="col-sm-4 col-form-label">Customer Description</label>
+                        <div class="col-sm-1"><strong>:</strong></div>
+                        <div class="col-sm-7">
+                          <textarea type="text" name="customer_desc" class="form-control" id="customer_desc" placeholder="Customer Description"  formControlName="customer_desc" > </textarea>
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="contact_person" class="col-sm-4 col-form-label">Contact Person</label>
+                        <div class="col-sm-1"><strong>:</strong></div>
+                        <div class="col-sm-7">
+                          <input type="text" name="contact_person" class="form-control" id="contact_person" placeholder="Contact Person"  formControlName="contact_person"  >
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="email" class="col-sm-4 col-form-label">Email <span class="ar-red">*</span></label>
+                        <div class="col-sm-1"><strong>:</strong></div>
+                        <div class="col-sm-7">
+                          <input type="text" name="email" class="form-control" id="email" placeholder="E-Mail"  formControlName="email" required
+                          [ngClass]="{ 'is-invalid': submitted && f['email'].errors }">
+                          <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                            <div *ngIf="f['email'].errors['required']">E-mail is required</div>
+                            <div *ngIf="formGroup.controls['email'].hasError('pattern')" class="error">
+                              Invalid E-mail Format.
+                            </div>
+                        </div>
+
+                          <!-- <div *ngIf="formGroup.controls['email'].touched">
+                              <div *ngIf="formGroup.controls['email'].hasError('required')" class="error">
+                                  E-mail is required
+                               </div>
+                            </div> -->
+                       <!-- <div class="alert-danger" style="font-size: 13px !important" [hidden]="!error">
+                          {{error}}
+                      </div>  -->
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="address" class="col-sm-4 col-form-label">Address </label>
+                        <div class="col-sm-1"><strong>:</strong></div>
+                        <div class="col-sm-7">
+                          <input type="text" name="addressline1" class="form-control" id="addressline1" placeholder="Address Line 1" formControlName="addressline1" > <br>
+                          <input type="text" name="addressline2" class="form-control" id="addressline2" placeholder="Address Line 2" formControlName="addressline2" >
+                        </div>
+
+                      </div>
+                    <!-- <div class="form-group row">
+                      <label for="addressline2" class="col-sm-3 col-form-label"> &nbsp; </label>
+                        <div class="col-sm-4">
+                        </div>
+                      </div> -->
+
+                      <div class="form-group row">
+                        <label for="city" class="col-sm-4 col-form-label">City</label>
+                        <div class="col-sm-1"><strong>:</strong></div>
+                          <div class="col-sm-7">
+                            <input type="text" name="city" class="form-control" id="city" placeholder="City" formControlName="city" >
+                          </div>
+
+                        </div>
+
+                      <div class="form-group row">
+                        <label for="state" class="col-sm-4 col-form-label">State</label>
+                        <div class="col-sm-1"><strong>:</strong></div>
+                          <div class="col-sm-7">
+                            <input type="text" name="state" class="form-control" id="state" placeholder="State" formControlName="state" >
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <label for="zipcode5" class="col-sm-4 col-form-label">Zip Code <span class="ar-red">*</span></label>
+                          <div class="col-sm-1"><strong>:</strong></div>
+                          <div class="col-sm-4">
+                            <input type="text" name="zipcode5" class="form-control" id="zipcode5" placeholder="Zip Code" formControlName="zipcode5" maxLength='5' required
+                            [ngClass]="{ 'is-invalid': submitted && f['zipcode5'].errors }">
+                            <div *ngIf="submitted && f['zipcode5'].errors" class="invalid-feedback">
+                              <div *ngIf="f['zipcode5'].errors['required']">Zipcode is required</div>
+                              <div *ngIf="formGroup.controls['zipcode5'].hasError('pattern')" class="error">
+                                Invalid Zipcode.
+                              </div>
+                          </div>
+                            <!-- <div *ngIf="formGroup.controls['zipcode5'].touched">
+                              <div *ngIf="formGroup.controls['zipcode5'].hasError('required')" class="error">
+                                Zip Code is required
+                              </div>
+
+                                </div> -->
+                          </div>
+                          <!-- <label for="zipcode4" class="col-sm-2 col-form-label">&nbsp</label> -->
+                          <div class="col-sm-3">
+                            <input type="text" name="zipcode4" class="form-control" id="zipcode4" placeholder="Zip Code 2" formControlName="zipcode4" maxLength='4' required
+                            [ngClass]="{ 'is-invalid': submitted && f['zipcode4'].errors }">
+                            <div *ngIf="submitted && f['zipcode4'].errors" class="invalid-feedback">
+                              <div *ngIf="f['zipcode4'].errors['required']">required</div>
+                              <div *ngIf="formGroup.controls['zipcode4'].hasError('pattern')" class="error">
+                                Invalid Zipcode.
+                              </div>
+                          </div>
+                            <!-- <div *ngIf="formGroup.controls['zipcode4'].touched">
+                              <div *ngIf="formGroup.controls['zipcode4'].hasError('required')" class="error">
+                                Zip Code is required
+                              </div>
+                                </div> -->
+                          </div>
+                        </div>
+
+                        <div class="form-group row">
+                          <label for="phone" class="col-sm-4 col-form-label">Phone Number <span class="ar-red">*</span></label>
+                          <div class="col-sm-1"><strong>:</strong></div>
+                          <div class="col-sm-4">
+                            <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone Number" formControlName="phone" maxLength='10'
+                            [ngClass]="{ 'is-invalid': submitted && f['phone'].errors }">
+                            <div *ngIf="submitted && f['phone'].errors" class="invalid-feedback">
+                              <div *ngIf="f['phone'].errors['required']">Phone Number is required</div>
+                              <div *ngIf="formGroup.controls['phone'].hasError('pattern')" class="error">
+                                Invalid Phone Number.
+                              </div>
+                          </div>
+                            <!-- <div *ngIf="formGroup.controls['phone'].touched">
+                              <div *ngIf="formGroup.controls['phone'].hasError('required')" class="error">
+                                Phone number is required
+                              </div>
+                                </div> -->
+                          </div>
+                          <!-- <label for="phoneext" class="col-sm-2 col-form-label">Extension Number</label> -->
+                          <div class="col-sm-3">
+                            <input type="text" name="phoneext" class="form-control" id="phoneext" placeholder="Extension" formControlName="phoneext" maxLength='5'
+                            [ngClass]="{ 'is-invalid': submitted && f['phoneext'].errors }">
+                            <div *ngIf="submitted && f['phoneext'].errors" class="invalid-feedback">
+                              <div *ngIf="f['phoneext'].errors['required']">Extension is required</div>
+                              <div *ngIf="formGroup.controls['phoneext'].hasError('pattern')" class="error">
+                                Invalid Extension Number.
+                                </div>
+                          </div>
+                            <!-- <div *ngIf="formGroup.controls['phoneext'].touched">
+                              <div *ngIf="formGroup.controls['phoneext'].hasError('required')" class="error">
+                                Extension is required
+                              </div>
+                                </div> -->
+                          </div>
+                        </div>
+
+                      <div class="form-group row">
+                        <label for="mobile" class="col-sm-4 col-form-label">Mobile <span class="ar-red">*</span></label>
+                        <div class="col-sm-1"><strong>:</strong></div>
+                        <div class="col-sm-7">
+                          <input type="text" name="mobile" class="form-control" id="mobile" placeholder="Mobile Number" maxLength='10' formControlName="mobile"
+                          [ngClass]="{ 'is-invalid': submitted && f['mobile'].errors }">
+                          <div *ngIf="submitted && f['mobile'].errors" class="invalid-feedback">
+                            <div *ngIf="f['mobile'].errors['required']">Mobile Number is required</div>
+                            <div *ngIf=" formGroup.get('mobile')?.hasError('pattern')" class="error">
+                              Invalid Mobile Number.
+                            </div>
+                        </div>
+                          <!-- <div *ngIf="formGroup.controls['mobile'].touched">
+                            <div *ngIf="formGroup.controls['mobile'].hasError('required')" class="error">
+                              Mobile Number is required
+                            </div>
+                              </div> -->
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="mobile" class="col-sm-4 col-form-label">Status </label>
+                        <div class="col-sm-1"><strong>:</strong></div>
+                        <div class="col-sm-7">
+                          <select class="form-control" formControlName="status" id="status" required>
+                            <option value="Active" > --Select Status-- </option>
+                            <option value="Active" > Active </option>
+                            <option value="Inactive" > Inactive </option>
+                         </select>
+                           <!-- <bfv-messages>
+                           </bfv-messages> -->
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="col-sm-12">
+                          <div class="text-center">
+                          <button type="submit" class="btn btn-info submit-btn">Create</button>
+                        </div>
+                        </div>
+                      </div>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+            </div>
+          </div>
+
+            </div>
+          </div>
+        </div>
+
+</div>
+
+<div class="tab-pane" id="tab_2">
+    <div class="box no-shadow no-border no-bottom">
+
+        <!-- /.box-header -->
+        <div class="box-body no-padding">
+            <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                  <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                    <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Vendors listing</h3>
+
+                    <!-- <div class="box-tools pull-right">
+                        <input type="text" class="form-control pull-right" style="width:300px;margin-top:1px;font-weight:normal" placeholder="Search..">
+                    </div> -->
+                </div>
+
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding listing-table">
+                      <div class="table-responsive" style="margin-top: 20px;">
+<table class="table-striped1 table">
+  <thead>
+    <tr>
+      <th>User Name</th>
+      <th>Edit</th>
+    </tr>
+  </thead>
+<tbody>
+<tr *ngFor="let vendor of customers" >
+
+<td>{{vendor.customer_name}}</td>
+<td> <button data-toggle="modal" (click)="edit_vendor_details(vendor);open(vendor_edit);" class="btn btn-sm btn-info">  Edit &nbsp; <i class="fa fa-pencil"></i></button>
+</td>
+<!-- <td>{{vendor.customer_name}}</td><td> <a data-toggle="modal" data-target="#vendor_edit" (click)="edit_vendor_details(vendor);" class="cur-pointer" style="font-size:16px;"><i class="fa fa-pencil"></i>  <span style="text-decoration: underline">Edit</span></a> </td> -->
+</tr>
+</tbody>
+</table>
+</div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+<ng-template #vendor_edit let-modal tabindex="-1"  >
+  <div class="modal-content" class="vendor_edit">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="modalRef?.hide()">
+            <span aria-hidden="true">×</span></button>
+        <h4 class="modal-title list-heading">Update Vendor</h4>
+    </div>
+    <div class="modal-body">
+
+
+        <form #UserCreation=ngForm [formGroup]="formGroup" (ngSubmit)="updateVendor();modalRef?.hide();" >
+        <!--     <div class="alert alert-danger" [hidden]="!error">
+    {{error}}
+            </div>  -->
+            <div class="form-group row">
+              <label for="customer_name" class="col-sm-3 col-form-label custom-label">Customer Name <span class="ar-red">*</span></label>
+              <div class="col-sm-1"><strong>:</strong></div>
+              <div class="col-sm-6">
+                <input type="text" name="customer_name" class="form-control" id="customer_name" placeholder="Customer Name"  formControlName="customer_name" autocomplete="off" required >
+                <div *ngIf="formGroup.controls['customer_name'].touched">
+                    <div *ngIf="formGroup.controls['customer_name'].hasError('required')" class="error">
+                        Customer Name is required
+                      </div>
+                      <!-- <div *ngIf="formGroup.controls['customer_name'].hasError('pattern')">
+                          Special characters not Allowed.
+                        </div> -->
+                    </div>
+              </div>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group row">
+              <label for="short_name" class="col-sm-3 col-form-label custom-label">Short Name <span class="ar-red">*</span></label>
+              <div class="col-sm-1"><strong>:</strong></div>
+              <div class="col-sm-6">
+                <input type="text" name="short_name" class="form-control" id="short_name" placeholder="Short Name"  formControlName="short_name" autocomplete="off" required
+                [ngClass]="{ 'is-invalid': submitted && f['short_name'].errors }">
+                <div *ngIf="submitted && f['short_name'].errors" class="invalid-feedback">
+                  <div *ngIf="f['short_name'].errors['required']">Short Name is required</div>
+                  <div *ngIf="formGroup.controls['short_name'].hasError('pattern')" class="error">
+                    Special characters are not Allowed.
+                  </div>
+              </div>
+                <!-- <div *ngIf="formGroup.controls['short_name'].touched">
+                    <div *ngIf="formGroup.controls['short_name'].hasError('required')" class="error">
+                        Short Name is required.
+                      </div>
+
+                    </div> -->
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="customer_desc" class="col-sm-3 col-form-label custom-label">Customer Description</label>
+              <div class="col-sm-1"><strong>:</strong></div>
+              <div class="col-sm-6">
+                <textarea type="text" name="customer_desc" class="form-control" id="customer_desc" placeholder="Customer Description"  formControlName="customer_desc"  > </textarea>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="contact_person" class="col-sm-3 col-form-label custom-label">Contact Person</label>
+              <div class="col-sm-1"><strong>:</strong></div>
+              <div class="col-sm-6">
+                <input type="text" name="contact_person" class="form-control" id="contact_person" placeholder="Contact Person"  formControlName="contact_person"  >
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="email" class="col-sm-3 col-form-label custom-label">Email <span class="ar-red">*</span></label>
+              <div class="col-sm-1"><strong>:</strong></div>
+              <div class="col-sm-6">
+                <input type="text" name="email" class="form-control" id="email" placeholder="E-mail"  formControlName="email"  required >
+                <div *ngIf="formGroup.controls['email'].touched">
+                    <div *ngIf="formGroup.controls['email'].hasError('required')" class="error">
+                        E-mail is required
+                      </div>
+                      <div *ngIf="formGroup.controls['email'].hasError('pattern')" class="error">
+                          Invalid E-mail Format.
+                        </div>
+                    </div>
+             <!-- <div class="alert-danger" style="font-size: 13px !important" [hidden]="!error">
+                {{error}}
+            </div>  -->
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="address" class="col-sm-3 col-form-label custom-label">Address </label>
+              <div class="col-sm-1"><strong>:</strong></div>
+              <div class="col-sm-6">
+                <input type="text" name="addressline1" class="form-control" id="addressline1" placeholder="Address Line 1" formControlName="addressline1"  >
+                <br>
+                <input type="text" name="addressline2" class="form-control" id="addressline2" placeholder="Address Line 2" formControlName="addressline2"  >
+              </div>
+
+            </div>
+          <!-- <div class="form-group row">
+            <label for="addressline2" class="col-sm-3 col-form-label"> &nbsp; </label>
+            <div class="col-sm-1"><strong>:</strong></div>
+
+
+            </div> -->
+
+
+            <div class="form-group row">
+              <label for="city" class="col-sm-3 col-form-label custom-label">City</label>
+              <div class="col-sm-1"><strong>:</strong></div>
+                <div class="col-sm-6">
+                  <input type="text" name="city" class="form-control" id="city" placeholder="City" formControlName="city"  >
+                </div>
+
+              </div>
+
+            <div class="form-group row">
+              <label for="state" class="col-sm-3 col-form-label custom-label">State</label>
+              <div class="col-sm-1"><strong>:</strong></div>
+                <div class="col-sm-6">
+                  <input type="text" name="state" class="form-control" id="state" placeholder="State" formControlName="state" >
+                </div>
+
+              </div>
+
+
+
+              <div class="form-group row">
+                <label for="zipcode5" class="col-sm-3 col-form-label custom-label">Zip Code <span class="ar-red">*</span></label>
+                <div class="col-sm-1"><strong>:</strong></div>
+                <div class="col-sm-3">
+                  <input type="text" name="zipcode5" class="form-control" id="zipcode5" placeholder="Zip Code" formControlName="zipcode5" maxLength='5' >
+                  <div *ngIf="formGroup.controls['zipcode5'].touched">
+                    <div *ngIf="formGroup.controls['zipcode5'].hasError('required')" class="error">
+                      Zip Code is required.
+                    </div>
+                      <div *ngIf="formGroup.controls['zipcode5'].hasError('pattern')" class="error">
+                          Invalid Zipcode.
+                        </div>
+                      </div>
+                </div>
+                <!-- <label for="zipcode4" class="col-sm-2 col-form-label">&nbsp</label> -->
+                <div class="col-sm-3">
+                  <input type="text" name="zipcode4" class="form-control" id="zipcode4" placeholder="Zip Code 2" formControlName="zipcode4" maxLength='4'>
+                  <div *ngIf="formGroup.controls['zipcode4'].touched">
+                    <div *ngIf="formGroup.controls['zipcode4'].hasError('required')" class="error">
+                      Zip Code is required.
+                    </div>
+                      <div *ngIf="formGroup.controls['zipcode4'].hasError('pattern')" class="error">
+                          Invalid Zipcode.
+                        </div>
+                      </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label for="phone" class="col-sm-3 col-form-label custom-label">Phone Number <span class="ar-red">*</span></label>
+                <div class="col-sm-1"><strong>:</strong></div>
+                <div class="col-sm-3">
+                  <input type="text" name="phone" class="form-control" id="phone" placeholder="Phone Number" formControlName="phone" maxLength='10' >
+                  <div *ngIf="formGroup.controls['phone'].touched">
+                    <div *ngIf="formGroup.controls['phone'].hasError('required')" class="error">
+                      Phone Number is required.
+                    </div>
+                      <div *ngIf="formGroup.controls['phone'].hasError('pattern')" class="error">
+                          Invalid Phone Number.
+                        </div>
+                      </div>
+                </div>
+                <!-- <label for="phoneext" class="col-sm-2 col-form-label">Extension Number</label> -->
+                <div class="col-sm-3">
+                  <input type="text" name="phoneext" class="form-control" id="phoneext" placeholder="Extension" formControlName="phoneext" maxLength='5'>
+                  <div *ngIf="formGroup.controls['phoneext'].touched">
+                    <div *ngIf="formGroup.controls['phoneext'].hasError('required')" class="error">
+                      Extension Number is required.
+                    </div>
+                      <div *ngIf="formGroup.controls['phoneext'].hasError('pattern')" class="error">
+                        Invalid Extension Number.
+                        </div>
+                      </div>
+                </div>
+              </div>
+
+            <div class="form-group row">
+              <label for="mobile" class="col-sm-3 col-form-label custom-label">Mobile <span class="ar-red">*</span></label>
+              <div class="col-sm-1"><strong>:</strong></div>
+              <div class="col-sm-6">
+                <input type="text" name="mobile" class="form-control" id="mobile" placeholder="Mobile Number" maxLength='10' formControlName="mobile">
+                <div *ngIf="formGroup.controls['mobile'].touched">
+                  <div *ngIf="formGroup.controls['mobile'].hasError('required')" class="error">
+                    Mobile Number is required.
+                  </div>
+                          <div *ngIf=" formGroup.get('mobile')?.hasError('pattern')" class="error">
+                              Invalid Mobile Number.
+                            </div>
+                    </div>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label for="mobile" class="col-sm-3 col-form-label custom-label">Status </label>
+              <div class="col-sm-1"><strong>:</strong></div>
+              <div class="col-sm-6">
+                <select class="form-control" formControlName="status" id="status" required>
+                  <option value="Active" > Active </option>
+                  <option value="Inactive" > Inactive </option>
+               </select>
+                 <!-- <bfv-messages>
+                 </bfv-messages> -->
+              </div>
+            </div>
+
+
+
+            <div class="form-group row">
+              <div class="col-sm-12">
+                <div class="text-center">
+                <button type="submit" class="btn btn-info" [disabled] = "!UserCreation.valid" >Update</button>
+              </div>
+              </div>
+            </div>
+          </form>
+
+          </div>
+
+      </div>
+
+
+</ng-template>
+

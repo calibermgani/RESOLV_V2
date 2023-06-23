@@ -26,6 +26,9 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use App\Helpers\Record_claim_history;
+use App\Imports\ImportClaims;
+use App\Imports\ImportNewClaims;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ImportController extends Controller
 {
@@ -58,23 +61,31 @@ class ImportController extends Controller
         try {
             $practice_dbid = $request->get('practice_dbid');
             $savedata = $request->file('file_name');
-            $filename = $request->file('file_name')->getClientOriginalName();
+            $filenames = $request->file('file_name')->getClientOriginalName();
             $user = $request->get('user_id');
-            $unique_name = md5($filename . time());
-            $filename = date('Y-m-d') . '_' . $filename;
+            #$unique_name = md5($filenames . time());
+            $unique_name = $filenames;
+            $filename = date('Y-m-d') . '_' . $filenames;
             $path = "../uploads";
             $savedata->move($path, $unique_name);
             $path = "../uploads/" . $unique_name;
+            $path1 = "../uploads/mystore/";
             $report_date = $request->get('report_date');
             $notes = $request->get('notes');
 
-            $op_data = $this->file_processors($filename, $report_date, $notes, $user, $unique_name, $practice_dbid);
+            $importClaims = new ImportClaims($filename, $report_date, $notes, $user, $unique_name, $practice_dbid);
+
+            Excel::import($importClaims, $filenames);
+            Log::info('upload checking');
+            Log::debug(print_r($importClaims, true));
+
             return response()->json([
-                'message' =>  $op_data,
+                // 'message' =>  $importClaims,
                 'upload_msg'  => "Upload Complete"
             ]);
         } catch (Exception $e) {
-            Log::debug('Upload Error' . $e->getMessage());
+            Log::debug($e->getMessage() . $e->getLine());
+            throw new Exception($e->getMessage());
         }
     }
 

@@ -88,7 +88,6 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       // ],
       showForeground:true,
     }),
-    // NgxDaterangepickerMd,
     // GooglePlaceModule,
   ],
   providers: [JarwisService,NotifyService,

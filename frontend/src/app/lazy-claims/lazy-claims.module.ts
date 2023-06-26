@@ -15,7 +15,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModuleModule,
     SidebarModule.forRoot(),
     AgGridModule,
-    // NgxDaterangepickerMd,
     FormsModule,
     ReactiveFormsModule,
   ],

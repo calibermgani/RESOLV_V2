@@ -3173,12 +3173,6 @@ public updatenotes(type:any){
     this.getDismissReason();
   }
   columnDefs1: ColDef[] = [
-    // {
-    //   field: '',
-    //   checkboxSelection: true,
-    //   headerCheckboxSelection: true,
-    //   width: 20,
-    // },
     {
       field: 'touch',
       headerName: '',

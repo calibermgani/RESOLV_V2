@@ -191,7 +191,6 @@ cursor: pointer;
   /* font-size: 13px !important; */
   /* font-weight:lighter; */
 }
-
 .no-grid-lines .ag-cell, .no-grid-lines .ag-row, .no-grid-lines .ag-header , .no-grid-lines .ag-root-wrapper, .no-grid-lines .ag-paging-panel {
   border: none  !important;
 

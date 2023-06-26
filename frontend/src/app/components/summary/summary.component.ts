@@ -52,7 +52,7 @@ set_summary_details(data:any)
 //console.log(this.work_status);
 }
   ngOnInit() {
-      this.get_summary_details('followup');
+      // this.get_summary_details('followup');
 
   }
 

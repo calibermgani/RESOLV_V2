@@ -52,8 +52,8 @@ export class PracticeListComponent implements OnInit {
   {
     console.log('data',data);
     this.setus.setPractice(data);
-    this.Auth.practicePermission();
-    // this.router.navigate(["/dashboard"]);
+    // this.Auth.practicePermission();
+    this.router.navigate(["/dashboard"]);
   }
 
 

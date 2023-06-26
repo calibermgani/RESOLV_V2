@@ -22,12 +22,15 @@ import { NgbDatepickerConfig, NgbCalendar, NgbDate, NgbDateStruct, NgbDateParser
 import { NotesHandlerService } from '../../Services/notes-handler.service';
 import * as moment from 'moment';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { CheckboxSelectionCallbackParams, ColDef, ExcelExportParams, GridApi, GridOptions, GridReadyEvent, HeaderCheckboxSelectionCallbackParams, ICellRendererParams } from 'ag-grid-community';
+import { CheckboxSelectionCallbackParams, ColDef, ExcelExportParams, GridApi, GridOptions, GridReadyEvent, HeaderCheckboxSelectionCallbackParams, ICellRendererParams, ILoadingCellRendererParams } from 'ag-grid-community';
 import { BsModalRef, BsModalService, ModalDirective, ModalOptions } from 'ngx-bootstrap/modal';
 import { template } from 'lodash';
 import { AgGridAngular } from 'ag-grid-angular';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { AuthService } from 'src/app/Services/auth.service';
+import { LoaderService } from 'src/app/Services/loader.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { Route, Router } from '@angular/router';
 
 //import * as localization from 'moment/locale/fr';
 //moment.locale('fr', localization);
@@ -255,7 +258,9 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     private el: ElementRef,
     private renderer: Renderer2,
     private datePipe: DatePipe,
-    private auth : AuthService
+    private auth : AuthService,
+    public loader : NgxUiLoaderService,
+    private router : Router
   ) {
     //this.alwaysShowCalendars = true;
     // this.fromDate = calendar.getToday();
@@ -606,6 +611,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     if(data.message){
       this.GridData_ReImport = data.message;
       this.myGrid_5.api.setRowData(this.GridData_ReImport);
+      this.loader.stop();
       console.log('GridData_Import',this.GridData_Import);
     }
     this.reimport_roles = data.message;
@@ -2741,6 +2747,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   claim_sub_status_codes = [];
   searchs: any;
   public pageChange(page: number, table: any, sort_data: any, sort_type: any, sorting_name: any, sorting_method: any, createsearch: any, search: any) {
+    this.loader.start();
     this.search = search;
     let searchs = this.search;
     this.searchValue = this.search;
@@ -2748,57 +2755,57 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     let page_count = 15;
 
     if (table == 'claim') {
-      if (createsearch) {
+      // if (createsearch) {
 
-        this.Jarwis.get_first_table_data(createsearch).subscribe(
-          data => this.assign_page_data(data),
-          error => this.handleError(error)
-        )
+      //   this.Jarwis.get_first_table_data(createsearch).subscribe(
+      //     data => this.assign_page_data(data),
+      //     error => this.handleError(error)
+      //   )
+      // }
+
+
+      let createsearch_notNull: any = [];
+      let nullVal: boolean = false;
+      let createClaims_searchValue: any = [this.createClaimsFind.value];
+      if (typeof createClaims_searchValue === 'object' && createClaims_searchValue !== null) {
+        Object.keys(createClaims_searchValue).forEach(key => {
+          if (typeof createClaims_searchValue[key] === 'object' && createClaims_searchValue[key] !== null) {
+            Object.keys(createClaims_searchValue[key]).forEach(val => {
+              if (typeof createClaims_searchValue[key][val] === 'object' && createClaims_searchValue[key][val] !== null) {
+                Object.keys(createClaims_searchValue[key][val]).forEach(data => {
+                  if (createClaims_searchValue[key][val][data] === null) {
+                    nullVal = false;
+                  }
+                  else {
+                    nullVal = true;
+                  }
+                });
+                createsearch_notNull.push(nullVal);
+              }
+              else if (typeof createClaims_searchValue[key][val] !== 'object' && createClaims_searchValue[key][val] !== null && createClaims_searchValue[key][val] != '') {
+                nullVal = true;
+                createsearch_notNull.push(nullVal);
+              }
+              else if (typeof createClaims_searchValue[key][val] !== 'object' && createClaims_searchValue[key][val] !== null && createClaims_searchValue[key][val] == '') {
+                nullVal = false;
+                createsearch_notNull.push(nullVal);
+              }
+            });
+          }
+        });
       }
-
-
-      // let createsearch_notNull: any = [];
-      // let nullVal: boolean = false;
-      // let createClaims_searchValue: any = [this.createClaimsFind.value];
-      // if (typeof createClaims_searchValue === 'object' && createClaims_searchValue !== null) {
-      //   Object.keys(createClaims_searchValue).forEach(key => {
-      //     if (typeof createClaims_searchValue[key] === 'object' && createClaims_searchValue[key] !== null) {
-      //       Object.keys(createClaims_searchValue[key]).forEach(val => {
-      //         if (typeof createClaims_searchValue[key][val] === 'object' && createClaims_searchValue[key][val] !== null) {
-      //           Object.keys(createClaims_searchValue[key][val]).forEach(data => {
-      //             if (createClaims_searchValue[key][val][data] === null) {
-      //               nullVal = false;
-      //             }
-      //             else {
-      //               nullVal = true;
-      //             }
-      //           });
-      //           createsearch_notNull.push(nullVal);
-      //         }
-      //         else if (typeof createClaims_searchValue[key][val] !== 'object' && createClaims_searchValue[key][val] !== null && createClaims_searchValue[key][val] != '') {
-      //           nullVal = true;
-      //           createsearch_notNull.push(nullVal);
-      //         }
-      //         else if (typeof createClaims_searchValue[key][val] !== 'object' && createClaims_searchValue[key][val] !== null && createClaims_searchValue[key][val] == '') {
-      //           nullVal = false;
-      //           createsearch_notNull.push(nullVal);
-      //         }
-      //       });
-      //     }
-      //   });
-      // }
-      // if (createsearch_notNull.some((x: any) => x === true)) {
-      //   this.search = this.createclaims_filter;
-      //   search = this.search;
-      //   sort_data = 'null';
-      //   sort_type = 'null';
-      //   sorting_name = null;
-      // }
-      // else {
-      //   this.search = null;
-      //   search = this.search;
-      //   sort_type = null;
-      // }
+      if (createsearch_notNull.some((x: any) => x === true)) {
+        this.search = this.createclaims_filter;
+        search = this.search;
+        sort_data = 'null';
+        sort_type = 'null';
+        sorting_name = null;
+      }
+      else {
+        this.search = null;
+        search = this.search;
+        sort_type = null;
+      }
 
       searchs = this.search;
       this.pages = page;
@@ -2808,6 +2815,10 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
         //   data => this.assign_page_data(data),
         //   error => this.handleError(error)
         // );
+        this.Jarwis.get_first_table_data(createsearch).subscribe(
+          data => this.assign_page_data(data),
+          error => this.handleError(error)
+        )
       } else if (searchs == 'search') {
         if (this.createClaimsFind.value.dos?.[0] != null && this.createClaimsFind.value.dos?.[1] != null) {
           console.log(this.createClaimsFind.value.dos);
@@ -2858,6 +2869,10 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
         )
       } else {
         console.log('SORT_DATA', sort_data);
+        this.Jarwis.get_first_table_data(createsearch).subscribe(
+          data => this.assign_page_data(data),
+          error => this.handleError(error)
+        )
         // this.Jarwis.get_table_page(sort_data, page, page_count, sort_type, sorting_name, this.sortByAsc, null, this.search).subscribe(
         //   data => this.assign_page_data(data),
         //   error => this.handleError(error)
@@ -3180,29 +3195,45 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public assign_page_data(data: any) {
     console.log('New Data', data);
-    if (data) {
+    if (data!=null && data !='') {
       this.GridData_CreateWorkOrders = data.data;
       this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
+      this.loader.stop();
+      this.setAutoHeight();
     }
     else {
-      this.myGrid_1.api?.setRowData([]);
+      this.GridData_CreateWorkOrders = []
+      this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
+      this.loader.stop();
     }
 
+    if(data!=null)
+    {this.table_datas = data.data;}
 
-    this.table_datas = data.data;
-    if(data){
+    if(data!=null && data !=''){
       console.log('INNNN');
       this.GridData_AllClaims = data.data;
       this.myGrid_6.api?.setRowData(this.GridData_AllClaims);
+      this.loader.stop();
     }
-    this.selected_claim_data = data.selected_claim_data;
-    this.cwo_total = data.total;
-    this.current_total = data.current_total;
-    this.skip = data.skip + 1;
+    else
+    {
+      this.GridData_AllClaims = [];
+      this.myGrid_6.api?.setRowData(this.GridData_AllClaims);
+      this.loader.stop();
+    }
+    if(data){
+      this.selected_claim_data = data.selected_claim_data;
+      this.cwo_total = data.total;
+      this.current_total = data.current_total;
+      this.skip = data.skip + 1;
+      this.total_row = data.total;
+    }
+
 
     this.skip_row = this.skip;
     this.current_row = this.skip + this.current_total - 1;
-    this.total_row = data.total;
+
   }
 
   //Reallocate Table data and `total values
@@ -3316,7 +3347,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   closed_pges: any;
   searchValue: any;
   public get_workorder(filter: any, from: any, to: any, type: any, page: any, sort_data: any, sort_type: any, sorting_name: any, sorting_method: any, closedsearch: any, workordersearch: any, search: any) {
-
+    this.loader.start();
     this.search = search;
     let searchs = this.search;
     this.searchValue = this.search;
@@ -3547,6 +3578,8 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     if (data) {
       this.GridData_WorkOrders = data.data;
       this.myGrid_2.api?.setRowData(this.GridData_WorkOrders);
+      this.loader.stop();
+      this.setAutoHeight();
       console.log('GridData2', this.GridData_WorkOrders);
 
 
@@ -3571,27 +3604,35 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   total_rows: any;
   closed_claim_data: any;
   public form_closedClaims_table(data: any, page_no: any) {
-
-    this.GridData_ClosedClaims = [];
-    this.closed_data = data.data;
     if(data)
     {
+      this.GridData_ClosedClaims = [];
+      this.closed_data = data.data;
       this.GridData_ClosedClaims = data.data;
       this.myGrid_3.api.setRowData(this.GridData_ClosedClaims);
+      this.loader.stop();
       console.log('GridRowData',this.GridData_ClosedClaims);
-
+      this.closed_claim_data = data.closed_claim_data;
+      this.closed_total = data.count;
+      this.current_totals = data.current_total;
+      this.skips = data.skip + 1;
+      this.total_rows = data.count;
+    }
+    else
+    {
+      this.GridData_ClosedClaims = [];
+      this.myGrid_3.api.setRowData(this.GridData_ClosedClaims);
+      this.loader.stop();
     }
     console.log('closed DAta', this.closed_data);
-    this.closed_claim_data = data.closed_claim_data;
-    this.closed_total = data.count;
+
     this.closed_page_number = page_no;
 
-    this.current_totals = data.current_total;
-    this.skips = data.skip + 1;
+
 
     this.skip_rows = this.skips;
     this.current_rows = this.skips + this.current_totals - 1;
-    this.total_rows = data.count;
+
   }
 
   wo_details: any = [];
@@ -3741,7 +3782,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       );
     }
 
-    this.pageChange(1, 'claims', 'null', 'null', 'null', 'null', 'null', 'null');
+    // this.pageChange(1, 'claims', 'null', 'null', 'null', 'null', 'null', 'null');  edited..
 
   }
 
@@ -3777,16 +3818,16 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       // }
 
       let page_count = 15;
-
-      this.Jarwis.get_table_page(null, this.pages, page_count, null, null, null, 'null', 'null').subscribe(
+     this.Jarwis.get_table_page(null, this.pages, page_count, null, null, null, 'null', 'null').subscribe(
         data => this.assign_page_data(data),
         error => this.handleError(error)
       );
 
-      this.Jarwis.all_claim_list_new('null').subscribe(
-        data => this.assign_page_data(data),
-        error => this.handleError(error)
-      );
+
+      // this.Jarwis.all_claim_list_new('null').subscribe(
+      //   data => this.assign_page_data(data),
+      //   error => this.handleError(error)
+      // );
 
       this.checkboxes.forEach((element) => {
         element.nativeElement.checked = false;
@@ -3883,6 +3924,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   }
   load_reimport_data(page: any) {
+    this.loader.start()
     this.reimport_page = page;
     let page_count = 15;
     this.Jarwis.get_reimport_table_page(this.reimport_page, page_count).subscribe(
@@ -4516,7 +4558,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     console.log('User_Name', this.user_name);
 
     //this.get_graph_stats();
-    this.file_count();
+    //this.file_count();  Not needed..
 
   }
 
@@ -5671,11 +5713,11 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   resl_dta: any = [];
   selectedRows: any = [];
   cdtn: boolean = false;
-  onSelectionChanged(event: any) {
+  onSelectionChanged(params: any) {
 
     this.cdtn = !this.cdtn;
 
-    console.log(this.cdtn);
+    // console.log(this.cdtn);
 
 
     // const currentPage = params.api.paginationGetCurrentPage();
@@ -5683,31 +5725,18 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.selected_claim_nos = [];
     this.rowValue_ID_1 = this.gridApi_1.getSelectedRows();
     const selectedNodes = this.gridApi_1.getSelectedNodes();
-    console.log('ID1', this.rowValue_ID_1);
+    // console.log('ID1', this.rowValue_ID_1);
     if (this.rowValue_ID_1 != '') {
       for (let i = 0; i < this.rowValue_ID_1.length; i++) {
         this.selected_claim_nos.push(this.rowValue_ID_1?.[i].claim_no);
       }
     }
 
+    var currentPage1 = this.gridApi_1.paginationGetCurrentPage();
+    // console.log("Current page:", currentPage1);
 
-    // this.selectedRows = selectedNodes.map(node => node.data);
 
-    // const selectedRowCount = selectedNodes.length;
-    // console.log('selectedRowCount',selectedRowCount);
 
-    // if (selectedRowCount > 15) {
-    //   // Deselect rows beyond the first 15
-    //   selectedNodes.slice(15).forEach(node => node.setSelected(false));
-    // }
-    //  else if (selectedRowCount < 15) {
-    //   // Select remaining rows within the first 15
-    //   this.gridApi_1.forEachNode((node: any, index: number) => {
-    //     if (index >= 15) {
-    //       node.setSelected(false);
-    //     }
-    //   });
-    // }
 
 
     // const currentPage = params.api.paginationGetCurrentPage();
@@ -5722,6 +5751,46 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
 
     // this.resl_dta = this.GridData_CreateWorkOrders.slice(startIndex,endIndex);
     // console.log('currentPageData',this.resl_dta);
+
+    // this.selectedRows = selectedNodes.map(node => node.data);
+
+    // const selectedRowCount = selectedNodes.length;
+    // console.log('selectedRowCount',selectedRowCount);
+
+    // if (selectedRowCount > 15) {
+    //   // Deselect rows beyond the first 15
+    //   selectedNodes.slice(15).map(node => node.setSelected(false));
+    // }
+    //  else if (selectedRowCount < 15) {
+    //   // Select remaining rows within the first 15
+    //   this.gridApi_1.forEachNode((node: any, index: number) => {
+    //     if (index >= 15) {
+    //       node.setSelected(false);
+    //     }
+    //   });
+    // }
+    // if (selectedRowCount>=startIndex && selectedRowCount <= endIndex) {
+    //   // Deselect rows beyond the first 15
+    //   selectedNodes.slice(15).forEach(node => node.setSelected(false));
+    // }
+    //  else if (selectedRowCount>=startIndex && selectedRowCount <= endIndex) {
+    //   // Select remaining rows within the first 15
+    //   this.gridApi_1.forEachNode((node: any, index: number) => {
+    //     if (index >= 15) {
+    //       node.setSelected(false);
+    //     }
+    //   });
+    // }
+  }
+  paginationSizeValue:any = 10;
+  onPageSizeChanged() {
+    this.gridApi_1.paginationSetPageSize(Number(this.paginationSizeValue));
+    this.gridApi_2.paginationSetPageSize(Number(this.paginationSizeValue));
+    this.gridApi_3.paginationSetPageSize(Number(this.paginationSizeValue));
+    this.gridApi_4.paginationSetPageSize(Number(this.paginationSizeValue));
+    this.gridApi_5.paginationSetPageSize(Number(this.paginationSizeValue));
+    this.gridApi_6.paginationSetPageSize(Number(this.paginationSizeValue));
+
   }
 
   onSelectionChanged_WorkOrders(params: any) {
@@ -6639,17 +6708,18 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
 
 
 
+
   gridOptions1: GridOptions<gridData> = {
     defaultColDef: {
       sortable: true,
       filter: true
     },
     rowSelection: 'multiple',
-    rowHeight: 30,
+    rowHeight: 35,
     suppressHorizontalScroll: false,
     suppressMovableColumns:true,
     pagination: true,
-    paginationPageSize: 15,
+    paginationPageSize:this.paginationSizeValue,
     // getRowStyle: params => {
     //   return { 'font-size': '11px', 'font-weight': '500' };
     // }
@@ -6742,7 +6812,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   isCollapsed_ClosedClaims:boolean = true;
   isCollapsed_AllClaims : boolean = true;
 
-
+new_cdtn:boolean = false;
   onGridReady_1(params: GridReadyEvent) {
     this.gridApi_1 = params.api;
     params.api.sizeColumnsToFit();
@@ -6752,6 +6822,80 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     //   this.cdtn = true;
     //   this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
     // }, 4000);
+    const header = document.querySelectorAll('.ag-checkbox-input  ');
+
+    console.log(header);
+    header.forEach(v => {
+      v.addEventListener('click', (event) =>{
+        let startIndex = 0;
+        let endIndex = 0;
+        this.new_cdtn =!  this.new_cdtn;
+        console.log('New_cdtn',this.new_cdtn);
+        const currentPage = params.api.paginationGetCurrentPage();
+    const pageSize = params.api.paginationGetPageSize();
+     startIndex = currentPage * pageSize;
+     endIndex = startIndex + pageSize;
+    console.log(startIndex,endIndex);
+
+    params.api.forEachNodeAfterFilterAndSort((node: any) =>{
+      this.currentPageData.push(node.data);
+    });
+
+    this.resl_dta = this.GridData_CreateWorkOrders.slice(startIndex,endIndex);
+    console.log('currentPageData',this.resl_dta);
+    const selectedNodes:any[] = this.gridApi_1.getSelectedNodes();
+    // for(let i=0;i<selectedNodes.length;i++)
+    // console.log('selectedNodes',selectedNodes?.[i].data);
+
+      const selectedRowCount = selectedNodes.length;
+      let  x= this.gridApi_1.paginationGetRowCount();
+      console.log('Total Row Count',x);
+
+let totalPages = this.gridApi_1.paginationGetTotalPages();
+let currentPage1 = this.gridApi_1.paginationGetCurrentPage();
+console.log("Current page:", currentPage1);
+console.log("Total page:", totalPages);
+    if(this.new_cdtn){
+      //  if (selectedRowCount< startIndex && selectedRowCount >endIndex ) {
+     // Deselect rows beyond the first 15
+     if(startIndex>0 && totalPages-1 !=currentPage1){
+      console.log('IN1');
+      selectedNodes.splice(endIndex,x).forEach(node => node.setSelected(false));
+      selectedNodes.splice(0,startIndex).forEach(node => node.setSelected(false));
+     }
+     else if(startIndex > 0 && totalPages-1 == currentPage1){
+      console.log('IN2');
+      selectedNodes.splice(0,startIndex).forEach(node => node.setSelected(false));
+     }
+     else if(endIndex>0){
+      console.log('IN3');
+      console.log('EndIndex+1',endIndex+1);console.log('X',x);console.log('X - EndIndex',x-(endIndex));
+      selectedNodes.splice(endIndex,x-(endIndex)).forEach(node => node.setSelected(false));
+    }
+
+        // }
+    }
+    else
+    {
+      selectedNodes.forEach(node => node.setSelected(false));
+    }
+
+      })
+    });
+  }
+  setAutoHeight() {
+    this.gridApi_1.setDomLayout('autoHeight');
+    this.gridApi_2.setDomLayout('autoHeight');
+    // auto height will get the grid to fill the height of the contents,
+    // so the grid div should have no height set, the height is dynamic.
+    let element_1:any = document.querySelector<HTMLElement>('#myGrid_1');
+    let element_2:any = document.querySelector<HTMLElement>('#myGrid_2');
+    if (element_1) {
+    element_1.style.height = '0px';
+    }
+    if(element_2){
+      element_2.style.height = '0px';
+    }
   }
   onGridReady_2(params: GridReadyEvent) {
     this.gridApi_2 = params.api;

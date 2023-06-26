@@ -120,7 +120,7 @@ update_user_role()
     console.log('updated practiceLogIn',this.practiceLogIn);
 
     this.loadingBar.start();
-    this.notify_service.getuser_Id();
+    // this.notify_service.getuser_Id();
 
     this.setus.get_prname();
     this.subscription1 = this.setus.pracname.subscribe(data => {

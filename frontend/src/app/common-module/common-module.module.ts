@@ -57,9 +57,6 @@ import { FollowupViewComponent } from '../components/followup-view/followup-view
 import { FollowupTemplateComponent } from '../components/followup-template/followup-template.component';
 import { SummaryComponent } from '../components/summary/summary.component';
 
-
-
-
 // export { LazyModule } from '../lazy/lazy.module'
 // FusionChartsModule.fcRoot(FusionCharts,PowerCharts, Charts,Widgets,FusionTheme,TimeSeries,overlappedcolumn2d)
 @NgModule({
@@ -143,7 +140,6 @@ import { SummaryComponent } from '../components/summary/summary.component';
       ModalModule,
       CollapseModule,
       BsDatepickerModule,
-
     ]
 })
 export class CommonModuleModule { }

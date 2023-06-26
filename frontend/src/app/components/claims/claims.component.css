@@ -1,13 +1,13 @@
     /* .custom-class{
         padding-right: 200px !important;
       } */
-    .custom-class .modal-content {
+     .modal-content {
       right: -178px;
       top: 80px;
 
     }
 
-    .custom-class .close {
+    .close {
       color: #000 !important;
       opacity: .2;
     }
@@ -293,7 +293,7 @@
     .ag-theme-alpine {
       position: relative;
       /* width: 113%; */
-      height: 720px;
+      /* height: 650px; */
       /* border: none;
       border-radius: 10px; */
       /* margin-left: -220px; */

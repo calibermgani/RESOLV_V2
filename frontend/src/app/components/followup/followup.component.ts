@@ -19,6 +19,7 @@ import { ColDef, GridApi, GridOptions, GridReadyEvent } from 'ag-grid-community'
 import { AgGridAngular } from 'ag-grid-angular';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AuthService } from 'src/app/Services/auth.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-followup',
@@ -96,7 +97,8 @@ export class FollowupComponent implements OnInit, OnDestroy {
     private notify_service:NotifyService,
     private datepipe: DatePipe,
     private modal: BsModalService,
-    private auth : AuthService
+    private auth : AuthService,
+    private loader : NgxUiLoaderService
   ) {
     this.response_data=this.notes_hadler.get_response_data('followup').subscribe((message:any) => { this.collect_response(message) });
     this.update_monitor=this.notes_hadler.refresh_update().subscribe(message => {
@@ -197,77 +199,104 @@ reallocate_total_row:any;
       {
       if(type=="wo")
       {
-        this.table_fields=data.data.fields;
-        this.workorder_table=data.data.datas;
-        this.total_claims=data.count;
+        if(data)
+        {this.table_fields=data.data.fields;
+          this.workorder_table=data.data.datas;
+          this.total_claims=data.count;}
         // this.total_assigned=6;
       }
       else if(type=='completed'){
-        this.completed_claims=data.data.datas;
         console.log('INNN333');
         if(data){
+          this.completed_claims=data.data.datas;
           this.GridrowData3 = this.completed_claims;
           this.myGrid_3.api.setRowData(this.GridrowData3);
+          this.loader.stop();
+          this.completed_claims_data = data.data.datas;
+          this.total_completed_claims=data.count;
+
+          this.total=data.total;
+          this.current_total= data.current_total;
+          this.skip = data.skip + 1;
+          this.total_row = data.count;
           // this.setus.change_status.next(false);
         }
+        else
+        {
+          this.GridrowData3=[];
+          this.myGrid_3.api.setRowData(this.GridrowData3);
+          this.loader.stop();
+        }
         // this.completed_claims_data = data.selected_claim_data;
-        this.completed_claims_data = data.data.datas;
-        this.total_completed_claims=data.count;
 
-        this.total=data.total;
-        this.current_total= data.current_total;
-        this.skip = data.skip + 1;
 
         this.skip_row = this.skip;
         this.current_row = this.skip + this.current_total - 1;
-        this.total_row = data.count;
+
       }
       else if(type=='allocated')
       {
-        this.allocated_claims=data.data.datas;
         console.log('INNN11');
         if(data){
+          this.allocated_claims=data.data.datas;
           this.GridrowData1 = this.allocated_claims;
           this.myGrid_1.api.setRowData(this.GridrowData1);
+          this.loader.stop();
+          this.assigned_claims = data.data.datas;
+          this.total_allocated=data.count;
+          this.total=data.total;
+          this.current_total= data.current_total;
+          this.skip = data.skip + 1;
+          this.total_row = data.count;
+        }
+        else
+        {
+          this.GridrowData1=[];
+          this.myGrid_1.api.setRowData(this.GridrowData1);
+          this.loader.stop();
         }
 
 
 
         console.log('allocated_claims',this.allocated_claims);
         // this.assigned_claims = data.selected_claim_data;
-        this.assigned_claims = data.data.datas;
-        this.total_allocated=data.count;
 
-        this.total=data.total;
-        this.current_total= data.current_total;
-        this.skip = data.skip + 1;
 
         this.skip_row = this.skip;
         this.current_row = this.skip + this.current_total - 1;
-        this.total_row = data.count;
+
 
       }
 	  else if(type=='reallocated')
       {
 
         console.log('INNN22');
-        this.reallocated_claims=data.data.datas;
         if(data){
+          this.reallocated_claims=data.data.datas;
           this.GridrowData2 = this.reallocated_claims;
           this.myGrid_2.api.setRowData(this.GridrowData2);
+          this.loader.stop();
+          this.reassigned_claims_data = data.data.datas;
+          this.total_reallocated=data.count;
+
+          this.total=data.total;
+          this.current_total= data.current_total;
+          this.skip = data.skip + 1;
+          this.reallocate_total_row = data.current_total;
+        }
+        else
+        {
+          this.GridrowData2 = [];
+          this.myGrid_2.api.setRowData(this.GridrowData2);
+          this.loader.stop();
         }
         console.log('reallocated_claims',this.reallocated_claims);
         // this.reassigned_claims_data = data.selected_claim_data;
-        this.reassigned_claims_data = data.data.datas;
-        this.total_reallocated=data.count;
 
-        this.total=data.total;
-        this.current_total= data.current_total;
-        this.skip = data.skip + 1;
 
         this.skip_row = this.skip;
         this.current_row = this.skip + this.current_total - 1;
-        this.reallocate_total_row = data.current_total;
+
 
       }
       this.tab_load=false;
@@ -444,6 +473,7 @@ type:any;
 types:any;
   public getclaim_details(page:number,type: any,sort_data:any,sort_type: any,sorting_name: any,sorting_method: any,assign_claim_searh: any,reassign_claim_searh: any,closed_claim_searh: any,search: any)
 {
+  this.loader.start()
   this.search = search;
   this.type = type;
   let page_count=15;
@@ -966,6 +996,7 @@ public assign_page_data(data:any)
   this.workorder_table=data.data;
 //  console.log(this.workorder_table);
   this.total=data.total;
+  this.loader.stop();
 }
 
 

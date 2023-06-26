@@ -19,6 +19,7 @@ import { ColDef, GridApi, GridOptions, GridReadyEvent } from 'ag-grid-community'
 import { AgGridAngular } from 'ag-grid-angular';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AuthService } from 'src/app/Services/auth.service';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
   selector: 'app-audit',
@@ -116,7 +117,8 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
     private notify_service: NotifyService,
     private datepipe: DatePipe,
     private modal: BsModalService,
-    private auth : AuthService
+    private auth : AuthService,
+    public loader: NgxUiLoaderService
   ) {
     this.observalble = this.setus.update_edit_perm().subscribe(message => { this.check_edit_permission(message) });
     this.response_data = this.notes_hadler.get_response_data('audit').subscribe((message: any) => { this.collect_response(message) });
@@ -263,6 +265,7 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
   type: any;
   search: any;
   public getclaim_details(page: number, type: any, sort_data: any, sort_type: any, sorting_name: any, sorting_method: any, assign_claim_searh: any, reassign_claim_searh: any, closed_claim_searh: any, audit_claim_search: any, search: any) {
+    this.loader.start();
     this.search = search;
     console.log(assign_claim_searh);
     let page_count = 15;
@@ -706,14 +709,17 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
       this.GridrowData1 = data.data;
       console.log('GridData', this.GridrowData1);
       this.myGrid_1.api?.setRowData(this.GridrowData1);
+      this.loader.stop();
     }
-    this.table_datas = data.data;
-    this.audit_claim_data = data.audit_claim_data;
-    this.total = data.total;
+    if(data)
+    {this.table_datas = data.data;
+      this.audit_claim_data = data.audit_claim_data;
+      this.total = data.total;
 
-    this.totals = data.total;
-    this.current_totals = data.current_total;
-    this.skips = data.skip + 1;
+      this.totals = data.total;
+      this.current_totals = data.current_total;
+      this.skips = data.skip + 1;}
+
 
     this.skip_rows = this.skips;
     this.current_rows = this.skips + this.current_totals - 1;
@@ -773,6 +779,7 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
   w_pages: any;
 
   public get_workorder(filter: any, from: any, to: any, type: any, page: any, sort_data: any, sort_type: any, sorting_name: any, sorting_method: any, closedsearch: any, workordersearch: any, search: any) {
+    this.loader.start();
     let page_count = 15;
     this.tab_load = true;
 
@@ -868,43 +875,53 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
       }
       else if (type == 'allocated') {
         // console.log(data);
-        this.allocated_claims = data.data.datas;
+        if(data){
+          this.allocated_claims = data.data.datas;
+          this.assigned_claim_data = data.selected_claim_data;
+        this.total_allocated = data.count;
+        this.total_row = data.count;
+
+        this.current_total = data.current_total;
+        this.skip = data.skip + 1;
+        }
         if(this.allocated_claims)
         {
           this.GridrowData3 = this.allocated_claims;
           console.log('GridrowData3',this.GridrowData3);
           this.myGrid_3.api.setRowData(this.GridrowData3);
+          this.loader.stop();
         }
-        this.assigned_claim_data = data.selected_claim_data;
-        this.total_allocated = data.count;
 
-        this.current_total = data.current_total;
-        this.skip = data.skip + 1;
 
         this.skip_row = this.skip;
         this.current_row = this.skip + this.current_total - 1;
-        this.total_row = data.count;
+
         console.log(this.allocated_claims);
         this.sortallocated();
       }
       else if (type == 'completed') {
-        this.completed_claims = data.data.datas;
+        if(data){
+          this.completed_claims = data.data.datas;
+          this.closed_claim_data = data.selected_claim_data;
+          this.total_completed_claims = data.count;
+          //this.total=data.total;
+          this.current_total = data.current_total;
+          this.skip = data.skip + 1;
+          this.total_row = data.count;
+        }
+
         if(this.completed_claims)
         {
           this.GridrowData4 = this.completed_claims;
           console.log('GridrowData3',this.GridrowData4);
           this.myGrid_4.api.setRowData(this.GridrowData4);
+          this.loader.stop();
         }
-        this.closed_claim_data = data.selected_claim_data;
-        this.total_completed_claims = data.count;
 
-        //this.total=data.total;
-        this.current_total = data.current_total;
-        this.skip = data.skip + 1;
 
         this.skip_row = this.skip;
         this.current_row = this.skip + this.current_total - 1;
-        this.total_row = data.count;
+
       }
 
     }
@@ -2414,6 +2431,7 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
       this.GridrowData2 = data.data;
       this.myGrid_2.api?.setRowData(this.GridrowData2);
       console.log('GridrowData_Work Orders',this.GridrowData2);
+      this.loader.stop();
 
     }
     this.work_order_data = data.data;
@@ -3093,7 +3111,7 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.get_statuscodes();
+    // this.get_statuscodes(); CALLED TWO TIMES
     this.get_audit_codes();
     this.get_error_param_codes();
     this.get_error_sub_param_codes();

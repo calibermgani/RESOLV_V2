@@ -31,8 +31,8 @@ import { UserregistrationComponent } from './components/userregistration/userreg
 import { ErrorLogComponent } from './components/error-log/error-log.component';
 import { MedcubicsIntegComponent } from './components/medcubics-integ/medcubics-integ.component';
 import { RolesComponent } from './components/roles/roles.component';
-import { NgxUiLoaderConfig, NgxUiLoaderHttpModule, NgxUiLoaderModule, NgxUiLoaderRouterModule, PB_DIRECTION, POSITION, SPINNER } from 'ngx-ui-loader';
-import { LoaderService } from './Services/loader.service';
+import { NgxUiLoaderHttpModule, NgxUiLoaderModule,NgxUiLoaderConfig, POSITION, SPINNER, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
+
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   // bgsColor: '#OOACC1',
@@ -63,7 +63,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     UserregistrationComponent,
     ErrorLogComponent,
     MedcubicsIntegComponent,
-    RolesComponent
+    RolesComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -81,11 +81,13 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     SidebarModule.forRoot(),
     ModalModule.forRoot(),
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    // NgxUiLoaderRouterModule, // import this module for showing loader automatically when navigating between app routes
+    NgxUiLoaderRouterModule, // import this module for showing loader automatically when navigating between app routes
     NgxUiLoaderHttpModule.forRoot({
-      showForeground:true
+      // excludeRegexp:[
+      //   '\/api\/checktoken$','\/api\/getPermissions$'
+      // ],
+      showForeground:true,
     }),
-
     // NgxDaterangepickerMd,
     // GooglePlaceModule,
   ],

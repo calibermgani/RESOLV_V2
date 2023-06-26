@@ -7,22 +7,6 @@ import { SidebarModule } from 'ng-sidebar';
 import {  AgGridModule } from 'ag-grid-angular';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { NgxUiLoaderConfig, NgxUiLoaderModule, NgxUiLoaderRouterModule, POSITION, SPINNER } from 'ngx-ui-loader';
-
-// const ngxUiLoaderConfig: NgxUiLoaderConfig = {
-//   // bgsColor: '#OOACC1',
-//   // bgsOpacity: 20,
-//   // bgsPosition: POSITION.centerCenter,
-//   // bgsSize: 60,
-//   // bgsType: SPINNER.threeStrings,
-//   fgsColor: '#00ACC1',
-//   fgsPosition: POSITION.centerCenter,
-//   fgsSize: 60,
-//   fgsType: SPINNER.threeStrings,
-//   // pbColor: '#00ACC1',
-//   // pbDirection: PB_DIRECTION.leftToRight,
-//   // pbThickness: 5,
-// };
 
 @NgModule({
   imports: [
@@ -34,9 +18,6 @@ import { NgxUiLoaderConfig, NgxUiLoaderModule, NgxUiLoaderRouterModule, POSITION
     // NgxDaterangepickerMd,
     FormsModule,
     ReactiveFormsModule,
-    // NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
-    // NgxUiLoaderRouterModule,
-
   ],
   declarations: [ClaimsComponent]
 })

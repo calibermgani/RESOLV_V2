@@ -1,7 +1,5 @@
-import { Component, Inject, ViewEncapsulation } from '@angular/core';
+import { Component} from '@angular/core';
 import { AuthService } from './Services/auth.service';
-import { LoaderService } from './Services/loader.service';
-import { NgxUiLoaderConfig, NgxUiLoaderService } from 'ngx-ui-loader';
 
 
 @Component({
@@ -16,7 +14,7 @@ export class AppComponent {
   loggedIn :any;
   waitingForeground: any;
 
-  constructor(private Auth:AuthService,public loader: NgxUiLoaderService){
+  constructor(private Auth:AuthService){
   this.Auth.authStatus.subscribe(value => this.loggedIn = value);
   // this.new_auth._loggedIn.subscribe(value => this.loggedIn = value);
   console.log('loggin',this.loggedIn);

@@ -55,5 +55,4 @@ set_summary_details(data:any)
       // this.get_summary_details('followup');
 
   }
-
 }

@@ -6812,7 +6812,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   isCollapsed_ClosedClaims:boolean = true;
   isCollapsed_AllClaims : boolean = true;
 
-new_cdtn:boolean = false;
+  new_cdtn:boolean = false;
   onGridReady_1(params: GridReadyEvent) {
     this.gridApi_1 = params.api;
     params.api.sizeColumnsToFit();
@@ -6822,7 +6822,7 @@ new_cdtn:boolean = false;
     //   this.cdtn = true;
     //   this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
     // }, 4000);
-    const header = document.querySelectorAll('.ag-checkbox-input  ');
+    const header = document.querySelectorAll('.ag-checkbox-input');
 
     console.log(header);
     header.forEach(v => {
@@ -6832,10 +6832,10 @@ new_cdtn:boolean = false;
         this.new_cdtn =!  this.new_cdtn;
         console.log('New_cdtn',this.new_cdtn);
         const currentPage = params.api.paginationGetCurrentPage();
-    const pageSize = params.api.paginationGetPageSize();
-     startIndex = currentPage * pageSize;
-     endIndex = startIndex + pageSize;
-    console.log(startIndex,endIndex);
+        const pageSize = params.api.paginationGetPageSize();
+        startIndex = currentPage * pageSize;
+        endIndex = startIndex + pageSize;
+        console.log(startIndex,endIndex);
 
     params.api.forEachNodeAfterFilterAndSort((node: any) =>{
       this.currentPageData.push(node.data);
@@ -6846,8 +6846,6 @@ new_cdtn:boolean = false;
     const selectedNodes:any[] = this.gridApi_1.getSelectedNodes();
     // for(let i=0;i<selectedNodes.length;i++)
     // console.log('selectedNodes',selectedNodes?.[i].data);
-
-      const selectedRowCount = selectedNodes.length;
       let  x= this.gridApi_1.paginationGetRowCount();
       console.log('Total Row Count',x);
 
@@ -6886,15 +6884,27 @@ console.log("Total page:", totalPages);
   setAutoHeight() {
     this.gridApi_1.setDomLayout('autoHeight');
     this.gridApi_2.setDomLayout('autoHeight');
+    this.gridApi_3.setDomLayout('autoHeight');
+    this.gridApi_4.setDomLayout('autoHeight');
+    this.gridApi_5.setDomLayout('autoHeight');
+    this.gridApi_6.setDomLayout('autoHeight');
     // auto height will get the grid to fill the height of the contents,
     // so the grid div should have no height set, the height is dynamic.
     let element_1:any = document.querySelector<HTMLElement>('#myGrid_1');
     let element_2:any = document.querySelector<HTMLElement>('#myGrid_2');
-    if (element_1) {
+    let element_3:any = document.querySelector<HTMLElement>('#myGrid_2');
+    let element_4:any = document.querySelector<HTMLElement>('#myGrid_2');
+    let element_5:any = document.querySelector<HTMLElement>('#myGrid_2');
+    let element_6:any = document.querySelector<HTMLElement>('#myGrid_2');
+    let element_7:any = document.getElementsByClassName('no-bottom');
+    if (element_1 || element_2 || element_3 || element_4 || element_5 || element_6) {
     element_1.style.height = '0px';
-    }
-    if(element_2){
-      element_2.style.height = '0px';
+    element_2.style.height = '0px';
+    element_3.style.height = '0px';
+    element_4.style.height = '0px';
+    element_5.style.height = '0px';
+    element_6.style.height = '0px';
+    element_7.style.height = '0px';
     }
   }
   onGridReady_2(params: GridReadyEvent) {

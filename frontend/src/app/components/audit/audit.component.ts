@@ -3774,16 +3774,71 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
   @ViewChild('claimpage') claimpage!: TemplateRef<any>;
   @ViewChild('work_order_details') work_order_details!: TemplateRef<any>;
 
+  new_cdtn:boolean = false;
+  currentPageData: any = [];
+  resl_dta: any = [];
+
   onGridReady_1(params: GridReadyEvent) {
     this.gridApi_1 = params.api;
     params.api.sizeColumnsToFit();
     console.log('event', params);
     this.myGrid_1.api.setRowData([]);
-    // setTimeout(() => {
-    //   console.log('444', this.GridrowData1);
-    //   this.cdtn = true;
-    //   this.myGrid_1.api?.setRowData(this.GridrowData1);
-    // }, 4000);
+    const header = document.querySelectorAll('.ag-checkbox-input');
+    header.forEach(v => {
+      v.addEventListener('click', (event) =>{
+        let startIndex = 0;
+        let endIndex = 0;
+        this.new_cdtn =!  this.new_cdtn;
+        console.log('New_cdtn',this.new_cdtn);
+        const currentPage = params.api.paginationGetCurrentPage();
+        const pageSize = params.api.paginationGetPageSize();
+        startIndex = currentPage * pageSize;
+        endIndex = startIndex + pageSize;
+        console.log(startIndex,endIndex);
+
+    params.api.forEachNodeAfterFilterAndSort((node: any) =>{
+      this.currentPageData.push(node.data);
+    });
+
+    this.resl_dta = this.GridrowData1.slice(startIndex,endIndex);
+    console.log('currentPageData',this.resl_dta);
+    const selectedNodes:any[] = this.gridApi_1.getSelectedNodes();
+    // for(let i=0;i<selectedNodes.length;i++)
+    // console.log('selectedNodes',selectedNodes?.[i].data);
+      let  x= this.gridApi_1.paginationGetRowCount();
+      console.log('Total Row Count',x);
+
+let totalPages = this.gridApi_1.paginationGetTotalPages();
+let currentPage1 = this.gridApi_1.paginationGetCurrentPage();
+console.log("Current page:", currentPage1);
+console.log("Total page:", totalPages);
+    if(this.new_cdtn){
+      //  if (selectedRowCount< startIndex && selectedRowCount >endIndex ) {
+     // Deselect rows beyond the first 15
+     if(startIndex>0 && totalPages-1 !=currentPage1){
+      console.log('IN1');
+      selectedNodes.splice(endIndex,x).forEach(node => node.setSelected(false));
+      selectedNodes.splice(0,startIndex).forEach(node => node.setSelected(false));
+     }
+     else if(startIndex > 0 && totalPages-1 == currentPage1){
+      console.log('IN2');
+      selectedNodes.splice(0,startIndex).forEach(node => node.setSelected(false));
+     }
+     else if(endIndex>0){
+      console.log('IN3');
+      console.log('EndIndex+1',endIndex+1);console.log('X',x);console.log('X - EndIndex',x-(endIndex));
+      selectedNodes.splice(endIndex,x-(endIndex)).forEach(node => node.setSelected(false));
+    }
+
+        // }
+    }
+    else
+    {
+      selectedNodes.forEach(node => node.setSelected(false));
+    }
+
+      })
+    });
   }
   onGridReady_2(params: GridReadyEvent) {
     this.gridApi_2 = params.api;

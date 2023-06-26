@@ -365,23 +365,25 @@
                       </h3>
                       <!--        <input type="file" name="fileupload" [(ngModel)]="fileupload" class="btn btn-info btn-xs pull-right btn-flat" style="margin-top:-2px" (change)="onFileChange($event)">  -->
                       <div class="box-tools pull-right">
-                        <span class="example-header" style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
-                        font-size: 13px !important;
-                        font-weight: 600;
-                        color: #535a68;">
-                          Show:
-                          <select (change)="onPageSizeChanged()" id="page-size" [(ngModel)]="paginationSizeValue" style="border-radius: 4px;">
-                            <option value="10">10</option>
-                            <option value="100">100</option>
-                            <option value="500">500</option>
-                            <option value="1000">1000</option>
-                          </select>
-                        </span>
-                        <span style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
-                        font-size: 13px !important;
-                        font-weight: 600;
-                        color: #535a68;">entries</span>
-                        <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
+                        <p class="pull-left" style="margin-top: 4px; padding-left: 5px;">
+                          <span class="example-header" style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
+                          font-size: 13px !important;
+                          font-weight: 600;
+                          color: #535a68;">
+                            Show:
+                            <select (change)="onPageSizeChanged()" id="page-size" [(ngModel)]="paginationSizeValue" style="border-radius: 4px;">
+                              <option value="10">10</option>
+                              <option value="100">100</option>
+                              <option value="500">500</option>
+                              <option value="1000">1000</option>
+                            </select>
+                          </span>
+                          <span style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
+                          font-size: 13px !important;
+                          font-weight: 600;
+                          color: #535a68;">entries</span>
+                          <span style="margin-left:10px;color:#ccc;margin-right:10px">|</span>
+                          </p>
                         <span class="disabled-tooltip pull-right" tabindex="0" data-toggle="tooltip"
                           title="Please process datas from previous uploaded file"><button
                             class="btn btn-info btn-xs pull-right btn-flat" style="margin-top:4px;"
@@ -1678,23 +1680,25 @@
                     <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                       <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Closed Claims</h3>
                       <div class="box-tools pull-right">
-                        <span class="example-header" style="margin-left:10px;font-family: 'Maven Pro', sans-serif;margin-top:10px;
-                        font-size: 13px !important;
-                        font-weight: 600;
-                        color: #535a68;">
-                          Show:
-                          <select (change)="onPageSizeChanged()" id="page-size" [(ngModel)]="paginationSizeValue" style="border-radius: 4px;">
-                            <option value="10">10</option>
-                            <option value="100">100</option>
-                            <option value="500">500</option>
-                            <option value="1000">1000</option>
-                          </select>
-                        </span>
-                        <span style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
-                        font-size: 13px !important;
-                        font-weight: 600;
-                        color: #535a68;">entries</span>
-                        <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
+                        <p class="pull-left" style="margin-top: 4px; padding-left: 5px;">
+                          <span class="example-header" style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
+                          font-size: 13px !important;
+                          font-weight: 600;
+                          color: #535a68;">
+                            Show:
+                            <select (change)="onPageSizeChanged()" id="page-size" [(ngModel)]="paginationSizeValue" style="border-radius: 4px;">
+                              <option value="10">10</option>
+                              <option value="100">100</option>
+                              <option value="500">500</option>
+                              <option value="1000">1000</option>
+                            </select>
+                          </span>
+                          <span style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
+                          font-size: 13px !important;
+                          font-weight: 600;
+                          color: #535a68;">entries</span>
+                          <span style="margin-left:10px;color:#ccc;margin-right:10px">|</span>
+                          </p>
                         <button class="btn btn-info btn-xs btn-flat" style="margin-top:4px;margin-right:10px;"
                           (click)="openModal2(auto_claim_close)"><i class="fa fa-upload"></i> Import</button>
                         <p class="pull-right" style="margin-top:4px;padding-left:5px">
@@ -2013,6 +2017,7 @@
                             font-size: 13px !important;
                             font-weight: 600;
                             color: #535a68;">entries</span>
+                            <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
                             <span class="fa fa-refresh" style="cursor:pointer;" title="Refresh Values"
                               (click)="reload_data_allClaims(1)"></span>
 
@@ -2055,6 +2060,7 @@
                       </h3>
                       <!--        <input type="file" name="fileupload" [(ngModel)]="fileupload" class="btn btn-info btn-xs pull-right btn-flat" style="margin-top:-2px" (change)="onFileChange($event)">  -->
                       <div class="box-tools pull-right">
+                        <p class="pull-left" style="margin-top: 4px; padding-left: 5px;">
                         <span class="example-header" style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
                         font-size: 13px !important;
                         font-weight: 600;
@@ -2071,6 +2077,8 @@
                         font-size: 13px !important;
                         font-weight: 600;
                         color: #535a68;">entries</span>
+                        <span style="margin-left:10px;color:#ccc;margin-right:10px">|</span>
+                        </p>
                         <button class="btn btn-info btn-xs pull-right btn-flat" style="margin-top:4px;"
                           (click)="open(reimport_page1)"><i class="fa fa-upload"></i> Import</button>
 

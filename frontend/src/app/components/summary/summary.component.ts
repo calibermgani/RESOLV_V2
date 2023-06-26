@@ -53,5 +53,6 @@ set_summary_details(data:any)
 }
   ngOnInit() {
       // this.get_summary_details('followup');
+
   }
 }

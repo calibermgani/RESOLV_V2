@@ -27,12 +27,10 @@
           <!-- Messages: style can be found in dropdown.less-->
 
           <!-- /.messages-menu -->
-
           <!-- Notifications Menu -->
           <li *ngIf="practiceLogIn" class="dropdown notifications-menu">
             <!-- Menu toggle button -->
-            <a href="#" class="dropdown-toggle" style="padding-right: 20px;padding-left: 20px;" data-toggle="dropdown"
-              (click)="alertValue()">
+            <a href="#" class="dropdown-toggle" style="padding-right: 20px;padding-left: 20px;" data-toggle="dropdown">
               <i class="fa fa-bell-o faa-ring animated"></i>
               <span class="label label-warning">10</span>
             </a>
@@ -40,7 +38,6 @@
               <li>
                 <!-- Inner Menu: contains the notifications -->
                 <ul class="menu">
-
                   <li><!-- start notification -->
                     <a [routerLink]="['/claims']">
                       <i class="fa fa-hand-pointer-o text-aqua"></i> <b class="text-aqua">{{touch_counts}}</b> Touches

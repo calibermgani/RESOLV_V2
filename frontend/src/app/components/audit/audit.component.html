@@ -727,6 +727,19 @@
                                 <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Closed Claims</h3>
                                 <div class="box-tools pull-right">
                                   <p class="" style="margin-top:5px;">
+                                    Show:
+                                    <select (change)="onPageSizeChanged()" id="page-size" [(ngModel)]="paginationSizeValue_ClosedClaims" style="border-radius: 4px;">
+                                      <option [ngValue]="15" selected>15</option>
+                                      <option value="100">100</option>
+                                      <option value="500">500</option>
+                                      <option value="1000">1000</option>
+                                    </select>
+                                  <!-- </span> -->
+                                  <span style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
+                                  font-size: 13px !important;
+                                  font-weight: 600;
+                                  color: #535a68;">entries</span>
+                                  <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
                                     <!-- <span class="fa fa-print" style="cursor:pointer;" title="Print" (click)="export_files('print')"></span> <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span> -->
                                     <i class="fa fa-file-excel-o" style="cursor:pointer;"
                                       (click)="export_excel_files('excel', 'Closed_claims')" title="Excel"></i> <span
@@ -1009,6 +1022,19 @@
                                 </h3>
                                 <div class="box-tools pull-right">
                                   <p class="" style="margin-top:5px;">
+                                    Show:
+                                    <select (change)="onPageSizeChanged()" id="page-size" [(ngModel)]="paginationSizeValue_AssignmedClaims" style="border-radius: 4px;">
+                                      <option [ngValue]="15" selected>15</option>
+                                      <option value="100">100</option>
+                                      <option value="500">500</option>
+                                      <option value="1000">1000</option>
+                                    </select>
+                                  <!-- </span> -->
+                                  <span style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
+                                  font-size: 13px !important;
+                                  font-weight: 600;
+                                  color: #535a68;">entries</span>
+                                  <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
                                     <span class="fa fa-random" style="cursor:pointer;" title="Reassign"
                                       (click)="reassign(confirmation)"></span>
                                     <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
@@ -1285,7 +1311,21 @@
                     <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                       <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Audit Que</h3>
                       <div class="box-tools pull-right">
-                        <p class="" style="margin-top:5px;"> <span class="fa fa-refresh" style="cursor:pointer;"
+                        <p class="" style="margin-top:5px;">
+                          Show:
+                          <select (change)="onPageSizeChanged()" id="page-size" [(ngModel)]="paginationSizeValue_AuditQue" style="border-radius: 4px;">
+                            <option [ngValue]="15" selected>15</option>
+                            <option value="100">100</option>
+                            <option value="500">500</option>
+                            <option value="1000">1000</option>
+                          </select>
+                        <!-- </span> -->
+                        <span style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
+                        font-size: 13px !important;
+                        font-weight: 600;
+                        color: #535a68;">entries</span>
+                        <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
+                           <span class="fa fa-refresh" style="cursor:pointer;"
                             title="Reload" (click)="reload_data(1)"></span>
                           <span> <span style="margin-left:10px;color:#ccc;margin-right:10px;"></span>
                             <i (click)="select_claims(new_workorder)" class="fa fa-user-plus" style="cursor:pointer;"
@@ -1303,14 +1343,14 @@
                           </button>
                         </p>
                       </div>
+                      <div class="collapse " [collapse]="isCollapsed_audit_que_grid" [isAnimated]="true">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
+                    <ag-grid-angular class="ag-theme-alpine   no-grid-lines" [columnDefs]="columnDefs1" [gridOptions]="gridOptions1" #myGrid_1
+                    (gridReady)="onGridReady_1($event)" [defaultColDef]="defaultColDef"
+                    (selectionChanged)="onSelectionChanged($event)"></ag-grid-angular>
                     </div>
-                    <div class="collapse " [collapse]="isCollapsed_audit_que_grid" [isAnimated]="true">
-                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
-                  <ag-grid-angular class="ag-theme-alpine   no-grid-lines" [columnDefs]="columnDefs1" [gridOptions]="gridOptions1" #myGrid_1
-                  (gridReady)="onGridReady_1($event)" [defaultColDef]="defaultColDef"
-                  (selectionChanged)="onSelectionChanged($event)"></ag-grid-angular>
-                  </div>
-                  </div>
+                    </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -1386,6 +1426,19 @@
                       <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Work Orders</h3>
                       <div class="box-tools pull-right" style="margin-top:5px;">
                         <p class="" style="margin-top:5px;">
+                          Show:
+                          <select (change)="onPageSizeChanged()" id="page-size" [(ngModel)]="paginationSizeValue_WorkOrders" style="border-radius: 4px;">
+                            <option [ngValue]="15" selected>15</option>
+                            <option value="100">100</option>
+                            <option value="500">500</option>
+                            <option value="1000">1000</option>
+                          </select>
+                        <!-- </span> -->
+                        <span style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
+                        font-size: 13px !important;
+                        font-weight: 600;
+                        color: #535a68;">entries</span>
+                        <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
                           <!-- <span class="fa fa-print" style="cursor:pointer;" title="Print" (click)="export_wo_files('print')"></span> -->
                           <!-- <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>  --><i
                             class="fa fa-file-excel-o" style="cursor:pointer;"

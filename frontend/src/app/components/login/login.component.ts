@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
   ) { }
 
   onSubmit() {
-
   // this.new_Auth.login(this.form).subscribe((response:any) => {
 
   //   this.router.navigateByUrl('/practiceList');

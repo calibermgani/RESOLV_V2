@@ -707,8 +707,11 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
   public assign_page_data(data: any) {
     if (data) {
       this.GridrowData1 = data.data;
-      console.log('GridData', this.GridrowData1);
       this.myGrid_1.api?.setRowData(this.GridrowData1);
+      this.loader.stop();
+      console.log('GridData', this.GridrowData1);
+    }else{
+      this.myGrid_1.api?.setRowData([]);
       this.loader.stop();
     }
     if(data)
@@ -3767,6 +3770,7 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
   modalRef3?: BsModalRef;
   search_value: any;
   search_value_assignedClaims:any;
+
   @ViewChild('myGrid_1') myGrid_1!: AgGridAngular;
   @ViewChild('myGrid_2') myGrid_2!: AgGridAngular;
   @ViewChild('myGrid_3') myGrid_3!: AgGridAngular;
@@ -3913,6 +3917,17 @@ console.log("Total page:", totalPages);
     console.log('ID3', this.rowValue_ID_4);
   }
 
+  paginationSizeValue_AuditQue:number = 15;
+  paginationSizeValue_WorkOrders:number = 15;
+  paginationSizeValue_AssignmedClaims:number = 15;
+  paginationSizeValue_ClosedClaims:number = 15;
+  onPageSizeChanged() {
+    this.gridApi_1.paginationSetPageSize(Number(this.paginationSizeValue_AuditQue));
+    this.gridApi_2.paginationSetPageSize(Number(this.paginationSizeValue_WorkOrders));
+    this.gridApi_3.paginationSetPageSize(Number(this.paginationSizeValue_AssignmedClaims));
+    this.gridApi_4.paginationSetPageSize(Number(this.paginationSizeValue_ClosedClaims));
+  }
+
 
   gridOptions1: GridOptions = {
     defaultColDef: {
@@ -3923,7 +3938,7 @@ console.log("Total page:", totalPages);
     rowHeight: 34,
     suppressHorizontalScroll: true,
     pagination: true,
-    paginationPageSize: 15,
+    paginationPageSize:this.paginationSizeValue_AuditQue,
     getRowStyle: params => {
       return { 'font-size': '11px', 'font-weight': '500' };
     }
@@ -3937,7 +3952,7 @@ console.log("Total page:", totalPages);
     rowHeight: 34,
     suppressHorizontalScroll: true,
     pagination: true,
-    paginationPageSize: 15,
+    paginationPageSize:this.paginationSizeValue_WorkOrders,
     getRowStyle: params => {
       return { 'font-size': '11px', 'font-weight': '500' };
     }
@@ -3951,7 +3966,7 @@ console.log("Total page:", totalPages);
     rowHeight: 34,
     suppressHorizontalScroll: true,
     pagination: true,
-    paginationPageSize: 15,
+    paginationPageSize:this.paginationSizeValue_AssignmedClaims,
     getRowStyle: params => {
       return { 'font-size': '11px', 'font-weight': '500' };
     }
@@ -3965,7 +3980,7 @@ console.log("Total page:", totalPages);
     rowHeight: 34,
     suppressHorizontalScroll: true,
     pagination: true,
-    paginationPageSize: 15,
+    paginationPageSize: this.paginationSizeValue_ClosedClaims,
     getRowStyle: params => {
       return { 'font-size': '11px', 'font-weight': '500' };
     }

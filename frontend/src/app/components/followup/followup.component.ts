@@ -3019,11 +3019,19 @@ public updatenotes(type:any){
   isCollapsed_Grid2:boolean = false;
   isCollapsed_Grid3:boolean = false;
   isCollapsed_closed_claim:boolean = true;
-
+  paginationSizeValue_assigned:any = 15;
+  paginationSizeValue_reworked:any = 15;
+  paginationSizeValue_closed:any = 15;
   onSearch(){
     this.myGrid_1.api.setQuickFilter(this.search_values)
     this.myGrid_2.api.setQuickFilter(this.search_value_reworks)
     this.myGrid_3.api.setQuickFilter(this.searchvalue_closedClaims);
+  }
+
+  onPageSizeChanged(type:any) {
+    if(type=='assigned'){console.log('Assigned');this.gridApi_1.paginationSetPageSize(Number(this.paginationSizeValue_assigned));}
+    else if(type=='reworked'){console.log('Reworked');this.gridApi_2.paginationSetPageSize(Number(this.paginationSizeValue_reworked));}
+    else if(type=='closed'){console.log('closed');this.gridApi_3.paginationSetPageSize(Number(this.paginationSizeValue_closed));};
   }
 
   onSelectionChanged(params: any) {
@@ -3084,7 +3092,7 @@ public updatenotes(type:any){
     rowHeight: 34,
     suppressHorizontalScroll: true,
     pagination: true,
-    paginationPageSize: 15,
+    paginationPageSize: this.paginationSizeValue_assigned,
     getRowStyle: params => {
       return { 'font-size': '11px', 'font-weight': '500' };
     }
@@ -3098,7 +3106,7 @@ public updatenotes(type:any){
     rowHeight: 34,
     suppressHorizontalScroll: true,
     pagination: true,
-    paginationPageSize: 15,
+    paginationPageSize: this.paginationSizeValue_reworked,
     getRowStyle: params => {
       return { 'font-size': '11px', 'font-weight': '500' };
     }
@@ -3113,7 +3121,7 @@ public updatenotes(type:any){
     rowHeight: 34,
     suppressHorizontalScroll: true,
     pagination: true,
-    paginationPageSize: 15,
+    paginationPageSize: this.paginationSizeValue_closed,
     getRowStyle: params => {
       return { 'font-size': '11px', 'font-weight': '500' };
     }

@@ -32,6 +32,7 @@ import { ErrorLogComponent } from './components/error-log/error-log.component';
 import { MedcubicsIntegComponent } from './components/medcubics-integ/medcubics-integ.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule,NgxUiLoaderConfig, POSITION, SPINNER, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
+import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -66,6 +67,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     RolesComponent,
   ],
   imports: [
+    NgIdleKeepaliveModule.forRoot(),
     AppRoutingModule,
     FormsModule,
     HttpClientModule,

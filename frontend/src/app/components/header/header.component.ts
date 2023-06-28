@@ -71,7 +71,6 @@ update_user_role()
      this.changePractice();   // added..
     this.router.navigateByUrl('/login');
     this.subscibe.unsubscribe();
-    // this.Auth.tokenValue.unsubscribe();
   }
 
 

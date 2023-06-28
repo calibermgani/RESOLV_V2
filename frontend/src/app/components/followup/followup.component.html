@@ -1035,6 +1035,19 @@
                                                 <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Reworks/Call back/Pending Claims </h3>
                                                 <div class="box-tools pull-right">
                                                    <p class="red" style="margin-top:5px;">
+                                                    Show:
+                                                      <select (change)="onPageSizeChanged('reworked')" id="page-size" [(ngModel)]="paginationSizeValue_reworked" style="border-radius: 4px;">
+                                                         <option [ngValue]="15" selected>15</option>
+                                                         <option value="100">100</option>
+                                                         <option value="500">500</option>
+                                                         <option value="1000">1000</option>
+                                                      </select>
+                                                   <!-- </span> -->
+                                                     <span style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
+                                                      font-size: 13px !important;
+                                                      font-weight: 600;
+                                                      color: #535a68;">entries</span>
+                                                      <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
                                                       <span class="fa fa-refresh" style="cursor:pointer;" title="Refresh Values" (click)="reload_data()" ></span>
                                                       <span *ngIf="user_role!=1" style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
                                                       <span *ngIf="user_role!=1" class="fa fa-user-o" style="cursor:pointer;" title="Reassign" (click)="reassign(confirmation)"></span> <!-- reassign()-->
@@ -1431,6 +1444,19 @@
                                                 <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Assigned Claims</h3>
                                                 <div class="box-tools pull-right">
                                                    <p class="red" style="margin-top:5px;">
+                                                    Show:
+                                                    <select (change)="onPageSizeChanged('assigned')" id="page-size" [(ngModel)]="paginationSizeValue_assigned" style="border-radius: 4px;">
+                                                    <option [ngValue]="15" selected>15</option>
+                                                    <option value="100">100</option>
+                                                    <option value="500">500</option>
+                                                    <option value="1000">1000</option>
+                                                    </select>
+                                                    <!-- </span> -->
+                                                    <span style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
+                                                    font-size: 13px !important;
+                                                    font-weight: 600;
+                                                    color: #535a68;">entries</span>
+                                                      <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
                                                       <span class="fa fa-refresh" style="cursor:pointer;" title="Refresh Values" (click)="reload_data()" ></span>
                                                       <!-- <span *ngIf="user_role!=1 || user_role!=2" style="margin-left:10px;color:#ccc;margin-right:10px;">|</span> -->
                                                       <!-- <span *ngIf="user_role!=1 || user_role!=2" class="fa fa-user-o" style="cursor:pointer;" title="Reassign" (click)="reassign(confirmation)"></span> reassign() -->
@@ -2114,7 +2140,21 @@
                                              <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                                 <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Closed Claims</h3>
                                                 <div class="box-tools pull-right">
-                                                   <p class="" style="margin-top:5px;"><!-- <span class="fa fa-print" style="cursor:pointer;" title="Print" (click)="export_files('print')"></span> -->
+                                                   <p class="" style="margin-top:5px;">
+                                                    Show:
+                                    <select (change)="onPageSizeChanged('closed')" id="page-size" [(ngModel)]="paginationSizeValue_closed" style="border-radius: 4px;">
+                                      <option [ngValue]="15" selected>15</option>
+                                      <option value="100">100</option>
+                                      <option value="500">500</option>
+                                      <option value="1000">1000</option>
+                                    </select>
+                                  <!-- </span> -->
+                                  <span style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
+                                  font-size: 13px !important;
+                                  font-weight: 600;
+                                  color: #535a68;">entries</span>
+                                  <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
+                                                    <!-- <span class="fa fa-print" style="cursor:pointer;" title="Print" (click)="export_files('print')"></span> -->
                                                       <!-- <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span> --> <i class="fa fa-file-excel-o" style="cursor:pointer;" (click)="export_excel_files('excel', 'Closed_claims')" title="Excel"></i>
                                                       <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>  <!-- <i class="fa fa-file-pdf-o"  (click)="export_pdf_files('PDF', 'closed_claim')" style="cursor:pointer;" title="PDF"></i> -->
                                                       <!-- <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span> -->

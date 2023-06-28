@@ -2747,6 +2747,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   claim_sub_status_codes = [];
   searchs: any;
   public pageChange(page: number, table: any, sort_data: any, sort_type: any, sorting_name: any, sorting_method: any, createsearch: any, search: any) {
+    this.gridApi_6.setRowData([]);
     this.loader.start();
     this.search = search;
     let searchs = this.search;
@@ -4399,7 +4400,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       ter_ins_name: [],
       ter_pol_id: [],
       bill_submit_date: [],
-      denial_code: []
+      denial_code: [],
     });
 
     /* this.reallocateClaimsFind = this.formBuilder.group({
@@ -4654,6 +4655,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     if(this.auth.tokenValue.value == true)
     {let data = localStorage.getItem('token');
     this.auth.login(data);}
+    this.gridApi_1.sizeColumnsToFit();
   }
 
   get_initial_values() {
@@ -5782,15 +5784,19 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     //   });
     // }
   }
-  paginationSizeValue:any = 10;
-  onPageSizeChanged() {
-    this.gridApi_1.paginationSetPageSize(Number(this.paginationSizeValue));
-    this.gridApi_2.paginationSetPageSize(Number(this.paginationSizeValue));
-    this.gridApi_3.paginationSetPageSize(Number(this.paginationSizeValue));
-    this.gridApi_4.paginationSetPageSize(Number(this.paginationSizeValue));
-    this.gridApi_5.paginationSetPageSize(Number(this.paginationSizeValue));
-    this.gridApi_6.paginationSetPageSize(Number(this.paginationSizeValue));
-
+  paginationSizeValue_createWorkOrders:any = 15;
+  paginationSizeValue_WorkOrders:any = 15;
+  paginationSizeValue_ClosedClaims:any = 15;
+  paginationSizeValue_Import:any = 15;
+  paginationSizeValue_reimport:any = 15;
+  paginationSizeValue_AllClaims:any = 15;
+  onPageSizeChanged(type:any) {
+    if(type=='create_work_orders'){this.gridApi_1.paginationSetPageSize(Number(this.paginationSizeValue_createWorkOrders));}
+    else if(type=='work_orders'){this.gridApi_2.paginationSetPageSize(Number(this.paginationSizeValue_WorkOrders));}
+    else if(type=='closed_claims'){this.gridApi_3.paginationSetPageSize(Number(this.paginationSizeValue_ClosedClaims));}
+    else if(type == 'import'){this.gridApi_4.paginationSetPageSize(Number(this.paginationSizeValue_Import));}
+    else if(type='reimport'){this.gridApi_5.paginationSetPageSize(Number(this.paginationSizeValue_reimport));}
+    else if(type=='all_claims'){this.gridApi_6.paginationSetPageSize(Number(this.paginationSizeValue_AllClaims));}
   }
 
   onSelectionChanged_WorkOrders(params: any) {
@@ -6707,8 +6713,6 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
 
-
-
   gridOptions1: GridOptions<gridData> = {
     defaultColDef: {
       sortable: true,
@@ -6719,26 +6723,8 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     suppressHorizontalScroll: false,
     suppressMovableColumns:true,
     pagination: true,
-    paginationPageSize:this.paginationSizeValue,
-    // getRowStyle: params => {
-    //   return { 'font-size': '11px', 'font-weight': '500' };
-    // }
-  };
-
-  gridOptions4: GridOptions<gridData> = {
-    defaultColDef: {
-      sortable: true,
-      filter: true
-    },
-    rowSelection: 'multiple',
-    rowHeight: 40 ,
-    suppressHorizontalScroll: true,
-    suppressMovableColumns:true,
-    pagination: true,
-    paginationPageSize: 15,
-    // getRowStyle: params => {
-    //   return { 'font-size': '11px', 'font-weight': '500' };
-    // }
+    paginationPageSize:this.paginationSizeValue_createWorkOrders,
+    suppressDragLeaveHidesColumns: true
   };
 
   gridOptions2: GridOptions<gridData> = {
@@ -6751,10 +6737,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     suppressHorizontalScroll: true,
     suppressMovableColumns:true,
     pagination: true,
-    paginationPageSize: 15,
-    // getRowStyle: params => {
-    //   return { 'font-size': '11px', 'font-weight': '500' };
-    // }
+    paginationPageSize: this.paginationSizeValue_WorkOrders,
   };
   gridOptions3: GridOptions<gridData> = {
     defaultColDef: {
@@ -6766,10 +6749,20 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     suppressHorizontalScroll: true,
     suppressMovableColumns:true,
     pagination: true,
-    paginationPageSize: 15,
-    // getRowStyle: params => {
-    //   return { 'font-size': '11px', 'font-weight': '500' };
-    // }
+    paginationPageSize:this.paginationSizeValue_ClosedClaims,
+  };
+  gridOptions4: GridOptions<gridData> = {
+    defaultColDef: {
+      sortable: true,
+      filter: true
+    },
+    rowSelection: 'multiple',
+    suppressDragLeaveHidesColumns: true,
+    rowHeight: 40 ,
+    suppressHorizontalScroll: true,
+    suppressMovableColumns:true,
+    pagination: true,
+    paginationPageSize:this.paginationSizeValue_Import,
   };
   gridOptions5: GridOptions<gridData> = {
     defaultColDef: {
@@ -6781,10 +6774,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     suppressHorizontalScroll: true,
     suppressMovableColumns:true,
     pagination: true,
-    paginationPageSize: 15,
-    // getRowStyle: params => {
-    //   return { 'font-size': '11px', 'font-weight': '500' };
-    // }
+    paginationPageSize:this.paginationSizeValue_reimport,
   };
   gridOptions6: GridOptions<gridData> = {
     defaultColDef: {
@@ -6796,10 +6786,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     suppressHorizontalScroll: true,
     suppressMovableColumns:true,
     pagination: true,
-    paginationPageSize: 15,
-    // getRowStyle: params => {
-    //   return { 'font-size': '11px', 'font-weight': '500' };
-    // }
+    paginationPageSize:this.paginationSizeValue_AllClaims,
   };
 
 
@@ -6841,7 +6828,8 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.currentPageData.push(node.data);
     });
 
-    this.resl_dta = this.GridData_CreateWorkOrders.slice(startIndex,endIndex);
+    if(this.new_cdtn){this.resl_dta = this.GridData_CreateWorkOrders.slice(startIndex,endIndex);}
+    else{this.resl_dta = []}
     console.log('currentPageData',this.resl_dta);
     const selectedNodes:any[] = this.gridApi_1.getSelectedNodes();
     // for(let i=0;i<selectedNodes.length;i++)
@@ -6878,7 +6866,7 @@ console.log("Total page:", totalPages);
       selectedNodes.forEach(node => node.setSelected(false));
     }
 
-      })
+    })
     });
   }
   setAutoHeight() {

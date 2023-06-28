@@ -7,6 +7,7 @@ import { AuthService } from '../../Services/auth.service';
 import { SetUserService } from '../../Services/set-user.service';
 import { DomSanitizer } from '@angular/platform-browser';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
@@ -31,6 +32,7 @@ export class ProfileComponent implements OnInit {
     public toastr: ToastrManager,
     private formBuilder: FormBuilder
   ) { }
+  bsConfig?: Partial<BsDatepickerConfig> = Object.assign({}, { containerClass: 'theme-default', rangeInputFormat: 'MM/DD/YYYY', dateInputFormat: 'MM/DD/YYYY', showWeekNumbers: false, isAnimated: true, adaptivePosition: true  });
 
 
 

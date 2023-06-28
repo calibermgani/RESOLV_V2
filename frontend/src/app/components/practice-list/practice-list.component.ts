@@ -59,6 +59,7 @@ export class PracticeListComponent implements OnInit {
 
 
   ngOnInit() {
+    // this.Auth.reset();
     // this.Auth.tokenValue.next(false);
     this.user_name=this.setus.getname();
     this.get_practices();

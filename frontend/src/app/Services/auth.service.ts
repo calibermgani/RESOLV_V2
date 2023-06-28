@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, of  } from 'rxjs';
+import { BehaviorSubject, Subscription, of  } from 'rxjs';
 import { TokenService } from './token.service';
 import { ActivatedRouteSnapshot, Router, RouterStateSnapshot } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
@@ -8,6 +8,9 @@ import { SetUserService } from './set-user.service';
 import { environment } from 'src/environments/environment';
 import { AuthGuard } from './auth-guard.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import {Idle, DEFAULT_INTERRUPTSOURCES} from '@ng-idle/core';
+import { ToastrManager } from 'ng6-toastr-notifications';
+import { Keepalive } from '@ng-idle/keepalive';
 @Injectable({
   providedIn: 'root'
 })
@@ -17,7 +20,7 @@ export class AuthService {
   public PracticelogIn = new BehaviorSubject<boolean>(false);
   authStatus = this.loggedIn.asObservable();
 
-  constructor(private Token: TokenService,private http: HttpClient,private myRoute: Router, private set_us :SetUserService,public loader: NgxUiLoaderService) { }
+  constructor(private Token: TokenService,private http: HttpClient,private myRoute: Router, private set_us :SetUserService,public loader: NgxUiLoaderService,private idle: Idle,public toastr: ToastrManager,private keepalive: Keepalive) { }
   practiceStatus = this.PracticelogIn.asObservable();
 
   public validate = new BehaviorSubject<boolean>(this.Token.isValid());
@@ -25,6 +28,10 @@ export class AuthService {
   private url = `${environment.apiUrl}`;
   //private url = 'http://127.0.0.1:8000/api';
   // private url: string =  'http://35.226.72.203/avecarm/backend/public/index.php/api';
+
+  reset() {
+    this.idle.watch();
+  }
 
     public errorhandler(data:any)
     {
@@ -37,6 +44,8 @@ export class AuthService {
     }
 
   public login(user:any) {
+    // if(this.myRoute.url !='/login'){}
+    this.idle.watch();
     // debugger
     let user_id=this.set_us.getId();
 
@@ -56,6 +65,8 @@ export class AuthService {
       let response = this.http.post(`${this.url}/checktoken`, user).pipe(map(response => response))
       .subscribe({
           next : (message:any) => {
+            this.idle.setIdle(message.expires_in);
+            console.log('Running',this.idle.isRunning());
             console.log('New Token',message.access_token);
 
            this.afterUserLog(message);this.changeAuthStatus(true);

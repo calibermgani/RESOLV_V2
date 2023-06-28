@@ -64,14 +64,17 @@
                   <div class="form-group row">
                      <label for="dob" class="col-sm-3 col-form-label">Date Of Birth <span class="ar-red">*</span></label>
                      <div class="col-sm-1"><strong>:</strong></div>
-                     <!-- <div class="col-sm-8">  just for now
-                        <input type="text" name="dob" class="form-control" id="dob" placeholder="MM-dd-yyyy" formControlName="dob" (focus)="dob.toggle()"  ngbDatepicker #dob="ngbDatepicker" required  autocomplete="off" [ngClass]="{ 'is-invalid': (submitted || f['dob'].touched) && f['dob'].errors }">
+                     <div class="col-sm-8">
+                        <!-- <input type="text" name="dob" class="form-control" id="dob" placeholder="MM-dd-yyyy" formControlName="dob" (focus)="dob.toggle()"  ngbDatepicker #dob="ngbDatepicker" required  autocomplete="off" [ngClass]="{ 'is-invalid': (submitted || f['dob'].touched) && f['dob'].errors }"> -->
+                        <input type="text" name="dob" id="dob" placeholder="MM-dd-yyyy" formControlName="dob"  placement="bottom" required  autocomplete="off"
+                                    class="form-control" id="data-picker" bsDatepicker
+                                    [bsConfig]="bsConfig"  [ngClass]="{ 'is-invalid': (submitted || f['dob'].touched) && f['dob'].errors }">
                         <div *ngIf="(f['dob'].touched || submitted) && f['dob'].errors">
                            <div *ngIf="f['dob'].errors['required']" class="error text-left">
                               Date of birth is required
                            </div>
                         </div>
-                     </div> -->
+                     </div>
                   </div>
                   <div class="card-header">
                      <h4>   Contact Information</h4>
@@ -377,10 +380,10 @@
                   </div>
                   <!--  <div class="form-group row">
                      <label for="role" class="col-sm-2 col-form-label">Role</label>
-                     
+
                         <div class="col-sm-10">
-                     
-                     
+
+
                      <select class="form-control" formControlName="role" id="role" required>
                      <option  *ngFor="let r of roles" [ngValue]="r.id" > {{r.role_name}} </option>
                      </select>

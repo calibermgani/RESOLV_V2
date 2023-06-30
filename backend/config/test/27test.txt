@@ -1,0 +1,1 @@
+{"patient_name":[true,"notify"],"responsibility":[true,"notify"],"insurance_type":[true,"notify"],"total_ar_due":[true,"notify"]}

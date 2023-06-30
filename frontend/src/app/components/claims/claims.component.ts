@@ -6831,6 +6831,9 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     if(this.new_cdtn){this.resl_dta = this.GridData_CreateWorkOrders.slice(startIndex,endIndex);}
     else{this.resl_dta = []}
     console.log('currentPageData',this.resl_dta);
+    for (let i = 0; i < this.resl_dta.length; i++) {
+      this.selected_claim_nos.push(this.resl_dta?.[i].claim_no);
+    }
     const selectedNodes:any[] = this.gridApi_1.getSelectedNodes();
     // for(let i=0;i<selectedNodes.length;i++)
     // console.log('selectedNodes',selectedNodes?.[i].data);

@@ -1,10 +1,5 @@
 <span *ngIf="!loggedIn">
   <app-login></app-login>
-  <!-- <div class="selva">
-    <p><strong>{{idleState}}</strong></p>
-  <p *ngIf="lastPing"><small>Last keepalive ping <strong>{{lastPing }}</strong></small></p>
-  <button (click)="reset()" *ngIf="timedOut">Restart</button>
-  </div> -->
   <app-footer></app-footer>
 </span>
 
@@ -30,11 +25,6 @@
           <section class="content no-padding">
             <div class="row">
               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <!-- <div class="selva">
-                  <p><strong>{{idleState}}</strong></p>
-                <p *ngIf="lastPing"><small>Last keepalive ping <strong>{{lastPing }}</strong></small></p>
-                <button (click)="reset()" *ngIf="timedOut">Restart</button>
-                </div> -->
                 <router-outlet></router-outlet>
               </div>
             </div>

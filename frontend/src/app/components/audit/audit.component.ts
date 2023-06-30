@@ -3753,7 +3753,7 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
     enablePivot: true,
     enableValue: true,
     sortable: true,
-    resizable: true,
+    resizable: false,
   };
 
   public gridApi_1!: GridApi;
@@ -3806,6 +3806,9 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
 
     this.resl_dta = this.GridrowData1.slice(startIndex,endIndex);
     console.log('currentPageData',this.resl_dta);
+    for (let i = 0; i < this.resl_dta.length; i++) {
+      this.selected_claim_nos.push(this.resl_dta?.[i].claim_no);
+    }
     const selectedNodes:any[] = this.gridApi_1.getSelectedNodes();
     // for(let i=0;i<selectedNodes.length;i++)
     // console.log('selectedNodes',selectedNodes?.[i].data);
@@ -3936,12 +3939,11 @@ console.log("Total page:", totalPages);
     },
     rowSelection: 'multiple',
     rowHeight: 34,
-    suppressHorizontalScroll: true,
+    suppressHorizontalScroll: false,
+    suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_AuditQue,
-    getRowStyle: params => {
-      return { 'font-size': '11px', 'font-weight': '500' };
-    }
+    suppressDragLeaveHidesColumns: true,
   };
   gridOptions2: GridOptions = {
     defaultColDef: {
@@ -3950,12 +3952,11 @@ console.log("Total page:", totalPages);
     },
     rowSelection: 'multiple',
     rowHeight: 34,
-    suppressHorizontalScroll: true,
+    suppressHorizontalScroll: false,
+    suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_WorkOrders,
-    getRowStyle: params => {
-      return { 'font-size': '11px', 'font-weight': '500' };
-    }
+    suppressDragLeaveHidesColumns: true,
   };
   gridOptions3: GridOptions = {
     defaultColDef: {
@@ -3964,12 +3965,11 @@ console.log("Total page:", totalPages);
     },
     rowSelection: 'multiple',
     rowHeight: 34,
-    suppressHorizontalScroll: true,
+    suppressHorizontalScroll: false,
+    suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_AssignmedClaims,
-    getRowStyle: params => {
-      return { 'font-size': '11px', 'font-weight': '500' };
-    }
+    suppressDragLeaveHidesColumns: true,
   };
   gridOptions4: GridOptions = {
     defaultColDef: {
@@ -3978,12 +3978,11 @@ console.log("Total page:", totalPages);
     },
     rowSelection: 'multiple',
     rowHeight: 34,
-    suppressHorizontalScroll: true,
+    suppressHorizontalScroll: false,
+    suppressMovableColumns:true,
     pagination: true,
     paginationPageSize: this.paginationSizeValue_ClosedClaims,
-    getRowStyle: params => {
-      return { 'font-size': '11px', 'font-weight': '500' };
-    }
+    suppressDragLeaveHidesColumns: true,
   };
 
   openModal(model_name: TemplateRef<any>) {

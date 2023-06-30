@@ -3080,7 +3080,7 @@ public updatenotes(type:any){
     enablePivot: true,
     enableValue: true,
     sortable: true,
-    resizable: true,
+    resizable: false,
   };
 
   gridOptions1: GridOptions = {
@@ -3090,12 +3090,11 @@ public updatenotes(type:any){
     },
     rowSelection: 'multiple',
     rowHeight: 34,
-    suppressHorizontalScroll: true,
+    suppressHorizontalScroll: false,
+    suppressMovableColumns:true,
     pagination: true,
     paginationPageSize: this.paginationSizeValue_assigned,
-    getRowStyle: params => {
-      return { 'font-size': '11px', 'font-weight': '500' };
-    }
+    suppressDragLeaveHidesColumns: true,
   };
   gridOptions2: GridOptions = {
     defaultColDef: {
@@ -3104,12 +3103,11 @@ public updatenotes(type:any){
     },
     rowSelection: 'multiple',
     rowHeight: 34,
-    suppressHorizontalScroll: true,
+    suppressHorizontalScroll: false,
+    suppressMovableColumns:true,
     pagination: true,
     paginationPageSize: this.paginationSizeValue_reworked,
-    getRowStyle: params => {
-      return { 'font-size': '11px', 'font-weight': '500' };
-    }
+    suppressDragLeaveHidesColumns: true,
   };
 
   gridOptions3: GridOptions = {
@@ -3119,12 +3117,11 @@ public updatenotes(type:any){
     },
     rowSelection: 'multiple',
     rowHeight: 34,
-    suppressHorizontalScroll: true,
+    suppressHorizontalScroll: false,
+    suppressMovableColumns:true,
     pagination: true,
     paginationPageSize: this.paginationSizeValue_closed,
-    getRowStyle: params => {
-      return { 'font-size': '11px', 'font-weight': '500' };
-    }
+    suppressDragLeaveHidesColumns: true,
   };
 
   onGridReady_1(params: GridReadyEvent) {

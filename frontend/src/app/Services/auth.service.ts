@@ -44,8 +44,7 @@ export class AuthService {
     }
 
   public login(user:any) {
-    // if(this.myRoute.url !='/login'){}
-    this.idle.watch();
+    if(this.myRoute.url !='/login'){this.idle.watch();}
     // debugger
     let user_id=this.set_us.getId();
 
@@ -65,7 +64,11 @@ export class AuthService {
       let response = this.http.post(`${this.url}/checktoken`, user).pipe(map(response => response))
       .subscribe({
           next : (message:any) => {
+            // // sets an idle timeout of 30 seconds, for testing purposes.
+            console.log('Expire Time',message.expires_in);
             this.idle.setIdle(message.expires_in);
+            // // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.
+            // this.idle.setTimeout(5);
             console.log('Running',this.idle.isRunning());
             console.log('New Token',message.access_token);
 
@@ -260,7 +263,6 @@ export class AuthService {
       localStorage.removeItem('pr_name');
       localStorage.removeItem('prac_storage');
       this.myRoute.navigate(["practiceList"]);
-
     }
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 import { JarwisService } from '../../Services/jarwis.service';
 import { TokenService } from '../../Services/token.service';
 import { Router } from '@angular/router';
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
     private setus: SetUserService,
     private http: HttpClient,
     public toastr: ToastrManager,
-
+    private renderer: Renderer2
   ) { }
 
   onSubmit() {
@@ -36,6 +36,11 @@ export class LoginComponent implements OnInit {
 
   //   this.router.navigateByUrl('/practiceList');
   // });
+  this.dynamicStylesheet = document.createElement('link');
+      this.dynamicStylesheet.rel = 'stylesheet';
+      this.dynamicStylesheet.type = 'text/css';
+      this.dynamicStylesheet.href = '/assets/bower_components/bootstrap/dist/css/bootstrap.min.css';
+      document.head.appendChild(this.dynamicStylesheet);
 
     this.Jarwis.login(this.form).subscribe(
       data => this.handleResponse(data),
@@ -79,11 +84,18 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  private dynamicStylesheet: HTMLLinkElement | null = null;
   ngOnInit() {
+    // if (window.location.pathname === '/login') {
+    //   this.dynamicStylesheet = document.createElement('link');
+    //   this.dynamicStylesheet.rel = 'stylesheet';
+    //   this.dynamicStylesheet.type = 'text/css';
+    //   this.dynamicStylesheet.href = '/assets/dist/css/main/css/main.css';
+    //   document.head.appendChild(this.dynamicStylesheet);
+    // }
     this.auth.tokenValue.next(true);
   }
   ngAfterViewInit() {
-
     console.log('LAST IN LOGIN COMP');
 
     // this.auth.tokenValue.next(true);
@@ -91,4 +103,10 @@ export class LoginComponent implements OnInit {
     {let data = localStorage.getItem('token');
     this.auth.login(data);}
   }
+
+  // ngOnDestroy(){
+  //   if (this.dynamicStylesheet) {
+  //     document.head.removeChild(this.dynamicStylesheet);
+  //   }
+  // }
 }

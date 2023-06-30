@@ -1,3 +1,4 @@
+import { Idle } from '@ng-idle/core';
 import { Component, OnInit,ElementRef, ViewChild, AfterViewInit, ChangeDetectorRef } from '@angular/core';
 import { AuthService } from '../../Services/auth.service';
 import { Router } from '@angular/router';
@@ -37,6 +38,7 @@ export class HeaderComponent implements OnInit  {
     private modalService: NgbModal,
     private cd: ChangeDetectorRef,
     private Jarwis: JarwisService,
+    private idle : Idle
   ) {
     this.observalble=this.setus.update_role().subscribe(message => {this.user_type = message, this.update_user_role()} );
 
@@ -64,6 +66,7 @@ update_user_role()
 
 
   logout(event: MouseEvent){
+    this.idle.stop();
     event.preventDefault();
     this.Token.remove();
     localStorage.clear();

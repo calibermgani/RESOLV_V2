@@ -683,10 +683,8 @@ export class DashboardComponent implements OnInit {
   //         },
   //     ]
   // }
-
   ngOnInit() {
     console.log('Dashboard in');
-
     // this.auth.tokenValue.next(false);
     // this.assign_err(this.setus.get_error());
     // this.process_notify(this.notify_service.getuser_Id());

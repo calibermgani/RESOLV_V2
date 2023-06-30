@@ -1,4 +1,4 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit, Renderer2 } from '@angular/core';
 import { AuthService } from './Services/auth.service';
 import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
@@ -18,13 +18,10 @@ export class AppComponent implements AfterViewInit {
 
   loggedIn: any;
   waitingForeground: any;
-  idleState = 'Not started.';
-  timedOut = false;
-  lastPing!: Date;
   subscibe!: Subscription;
   URL :any
 
-  constructor(private Auth: AuthService, private idle: Idle, private keepalive: Keepalive, private route: Router,private activated_route:ActivatedRoute, private Token: TokenService, public toastr: ToastrManager) {
+  constructor(private Auth: AuthService, private idle: Idle, private keepalive: Keepalive, private route: Router,private activated_route:ActivatedRoute, private Token: TokenService, public toastr: ToastrManager,private renderer: Renderer2) {
     this.Auth.authStatus.subscribe(value => this.loggedIn = value);
     // this.new_auth._loggedIn.subscribe(value => this.loggedIn = value);
     console.log('loggin', this.loggedIn);
@@ -42,46 +39,41 @@ export class AppComponent implements AfterViewInit {
     }
   });
 
-  // this.idle.setIdle(8);
+  // sets an idle timeout of 30 seconds, for testing purposes.
+
   // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.
-  this.idle.setTimeout(8);
+  this.idle.setTimeout(5);
   // sets the default interrupts, in this case, things like clicks, scrolls, touches to the document
   this.idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);
 
-
-  this.idle.onIdleEnd.subscribe(() => this.idleState = 'No longer idle.');
   this.idle.onTimeout.subscribe(() => {
-    this.idleState = 'Timed out!';
-    this.timedOut = true;
     this.Token.remove();
     localStorage.clear();
     this.Auth.changeAuthStatus(false);
+    this.Auth.changePractice();
     this.route.navigateByUrl('/login');
     this.subscibe.unsubscribe();
   });
-  this.idle.onIdleStart.subscribe(() => this.idleState = 'You\'ve gone idle!');
   this.idle.onTimeoutWarning.subscribe((countdown) => {
-    this.idleState = 'You will time out in ' + countdown + ' seconds!';
-    if(countdown ==1 ){
-      // this.toastr.errorToastr('You will time out in ' + countdown + ' seconds!')
-      this.toastr.errorToastr('You have logged out because of inactivity!');
+    // this.toastr.errorToastr('You will time out in ' + countdown + ' seconds!')
+    if(countdown<=1 ){
+      this.toastr.infoToastr('You have logged out because of inactivity!','',{
+        toastTimeout:10000,
+      });
     }
   });
 
 
   // sets the ping interval to 15 seconds
   this.keepalive.interval(15);
-
-  this.keepalive.onPing.subscribe(() => this.lastPing = new Date());
-
-
-
   }
-
-  reset() {
-    this.idle.watch();
-    this.idleState = 'Started.';
-    this.timedOut = false;
+  private dynamicStylesheet: HTMLLinkElement | null = null;
+  ngOnInit(){
+    // this.dynamicStylesheet = document.createElement('link');
+    // this.dynamicStylesheet.rel = 'stylesheet';
+    // this.dynamicStylesheet.type = 'text/css';
+    // this.dynamicStylesheet.href = '/assets/bower_components/bootstrap/dist/css/bootstrap.min.css';
+    // document.head.appendChild(this.dynamicStylesheet);
   }
 
   ngAfterViewInit(): void {

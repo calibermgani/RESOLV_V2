@@ -2176,18 +2176,14 @@
                                  </div>
                               </div>
                            </div>
+                           <div  class="collapse" [collapse]="isCollapsed_Grid3" [isAnimated]="true">
+                            <ag-grid-angular class="ag-theme-alpine  no-grid-lines" [columnDefs]="columnDefs3" [gridOptions]="gridOptions3" #myGrid_3
+                            (gridReady)="onGridReady_3($event)" [defaultColDef]="defaultColDef"
+                            (selectionChanged)="onSelectionChanged_closedClaims($event)"></ag-grid-angular>
+                          </div>
+
                         </div>
                      </div>
-
-
-
-                    <div  class="collapse" [collapse]="isCollapsed_Grid3" [isAnimated]="true">
-                      <ag-grid-angular class="ag-theme-alpine  no-grid-lines" [columnDefs]="columnDefs3" [gridOptions]="gridOptions3" #myGrid_3
-                      (gridReady)="onGridReady_3($event)" [defaultColDef]="defaultColDef"
-                      (selectionChanged)="onSelectionChanged_closedClaims($event)"></ag-grid-angular>
-                    </div>
-
-
                   </div>
                </div>
             </div>

@@ -32,16 +32,6 @@ export class LoginComponent implements OnInit {
   ) { }
 
   onSubmit() {
-  // this.new_Auth.login(this.form).subscribe((response:any) => {
-
-  //   this.router.navigateByUrl('/practiceList');
-  // });
-  this.dynamicStylesheet = document.createElement('link');
-      this.dynamicStylesheet.rel = 'stylesheet';
-      this.dynamicStylesheet.type = 'text/css';
-      this.dynamicStylesheet.href = '/assets/bower_components/bootstrap/dist/css/bootstrap.min.css';
-      document.head.appendChild(this.dynamicStylesheet);
-
     this.Jarwis.login(this.form).subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)

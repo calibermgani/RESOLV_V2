@@ -11,10 +11,23 @@ export class ResetPasswordComponent {
   confirmPassword: string = '';
 
   resetPassword(){
-    if(this.newPassword == this.confirmPassword){
-      console.log('Password correct')
-    }else{
-      console.log('Check Your New and Confirm Password')
+    if (this.newPassword !== this.confirmPassword) {
+      console.log("New password and confirm password do not match.");
+      return;
     }
+
+    if (!this.isPasswordStrong(this.newPassword)) {
+      console.log("Password is not strong enough.");
+      return;
+    }
+
+
   }
+
+  isPasswordStrong(password: string): boolean {
+
+    const passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+    return passwordRegex.test(password);
+  }
+
 }

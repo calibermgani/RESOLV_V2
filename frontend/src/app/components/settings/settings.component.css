@@ -87,9 +87,9 @@ fieldset[disabled] input[type=checkbox], fieldset[disabled] input[type=radio], i
 .box-tools {
   margin-left: -15px;
 }
-td {
+/* td {
   padding: 9px 8px 1px !important;
-}
+} */
 
 td:last-child {
   padding: 5px 8px !important;

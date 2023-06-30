@@ -565,7 +565,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   handleResponse(data: any) {
     console.log(data);
     if(data){
-      this.GridData_Import = data.message;
+      this.GridData_Import = data;
       this.myGrid_4.api.setRowData(this.GridData_Import);
       console.log('GridData_Import',this.GridData_Import);
 
@@ -573,7 +573,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.roles = data.message;
     console.log('Rols',this.roles);
     this.latest_id = data.latest_id;
-    this.importedfile = (data.message.filter((x: any) => x.id == this.latest_id));
+    this.importedfile = (data.filter((x: any) => x.id == this.latest_id));
     console.log(this.importedfile);
     this.importedfile.forEach((element: any) => {
       this.importProcessed = element.processed;
@@ -6358,7 +6358,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     {
       field: 'file_name',
       headerName: 'File Name',
-      width:500,
+      width:800,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',

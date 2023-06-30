@@ -33,6 +33,7 @@ import { MedcubicsIntegComponent } from './components/medcubics-integ/medcubics-
 import { RolesComponent } from './components/roles/roles.component';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule,NgxUiLoaderConfig, POSITION, SPINNER, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -65,6 +66,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     ErrorLogComponent,
     MedcubicsIntegComponent,
     RolesComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     NgIdleKeepaliveModule.forRoot(),

@@ -91,27 +91,30 @@
               <li class="user-header">
                 <img src="assets/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
-                <p>
+                <p style="margin-bottom: 3px;">
                   {{user}}
-                  <small>{{user_role}}</small>
+                  <small style="font-size: 15px;">{{user_role}}</small>
                 </p>
+                <a href="/reset-password" class="pass_reset">Reset Password</a>
+
               </li>
-              <!-- Menu Body -->
-              <li class="user-body hide">
-                <div class="row">
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Followers</a>
+                <!-- Menu Body -->
+                <li class="user-body hide">
+                  <div class="row">
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Followers</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Sales</a>
+                    </div>
+                    <div class="col-xs-4 text-center">
+                      <a href="#">Friends</a>
+                    </div>
                   </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Sales</a>
-                  </div>
-                  <div class="col-xs-4 text-center">
-                    <a href="#">Friends</a>
-                  </div>
-                </div>
-                <!-- /.row -->
-              </li>
-              <!-- Menu Footer-->
+                  <!-- /.row -->
+                </li>
+                <!-- Menu Footer-->
+
               <li class="user-footer">
                 <div class="pull-left">
                   <a routerLink="/profile" class="btn btn-default btn-flat">Profile</a>

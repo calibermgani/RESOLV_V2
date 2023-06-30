@@ -12,6 +12,6 @@ class File_upload extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'id', 'report_date', 'file_name', 'unique_name', 'file_url', 'notes', 'total_claims', 'new_claims', 'Import_by', 'claims_processed', 'status', 'deleted_at'
+        'id', 'report_date', 'file_name', 'unique_name', 'file_url', 'notes', 'total_claims', 'new_claims', 'Import_by', 'claims_processed', 'status'
     ];
 }

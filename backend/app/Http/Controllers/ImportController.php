@@ -63,21 +63,21 @@ class ImportController extends Controller
             $savedata = $request->file('file_name');
             $filenames = $request->file('file_name')->getClientOriginalName();
             $user = $request->get('user_id');
-            #$unique_name = md5($filenames . time());
-            $unique_name = $filenames;
+            $unique_name = md5($filenames . time());
             $filename = date('Y-m-d') . '_' . $filenames;
             $path = "../uploads";
             $savedata->move($path, $unique_name);
             $path = "../uploads/" . $unique_name;
-            $path1 = "../uploads/mystore/";
             $report_date = $request->get('report_date');
             $notes = $request->get('notes');
 
-            $importClaims = new ImportClaims($filename, $report_date, $notes, $user, $unique_name, $practice_dbid);
+            $importClaims = new ImportNewClaims($filename, $report_date, $notes, $user, $unique_name, $practice_dbid);
+            // Excel::import(new ImportClaims, $filenames);
+            Excel::import($importClaims, $request->file('file_name')->store('files'));
 
-            Excel::import($importClaims, $filenames);
+            // Excel::import($importClaims, $filenames);
             Log::info('upload checking');
-            Log::debug(print_r($importClaims, true));
+            // Log::debug(print_r($importClaims, true));
 
             return response()->json([
                 // 'message' =>  $importClaims,
@@ -1074,7 +1074,7 @@ class ImportController extends Controller
 
             $filedata = File_upload::orderBy('id', 'desc')->get();
             $latest = File_upload::orderBy('id', 'desc')->take(1)->first();
-
+            return $filedata;
             if($filedata->isNotEmpty()) {
                 $fileUploadData = [];
                 $i = 0;

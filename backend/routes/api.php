@@ -11,6 +11,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\GraphController;
+use App\Http\Controllers\ImportClaimsController;
 use App\Http\Controllers\ImportController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PracticeController;
@@ -62,7 +63,8 @@ Route::group([
     Route::post('setimage', [ProfileController::class, 'setimage']);
     Route::post('updateprofile', [ProfileController::class, 'updateprofile']);
 
-    Route::post('upload', [ImportController::class, 'upload']);
+    // Route::post('upload', [ImportController::class, 'upload']);
+    Route::post('upload', [ImportClaimsController::class, 'upload']);
     Route::post('get_upload_table_page', [ImportController::class, 'get_upload_table_page']);
     Route::post('getfile', [ImportController::class, 'getfile']);
     Route::post('template', [ImportController::class, 'template']);

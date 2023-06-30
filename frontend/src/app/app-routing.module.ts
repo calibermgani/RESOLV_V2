@@ -15,12 +15,18 @@ import { ErrorLogComponent } from './components/error-log/error-log.component';
 import { MedcubicsIntegComponent } from './components/medcubics-integ/medcubics-integ.component';
 import { RolesComponent } from './components/roles/roles.component';
 import { ClientAssistanceComponent } from './components/client-assistance/client-assistance.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 
 const approutes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
     canActivate: [BeforeLoginService],
+  },
+  {
+    path: 'reset-password',
+    component: ResetPasswordComponent,
+    canActivate: [AuthGuard]
   },
   // {
   //   path: 'dashboard',

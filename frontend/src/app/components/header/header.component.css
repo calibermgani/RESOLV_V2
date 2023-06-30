@@ -22,3 +22,14 @@
     cursor: default;
   }
 
+  .pass_reset{
+    display: inline;
+    color:#dee3e4;
+    font-size: 12px;
+    text-decoration: underline;
+  }
+
+  .dropdown-menu>li>a.pass_reset:hover{
+    background-color: transparent !important;
+  }
+

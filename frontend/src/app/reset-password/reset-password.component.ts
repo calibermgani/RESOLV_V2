@@ -10,7 +10,11 @@ export class ResetPasswordComponent {
   newPassword: string = '';
   confirmPassword: string = '';
 
-  resetPassword(): void {
-
+  resetPassword(){
+    if(this.newPassword == this.confirmPassword){
+      console.log('Password correct')
+    }else{
+      console.log('Check Your New and Confirm Password')
+    }
   }
 }

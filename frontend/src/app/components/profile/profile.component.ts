@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormControl, FormGroup, Validators, FormBuilder } from "@angular/forms";
 import { JarwisService } from '../../Services/jarwis.service';
 import { TokenService } from '../../Services/token.service';
@@ -14,7 +14,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
   styleUrls: ['./profile.component.css']
 })
 
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit,AfterViewInit {
   url:any ;
   public len:any = null;
   // public notification = null;
@@ -30,7 +30,7 @@ export class ProfileComponent implements OnInit {
     private setus: SetUserService,
     private sanitizer:DomSanitizer,
     public toastr: ToastrManager,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
   ) { }
   bsConfig?: Partial<BsDatepickerConfig> = Object.assign({}, { containerClass: 'theme-default', rangeInputFormat: 'MM/DD/YYYY', dateInputFormat: 'MM/DD/YYYY', showWeekNumbers: false, isAnimated: true, adaptivePosition: true  });
 
@@ -241,5 +241,11 @@ public handleError(error:any) {
         state: ['', [Validators.required, Validators.pattern(/^[A-Za-z ]+$/)]],
         zip: ['', [Validators.required, Validators.pattern(/^[0-9-]*$/)]]
       });
+    }
+
+    ngAfterViewInit(): void {
+      if(this.auth.tokenValue.value == true)
+      {let data = localStorage.getItem('token');
+      this.auth.login(data);}
     }
 }

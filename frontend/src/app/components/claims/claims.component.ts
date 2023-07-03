@@ -239,6 +239,14 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
 
+  paginationSizeValue_createWorkOrders:any = 15;
+  paginationSizeValue_WorkOrders:any = 15;
+  paginationSizeValue_ClosedClaims:any = 15;
+  paginationSizeValue_Import:any = 15;
+  paginationSizeValue_reimport:any = 15;
+  paginationSizeValue_AllClaims:any = 15;
+
+
   constructor(private formBuilder: FormBuilder,
     private Jarwis: JarwisService,
     private setus: SetUserService,
@@ -567,6 +575,13 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     if(data){
       this.GridData_Import = data;
       this.myGrid_4.api.setRowData(this.GridData_Import);
+      this.setAutoHeight();
+      console.log('GridData_Import',this.GridData_Import);
+
+    }
+    else{
+      this.myGrid_4.api.setRowData([]);
+      this.setAutoHeight();
       console.log('GridData_Import',this.GridData_Import);
 
     }
@@ -612,7 +627,14 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.GridData_ReImport = data.message;
       this.myGrid_5.api.setRowData(this.GridData_ReImport);
       this.loader.stop();
+      this.setAutoHeight();
       console.log('GridData_Import',this.GridData_Import);
+    }
+    else{
+      this.GridData_ReImport = data.message;
+      this.myGrid_5.api.setRowData([]);
+      this.loader.stop();
+      this.setAutoHeight();
     }
     this.reimport_roles = data.message;
     console.log(this.reimport_roles);
@@ -3205,6 +3227,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     else {
       this.GridData_CreateWorkOrders = []
       this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
+      this.setAutoHeight();
       this.loader.stop();
     }
 
@@ -3215,12 +3238,14 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       console.log('INNNN');
       this.GridData_AllClaims = data.data;
       this.myGrid_6.api?.setRowData(this.GridData_AllClaims);
+      this.setAutoHeight();
       this.loader.stop();
     }
     else
     {
       this.GridData_AllClaims = [];
       this.myGrid_6.api?.setRowData(this.GridData_AllClaims);
+      this.setAutoHeight();
       this.loader.stop();
     }
     if(data){
@@ -3612,6 +3637,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.GridData_ClosedClaims = data.data;
       this.myGrid_3.api.setRowData(this.GridData_ClosedClaims);
       this.loader.stop();
+      this.setAutoHeight();
       console.log('GridRowData',this.GridData_ClosedClaims);
       this.closed_claim_data = data.closed_claim_data;
       this.closed_total = data.count;
@@ -3622,6 +3648,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     else
     {
       this.GridData_ClosedClaims = [];
+      this.setAutoHeight();
       this.myGrid_3.api.setRowData(this.GridData_ClosedClaims);
       this.loader.stop();
     }
@@ -3887,18 +3914,20 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   //   this.myGrid_1.api?.refreshCells({force : true});
   // }
 
-  reload_datas(page: any) {
+  reload_datas(page: any,type:any) {
 
     this.pages = page;
 
-    this.Jarwis.get_upload_table_page(page, 15).subscribe(
-      data => this.handleResponse(data),
-      error => this.handleError(error)
-    );
+    if(type=='import'){
+      this.Jarwis.get_upload_table_page(page, 15).subscribe(
+        data => this.handleResponse(data),
+        error => this.handleError(error)
+      );
+    }
 
     console.log(this.modalService.hasOpenModals());
     if (this.modalService.hasOpenModals() == false) {
-      this.pageChange(this.pages, 'claim', null, null, 'null', 'null', null, 'null');
+      // this.pageChange(this.pages, 'claim', null, null, 'null', 'null', null, 'null');
 
       // for (let i = 0; i < this.selected_claim_data.length; i++) {
       //   let claim = this.selected_claim_data[i]['claim_no'];
@@ -3910,10 +3939,10 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
 
       let page_count = 15;
 
-      this.Jarwis.get_table_page(null, this.pages, page_count, null, null, null, null, null).subscribe(
-        data => this.assign_page_data(data),
-        error => this.handleError(error)
-      );
+      //   this.Jarwis.get_table_page(null, this.pages, page_count, null, null, null, null, null).subscribe(
+      //     data => this.assign_page_data(data),
+      //     error => this.handleError(error)
+      //   );
 
       this.checkboxes.forEach((element) => {
         element.nativeElement.checked = false;
@@ -4315,6 +4344,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   user_name: any;
   ngOnInit() {
     // this.auth.tokenValue.next(true);
+    this.get_statuscodes();
     console.log("YESSSSSSSSSSSSSSSSS");
     // pageChange(1,'claim','null','null','null','null','null','null')
     // this.Jarwis.get_table_page(1, 'claim', 'null', 'null', 'null', 'null', 'null', 'null').subscribe((data: any) => {
@@ -4656,6 +4686,11 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     {let data = localStorage.getItem('token');
     this.auth.login(data);}
     this.gridApi_1.sizeColumnsToFit();
+    this.gridApi_2.sizeColumnsToFit();
+    this.gridApi_3.sizeColumnsToFit();
+    this.gridApi_4.sizeColumnsToFit();
+    this.gridApi_5.sizeColumnsToFit();
+    this.gridApi_6.sizeColumnsToFit();
   }
 
   get_initial_values() {
@@ -5784,12 +5819,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     //   });
     // }
   }
-  paginationSizeValue_createWorkOrders:any = 15;
-  paginationSizeValue_WorkOrders:any = 15;
-  paginationSizeValue_ClosedClaims:any = 15;
-  paginationSizeValue_Import:any = 15;
-  paginationSizeValue_reimport:any = 15;
-  paginationSizeValue_AllClaims:any = 15;
+
   onPageSizeChanged(type:any) {
     if(type=='create_work_orders'){this.gridApi_1.paginationSetPageSize(Number(this.paginationSizeValue_createWorkOrders));}
     else if(type=='work_orders'){this.gridApi_2.paginationSetPageSize(Number(this.paginationSizeValue_WorkOrders));}
@@ -7184,7 +7214,7 @@ console.log("Total page:", totalPages);
         break;
       }
       case 'settings': {
-       this.process_uld_file(this.rowValue_ID_4?.[0].path);
+       this.process_uld_file(this.rowValue_ID_4?.[0].id);
        this.openModal(this.page2);
         break;
       }

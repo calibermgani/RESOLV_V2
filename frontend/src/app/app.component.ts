@@ -52,7 +52,7 @@ export class AppComponent implements AfterViewInit {
     this.Auth.changeAuthStatus(false);
     this.Auth.changePractice();
     this.route.navigateByUrl('/login');
-    this.subscibe.unsubscribe();
+    // this.subscibe.unsubscribe();
   });
   this.idle.onTimeoutWarning.subscribe((countdown) => {
     // this.toastr.errorToastr('You will time out in ' + countdown + ' seconds!')

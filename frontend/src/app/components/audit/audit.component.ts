@@ -3924,11 +3924,11 @@ console.log("Total page:", totalPages);
   paginationSizeValue_WorkOrders:number = 15;
   paginationSizeValue_AssignmedClaims:number = 15;
   paginationSizeValue_ClosedClaims:number = 15;
-  onPageSizeChanged() {
-    this.gridApi_1.paginationSetPageSize(Number(this.paginationSizeValue_AuditQue));
-    this.gridApi_2.paginationSetPageSize(Number(this.paginationSizeValue_WorkOrders));
-    this.gridApi_3.paginationSetPageSize(Number(this.paginationSizeValue_AssignmedClaims));
-    this.gridApi_4.paginationSetPageSize(Number(this.paginationSizeValue_ClosedClaims));
+  onPageSizeChanged(type:any) {
+    if(type=='audit_que'){this.gridApi_1.paginationSetPageSize(Number(this.paginationSizeValue_AuditQue));}
+    else if(type=='work_orders'){this.gridApi_2.paginationSetPageSize(Number(this.paginationSizeValue_WorkOrders));}
+    else if(type=='assigned_claims'){this.gridApi_3.paginationSetPageSize(Number(this.paginationSizeValue_AssignmedClaims));}
+    else if(type=='closed_claims'){this.gridApi_4.paginationSetPageSize(Number(this.paginationSizeValue_ClosedClaims));}
   }
 
 

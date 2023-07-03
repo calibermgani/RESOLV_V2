@@ -73,16 +73,7 @@ export class LoginComponent implements OnInit {
 
     })
   }
-
-  private dynamicStylesheet: HTMLLinkElement | null = null;
   ngOnInit() {
-    // if (window.location.pathname === '/login') {
-    //   this.dynamicStylesheet = document.createElement('link');
-    //   this.dynamicStylesheet.rel = 'stylesheet';
-    //   this.dynamicStylesheet.type = 'text/css';
-    //   this.dynamicStylesheet.href = '/assets/dist/css/main/css/main.css';
-    //   document.head.appendChild(this.dynamicStylesheet);
-    // }
     this.auth.tokenValue.next(true);
   }
   ngAfterViewInit() {

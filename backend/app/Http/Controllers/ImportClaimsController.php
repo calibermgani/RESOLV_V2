@@ -35,7 +35,7 @@ class ImportClaimsController extends Controller
             // Filename to store
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
 
-            $savedata->storeAs('public/uploads/', $unique_name);
+            $savedata->storeAs('public/uploads/', $fileNameToStore);
             // $filePath = Storage::disk('public')->put('uploads', $fileName);
             // $path = $savedata->storeAs('uploads', $unique_name);
             // $savedata->move($path, $unique_name);
@@ -43,7 +43,7 @@ class ImportClaimsController extends Controller
             $report_date = $request->get('report_date');
             $notes = $request->get('notes');
 
-            $importClaims = new ImportNewClaims($modify_filename, $report_date, $notes, $user, $unique_name, $practice_dbid);
+            $importClaims = new ImportNewClaims($modify_filename, $report_date, $notes, $user, $fileNameToStore, $practice_dbid);
 
             Excel::import($importClaims, $request->file('file_name')->store('files'));
 

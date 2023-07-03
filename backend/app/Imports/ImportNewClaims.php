@@ -59,7 +59,7 @@ class ImportNewClaims implements ToCollection, WithHeadingRow
 
         $upd_line_items = [];
 
-        $path = storage_path('app/public/uploads/' . $this->fileNameToStore);;
+        $path = $this->fileNameToStore;
 
         $count = 1;
         $array = $collections->toArray();

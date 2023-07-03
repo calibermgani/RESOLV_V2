@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Helpers\Record_claim_history;
 use App\Imports\ImportClaims;
 use App\Imports\ImportNewClaims;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ImportController extends Controller
@@ -46,10 +47,19 @@ class ImportController extends Controller
         try {
             $id = $request->get('id');
             $data = File_upload::where('id', $id)->first();
-            $file_path = "../" . $data['file_url'];
             $newName = $data['file_name'];
-            $headers = ['Content-Type: application/pdf'];
-            return response()->download($file_path, $newName, $headers);
+
+            $filePath = storage_path('app/public/uploads/' . $data['file_url']);
+            $headers = [
+                'Content-Type' => 'application/pdf',
+             ];
+
+            if (file_exists($filePath)) {
+                return response()->download($filePath, $newName, $headers);
+            } else {
+                return response()->json(['error' => 'File not found.'], 404);
+            }
+
         } catch (Exception $e) {
             Log::debug('get file error :' . $e->getMessage());
         }

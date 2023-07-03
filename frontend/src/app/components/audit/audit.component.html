@@ -728,7 +728,7 @@
                                 <div class="box-tools pull-right">
                                   <p class="" style="margin-top:5px;">
                                     Show:
-                                    <select (change)="onPageSizeChanged()" id="page-size" [(ngModel)]="paginationSizeValue_ClosedClaims" style="border-radius: 4px;">
+                                    <select (change)="onPageSizeChanged('closed_claims')" id="page-size" [(ngModel)]="paginationSizeValue_ClosedClaims" style="border-radius: 4px;">
                                       <option [ngValue]="15" selected>15</option>
                                       <option value="100">100</option>
                                       <option value="500">500</option>
@@ -1023,7 +1023,7 @@
                                 <div class="box-tools pull-right">
                                   <p class="" style="margin-top:5px;">
                                     Show:
-                                    <select (change)="onPageSizeChanged()" id="page-size" [(ngModel)]="paginationSizeValue_AssignmedClaims" style="border-radius: 4px;">
+                                    <select (change)="onPageSizeChanged('assigned_claims')" id="page-size" [(ngModel)]="paginationSizeValue_AssignmedClaims" style="border-radius: 4px;">
                                       <option [ngValue]="15" selected>15</option>
                                       <option value="100">100</option>
                                       <option value="500">500</option>
@@ -1313,7 +1313,7 @@
                       <div class="box-tools pull-right">
                         <p class="" style="margin-top:5px;">
                           Show:
-                          <select (change)="onPageSizeChanged()" id="page-size" [(ngModel)]="paginationSizeValue_AuditQue" style="border-radius: 4px;">
+                          <select (change)="onPageSizeChanged('audit_que')" id="page-size" [(ngModel)]="paginationSizeValue_AuditQue" style="border-radius: 4px;">
                             <option [ngValue]="15" selected>15</option>
                             <option value="100">100</option>
                             <option value="500">500</option>
@@ -1427,7 +1427,7 @@
                       <div class="box-tools pull-right" style="margin-top:5px;">
                         <p class="" style="margin-top:5px;">
                           Show:
-                          <select (change)="onPageSizeChanged()" id="page-size" [(ngModel)]="paginationSizeValue_WorkOrders" style="border-radius: 4px;">
+                          <select (change)="onPageSizeChanged('work_orders')" id="page-size" [(ngModel)]="paginationSizeValue_WorkOrders" style="border-radius: 4px;">
                             <option [ngValue]="15" selected>15</option>
                             <option value="100">100</option>
                             <option value="500">500</option>

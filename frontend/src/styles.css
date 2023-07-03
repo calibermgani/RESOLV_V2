@@ -98,14 +98,14 @@
   .aside {
     color: #cccccc;
   }
-  input {
+  /* input {
     position: relative !important;
     appearance: none;
     margin: 8px;
-    /* box-sizing: content-box; */
+
     overflow: hidden;
     outline: none !important;
-  }
+  } */
   input:before {
     content: '';
     display: block;

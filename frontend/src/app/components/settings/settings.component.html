@@ -185,16 +185,16 @@
                                                 <td><label for="{{i}}"
                                                    class="col-sm-8 col-form-label">{{field_name[f]}}</label></td>
 
-                                                <td style="left: 16px;"><input class="checkbox" type="checkbox"
+                                                <td style="position:relative;bottom:0px"><input type="checkbox"
                                                       id="{{i}}" name="{{f}}"
                                                       [disabled]="f === 'acct_no' || f === 'claim_no' || f === 'dos' || f === 'dob'"
                                                       (click)="check(f)" [(ngModel)]="form[f]"> </td>
 
-                                                <td style="left: 16px;"><input type="radio" [disabled]="!form[f]"
+                                                <td style="position:relative"><input type="radio" [disabled]="!form[f]"
                                                       name="{{f}}option" value="ignore" [(ngModel)]="form[f+'_option']">
                                                 </td>
 
-                                                <td style="left: 16px;"><input type="radio" [disabled]="!form[f]"
+                                                <td style="position:relative"><input type="radio" [disabled]="!form[f]"
                                                       name="{{f}}opt2" value="notify" [(ngModel)]="form[f+'_option']">
                                                 </td>
 

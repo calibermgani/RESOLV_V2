@@ -40,6 +40,10 @@ export class AuthService {
       // {
       //   console.log('Token Error');
       //   }
+      this.idle.stop();
+    this.Token.remove();
+    localStorage.clear();
+     this.changePractice();   // added..
         this.changeAuthStatus(false); // removed
     }
 
@@ -299,7 +303,8 @@ export class AuthService {
     this.set_us.set_type(message['permission']);
     this.set_us.set_edit_type(message['edit_permission']);
     // this.myRoute.navigate(["dashboard"]);
-    this.PracticelogIn.next(true);
+    // this.PracticelogIn.next(true);
+    if(this.myRoute.url != '/practiceList'){this.PracticelogIn.next(true)};
     // console.log(this.PracticelogIn.value);
     }
     else if(newVal == 'practiceListdashboard' || localStorage.getItem('role') =='Admin' )

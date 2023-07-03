@@ -6,6 +6,7 @@ import { AuthService } from '../../Services/auth.service';
 import { SetUserService } from '../../Services/set-user.service';
 import {HttpClient} from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -17,6 +18,9 @@ export class LoginComponent implements OnInit {
     user_name: null,
     password:null
   };
+
+  formGroup!:FormGroup;
+
 
   public error = null;
 
@@ -32,7 +36,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   onSubmit() {
-    this.Jarwis.login(this.form).subscribe(
+    this.Jarwis.login(this.formGroup.value).subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)
     );
@@ -75,6 +79,14 @@ export class LoginComponent implements OnInit {
   }
   ngOnInit() {
     this.auth.tokenValue.next(true);
+    this.formGroup = new FormGroup({
+      user_name : new FormControl('', [
+        Validators.required
+      ]),
+      password : new FormControl('', [
+        Validators.required
+      ])
+    })
   }
   ngAfterViewInit() {
     console.log('LAST IN LOGIN COMP');

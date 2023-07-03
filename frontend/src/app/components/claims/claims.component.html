@@ -75,9 +75,9 @@
 
                                 <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
                                   <label>DOS</label>
-                                  <input type="text" formControlName="dos"   placement="right"
+                                  <input type="text" formControlName="dos"
                                     class="form-control" id="data-picker" bsDaterangepicker
-                                    [bsConfig]="bsConfig">
+                                    [bsConfig]="bsConfig" autocomplete="off">
                                   <!-- <input type="text" class="form-control" formControlName="dos"> -->
                                   <!-- <input type="text" class="form-control" ngxDaterangepickerMd formControlName="dos"
                                     [(ngModel)]="selecteds" [alwaysShowCalendars]="true" [linkedCalendars]="false"
@@ -238,7 +238,7 @@
                                   <label>Date</label>
                                   <input type="text" formControlName="date" [(ngModel)]="select_date"
 
-                                    class="form-control" id="data-picker" bsDaterangepicker placement="right"
+                                    class="form-control" id="data-picker" bsDaterangepicker  autocomplete="off"
                                     [bsConfig]="bsConfig">
                                   <!-- <input type="text" class="form-control" ngxDaterangepickerMd formControlName="date"
                                     [(ngModel)]="select_date" [alwaysShowCalendars]="true" [linkedCalendars]="false"
@@ -247,7 +247,7 @@
                                 <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
                                   <label>Billed/Last Submit Date</label>
                                   <input type="text" formControlName="bill_submit_date" [(ngModel)]="submit_date"
-                                    class="form-control" id="data-picker" bsDaterangepicker
+                                    class="form-control" id="data-picker" bsDaterangepicker autocomplete="off"
                                     [bsConfig]="bsConfig">
                                   <!-- <input type="text" class="form-control" ngxDaterangepickerMd
                                     formControlName="bill_submit_date" [(ngModel)]="submit_date"
@@ -499,8 +499,8 @@
                                     formControlName="created_at" [(ngModel)]="selectedCreatedAt"
                                     [alwaysShowCalendars]="true" [linkedCalendars]="false" [showClearButton]="true"
                                     readonly /> -->
-                                    <input type="text" formControlName="created_at"  [(ngModel)]="selectedCreatedAt" placement="right"
-                                    class="form-control" id="data-picker"  bsDaterangepicker
+                                    <input type="text" formControlName="created_at"  [(ngModel)]="selectedCreatedAt"
+                                    class="form-control" id="data-picker"  bsDaterangepicker autocomplete="off"
                                     [bsConfig]="bsConfig" readonly>
                                 </div>
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -509,8 +509,8 @@
                                     formControlName="due_date" [(ngModel)]="selectedDueDate"
                                     [alwaysShowCalendars]="true" [linkedCalendars]="false" [showClearButton]="true"
                                     readonly /> -->
-                                    <input type="text" formControlName="due_date"  [(ngModel)]="selectedDueDate" placement="right"
-                                    class="form-control" id="data-picker"  bsDaterangepicker
+                                    <input type="text" formControlName="due_date"  [(ngModel)]="selectedDueDate"
+                                    class="form-control" id="data-picker"  bsDaterangepicker autocomplete="off"
                                     [bsConfig]="bsConfig" [readonly]="true">
                                 </div>
                                 <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
@@ -1469,7 +1469,7 @@
                                   <!-- <input type="text" class="form-control" ngxDaterangepickerMd formControlName="dos"
                                     [(ngModel)]="selectedClosed" [alwaysShowCalendars]="true" [linkedCalendars]="false"
                                     [showClearButton]="true" readonly> -->
-                                    <input type="text" class="form-control" formControlName="dos"  placement="right" [(ngModel)]="selectedClosed"
+                                    <input type="text" class="form-control" formControlName="dos"  [(ngModel)]="selectedClosed"
                                     class="form-control" id="data-picker" bsDaterangepicker
                                     [bsConfig]="bsConfig" autocomplete="off">
                                 </div>
@@ -1524,7 +1524,7 @@
                                     [(ngModel)]="closed_select_date" [alwaysShowCalendars]="true"
                                     [linkedCalendars]="false" [showClearButton]="true" readonly> -->
 
-                                    <input type="text" class="form-control" formControlName="date"   placement="right" [(ngModel)]="closed_select_date"
+                                    <input type="text" class="form-control" formControlName="date"  [(ngModel)]="closed_select_date"
                                     class="form-control" id="data-picker" bsDaterangepicker
                                     [bsConfig]="bsConfig" autocomplete="off">
                                 </div>
@@ -1738,7 +1738,7 @@
                                                    </div> -->
                                 <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
                                   <label>DOS</label>
-                                  <input type="text" formControlName="dos"  class="form-control" placement="right"
+                                  <input type="text" formControlName="dos"  class="form-control"
                                   class="form-control" id="data-picker" bsDaterangepicker autocomplete="off"
                                   [bsConfig]="bsConfig">
                                   <!-- <input type="text" class="form-control" formControlName="dos"> -->
@@ -1837,13 +1837,13 @@
                                   <!-- <input type="text" class="form-control" ngxDaterangepickerMd formControlName="date"
                                     [(ngModel)]="all_select_date" [alwaysShowCalendars]="true" [linkedCalendars]="false"
                                     [showClearButton]="true" readonly> -->
-                                    <input type="text" formControlName="date"  class="form-control" placement="right"
+                                    <input type="text" formControlName="date"  class="form-control"
                                   class="form-control" id="data-picker" bsDaterangepicker autocomplete="off"
                                   [bsConfig]="bsConfig">
                                 </div>
                                 <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
                                   <label>Billed/Last Submit Date</label>
-                                  <input type="text" formControlName="bill_submit_date"  class="form-control" placement="right"
+                                  <input type="text" formControlName="bill_submit_date"  class="form-control"
                                   class="form-control" id="data-picker" bsDaterangepicker autocomplete="off"
                                   [bsConfig]="bsConfig">
                                   <!-- <input type="text" class="form-control" ngxDaterangepickerMd

@@ -471,7 +471,7 @@ a.txt1 {display:block;line-height: 1.2;}
   width: 100%;
   position: relative;
   border-bottom: 2px solid #ccc;
-  margin-bottom: 30px;
+  margin-top: 25px;
 }
 
 .input100 {
@@ -586,7 +586,7 @@ a.txt1 {display:block;line-height: 1.2;}
 
 .contact100-form-checkbox {
   padding-left: 5px;
-  padding-top: 5px;
+  padding-top: 15px;
   padding-bottom: 15px;
 }
 

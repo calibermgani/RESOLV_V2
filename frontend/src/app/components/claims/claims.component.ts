@@ -7206,7 +7206,7 @@ console.log("Total page:", totalPages);
   CellClicked4(headerName: any, params: any):any{
     switch (headerName) {
       case 'download': {
-       this.getfile(this.rowValue_ID_4?.[0].path,this.rowValue_ID_4?.[0].file_name);
+       this.getfile(this.rowValue_ID_4?.[0].id,this.rowValue_ID_4?.[0].file_name);
         break;
       }
       case 'delete': {

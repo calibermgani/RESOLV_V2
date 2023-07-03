@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 
-  <script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=en"></script>
+  <!-- <script src="https://maps.googleapis.com/maps/api/js?libraries=places&sensor=false&language=en"></script> -->
   <meta charset="utf-8">
   <title>Resolve</title>
   <base href="/">
@@ -120,26 +120,26 @@
             //     };
             // })(jQuery, window);
 
-            $("#myTable td").contextMenu({
-                menuSelector: "#contextMenu",
-                menuSelected: function (invokedOn, selectedMenu) {
-                    var msg = "You selected the menu item '" + selectedMenu.text() +
-                            "' on the value '" + invokedOn.text() + "'";
+//             $("#myTable td").contextMenu({
+//                 menuSelector: "#contextMenu",
+//                 menuSelected: function (invokedOn, selectedMenu) {
+//                     var msg = "You selected the menu item '" + selectedMenu.text() +
+//                             "' on the value '" + invokedOn.text() + "'";
 
-                }
-            });
+//                 }
+//             });
 
-            $(function(){
-    // Enables popover
-    $("[data-toggle=popover]").popover();
-});
+//             $(function(){
+//     // Enables popover
+//     $("[data-toggle=popover]").popover();
+// });
 
- $(function() {
-        $('#colorselector').change(function(){
-            $('.colors').hide();
-            $('#' + $(this).val()).show();
-        });
-    });
+//  $(function() {
+//         $('#colorselector').change(function(){
+//             $('.colors').hide();
+//             $('#' + $(this).val()).show();
+//         });
+//     });
     </script>
 </body>
 </html>

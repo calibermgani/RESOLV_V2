@@ -52,7 +52,7 @@
 <div class="container-login100 x1" >
   <div class="col-lg-12" style="color:#000000;position:absolute;top:10px;">
   <p style="font-size:13px;color:#000000;"><img src="../../../assets/dist/css/main/images/waves-2.png" class="p-r-5" style="width:8%;">
-    <span class="pull-right"> <i class="fa fa-phone"></i>&nbsp; 888-888-8888  &nbsp; &nbsp;| &nbsp; &nbsp;<i class="fa fa-envelope"></i>&nbsp; support@avecarm.com </span>  </p>
+    <span class="pull-right"> <i class="fa fa-phone"></i>&nbsp; 888-888-8888  &nbsp; &nbsp;| &nbsp; &nbsp;<i class="fa fa-envelope"></i>&nbsp; support@resolv.com </span>  </p>
 </div>
         <!-- <div class="col-lg-5">
           <div class="main-text">
@@ -76,28 +76,44 @@
               <h3 class="p-b-30">WELCOME</h3>
             </span>
 
-        <form class="login100-form" style="padding:10px 20px;border-radius:8px;" #LoginForm=ngForm>
+        <form class="login100-form" style="padding:10px 20px;border-radius:8px;" #LoginForm=ngForm  [formGroup]="formGroup" >
 
           <div class="wrap-input100 " data-validate="Enter username">
-              <input class="input100" type="text" name="username" autocomplete="username" placeholder="Username" [(ngModel)]="form.user_name" required >
+              <input class="input100" type="text" name="username" autocomplete="username" placeholder="Username"   formControlName="user_name" required>
               <span class="focus-input100" data-placeholder=""></span>
             </div>
+            <div *ngIf="formGroup.controls['user_name'].touched ">
+              <span *ngIf="formGroup.controls['user_name'].hasError('required')" class="error">
+                  User Name is required
+                </span>
+                <!-- <div *ngIf="formGroup.controls['customer_name'].hasError('pattern')">
+                    Special characters not Allowed.
+                  </div> -->
+              </div>
 
-            <div class="wrap-input100 validate-input" data-validate="Enter password" style="margin-bottom:20px;">
-              <input class="input100" type="password" name="pass" autocomplete="pass" placeholder="Password" [(ngModel)]="form.password" required>
+            <div class="wrap-input100 validate-input" data-validate="Enter password">
+              <input class="input100" type="password" name="pass" autocomplete="pass" placeholder="Password"  formControlName="password" required>
               <span class="focus-input100" data-placeholder=""></span>
             </div>
+            <div *ngIf="formGroup.controls['password'].touched ">
+              <span *ngIf="formGroup.controls['password'].hasError('required')" class="error">
+                  Role Name is required
+                </span>
+                <!-- <div *ngIf="formGroup.controls['customer_name'].hasError('pattern')">
+                    Special characters not Allowed.
+                  </div> -->
+              </div>
 
-            <div class="contact100-form-checkbox" style="padding-top:3px;">
+            <div class="contact100-form-checkbox" >
               <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
               <label class="label-checkbox100" for="ckb1">
                 Keep me signed in
               </label>
-              <div class="text-right" style="float:right">
+              <!-- <div class="text-right" style="float:right">
                 <a class="txt1 text-right" href="#">
                   Forgot Password?
                 </a>
-              </div>
+              </div> -->
             </div>
 
             <div class="container-login100-form-btn p-t-25">

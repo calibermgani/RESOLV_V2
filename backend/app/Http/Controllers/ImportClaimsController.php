@@ -45,7 +45,7 @@ class ImportClaimsController extends Controller
 
             $importClaims = new ImportNewClaims($modify_filename, $report_date, $notes, $user, $fileNameToStore, $practice_dbid);
 
-            Excel::import($importClaims, $request->file('file_name')->store('files'));
+            $importData = Excel::import($importClaims, $request->file('file_name')->store('files'));
 
             return response()->json([
             'message' =>  $importClaims,

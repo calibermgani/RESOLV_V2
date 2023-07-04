@@ -23,6 +23,7 @@ class ImportNewClaims implements ToCollection, WithHeadingRow
     public $user;
     public $fileNameToStore;
     public $practice_dbid;
+    public $display_claims;
 
     public function __construct($filename, $report_date, $notes, $user, $fileNameToStore, $practice_dbid)
     {
@@ -32,12 +33,11 @@ class ImportNewClaims implements ToCollection, WithHeadingRow
         $this->user = $user;
         $this->fileNameToStore = $fileNameToStore;
         $this->practice_dbid = $practice_dbid;
-
     }
 
     /**
-    * @param Collection $collection
-    */
+     * @param Collection $collection
+     */
     public function collection(Collection $collections)
     {
         $display_data = [];
@@ -758,6 +758,6 @@ class ImportNewClaims implements ToCollection, WithHeadingRow
 
         $display_data['filedata']['uploaded'] = $uploaded_by[0];
 
-        return $display_data;
+        $this->display_claims = $display_data;
     }
 }

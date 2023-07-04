@@ -6,45 +6,36 @@ use App\Models\File_upload;
 use App\Models\Import_field;
 use App\Models\Line_item;
 use App\Models\User;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
-use Maatwebsite\Excel\Concerns\WithStartRow;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
-class ImportClaims implements ToModel, WithStartRow, WithHeadingRow
+class ImportClaims implements ToModel, WithHeadingRow
 {
     public $filename;
     public $report_date;
     public $notes;
     public $user;
-    public $unique_name;
+    public $fileNameToStore;
     public $practice_dbid;
+    public $display_claims;
 
-    public function __construct($filename, $report_date, $notes, $user, $unique_name, $practice_dbid)
+    public function __construct($filename, $report_date, $notes, $user, $fileNameToStore, $practice_dbid)
     {
-        // dd($filename . $report_date . $notes. $user. $unique_name. $practice_dbid);
         $this->filename = $filename;
         $this->report_date = $report_date;
         $this->notes = $notes;
         $this->user = $user;
-        $this->unique_name = $unique_name;
+        $this->fileNameToStore = $fileNameToStore;
         $this->practice_dbid = $practice_dbid;
+
     }
 
-    /**
-     * @return int
-     */
-    public function startRow(): int
-    {
-        return 2;
-    }
 
-    public function headingRow(): int
-    {
-        return 2;
-    }
 
     /**
      * @param array $row
@@ -74,9 +65,10 @@ class ImportClaims implements ToModel, WithStartRow, WithHeadingRow
 
         $upd_line_items = [];
 
-        $path = "uploads/" . $this->unique_name;
+        $path = $this->fileNameToStore;
+
         $count = 1;
-        $array = $row;
+        $array = $row->toArray();
 
         $present_data = Config::get('fields.data');
         $op_array = [];
@@ -118,6 +110,16 @@ class ImportClaims implements ToModel, WithStartRow, WithHeadingRow
         foreach ($array as $val) {
             $index_ip = array_keys($val);
             if ($val['claim_no'] != null) {
+                /* TO Change Date format number format to date format when excel import */
+                $dateFields = ['dos', 'dob', 'billedlast_submit_date', 'admit_date', 'discharge_date'];
+                foreach ($dateFields as $field) {
+                    if (isset($val[$field])) {
+                        if (Arr::has($val, $field)) {
+                            $val[$field] = Date::excelToDateTimeObject($val[$field]);
+                        }
+                    }
+                }
+
                 /*To Change Name from Upload DOC to work name*/
                 $name_changed = [];
                 $i = 1;
@@ -563,7 +565,7 @@ class ImportClaims implements ToModel, WithStartRow, WithHeadingRow
                     $difference = array_diff($op_array, $mismatch);
                     //dd($difference);
                     $key_diff = array_keys($difference);
-                    //dd($key_diff);
+                    // dd($key_diff);
                     //   $display_data['test_data']=$op_array;
                     //   $display_data['test_data1']=$difference;
                     //   $display_data['test_data2']=$key_diff;
@@ -743,15 +745,14 @@ class ImportClaims implements ToModel, WithStartRow, WithHeadingRow
                 [
                     'report_date'         => $date, //
                     'file_name'           => $this->filename,
-                    'unique_name'         => $this->unique_name,
+                    'unique_name'         => $this->fileNameToStore,
                     'file_url'            => $path,
                     'notes'               => $this->notes,
                     'total_claims'        => $total_records,
                     'new_claims'          => $new_record,
                     'Import_by'           => $this->user,
                     'claims_processed'    => '0',
-                    'status'              => 'Incomplete',
-                    'deleted_at'          => '2018-09-25 09:30:57'
+                    'status'              => 'Incomplete'
                 ]
             );
             $display_data['filedata'] = $file_upload;
@@ -762,7 +763,7 @@ class ImportClaims implements ToModel, WithStartRow, WithHeadingRow
         $uploaded_by = User::where('id', $display_data['filedata']['Import_by'])->pluck('firstname');
 
         $display_data['filedata']['uploaded'] = $uploaded_by[0];
-
+        dd($display_data);
         return $display_data;
     }
 }

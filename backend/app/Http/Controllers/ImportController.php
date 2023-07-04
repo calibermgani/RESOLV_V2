@@ -27,9 +27,13 @@ use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 use App\Helpers\Record_claim_history;
 use App\Imports\ImportClaims;
+use App\Imports\ImportViewClaims;
 use App\Imports\ImportNewClaims;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class ImportController extends Controller
 {
@@ -1263,22 +1267,17 @@ class ImportController extends Controller
         $mismat_monitor = [];
 
         $upd_line_items = [];
-
-
-        $path = "uploads/" . $unique_name;
-
-        // $data = Excel::load($path, function ($reader) {
-        // })->get();
         $data = [];
-        // dd($data);
-        $count = 1;
-        $array = $data;
 
-        //dd($array);
+        // $path = "uploads/" . $unique_name;
+        $path = 'storage/uploads/' . $unique_name ;
+        $data = Excel::toArray(new ImportViewClaims(), $path);
+
+        $count = 1;
+        $array = $data[0];
 
         $present_data = Config::get('fields.data');
         $op_array = [];
-
 
 
         foreach ($present_data as $key => $value) {
@@ -1317,12 +1316,21 @@ class ImportController extends Controller
         }
         //   $name_jsonindex = array_keys($name_jsondec);
 
-
+        Log::debug(print_r($array, true));
         foreach ($array as $val) {
-
             $index_ip = array_keys($val);
 
             if ($val['claim_no'] != null) {
+
+                /* TO Change Date format number format to date format when excel import */
+                $dateFields = ['dos', 'dob', 'billedlast_submit_date', 'admit_date', 'discharge_date'];
+                foreach ($dateFields as $field) {
+                    if (isset($val[$field])) {
+                        if (Arr::has($val, $field)) {
+                            $val[$field] = Date::excelToDateTimeObject($val[$field]);
+                        }
+                    }
+                }
 
                 /*To Change Name from Upload DOC to work name*/
                 $name_changed = [];

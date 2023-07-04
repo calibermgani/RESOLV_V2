@@ -65,7 +65,7 @@ export class AuthService {
       if(user_id!=null && this.tokenValue.value == true)
     {
       this.tokenValue.next(false);
-      let response = this.http.post(`${this.url}/checktoken`, user).pipe(map(response => response))
+      let response = this.http.post(`${this.url}/checktoken`, user)
       .subscribe({
           next : (message:any) => {
             // // sets an idle timeout of 30 seconds, for testing purposes.

@@ -11,7 +11,7 @@
                 (click)="get_graph_stats()" role="tab" data-toggle="tab" style="padding-left: 0px;"><i
                   class="fa fa-file-text"></i> Analytics <span class="tab-divider">|</span></a></li>
             <li *ngIf="(user_role == 1 || user_role == 2 || !(user_role == 16))" class=""><a href="#tab_2"
-                (click)="pageChange(1,'claim','null','null','null','null','null','null');"
+                (click)="pageChange(1,'claim','null','null','null','null','null','null');autoSizeAll()"
                 data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-user"></i> Create Work Orders <span
                   class="tab-divider">|</span></a></li>
             <li *ngIf="(user_role == 1 || user_role == 2 || !(user_role == 16))"><a href="#tab_4" data-toggle="tab"
@@ -86,7 +86,7 @@
                                 <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
                                   <label>Age</label>
                                   <select class="form-control ngx-dropdown-button" formControlName="age_filter"
-                                    aria-hidden="true" [(ngModel)]="selectedAge">
+                                    aria-hidden="true" >
                                     <option [ngValue]="null" selected>--Select Age--</option>
                                     <option *ngFor="let agerange of age_options"
                                       [ngValue]="{from_age:agerange.from_age,to_age:agerange.to_age}">
@@ -332,14 +332,15 @@
                           <!-- <a class="font600 cur-pointer"><i class="fa fa-plus-circle"></i> Notes</a> -->
                         </div>
                       </div>
-                      <ag-grid-angular class="ag-theme-alpine   no-grid-lines" [columnDefs]="columnDefs1" [gridOptions]="gridOptions1" #myGrid_1
-                (gridReady)="onGridReady_1($event)" [defaultColDef]="defaultColDef"
-                (selectionChanged)="onSelectionChanged($event)"></ag-grid-angular>
                     </div>
+                    <ag-grid-angular class="ag-theme-alpine  no-grid-lines"  [columnDefs]="columnDefs1" [gridOptions]="gridOptions1" #myGrid_1
+                (gridReady)="onGridReady_1($event)" [defaultColDef]="defaultColDef" [sideBar]="sideBar" [autoGroupColumnDef]="autoGroupColumnDef"
+                (selectionChanged)="onSelectionChanged($event)"></ag-grid-angular>
                   </div>
                 </div>
               </div>
             </div>
+
 
 
 
@@ -389,7 +390,7 @@
                     <div class="box-body no-padding" style="margin-top:20px;">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
                     <ag-grid-angular class="ag-theme-alpine  no-grid-lines" [columnDefs]="columnDefs4" [gridOptions]="gridOptions4" #myGrid_4
-                      (gridReady)="onGridReady_4($event)" [defaultColDef]="defaultColDef"
+                      (gridReady)="onGridReady_4($event)" [defaultColDef]="defaultColDef" [sideBar]="sideBar" [autoGroupColumnDef]="autoGroupColumnDef"
                       (selectionChanged)="onSelectionChanged_import($event)"></ag-grid-angular>
                       </div>
                       </div>
@@ -578,7 +579,7 @@
                       </div>
                     </div>
                     <ag-grid-angular class="ag-theme-alpine  no-grid-lines" [columnDefs]="columnDefs2" [gridOptions]="gridOptions2" #myGrid_2
-                    (gridReady)="onGridReady_2($event)" [defaultColDef]="defaultColDef"
+                    (gridReady)="onGridReady_2($event)" [defaultColDef]="defaultColDef"  [sideBar]="sideBar" [autoGroupColumnDef]="autoGroupColumnDef"
                     (selectionChanged)="onSelectionChanged_WorkOrders($event)" ></ag-grid-angular>
 
                   </div>
@@ -1694,7 +1695,7 @@
                       </div>
                     </div>
                     <ag-grid-angular class="ag-theme-alpine  no-grid-lines" [columnDefs]="columnDefs3" [gridOptions]="gridOptions3" #myGrid_3
-              (gridReady)="onGridReady_3($event)" [defaultColDef]="defaultColDef"
+              (gridReady)="onGridReady_3($event)" [defaultColDef]="defaultColDef" [sideBar]="sideBar" [autoGroupColumnDef]="autoGroupColumnDef"
               (selectionChanged)="onSelectionChanged_ClosedClaims($event)" ></ag-grid-angular>
                   </div>
                 </div>
@@ -2014,7 +2015,7 @@
                       </div>
 
                       <ag-grid-angular class="ag-theme-alpine  no-grid-lines" [columnDefs]="columnDefs6" [gridOptions]="gridOptions6" #myGrid_6
-                      (gridReady)="onGridReady_6($event)" [defaultColDef]="defaultColDef"
+                      (gridReady)="onGridReady_6($event)" [defaultColDef]="defaultColDef" [sideBar]="sideBar" [autoGroupColumnDef]="autoGroupColumnDef"
                       (selectionChanged)="onSelectionChanged_allClaims($event)"></ag-grid-angular>
 
                     </div>
@@ -2065,7 +2066,7 @@
                     <div class="box-body no-padding" style="margin-top:20px;">
                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
                     <ag-grid-angular class="ag-theme-alpine  no-grid-lines" [columnDefs]="columnDefs5" [gridOptions]="gridOptions5" #myGrid_5
-                      (gridReady)="onGridReady_5($event)" [defaultColDef]="defaultColDef"
+                      (gridReady)="onGridReady_5($event)" [defaultColDef]="defaultColDef" [sideBar]="sideBar" [autoGroupColumnDef]="autoGroupColumnDef"
                       (selectionChanged)="onSelectionChanged_reImport($event)"></ag-grid-angular>
                       </div>
                       </div>
@@ -2477,37 +2478,36 @@
 
             <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker class="form-control" formControlName="report_date" autocomplete="off"  [minDate]="minDate"
             [bsConfig]="bsConfig">
+            <div *ngIf="(f['report_date'].touched) && f['report_date'].errors" class="invalid-feedback">
+              <div *ngIf="f['report_date'].errors['required']">Report Date is required</div>
+            </div>
           </div>
-
-          <div *ngIf="(f['report_date'].touched) && f['report_date'].errors" class="invalid-feedback">
-            <div *ngIf="f['report_date'].errors['required']">Report Date is required</div>
+        </div>
+        <div class="row form-group">
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"><label>File Import <span
+                class="ar-red">*</span></label></div>
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><strong>:</strong></div>
+          <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+            <input type="file" class="form-control file-upload" formControlName="file" (change)="onFileChange($event)"
+              value="" [ngClass]="{ 'is-invalid': (f['file'].touched) && f['file'].errors }">
+            <div *ngIf="(f['file'].touched) && f['file'].errors" class="invalid-feedback">
+              <div *ngIf="f['file'].errors['required']">File Import is required</div>
+            </div>
+          </div>
+        </div>
+        <div class="row form-group">
+          <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"><label>Notes <span class="ar-red">*</span></label>
+          </div>
+          <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><strong>:</strong></div>
+          <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+            <textarea class="form-control work-notes" style="height: 90px;" formControlName="notes" value=""
+              [ngClass]="{ 'is-invalid': (f['notes'].touched) && f['notes'].errors }"></textarea>
+            <div *ngIf="(f['notes'].touched) && f['notes'].errors" class="invalid-feedback">
+              <div *ngIf="f['notes'].errors['required']">Note is required</div>
+            </div>
           </div>
         </div>
         <!-- ngxDaterangepickerMd singleDatePicker="true" -->
-      </div>
-      <div class="row form-group">
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"><label>File Import <span
-              class="ar-red">*</span></label></div>
-        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><strong>:</strong></div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-          <input type="file" class="form-control file-upload" formControlName="file" (change)="onFileChange($event)"
-            value="" [ngClass]="{ 'is-invalid': (f['file'].touched) && f['file'].errors }">
-          <div *ngIf="(f['file'].touched) && f['file'].errors" class="invalid-feedback">
-            <div *ngIf="f['file'].errors['required']">File Import is required</div>
-          </div>
-        </div>
-      </div>
-      <div class="row form-group">
-        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-center"><label>Notes <span class="ar-red">*</span></label>
-        </div>
-        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"><strong>:</strong></div>
-        <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-          <textarea class="form-control work-notes" style="height: 90px;" formControlName="notes" value=""
-            [ngClass]="{ 'is-invalid': (f['notes'].touched) && f['notes'].errors }"></textarea>
-          <div *ngIf="(f['notes'].touched) && f['notes'].errors" class="invalid-feedback">
-            <div *ngIf="f['notes'].errors['required']">Note is required</div>
-          </div>
-        </div>
       </div>
   </form>
 </div>
@@ -2731,7 +2731,7 @@
   <div class="modal-footer">
 
     <div *ngIf="new_claims.length!=0">
-      <button type="button" class="btn btn-default customs-btn" (click)="modal.close();saveclaims()">Save
+      <button type="button" class="btn btn-default customs-btn" (click)="modalRef2?.hide();saveclaims()">Save
         Claims</button>
       <button type="button" class="btn btn-default btn-flat btn-sm pull-left customs-btn"
         (click)="modalRef2?.hide()">Close</button>
@@ -6930,3 +6930,4 @@
   </div>
 
 </ng-template>
+

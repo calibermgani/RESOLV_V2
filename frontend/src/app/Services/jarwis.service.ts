@@ -329,11 +329,29 @@ export class JarwisService {
   //   return response;
   // }
 
+  // get_first_table_data(createsearch: any) {   // new fn..
+  //   let data = { createsearch: createsearch };
+  //   console.log('sasa', data);
+  //   let response = this.common_url('get_table_page', data);
+  //   return response;
+  // }
   get_first_table_data(createsearch: any) {   // new fn..
     let data = { createsearch: createsearch };
-    console.log('sasa', data);
-    let response = this.common_url('get_table_page', data);
-    return response;
+    const promise = new Promise<void>(( resolve, reject) => {
+      this.common_url('get_table_page', data).subscribe({
+        next: (res: any) => {
+          resolve(res);
+          return res;
+        },
+        error: (err: any) => {
+          reject(err);
+        },
+        complete: () => {
+          console.log('complete');
+        },
+      });
+    });
+    return promise;
   }
 
   get_table_page(data: any, page: any, page_count: any, type: any, sorting_name: any, sorting_method: any, createsearch: any, search: any) {

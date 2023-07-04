@@ -21,17 +21,17 @@ import { NgbDatepickerConfig, NgbCalendar, NgbDate, NgbDateStruct, NgbDateParser
 // import { NgbDateCustomParserFormatter} from '../../date_file';
 import { NotesHandlerService } from '../../Services/notes-handler.service';
 import * as moment from 'moment';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { CheckboxSelectionCallbackParams, ColDef, ExcelExportParams, GridApi, GridOptions, GridReadyEvent, HeaderCheckboxSelectionCallbackParams, ICellRendererParams, ILoadingCellRendererParams } from 'ag-grid-community';
+import { CheckboxSelectionCallbackParams, ColDef, ExcelExportParams, GridApi, GridOptions, GridReadyEvent, HeaderCheckboxSelectionCallbackParams, ICellRendererParams, ILoadingCellRendererParams, SideBarDef, ToolPanelDef } from 'ag-grid-community';
 import { BsModalRef, BsModalService, ModalDirective, ModalOptions } from 'ngx-bootstrap/modal';
-import { template } from 'lodash';
 import { AgGridAngular } from 'ag-grid-angular';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { AuthService } from 'src/app/Services/auth.service';
 import { LoaderService } from 'src/app/Services/loader.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Route, Router } from '@angular/router';
-
+// import 'ag-grid-community/styles/ag-grid.css';
+// import 'ag-grid-community/styles/ag-theme-alpine.css';
+import 'ag-grid-enterprise';
 //import * as localization from 'moment/locale/fr';
 //moment.locale('fr', localization);
 
@@ -82,7 +82,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   // reallocate_select_date: any;
   allclaim_billsubmit_date: any;
   // reallocate_billsubmit_date:any;
-  selectedAge = null;
+  // selectedAge = null;
   all_selectedAge = null;
   closed_selectedAge = null;
   reassigned_selectedAge = null;
@@ -279,7 +279,6 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.maxDate.setDate(this.maxDate.getDate() + 7);
     this.minDate.setDate(this.minDate.getDate() - 1);
     this.bsRangeValue = [this.minDate, this.maxDate];
-
   }
 
 
@@ -499,26 +498,26 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     // console.log("Handle",message);
     //assigning backend values to frontend
 
-    this.newclaim = message.message.new_filter.length;
-    this.duplicate = message.message.duplicate_filter.length;
-    this.duplicates = message.message.filedata.total_claims;
-    this.mismatch = message.message.mismatch_nos;
+    this.newclaim = message.message.display_claims.new_filter.length;
+    this.duplicate = message.message.display_claims.duplicate_filter.length;
+    this.duplicates = message.message.display_claims.filedata.total_claims;
+    this.mismatch = message.message.display_claims.mismatch_nos;
     console.log('mismatch' + this.mismatch);
-    this.claimno = message.message.mismatch_nos;
-    this.new_claims = message.message.new_filter_data;
-    this.duplicate_claims = message.message.duplicate_filter;
-    this.mismatch_claims = message.message.mismatch_data;
-    this.mismatch_claim_nos = message.message.mismatch_nos;
-    this.new_claim_data = message.message.new_datas;
-    this.file_upload = message.message.filedata;
-    this.file_upload_id = message.message.filedata.id;
-    console.log(message.message.filedata.id);
+    this.claimno = message.message.display_claims.mismatch_nos;
+    this.new_claims = message.message.display_claims.new_filter_data;
+    this.duplicate_claims = message.message.display_claims.duplicate_filter;
+    this.mismatch_claims = message.message.display_claims.mismatch_data;
+    this.mismatch_claim_nos = message.message.display_claims.mismatch_nos;
+    this.new_claim_data = message.message.display_claims.new_datas;
+    this.file_upload = message.message.display_claims.filedata;
+    this.file_upload_id = message.message.display_claims.filedata.id;
+    console.log(message.message.display_claims.filedata.id);
     this.field_name = message.message.field_name;
-    this.claims_processed = message.message.filedata.claims_processed;
+    this.claims_processed = message.message.display_claims.filedata.claims_processed;
 
     // console.log("Field",this.field_name)
     //Mismatch data Keys
-    this.mismatch_claim_numbers = Object.keys(message.message.mismatch_data);
+    this.mismatch_claim_numbers = Object.keys(message.message.display_claims.mismatch_data);
     this.mismatch_claim_number_sort = this.mismatch_claim_numbers;
     let z: any = [];
     let x: any = [];
@@ -526,8 +525,8 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     let field_list: any = [];
     this.mismatch_claim_numbers.forEach(function (value: any) {
       let keys = value;
-      let data = message.message.mismatch_data[keys]['midb'];
-      let data2 = message.message.mismatch_data[keys]['mupd'];
+      let data = message.message.display_claims.mismatch_data[keys]['midb'];
+      let data2 = message.message.display_claims.mismatch_data[keys]['mupd'];
       x[keys] = Object.values(data);
       y[keys] = Object.values(data2);
       z[keys] = Object.keys(data);
@@ -575,13 +574,15 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     if(data){
       this.GridData_Import = data;
       this.myGrid_4.api.setRowData(this.GridData_Import);
-      this.setAutoHeight();
+        //  this.setAutoHeight();
+      this.loader.stop();
       console.log('GridData_Import',this.GridData_Import);
 
     }
     else{
       this.myGrid_4.api.setRowData([]);
-      this.setAutoHeight();
+        //  this.setAutoHeight();
+      this.loader.stop();
       console.log('GridData_Import',this.GridData_Import);
 
     }
@@ -627,14 +628,14 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.GridData_ReImport = data.message;
       this.myGrid_5.api.setRowData(this.GridData_ReImport);
       this.loader.stop();
-      this.setAutoHeight();
+        //  this.setAutoHeight();
       console.log('GridData_Import',this.GridData_Import);
     }
     else{
       this.GridData_ReImport = data.message;
       this.myGrid_5.api.setRowData([]);
       this.loader.stop();
-      this.setAutoHeight();
+        //  this.setAutoHeight();
     }
     this.reimport_roles = data.message;
     console.log(this.reimport_roles);
@@ -2838,9 +2839,9 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
         //   data => this.assign_page_data(data),
         //   error => this.handleError(error)
         // );
-        this.Jarwis.get_first_table_data(createsearch).subscribe(
-          data => this.assign_page_data(data),
-          error => this.handleError(error)
+        this.Jarwis.get_first_table_data(createsearch).then(
+          (data:any) => this.assign_page_data(data),
+          (error:any) => this.handleError(error)
         )
       } else if (searchs == 'search') {
         if (this.createClaimsFind.value.dos?.[0] != null && this.createClaimsFind.value.dos?.[1] != null) {
@@ -2886,15 +2887,15 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
         //   data => this.assign_page_data(data),
         //   error => this.handleError(error)
         // );
-        this.Jarwis.get_first_table_data(this.createClaimsFind.value).subscribe(
-          data => this.assign_page_data(data),
-          error => this.handleError(error)
+        this.Jarwis.get_first_table_data(createsearch).then(
+          (data:any) => this.assign_page_data(data),
+          (error:any) => this.handleError(error)
         )
       } else {
         console.log('SORT_DATA', sort_data);
-        this.Jarwis.get_first_table_data(createsearch).subscribe(
-          data => this.assign_page_data(data),
-          error => this.handleError(error)
+        this.Jarwis.get_first_table_data(createsearch).then(
+          (data:any) => this.assign_page_data(data),
+          (error:any) => this.handleError(error)
         )
         // this.Jarwis.get_table_page(sort_data, page, page_count, sort_type, sorting_name, this.sortByAsc, null, this.search).subscribe(
         //   data => this.assign_page_data(data),
@@ -3222,12 +3223,12 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.GridData_CreateWorkOrders = data.data;
       this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
       this.loader.stop();
-      this.setAutoHeight();
+        //  this.setAutoHeight();
     }
     else {
       this.GridData_CreateWorkOrders = []
       this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
-      this.setAutoHeight();
+        //  this.setAutoHeight();
       this.loader.stop();
     }
 
@@ -3238,14 +3239,14 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       console.log('INNNN');
       this.GridData_AllClaims = data.data;
       this.myGrid_6.api?.setRowData(this.GridData_AllClaims);
-      this.setAutoHeight();
+        //  this.setAutoHeight();
       this.loader.stop();
     }
     else
     {
       this.GridData_AllClaims = [];
       this.myGrid_6.api?.setRowData(this.GridData_AllClaims);
-      this.setAutoHeight();
+        //  this.setAutoHeight();
       this.loader.stop();
     }
     if(data){
@@ -3605,7 +3606,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.GridData_WorkOrders = data.data;
       this.myGrid_2.api?.setRowData(this.GridData_WorkOrders);
       this.loader.stop();
-      this.setAutoHeight();
+        //  this.setAutoHeight();
       console.log('GridData2', this.GridData_WorkOrders);
 
 
@@ -3637,7 +3638,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.GridData_ClosedClaims = data.data;
       this.myGrid_3.api.setRowData(this.GridData_ClosedClaims);
       this.loader.stop();
-      this.setAutoHeight();
+        //  this.setAutoHeight();
       console.log('GridRowData',this.GridData_ClosedClaims);
       this.closed_claim_data = data.closed_claim_data;
       this.closed_total = data.count;
@@ -3648,7 +3649,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     else
     {
       this.GridData_ClosedClaims = [];
-      this.setAutoHeight();
+        //  this.setAutoHeight();
       this.myGrid_3.api.setRowData(this.GridData_ClosedClaims);
       this.loader.stop();
     }
@@ -3919,6 +3920,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.pages = page;
 
     if(type=='import'){
+      this.loader.start();
       this.Jarwis.get_upload_table_page(page, 15).subscribe(
         data => this.handleResponse(data),
         error => this.handleError(error)
@@ -4685,12 +4687,12 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     if(this.auth.tokenValue.value == true)
     {let data = localStorage.getItem('token');
     this.auth.login(data);}
-    this.gridApi_1.sizeColumnsToFit();
-    this.gridApi_2.sizeColumnsToFit();
-    this.gridApi_3.sizeColumnsToFit();
-    this.gridApi_4.sizeColumnsToFit();
-    this.gridApi_5.sizeColumnsToFit();
-    this.gridApi_6.sizeColumnsToFit();
+    // this.gridApi_1.sizeColumnsToFit();
+    // this.gridApi_2.sizeColumnsToFit();
+    // this.gridApi_3.sizeColumnsToFit();
+    // this.gridApi_4.sizeColumnsToFit();
+    // this.gridApi_5.sizeColumnsToFit();
+    // this.gridApi_6.sizeColumnsToFit();
   }
 
   get_initial_values() {
@@ -5859,6 +5861,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     enableValue: true,
     sortable: true,
     resizable: false,
+    filter:false
   };
 
 
@@ -5867,13 +5870,13 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: '',
       checkboxSelection: true,
       headerCheckboxSelection: true,
-      width: 20,
+      minWidth: 40,
     },
     {
       field:'touch',
-      headerName: '',
+      headerName: 'Touch',
       sortable: true, // Set the `sortable` property to a boolean value
-      width: 45,
+      minWidth: 105,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -5886,7 +5889,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'claim_no',
       headerName: 'Claim No',
       sortable: true, // Set the `sortable` property to a boolean value
-      width: 90,
+      minWidth: 140,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -5899,7 +5902,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'dos',
       headerName: 'DOS',
       sortable: true,
-      width: 100,
+      minWidth: 100,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -5912,7 +5915,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'age',
       headerName: 'Age',
       sortable: true,
-      width: 65,
+      minWidth: 115,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -5925,7 +5928,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'acct_no',
       headerName: 'Acc No',
       sortable: true,
-      width: 85,
+      minWidth: 115,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -5938,7 +5941,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'patient_name',
       headerName: 'Patient Name',
       sortable: true,
-      width: 208,
+      minWidth: 208,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -5951,7 +5954,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'rendering_prov',
       headerName: 'Rendering Provider',
       sortable: true,
-      width: 164,
+      minWidth: 164,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -5964,7 +5967,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'responsibility',
       headerName: 'Responsibility',
       sortable: true,
-      width: 128,
+      minWidth: 148,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -5977,7 +5980,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'prim_ins_name',
       headerName: 'Primary',
       sortable: true,
-      width: 220,
+      minWidth: 220,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -5990,7 +5993,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'sec_ins_name',
       headerName: 'Secondary',
       sortable: true,
-      width: 105,
+      minWidth: 135,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6003,7 +6006,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'total_charges',
       headerName: 'Total Charges',
       sortable: true,
-      width: 123,
+      minWidth: 140,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6016,7 +6019,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'total_ar',
       headerName: 'Total AR',
       sortable: true,
-      width: 107,
+      minWidth: 107,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6029,7 +6032,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'claim_Status',
       headerName: 'Claim Status',
       sortable: true,
-      width: 118,
+      minWidth: 138,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6042,7 +6045,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'denial_code',
       headerName: 'Denial Code',
       sortable: true,
-      width: 115,
+      minWidth: 135,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6055,7 +6058,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'billed_submit_date',
       headerName: 'BillSubmit Date',
       sortable: true,
-      width: 125,
+      minWidth: 145,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6068,7 +6071,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'claim_note',
       headerName: 'Claim Note',
       sortable: true,
-      width: 105,
+      minWidth: 125,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6081,7 +6084,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'created_at',
       headerName: 'Assigned To|Date',
       sortable: true,
-      width: 140,
+      minWidth: 160,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6743,10 +6746,10 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
 
-  gridOptions1: GridOptions<gridData> = {
+  gridOptions1: GridOptions<gridData> | any = {
     defaultColDef: {
       sortable: true,
-      filter: true
+      filter: false
     },
     rowSelection: 'multiple',
     rowHeight: 35,
@@ -6754,8 +6757,12 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_createWorkOrders,
-    suppressDragLeaveHidesColumns: true
+    suppressDragLeaveHidesColumns: true,
+    onFirstDataRendered: this.onFirstDataRendered,
   };
+   onFirstDataRendered(params:any) {
+    params.api.sizeColumnsToFit();
+  }
 
   gridOptions2: GridOptions<gridData> = {
     defaultColDef: {
@@ -6768,6 +6775,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize: this.paginationSizeValue_WorkOrders,
+    suppressDragLeaveHidesColumns: true
   };
   gridOptions3: GridOptions<gridData> = {
     defaultColDef: {
@@ -6780,6 +6788,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_ClosedClaims,
+    suppressDragLeaveHidesColumns: true
   };
   gridOptions4: GridOptions<gridData> = {
     defaultColDef: {
@@ -6805,6 +6814,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_reimport,
+    suppressDragLeaveHidesColumns: true
   };
   gridOptions6: GridOptions<gridData> = {
     defaultColDef: {
@@ -6817,6 +6827,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_AllClaims,
+    suppressDragLeaveHidesColumns: true
   };
 
 
@@ -6832,7 +6843,6 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   new_cdtn:boolean = false;
   onGridReady_1(params: GridReadyEvent) {
     this.gridApi_1 = params.api;
-    params.api.sizeColumnsToFit();
     console.log('event', params);
     // setTimeout(() => {
     //   console.log('444', this.GridData_CreateWorkOrders);
@@ -6840,8 +6850,6 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     //   this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
     // }, 4000);
     const header = document.querySelectorAll('.ag-checkbox-input');
-
-    console.log(header);
     header.forEach(v => {
       v.addEventListener('click', (event) =>{
         let startIndex = 0;
@@ -6902,35 +6910,36 @@ console.log("Total page:", totalPages);
     })
     });
   }
-  setAutoHeight() {
-    this.gridApi_1.setDomLayout('autoHeight');
-    this.gridApi_2.setDomLayout('autoHeight');
-    this.gridApi_3.setDomLayout('autoHeight');
-    this.gridApi_4.setDomLayout('autoHeight');
-    this.gridApi_5.setDomLayout('autoHeight');
-    this.gridApi_6.setDomLayout('autoHeight');
-    // auto height will get the grid to fill the height of the contents,
-    // so the grid div should have no height set, the height is dynamic.
-    let element_1:any = document.querySelector<HTMLElement>('#myGrid_1');
-    let element_2:any = document.querySelector<HTMLElement>('#myGrid_2');
-    let element_3:any = document.querySelector<HTMLElement>('#myGrid_2');
-    let element_4:any = document.querySelector<HTMLElement>('#myGrid_2');
-    let element_5:any = document.querySelector<HTMLElement>('#myGrid_2');
-    let element_6:any = document.querySelector<HTMLElement>('#myGrid_2');
-    let element_7:any = document.getElementsByClassName('no-bottom');
-    if (element_1 || element_2 || element_3 || element_4 || element_5 || element_6) {
-    element_1.style.height = '0px';
-    element_2.style.height = '0px';
-    element_3.style.height = '0px';
-    element_4.style.height = '0px';
-    element_5.style.height = '0px';
-    element_6.style.height = '0px';
-    element_7.style.height = '0px';
-    }
-  }
+
+  // setAutoHeight() {
+  //   this.gridApi_1.setDomLayout('autoHeight');
+  //   this.gridApi_2.setDomLayout('autoHeight');
+  //   this.gridApi_3.setDomLayout('autoHeight');
+  //   this.gridApi_4.setDomLayout('autoHeight');
+  //   this.gridApi_5.setDomLayout('autoHeight');
+  //   this.gridApi_6.setDomLayout('autoHeight');
+  //   // auto height will get the grid to fill the height of the contents,
+  //   // so the grid div should have no height set, the height is dynamic.
+  //   let element_1:any = document.querySelector<HTMLElement>('#myGrid_1');
+  //   let element_2:any = document.querySelector<HTMLElement>('#myGrid_2');
+  //   let element_3:any = document.querySelector<HTMLElement>('#myGrid_2');
+  //   let element_4:any = document.querySelector<HTMLElement>('#myGrid_2');
+  //   let element_5:any = document.querySelector<HTMLElement>('#myGrid_2');
+  //   let element_6:any = document.querySelector<HTMLElement>('#myGrid_2');
+  //   let element_7:any = document.getElementsByClassName('no-bottom');
+  //   if (element_1 || element_2 || element_3 || element_4 || element_5 || element_6) {
+  //   element_1.style.height = '0px';
+  //   element_2.style.height = '0px';
+  //   element_3.style.height = '0px';
+  //   element_4.style.height = '0px';
+  //   element_5.style.height = '0px';
+  //   element_6.style.height = '0px';
+  //   element_7.style.height = '0px';
+  //   }
+  // }
+
   onGridReady_2(params: GridReadyEvent) {
     this.gridApi_2 = params.api;
-    params.api.sizeColumnsToFit();
     console.log('event', params);
     // setTimeout(() => {
     //   console.log('444', this.GridData_WorkOrders);
@@ -6939,7 +6948,6 @@ console.log("Total page:", totalPages);
   }
   onGridReady_3(params: GridReadyEvent) {
     this.gridApi_3 = params.api;
-    params.api.sizeColumnsToFit();
     console.log('event', params);
     // setTimeout(() => {
     //   console.log('444', this.GridData_WorkOrders);
@@ -6948,7 +6956,6 @@ console.log("Total page:", totalPages);
   }
   onGridReady_4(params: GridReadyEvent) {
     this.gridApi_4 = params.api;
-    params.api.sizeColumnsToFit();
     console.log('event', params);
     // setTimeout(() => {
     //   console.log('444', this.GridData_CreateWorkOrders);
@@ -6958,7 +6965,6 @@ console.log("Total page:", totalPages);
   }
   onGridReady_5(params: GridReadyEvent) {
     this.gridApi_5 = params.api;
-    params.api.sizeColumnsToFit();
     console.log('event', params);
     // setTimeout(() => {
     //   console.log('444', this.GridData_CreateWorkOrders);
@@ -6968,7 +6974,6 @@ console.log("Total page:", totalPages);
   }
   onGridReady_6(params: GridReadyEvent) {
     this.gridApi_6 = params.api;
-    params.api.sizeColumnsToFit();
     console.log('event', params);
     // setTimeout(() => {
     //   console.log('444', this.GridData_CreateWorkOrders);
@@ -7263,4 +7268,43 @@ console.log("Total page:", totalPages);
     this.modal.hide(modalId);
   }
 
+  public sideBar: SideBarDef | string | string[] | boolean | null = {
+    toolPanels: [
+      {
+        id: 'columns',
+        labelDefault: 'Columns Visibility',
+        labelKey: 'columns',
+        iconKey: 'columns',
+        toolPanel: 'agColumnsToolPanel',
+        toolPanelParams: {
+          suppressRowGroups: true,
+          suppressValues: true,
+          suppressPivots: true,
+          suppressPivotMode: true,
+          suppressColumnFilter: false,
+          suppressColumnSelectAll: true,
+          suppressColumnExpandAll: true,
+          cssClasses: ['custom-sidebar'],
+        },
+      } as ToolPanelDef,
+    ],
+    defaultToolPanel: 'columns',
+  };
+
+  public autoGroupColumnDef: ColDef = {
+    minWidth: 200,
+  };
+
+  go(){
+    this.autoSizeAll();
+  }
+  autoSizeAll() {
+    let allColumnIds:any = [];
+    this.gridOptions1.columnApi.getColumns().forEach((column:any) => {
+      allColumnIds.push(column.getId());
+    });
+    console.log('Size Resized');
+
+    this.gridOptions1.columnApi.autoSizeColumns(allColumnIds, false);
+  }
 }

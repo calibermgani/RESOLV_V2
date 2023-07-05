@@ -558,6 +558,70 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     //   }, 1500);
   }
 
+  public handlemessage_new(message: any) {
+    // console.log("Handle",message);
+    //assigning backend values to frontend
+
+    this.newclaim = message.message.new_filter.length;
+    this.duplicate = message.message.duplicate_filter.length;
+    this.duplicates = message.message.filedata.total_claims;
+    this.mismatch = message.message.mismatch_nos;
+    console.log('mismatch' + this.mismatch);
+    this.claimno = message.message.mismatch_nos;
+    this.new_claims = message.message.new_filter_data;
+    this.duplicate_claims = message.message.duplicate_filter;
+    this.mismatch_claims = message.message.mismatch_data;
+    this.mismatch_claim_nos = message.message.mismatch_nos;
+    this.new_claim_data = message.message.new_datas;
+    this.file_upload = message.message.filedata;
+    this.file_upload_id = message.message.filedata.id;
+    console.log(message.message.filedata.id);
+    this.field_name = message.message.field_name;
+    this.claims_processed = message.message.filedata.claims_processed;
+
+    // console.log("Field",this.field_name)
+    //Mismatch data Keys
+    this.mismatch_claim_numbers = Object.keys(message.message.mismatch_data);
+    this.mismatch_claim_number_sort = this.mismatch_claim_numbers;
+    let z: any = [];
+    let x: any = [];
+    let y: any = [];
+    let field_list: any = [];
+    this.mismatch_claim_numbers.forEach(function (value: any) {
+      let keys = value;
+      let data = message.message.mismatch_data[keys]['midb'];
+      let data2 = message.message.mismatch_data[keys]['mupd'];
+      x[keys] = Object.values(data);
+      y[keys] = Object.values(data2);
+      z[keys] = Object.keys(data);
+      let fields = Object.keys(data);
+      for (let i = 0; i < fields.length; i++) {
+        let x = field_list.find((x: any) => x == fields[i]);
+        if (x == undefined) {
+          field_list.push(fields[i]);
+        }
+      }
+    });
+    //For Mismatch View
+    this.mismatch_field_list = field_list;
+    this.old_value = [];
+    this.new_value = [];
+    this.fieldselect = [];
+    this.mismatch_claim_data = z;
+    this.mismatch_claim_data_value = x;
+    this.mismatch_claim_data_mismatch = y;
+    this.loadingBar.stop();
+    // this.getclaims();
+    this.pageChange(1, 'all', null, null, 'null', 'null', 'null', 'null');
+    this.fileupload = "";
+
+
+    // this.error = message.error;
+    // setTimeout(()=>{
+    //   this.error = "";
+    //   }, 1500);
+  }
+
   notify(error: any) {
     //console.log(error);
     this.toastr.errorToastr('Error in Uploading File.');
@@ -2770,6 +2834,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   claim_sub_status_codes = [];
   searchs: any;
   public pageChange(page: number, table: any, sort_data: any, sort_type: any, sorting_name: any, sorting_method: any, createsearch: any, search: any) {
+    console.log('Table Name',table);
     this.gridApi_6.setRowData([]);
     this.loader.start();
     this.search = search;
@@ -3126,6 +3191,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       }
     } */
     else if (table == 'upload') {
+      console.log('Upload Table',table);
       this.upload_page = page;
       console.log(this.upload_page);
       this.Jarwis.get_upload_table_page(page, page_count).subscribe(
@@ -3134,7 +3200,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       );
     }
     else if (table == 'all') {
-      console.log(table);
+      console.log('All Table',table);
       this.pages = page;
 
       if (sorting_name == 'null') {
@@ -4062,7 +4128,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     console.log(id);
 
     this.Jarwis.process_upload_file(id, this.setus.getId()).subscribe(
-      data => { this.handlemessage(data), this.pageChange(1, 'upload', 'null', 'null', 'null', 'null', 'null', 'null') },
+      data => { this.handlemessage_new(data)},
       error => this.error_handler(error)
     );
 
@@ -6802,6 +6868,9 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_Import,
+    sideBar: {
+     hiddenByDefault:true // Initially hide the sidebar
+    },
   };
   gridOptions5: GridOptions<gridData> = {
     defaultColDef: {

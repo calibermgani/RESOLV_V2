@@ -2717,7 +2717,7 @@
               <td class="text-center ar-blue">{{r.claim_no}}</td>
               <td class="text-center ar-blue">{{r.patient_name}}</td>
               <td class="text-center ar-blue">{{r.insurance_type}}</td>
-              <td class="text-center ar-blue">{{r.total_ar | number:'1.2-2'}}</td>
+              <td class="text-center ar-blue">{{r.total_ar | number:'1.2-2' || 'NA'}}</td>
               <td class="text-center ar-blue">{{r.claim_Status}}</td>
             </tr>
           </tbody>
@@ -2779,7 +2779,7 @@
   </div>
   <div class="modal-footer" *ngIf="duplicate_claims.length!=0">
     <button type="button" class="btn btn-info btn-flat btn-sm"
-      (click)="modal.close('Save click');ignore_function();ignore();">Ignore</button>
+      (click)="modalRef3?.hide();ignore_function();ignore();">Ignore</button>
     <button type="button" class="btn btn-default btn-flat btn-sm" (click)="modalRef3?.hide()">Close</button>
   </div>
 </ng-template>

@@ -8,7 +8,7 @@ import { SetUserService } from './set-user.service';
 export class NotifyService {
 
   constructor(private Jarwis: JarwisService,
-    private user_det:SetUserService) { 
+    private user_det:SetUserService) {
     this.get_touch_limit();
     this.getuser_Id();
   }
@@ -65,7 +65,7 @@ if(localStorage.getItem('role') != 'Admin' && localStorage.getItem('practice_id'
       );
   }
 }
- 
+
   }
 
   set_wo_note(data:any)

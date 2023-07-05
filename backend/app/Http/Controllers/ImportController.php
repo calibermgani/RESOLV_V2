@@ -1088,7 +1088,7 @@ class ImportController extends Controller
 
             $filedata = File_upload::orderBy('id', 'desc')->get();
             $latest = File_upload::orderBy('id', 'desc')->take(1)->first();
-            return $filedata;
+
             if($filedata->isNotEmpty()) {
                 $fileUploadData = [];
                 $i = 0;

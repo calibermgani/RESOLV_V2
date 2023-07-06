@@ -42,7 +42,7 @@ export class AuthGuard implements CanActivate {
     //   this.auth.login(data);
     // }
 
-    console.log("Auth", this.auth.loggedIn);
+    console.log("Auth", this.auth.loggedIn.value);
 
     // setTimeout(() => {
       if (this.auth.loggedIn.value && this.auth.tokenValue.value == true  ) {

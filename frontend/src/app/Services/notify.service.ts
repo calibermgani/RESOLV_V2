@@ -9,8 +9,8 @@ export class NotifyService {
 
   constructor(private Jarwis: JarwisService,
     private user_det:SetUserService) {
-    this.get_touch_limit();
-    this.getuser_Id();
+    // this.get_touch_limit();
+    // this.getuser_Id();
   }
 
   //Touch Notification Functions

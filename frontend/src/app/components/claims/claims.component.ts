@@ -164,7 +164,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   new_value: any = [];
   fieldselect: any = [];
   roles: any = [];
-  importProcessed: any;
+  importProcessed: any = undefined;
   datas: string[] = [];
   mismatch_field_list: any = [];
   mismatch_selected: string = '';
@@ -635,25 +635,10 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   total_row_import: any
   handleResponse(data: any) {
     console.log(data);
-    if(data){
-      this.GridData_Import = data;
-      this.myGrid_4.api.setRowData(this.GridData_Import);
-        //  this.setAutoHeight();
-      this.loader.stop();
-      console.log('GridData_Import',this.GridData_Import);
-
-    }
-    else{
-      this.myGrid_4.api.setRowData([]);
-        //  this.setAutoHeight();
-      this.loader.stop();
-      console.log('GridData_Import',this.GridData_Import);
-
-    }
     this.roles = data.message;
     console.log('Rols',this.roles);
     this.latest_id = data.latest_id;
-    this.importedfile = (data.filter((x: any) => x.id == this.latest_id));
+    this.importedfile = (data.message.filter((x: any) => x.id == this.latest_id));
     console.log(this.importedfile);
     this.importedfile.forEach((element: any) => {
       this.importProcessed = element.processed;
@@ -667,6 +652,23 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.skip_row_import = this.skip;
     this.current_row_import = this.skip + this.current_total - 1;
     this.total_row_import = data.count;
+    if(data){
+      this.GridData_Import = data.message;
+      this.myGrid_4.api.setRowData(this.GridData_Import);
+        //  this.setAutoHeight();
+      this.gridApi_4.closeToolPanel();
+      this.loader.stop();
+      console.log('GridData_Import',this.GridData_Import);
+
+    }
+    else{
+      this.myGrid_4.api.setRowData([]);
+        //  this.setAutoHeight();
+        this.gridApi_4.closeToolPanel();
+      this.loader.stop();
+      console.log('GridData_Import',this.GridData_Import);
+
+    }
   }
 
   handleError(error: any) {
@@ -692,6 +694,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.GridData_ReImport = data.message;
       this.myGrid_5.api.setRowData(this.GridData_ReImport);
       this.loader.stop();
+      this.gridApi_5.closeToolPanel();
         //  this.setAutoHeight();
       console.log('GridData_Import',this.GridData_Import);
     }
@@ -3203,23 +3206,23 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       console.log('All Table',table);
       this.pages = page;
 
-      if (sorting_name == 'null') {
-        this.Jarwis.claim_status_data_fork(sort_data, page, page_count, sort_type, this.setus.getId(), sorting_name, sorting_method, createsearch, search).subscribe(
-          data => {
-            this.assign_page_data(data[0]),
-              this.assign_status_codes(data[1])
-          },
-          error => this.handleError(error)
-        );
-      } else {
-        this.Jarwis.claim_status_data_fork(sort_data, page, page_count, sort_type, this.setus.getId(), this.sortByAsc, this.sorting_name, createsearch, search).subscribe(
-          data => {
-            this.assign_page_data(data[0]),
-              this.assign_status_codes(data[1])
-          },
-          error => this.handleError(error)
-        );
-      }
+      // if (sorting_name == 'null') {
+      //   this.Jarwis.claim_status_data_fork(sort_data, page, page_count, sort_type, this.setus.getId(), sorting_name, sorting_method, createsearch, search).subscribe(
+      //     data => {
+      //       this.assign_page_data(data[0]),
+      //         this.assign_status_codes(data[1])
+      //     },
+      //     error => this.handleError(error)
+      //   );
+      // } else {
+      //   this.Jarwis.claim_status_data_fork(sort_data, page, page_count, sort_type, this.setus.getId(), this.sortByAsc, this.sorting_name, createsearch, search).subscribe(
+      //     data => {
+      //       this.assign_page_data(data[0]),
+      //         this.assign_status_codes(data[1])
+      //     },
+      //     error => this.handleError(error)
+      //   );
+      // }
 
 
       this.upload_page = page;
@@ -3288,13 +3291,15 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     if (data!=null && data !='') {
       this.GridData_CreateWorkOrders = data.data;
       this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
+      this.gridApi_1.closeToolPanel();
       this.loader.stop();
-        //  this.setAutoHeight();
+      //  this.setAutoHeight();
     }
     else {
       this.GridData_CreateWorkOrders = []
       this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
         //  this.setAutoHeight();
+        this.gridApi_1.closeToolPanel();
       this.loader.stop();
     }
 
@@ -3306,6 +3311,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.GridData_AllClaims = data.data;
       this.myGrid_6.api?.setRowData(this.GridData_AllClaims);
         //  this.setAutoHeight();
+        this.gridApi_6.closeToolPanel();
       this.loader.stop();
     }
     else
@@ -3313,6 +3319,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.GridData_AllClaims = [];
       this.myGrid_6.api?.setRowData(this.GridData_AllClaims);
         //  this.setAutoHeight();
+        this.gridApi_6.closeToolPanel();
       this.loader.stop();
     }
     if(data){
@@ -3672,6 +3679,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.GridData_WorkOrders = data.data;
       this.myGrid_2.api?.setRowData(this.GridData_WorkOrders);
       this.loader.stop();
+      this.gridApi_2.closeToolPanel();
         //  this.setAutoHeight();
       console.log('GridData2', this.GridData_WorkOrders);
 
@@ -3704,6 +3712,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.GridData_ClosedClaims = data.data;
       this.myGrid_3.api.setRowData(this.GridData_ClosedClaims);
       this.loader.stop();
+      this.gridApi_3.closeToolPanel();
         //  this.setAutoHeight();
       console.log('GridRowData',this.GridData_ClosedClaims);
       this.closed_claim_data = data.closed_claim_data;
@@ -3717,6 +3726,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.GridData_ClosedClaims = [];
         //  this.setAutoHeight();
       this.myGrid_3.api.setRowData(this.GridData_ClosedClaims);
+      this.gridApi_3.closeToolPanel();
       this.loader.stop();
     }
     console.log('closed DAta', this.closed_data);
@@ -5666,8 +5676,10 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       title="Delete File"></i>`;
       }
       case 'settings': {
-       return `<i class="fa fa-cog cur-pointer" style="color:#337ab7;width:20px;height:30px"
+        if(this.importedfile?.[0].id == params.data.id){
+          return `<i class="fa fa-cog cur-pointer" style="color:#337ab7;width:20px;height:30px"
        title="Process File"></i>`;
+        }
       }
     }
   }
@@ -6639,7 +6651,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'claim_no',
       headerName: 'Claim No',
       sortable: true, // Set the `sortable` property to a boolean value
-      width: 100,
+      minWidth: 140,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6892,7 +6904,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     },
     rowSelection: 'multiple',
     rowHeight: 30,
-    suppressHorizontalScroll: true,
+    suppressHorizontalScroll: false,
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_AllClaims,

@@ -11,7 +11,7 @@
                 (click)="get_graph_stats()" role="tab" data-toggle="tab" style="padding-left: 0px;"><i
                   class="fa fa-file-text"></i> Analytics <span class="tab-divider">|</span></a></li>
             <li *ngIf="(user_role == 1 || user_role == 2 || !(user_role == 16))" class=""><a href="#tab_2"
-                (click)="pageChange(1,'claim','null','null','null','null','null','null');autoSizeAll()"
+                (click)="pageChange(1,'claim','null','null','null','null','null','null');"
                 data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-user"></i> Create Work Orders <span
                   class="tab-divider">|</span></a></li>
             <li *ngIf="(user_role == 1 || user_role == 2 || !(user_role == 16))"><a href="#tab_4" data-toggle="tab"

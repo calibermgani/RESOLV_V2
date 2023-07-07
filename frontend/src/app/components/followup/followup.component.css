@@ -201,6 +201,14 @@ cursor: pointer;
  border: none !important;
  font-weight: 652;
 }
+.no-grid-lines .ag-side-bar{
+  font-weight: 600;
+  font-family: "Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji" !important;
+  color: #333333;
+}
+.no-grid-lines .ag-header-icon{
+  display: none;
+}
 /* .custom-header  {
   background: #686c7d
 } */

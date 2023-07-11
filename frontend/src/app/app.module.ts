@@ -87,9 +87,9 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
     NgxUiLoaderModule.forRoot(ngxUiLoaderConfig),
     NgxUiLoaderRouterModule, // import this module for showing loader automatically when navigating between app routes
     NgxUiLoaderHttpModule.forRoot({
-      // excludeRegexp:[
-      //   '\/api\/checktoken$','\/api\/getPermissions$'
-      // ],
+      excludeRegexp:[
+        '\/api\/getPermissions$',
+      ],
       showForeground:true,
     }),
     // GooglePlaceModule,

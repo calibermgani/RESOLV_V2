@@ -4051,7 +4051,7 @@ console.log("Total page:", totalPages);
       field: 'dos',
       headerName: 'DOS',
       sortable: true,
-       width: 152,
+       width: 112,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -4103,7 +4103,7 @@ console.log("Total page:", totalPages);
       field: 'rendering_prov',
       headerName: 'Rendering Provider',
       sortable: true,
-       width: 230,
+       width: 210,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -4116,7 +4116,7 @@ console.log("Total page:", totalPages);
       field: 'responsibility',
       headerName: 'Responsibility',
       sortable: true,
-       width: 183,
+       width: 173,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -4129,7 +4129,7 @@ console.log("Total page:", totalPages);
       field: 'billed_submit_date',
       headerName: 'BillSubmit Date',
       sortable: true,
-       width:196,
+       width:176,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -4142,7 +4142,7 @@ console.log("Total page:", totalPages);
       field: 'denial_code',
       headerName: 'Denial Code',
       sortable: true,
-       width: 165,
+       width: 155,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -4607,7 +4607,7 @@ console.log("Total page:", totalPages);
       field: 'statuscode',
       headerName: 'Status Code',
       sortable: true,
-       width: 103,
+       width: 83,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;

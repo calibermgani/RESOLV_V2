@@ -1,3 +1,3 @@
 "# resolv_v2" 
 
-"# Laravel 5.5 and Angular 15"
+"# Laravel 10 and Angular 15"

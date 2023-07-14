@@ -9,7 +9,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Address_flag extends Model
 {
     use HasFactory;
-    use SoftDeletes;
 
     protected $connection = 'mysql2';
     protected $fillable = [

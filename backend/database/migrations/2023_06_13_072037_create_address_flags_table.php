@@ -23,7 +23,6 @@ return new class extends Migration
 			$table->integer('zip4');
 			$table->enum('is_address_match', array('Yes','No'));
 			$table->timestamps();
-            $table->softDeletes();
         });
     }
 

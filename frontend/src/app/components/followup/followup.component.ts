@@ -15,11 +15,12 @@ import { pipe } from 'rxjs';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { ColDef, GridApi, GridOptions, GridReadyEvent } from 'ag-grid-community';
+import { ColDef, GridApi, GridOptions, GridReadyEvent, SideBarDef, ToolPanelDef } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AuthService } from 'src/app/Services/auth.service';
 import { NgxUiLoaderService } from 'ngx-ui-loader';
+import "ag-grid-enterprise";
 
 @Component({
   selector: 'app-followup',
@@ -211,6 +212,7 @@ reallocate_total_row:any;
           this.completed_claims=data.data.datas;
           this.GridrowData3 = this.completed_claims;
           this.myGrid_3.api.setRowData(this.GridrowData3);
+          this.gridApi_3.closeToolPanel();
           this.loader.stop();
           this.completed_claims_data = data.data.datas;
           this.total_completed_claims=data.count;
@@ -225,6 +227,7 @@ reallocate_total_row:any;
         {
           this.GridrowData3=[];
           this.myGrid_3.api.setRowData(this.GridrowData3);
+          this.gridApi_3.closeToolPanel();
           this.loader.stop();
         }
         // this.completed_claims_data = data.selected_claim_data;
@@ -241,6 +244,7 @@ reallocate_total_row:any;
           this.allocated_claims=data.data.datas;
           this.GridrowData1 = this.allocated_claims;
           this.myGrid_1.api.setRowData(this.GridrowData1);
+          this.gridApi_1.closeToolPanel();
           this.loader.stop();
           this.assigned_claims = data.data.datas;
           this.total_allocated=data.count;
@@ -253,6 +257,7 @@ reallocate_total_row:any;
         {
           this.GridrowData1=[];
           this.myGrid_1.api.setRowData(this.GridrowData1);
+          this.gridApi_1.closeToolPanel();
           this.loader.stop();
         }
 
@@ -275,6 +280,7 @@ reallocate_total_row:any;
           this.reallocated_claims=data.data.datas;
           this.GridrowData2 = this.reallocated_claims;
           this.myGrid_2.api.setRowData(this.GridrowData2);
+          this.gridApi_2.closeToolPanel();
           this.loader.stop();
           this.reassigned_claims_data = data.data.datas;
           this.total_reallocated=data.count;
@@ -288,6 +294,7 @@ reallocate_total_row:any;
         {
           this.GridrowData2 = [];
           this.myGrid_2.api.setRowData(this.GridrowData2);
+          this.gridApi_2.closeToolPanel();
           this.loader.stop();
         }
         console.log('reallocated_claims',this.reallocated_claims);
@@ -4272,5 +4279,28 @@ public updatenotes(type:any){
     this.new_cdtnnn = data;
     this.reload_data();
   }
+
+  public sideBar: SideBarDef | string | string[] | boolean | null = {
+    toolPanels: [
+      {
+        id: 'columns',
+        labelDefault: 'Columns Visibility',
+        labelKey: 'columns',
+        iconKey: 'columns',
+        toolPanel: 'agColumnsToolPanel',
+        toolPanelParams: {
+          suppressRowGroups: true,
+          suppressValues: true,
+          suppressPivots: true,
+          suppressPivotMode: true,
+          suppressColumnFilter: false,
+          suppressColumnSelectAll: true,
+          suppressColumnExpandAll: true,
+          cssClasses: ['custom-sidebar'],
+        },
+      } as ToolPanelDef,
+    ],
+    defaultToolPanel: 'columns',
+  };
 
 }

@@ -110,3 +110,19 @@ td:last-child {
   background-color: #fd2b2b;
   border-color: #990000;
 }
+
+
+
+input {
+  position: relative !important;
+  appearance: none;
+  margin: 8px;
+  overflow: hidden;
+  outline: none !important;
+}
+
+input[type=checkbox],
+input[type=radio] {
+  /* margin: 2px 3px 0 !important; */
+  line-height: normal;
+}

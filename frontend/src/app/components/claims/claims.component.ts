@@ -658,6 +658,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
         //  this.setAutoHeight();
       this.gridApi_4.closeToolPanel();
       this.loader.stop();
+      // this.autoSizeAll();
       console.log('GridData_Import',this.GridData_Import);
 
     }
@@ -666,6 +667,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
         //  this.setAutoHeight();
         this.gridApi_4.closeToolPanel();
       this.loader.stop();
+      // this.autoSizeAll();
       console.log('GridData_Import',this.GridData_Import);
 
     }
@@ -695,12 +697,14 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.myGrid_5.api.setRowData(this.GridData_ReImport);
       this.loader.stop();
       this.gridApi_5.closeToolPanel();
+      // this.autoSizeAll();
         //  this.setAutoHeight();
-      console.log('GridData_Import',this.GridData_Import);
+      console.log('GridData_Remport',this.GridData_ReImport);
     }
     else{
       this.GridData_ReImport = data.message;
       this.myGrid_5.api.setRowData([]);
+      // this.autoSizeAll();
       this.loader.stop();
         //  this.setAutoHeight();
     }
@@ -3292,6 +3296,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.GridData_CreateWorkOrders = data.data;
       this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
       this.gridApi_1.closeToolPanel();
+      // this.autoSizeAll();
       this.loader.stop();
       //  this.setAutoHeight();
     }
@@ -3300,6 +3305,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
         //  this.setAutoHeight();
         this.gridApi_1.closeToolPanel();
+        // this.autoSizeAll();
       this.loader.stop();
     }
 
@@ -3312,6 +3318,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.myGrid_6.api?.setRowData(this.GridData_AllClaims);
         //  this.setAutoHeight();
         this.gridApi_6.closeToolPanel();
+        // this.autoSizeAll();
       this.loader.stop();
     }
     else
@@ -3320,6 +3327,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.myGrid_6.api?.setRowData(this.GridData_AllClaims);
         //  this.setAutoHeight();
         this.gridApi_6.closeToolPanel();
+        // this.autoSizeAll();
       this.loader.stop();
     }
     if(data){
@@ -3713,6 +3721,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.myGrid_3.api.setRowData(this.GridData_ClosedClaims);
       this.loader.stop();
       this.gridApi_3.closeToolPanel();
+      // this.autoSizeAll();
         //  this.setAutoHeight();
       console.log('GridRowData',this.GridData_ClosedClaims);
       this.closed_claim_data = data.closed_claim_data;
@@ -3727,6 +3736,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
         //  this.setAutoHeight();
       this.myGrid_3.api.setRowData(this.GridData_ClosedClaims);
       this.gridApi_3.closeToolPanel();
+      // this.autoSizeAll();
       this.loader.stop();
     }
     console.log('closed DAta', this.closed_data);
@@ -5937,9 +5947,9 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     enableRowGroup: true,
     enablePivot: true,
     enableValue: true,
-    sortable: true,
+    sortable: false,
     resizable: false,
-    filter:false
+    filter:false,
   };
 
 
@@ -5948,17 +5958,17 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: '',
       checkboxSelection: true,
       headerCheckboxSelection: true,
-      minWidth: 40,
+       width: 40,
     },
     {
       field:'touch',
-      headerName: 'Touch',
+      headerName: '',
       sortable: true, // Set the `sortable` property to a boolean value
-      minWidth: 105,
+      width:40,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '12px'};
+         'font-size': '12px','width':'auto'};
       },
       cellRenderer: this.cellrendered.bind(this, 'touch'),
 
@@ -5967,7 +5977,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'claim_no',
       headerName: 'Claim No',
       sortable: true, // Set the `sortable` property to a boolean value
-      minWidth: 140,
+       width: 90,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -5980,7 +5990,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'dos',
       headerName: 'DOS',
       sortable: true,
-      minWidth: 100,
+       width: 100,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -5993,7 +6003,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'age',
       headerName: 'Age',
       sortable: true,
-      minWidth: 115,
+       width: 65,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6006,7 +6016,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'acct_no',
       headerName: 'Acc No',
       sortable: true,
-      minWidth: 115,
+       width: 85,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6019,7 +6029,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'patient_name',
       headerName: 'Patient Name',
       sortable: true,
-      minWidth: 208,
+       width: 208,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6032,7 +6042,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'rendering_prov',
       headerName: 'Rendering Provider',
       sortable: true,
-      minWidth: 164,
+       width: 164,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6045,7 +6055,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'responsibility',
       headerName: 'Responsibility',
       sortable: true,
-      minWidth: 148,
+       width: 128,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6058,7 +6068,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'prim_ins_name',
       headerName: 'Primary',
       sortable: true,
-      minWidth: 220,
+       width: 220,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6071,7 +6081,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'sec_ins_name',
       headerName: 'Secondary',
       sortable: true,
-      minWidth: 135,
+       width: 135,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6084,7 +6094,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'total_charges',
       headerName: 'Total Charges',
       sortable: true,
-      minWidth: 140,
+       width: 123,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6097,7 +6107,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'total_ar',
       headerName: 'Total AR',
       sortable: true,
-      minWidth: 107,
+       width: 107,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6110,7 +6120,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'claim_Status',
       headerName: 'Claim Status',
       sortable: true,
-      minWidth: 138,
+       width: 118,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6123,7 +6133,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'denial_code',
       headerName: 'Denial Code',
       sortable: true,
-      minWidth: 135,
+       width: 115,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6136,7 +6146,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'billed_submit_date',
       headerName: 'BillSubmit Date',
       sortable: true,
-      minWidth: 145,
+       width: 125,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6149,7 +6159,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'claim_note',
       headerName: 'Claim Note',
       sortable: true,
-      minWidth: 125,
+       width: 105,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6162,7 +6172,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'created_at',
       headerName: 'Assigned To|Date',
       sortable: true,
-      minWidth: 160,
+       width: 140,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6651,7 +6661,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       field: 'claim_no',
       headerName: 'Claim No',
       sortable: true, // Set the `sortable` property to a boolean value
-      minWidth: 140,
+      minWidth: 60,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -6824,11 +6834,11 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   ];
 
 
-  gridOptions1: GridOptions<gridData> | any = {
+  gridOptions1: GridOptions<gridData>= {
     defaultColDef: {
-      sortable: true,
-      filter: false
+      filter: false,
     },
+    suppressMenuHide: false,
     rowSelection: 'multiple',
     rowHeight: 35,
     suppressHorizontalScroll: false,
@@ -6836,43 +6846,30 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     pagination: true,
     paginationPageSize:this.paginationSizeValue_createWorkOrders,
     suppressDragLeaveHidesColumns: true,
-    onFirstDataRendered: this.onFirstDataRendered,
+    suppressContextMenu: true,
   };
-   onFirstDataRendered(params:any) {
-    params.api.sizeColumnsToFit();
-  }
 
-  gridOptions2: GridOptions<gridData> = {
-    defaultColDef: {
-      sortable: true,
-      filter: true
-    },
+  gridOptions2: GridOptions<gridData>  = {
     rowSelection: 'multiple',
     rowHeight: 34,
     suppressHorizontalScroll: true,
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize: this.paginationSizeValue_WorkOrders,
-    suppressDragLeaveHidesColumns: true
+    suppressDragLeaveHidesColumns: true,
+    suppressContextMenu: true,
   };
   gridOptions3: GridOptions<gridData> = {
-    defaultColDef: {
-      sortable: true,
-      filter: true
-    },
     rowSelection: 'multiple',
     rowHeight: 34,
     suppressHorizontalScroll: true,
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_ClosedClaims,
-    suppressDragLeaveHidesColumns: true
+    suppressDragLeaveHidesColumns: true,
+    suppressContextMenu: true,
   };
-  gridOptions4: GridOptions<gridData> = {
-    defaultColDef: {
-      sortable: true,
-      filter: true
-    },
+  gridOptions4: GridOptions<gridData>  = {
     rowSelection: 'multiple',
     suppressDragLeaveHidesColumns: true,
     rowHeight: 40 ,
@@ -6880,35 +6877,27 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_Import,
-    sideBar: {
-     hiddenByDefault:true // Initially hide the sidebar
-    },
+    suppressContextMenu: true,
   };
-  gridOptions5: GridOptions<gridData> = {
-    defaultColDef: {
-      sortable: true,
-      filter: true
-    },
+  gridOptions5: GridOptions<gridData>  = {
     rowSelection: 'multiple',
     rowHeight: 37,
     suppressHorizontalScroll: true,
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_reimport,
-    suppressDragLeaveHidesColumns: true
+    suppressDragLeaveHidesColumns: true,
+    suppressContextMenu: true,
   };
-  gridOptions6: GridOptions<gridData> = {
-    defaultColDef: {
-      sortable: true,
-      filter: true
-    },
+  gridOptions6: GridOptions<gridData>  = {
     rowSelection: 'multiple',
     rowHeight: 30,
     suppressHorizontalScroll: false,
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_AllClaims,
-    suppressDragLeaveHidesColumns: true
+    suppressDragLeaveHidesColumns: true,
+    suppressContextMenu: true,
   };
 
 
@@ -7362,10 +7351,8 @@ console.log("Total page:", totalPages);
           suppressValues: true,
           suppressPivots: true,
           suppressPivotMode: true,
-          suppressColumnFilter: false,
+          suppressColumnFilter: true,
           suppressColumnSelectAll: true,
-          suppressColumnExpandAll: true,
-          cssClasses: ['custom-sidebar'],
         },
       } as ToolPanelDef,
     ],
@@ -7376,16 +7363,38 @@ console.log("Total page:", totalPages);
     minWidth: 200,
   };
 
-  go(){
-    this.autoSizeAll();
-  }
-  autoSizeAll() {
-    let allColumnIds:any = [];
-    this.gridOptions1.columnApi.getColumns().forEach((column:any) => {
-      allColumnIds.push(column.getId());
-    });
-    console.log('Size Resized');
+  // autoSizeAll() {
+  //   if(this.GridData_CreateWorkOrders || this.GridData_WorkOrders || this.GridData_ClosedClaims || this.GridData_Import || this.GridData_ReImport || this.GridData_AllClaims)
+  //   {
+  //     let allColumnIds:any = [];
+  //   this.gridOptions1.columnApi.getColumns().forEach((column:any) => {
+  //     allColumnIds.push(column.getId());
+  //   });
+  //   this.gridOptions2.columnApi.getColumns().forEach((column:any) => {
+  //     allColumnIds.push(column.getId());
+  //   });
+  //   this.gridOptions3.columnApi.getColumns().forEach((column:any) => {
+  //     allColumnIds.push(column.getId());
+  //   });
+  //   this.gridOptions4.columnApi.getColumns().forEach((column:any) => {
+  //     allColumnIds.push(column.getId());
+  //   });
+  //   this.gridOptions5.columnApi.getColumns().forEach((column:any) => {
+  //     allColumnIds.push(column.getId());
+  //   });
+  //   this.gridOptions6.columnApi.getColumns().forEach((column:any) => {
+  //     allColumnIds.push(column.getId());
+  //   });
 
-    this.gridOptions1.columnApi.autoSizeColumns(allColumnIds, false);
-  }
+
+  //   console.log('Size Resized');
+
+  //   this.gridOptions1.columnApi.autoSizeColumns(allColumnIds, false);
+  //   this.gridOptions2.columnApi.autoSizeColumns(allColumnIds, false);
+  //   this.gridOptions3.columnApi.autoSizeColumns(allColumnIds, false);
+  //   this.gridOptions4.columnApi.autoSizeColumns(allColumnIds, false);
+  //   this.gridOptions5.columnApi.autoSizeColumns(allColumnIds, false);
+  //   this.gridOptions6.columnApi.autoSizeColumns(allColumnIds, false);
+  //   }
+  // }
 }

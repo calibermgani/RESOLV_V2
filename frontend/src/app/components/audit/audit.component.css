@@ -269,8 +269,14 @@ input[type=radio] {
  border: none !important;
  font-weight: 652;
 }
+.no-grid-lines .ag-side-bar{
+  font-weight: 600;
+  font-family: "Segoe UI","Noto Sans",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji" !important;
+  color: #333333;
+}
+.no-grid-lines .ag-header-icon{
+  display: none;
+}
 .search_box {
   border:1px solid #d8dbe4;height:45px;width: 100%;padding-left: 10px; ;margin-top: -2px;border-right:1px solid #d8dbe4;
 }
-
-

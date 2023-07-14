@@ -1010,7 +1010,7 @@
                             <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
                                <!-- <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
                                   <div class="box-tools searchbox"> -->
-                                     <input type="text" placeholder="Search.." name="search" (keyup)="onSearch()" [(ngModel)]="search_value_reworks"   class="search_box" ((keyup))="onSearch()">
+                                     <input type="text" placeholder="Search.." name="search" (keyup)="onSearch()" [(ngModel)]="search_value_reworks"   class="search_box" ((keyup))="onSearch()" autocomplete="off">
 
                                   <!-- </div>
                                </div> -->
@@ -1201,7 +1201,7 @@
                               </div>
                               <div  class="collapse" [collapse]="isCollapsed_Grid2" [isAnimated]="true">
                                 <ag-grid-angular class="ag-theme-alpine  no-grid-lines" [columnDefs]="columnDefs2" [gridOptions]="gridOptions2" #myGrid_2
-                                (gridReady)="onGridReady_2($event)" [defaultColDef]="defaultColDef"
+                                (gridReady)="onGridReady_2($event)" [defaultColDef]="defaultColDef" [sideBar]="sideBar"
                                 (selectionChanged)="onSelectionChanged_reWorks($event)"></ag-grid-angular>
                               </div>
                            </div>
@@ -1421,7 +1421,7 @@
                               </div>
                               <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
 
-                                       <input type="text" placeholder="Search.." name="search" class="search_box"  (keyup)="onSearch()" [(ngModel)]="search_values">
+                                       <input type="text" placeholder="Search.." name="search" class="search_box"  (keyup)="onSearch()" [(ngModel)]="search_values" autocomplete="off">
 
 
                               </div>
@@ -1483,7 +1483,7 @@
                               </div>
                               <div  class="collapse" [collapse]="isCollapsed_Grid1" [isAnimated]="true">
                                 <ag-grid-angular class="ag-theme-alpine  no-grid-lines" [columnDefs]="columnDefs1" [gridOptions]="gridOptions1" #myGrid_1
-                                (gridReady)="onGridReady_1($event)" [defaultColDef]="defaultColDef"
+                                (gridReady)="onGridReady_1($event)" [defaultColDef]="defaultColDef" [sideBar]="sideBar"
                                 (selectionChanged)="onSelectionChanged($event)"></ag-grid-angular>
                               </div>
                            </div>
@@ -2119,7 +2119,7 @@
                                  </div>
                               </div>
                               <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
-                                       <input type="text" placeholder="Search.." name="search"   class="search_box" (keyup)="onSearch()" [(ngModel)]="searchvalue_closedClaims" >
+                                       <input type="text" placeholder="Search.." name="search"   class="search_box" (keyup)="onSearch()" [(ngModel)]="searchvalue_closedClaims" autocomplete="off">
                               </div>
                            </div>
                         </div>
@@ -2178,7 +2178,7 @@
                            </div>
                            <div  class="collapse" [collapse]="isCollapsed_Grid3" [isAnimated]="true">
                             <ag-grid-angular class="ag-theme-alpine  no-grid-lines" [columnDefs]="columnDefs3" [gridOptions]="gridOptions3" #myGrid_3
-                            (gridReady)="onGridReady_3($event)" [defaultColDef]="defaultColDef"
+                            (gridReady)="onGridReady_3($event)" [defaultColDef]="defaultColDef" [sideBar]="sideBar"
                             (selectionChanged)="onSelectionChanged_closedClaims($event)"></ag-grid-angular>
                           </div>
 

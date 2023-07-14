@@ -1,8 +1,6 @@
 <?php
 namespace App\Helpers;
-use App\File_upload;
-use App\Claim_history;
-
+use App\Models\Claim_history;
 
 class Record_claim_history{
 
@@ -15,7 +13,7 @@ class Record_claim_history{
                     'claim_state'      => $claim['state'],
                     'assigned_by'      => $claim['assigned_by'],
                     'assigned_to'      => $claim['assigned_to']
-                    ]);
+                ]);
         }
         return $file_upload;
     }

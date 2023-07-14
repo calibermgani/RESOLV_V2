@@ -6,7 +6,7 @@ use Illuminate\Support\Collection;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\WithHeadingRow;
 
-class ImportViewClaims implements ToCollection
+class ImportViewClaims implements ToCollection, WithHeadingRow
 {
 
     /**

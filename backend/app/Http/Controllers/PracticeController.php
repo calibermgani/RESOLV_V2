@@ -102,11 +102,11 @@ class PracticeController extends Controller
                 $auditClaims = Import_field::where('claim_Status', 'Audit')->orWhere('claim_Status', 'Auditing')->where('claim_closing', '<>', 1)->count();
                 $closedClaims = Import_field::where('claim_closing', 1)->orWhere('claim_Status', 'Closed')->count();
 
-                $practice_data['total_count'] = $totalCount;
-                $practice_data['assigned_count'] = $assignedClaims;
-                $practice_data['unassigned_count'] = $unaAssignedClaims;
-                $practice_data['audit_count'] = $auditClaims;
-                $practice_data['closed_count'] = $closedClaims;
+                $practice_data[0]['total_count'] = $totalCount;
+                $practice_data[0]['assigned_count'] = $assignedClaims;
+                $practice_data[0]['unassigned_count'] = $unaAssignedClaims;
+                $practice_data[0]['audit_count'] = $auditClaims;
+                $practice_data[0]['closed_count'] = $closedClaims;
 
                 if ($practice_data != null) {
                     array_push($practice_list, $practice_data[0]);

@@ -785,6 +785,34 @@ class CreateworkorderController extends Controller
 
     public function get_associates(LoginRequest $request)
     {
+        try{
+            $users = User::whereIN('role_id', [1, 2, 3])->select('id', 'firstname', 'lastname')->get();
+            $i = 0;
+
+            foreach($users as $associates)
+            {
+                $assigned_count = Import_field::where('assigned_to', $associates['id'])->where('claim_Status', 'Assigned')->orWhere('claim_Status', 'Client Assistance')->count();
+                $assign_limit = User_work_profile::where('user_id', $associates['id'])->orderBy('id', 'desc')->first();
+
+                $users[$i]['assigned_claims'] = $assigned_count ? $assigned_count : 0;
+                $users[$i]['assign_limit'] = $assign_limit['claim_assign_limit'];
+                $i++;
+            }
+
+            return response()->json([
+                'data' => $users
+            ]);
+
+        }catch(Exception $e)
+        {
+            Log::debug('get associates error' . $e->getMessage());
+            throw new Exception('get associates error' . $e->getMessage());
+        }
+    }
+
+
+    public function get_associates1(LoginRequest $request)
+    {
 
         // $users_filter = User_work_profile::where('practice_id',$request->get('practice_dbid'))->where('status','Active')->pluck('user_id');
         //    $users= User::whereIN('id', $users_filter)->select('id','firstname', 'lastname')->get();

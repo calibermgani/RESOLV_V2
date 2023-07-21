@@ -22,35 +22,35 @@ class Import_field extends Model
 
     public function users()
     {
-        return $this->belongsTo('App\User', 'assigned_to', 'id');
+        return $this->belongsTo('App\Models\User', 'assigned_to', 'id');
     }
 
     public function claim_notes()
     {
-        return $this->belongsTo('App\Claim_note', 'claim_no', 'claim_id');
+        return $this->belongsTo('App\Models\Claim_note', 'claim_no', 'claim_id');
     }
 
     public function process_note()
     {
-        return $this->belongsTo('App\Process_note', 'claim_no', 'claim_id')->latest();
+        return $this->belongsTo('App\Models\Process_note', 'claim_no', 'claim_id')->latest();
     }
 
     public function qc_notes()
     {
-        return $this->belongsTo('App\Qc_note', 'claim_no', 'claim_id')->latest();
+        return $this->belongsTo('App\Models\Qc_note', 'claim_no', 'claim_id')->latest();
     }
 
     public function Claim_history()
     {
-        return $this->belongsTo('App\Claim_history', 'claim_no', 'claim_id')->orderBy('id', 'desc');
+        return $this->belongsTo('App\Models\Claim_history', 'claim_no', 'claim_id')->orderBy('id', 'desc');
     }
     public function Claim_history_asc()
     {
-        return $this->belongsTo('App\Claim_history', 'claim_no', 'claim_id')->orderBy('id', 'asc');
+        return $this->belongsTo('App\Models\Claim_history', 'claim_no', 'claim_id')->orderBy('id', 'asc');
     }
 
     public function FileName_details()
     {
-        return $this->belongsTo('App\File_upload', 'file_upload_id', 'id');
+        return $this->belongsTo('App\Models\File_upload', 'file_upload_id', 'id');
     }
 }

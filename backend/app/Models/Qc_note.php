@@ -23,11 +23,11 @@ class Qc_note extends Model
     ];
 
     public function root() {
-        return $this->belongsTo('App\Root_cause', 'root_cause', 'id');
+        return $this->belongsTo('App\Models\Root_cause', 'root_cause', 'id');
     }
 
     public function error_types() {
-        return $this->belongsToJson('App\Error_type', 'options->error_types[]->error_type', 'id');
+        return $this->belongsToJson('App\Models\Error_type', 'options->error_types[]->error_type', 'id');
     }
 
 }

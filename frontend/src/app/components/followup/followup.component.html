@@ -898,7 +898,7 @@
                                      <h3 class="box-title list-heading"><i class="fa fa-filter ar-blue"></i> Filters</h3>
                                      <div class="box-tools pull-right">
                                         <button class="btn btn-box-tool collapsed" type="button"
-                                        (click)="isCollapsed_Revoked = !isCollapsed_Revoked" [attr.aria-expanded]="!isCollapsed_Revoked"
+                                        (click)="isCollapsed_Revoked = !isCollapsed_Revoked;status_select_code()" [attr.aria-expanded]="!isCollapsed_Revoked"
                                         aria-controls="collapseBasic">
                                         <i class="fa fa-plus" *ngIf="isCollapsed_Revoked"></i>
                                         <i class="fa fa-minus" *ngIf="!isCollapsed_Revoked"></i>
@@ -1219,7 +1219,7 @@
                                        <h3 class="box-title list-heading"><i class="fa fa-filter ar-blue"></i> Filters</h3>
                                        <div class="box-tools pull-right">
                                           <button class="btn btn-box-tool collapsed" type="button"
-                                          (click)="isCollapsed_Assigned = !isCollapsed_Assigned" [attr.aria-expanded]="!isCollapsed_Assigned"
+                                          (click)="isCollapsed_Assigned = !isCollapsed_Assigned;status_select_code()" [attr.aria-expanded]="!isCollapsed_Assigned"
                                           aria-controls="collapseBasic">
                                           <i class="fa fa-plus" *ngIf="isCollapsed_Assigned"></i>
                                           <i class="fa fa-minus" *ngIf="!isCollapsed_Assigned"></i>
@@ -1869,11 +1869,11 @@
                                              </tr>
                                           </thead>
                                           <tbody>
-                                             <!-- <app-atom-spinner
+                                             <app-atom-spinner
                                              *ngIf="tab_load == true && !workorder_table"
                                              [size]="60"
                                              [color]="'#1fa5be'"
-                                             ></app-atom-spinner> -->
+                                             ></app-atom-spinner>
                                              <tr *ngFor="let x of workorder_table | paginate: { id: 'claims',itemsPerPage: 15, currentPage: pages, totalItems:total_claims }"  class="clickable-row cur-pointer" (click)="open(claimpage);claimslection(x);claim_check(x.touch);" >
                                              <!-- <td><input type="checkbox" ></td> -->
                                              <td *ngIf="x.touch < touch_count" title="Touch Count"><span class="ar">{{x.touch}}</span></td>
@@ -1917,7 +1917,7 @@
                                        <h3 class="box-title list-heading"><i class="fa fa-filter ar-blue"></i> Filters</h3>
                                        <div class="box-tools pull-right">
                                           <button class="btn btn-box-tool collapsed" type="button"
-                                          (click)="isCollapsed_closed_claim = !isCollapsed_closed_claim" [attr.aria-expanded]="!isCollapsed_closed_claim"
+                                          (click)="isCollapsed_closed_claim = !isCollapsed_closed_claim;status_select_code()" [attr.aria-expanded]="!isCollapsed_closed_claim"
                                           aria-controls="collapseBasic">
                                           <i class="fa fa-plus" *ngIf="isCollapsed_closed_claim"></i>
                                           <i class="fa fa-minus" *ngIf="!isCollapsed_closed_claim"></i>
@@ -3108,11 +3108,11 @@
                               <p class="text-center text-gray" style="margin-bottom: 10px;">No Records Found</p>
                            </div>
                         </div>
-                        <!-- <app-atom-spinner
+                        <app-atom-spinner
                         *ngIf="loading == true"
                         [size]="60"
                         [color]="'#1fa5be'"
-                        ></app-atom-spinner> -->
+                        ></app-atom-spinner>
                      </div>
                   </div>
                </div>
@@ -3268,7 +3268,7 @@
    </div>
    <div class="modal-footer">
       <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" (click)="modalRef2?.hide();close_clear_data();">Close</button>
-      <button type="button" [disabled] = "!modalform.valid" class="btn btn-info btn-sm" (click)="savenotes('claimnotes');modalRef2?.hide()"  *ngIf="!editnote_value">Save</button>
+      <button type="button" [disabled] = "!modalform.valid" class="btn btn-info btn-sm" (click)="savenotes('claimnotes');modalRef2?.hide()"  *ngIf="!editnote_value">Sav</button>
       <button type="button" [disabled] = "!modalform.valid" (click)="updatenotes('claimnotes');modalRef2?.hide()"  class="btn btn-info btn-sm" *ngIf="editnote_value">Update</button>
    </div>
 </ng-template>

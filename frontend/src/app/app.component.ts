@@ -56,6 +56,7 @@ export class AppComponent implements AfterViewInit {
   });
   this.idle.onTimeoutWarning.subscribe((countdown) => {
     // this.toastr.errorToastr('You will time out in ' + countdown + ' seconds!')
+    console.log('Due to Idle error in app component')
     if(countdown<=1 ){
       this.toastr.infoToastr('You have logged out because of inactivity!','',{
         toastTimeout:10000,

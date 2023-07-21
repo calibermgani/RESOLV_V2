@@ -649,6 +649,7 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
     if (this.note_validation == true) {
       if (this.router.url != '/rcm') {
         if (this.router.url == '/followup') {
+          console.log('Selected_Claims',this.selected_claim_data);
           console.log(this.selected_claim_data['claim_note']);
           let note_val;
           if (this.selected_claim_data['claim_note'] != '' && this.selected_claim_data['claim_note'] != undefined && this.selected_claim_data['claim_note'] != null) {
@@ -657,6 +658,7 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
           else if (this.selected_claim_data['claims_notes'] != '' && this.selected_claim_data['claims_notes'] != undefined && this.selected_claim_data['claims_notes'] != null) {
             note_val = this.selected_claim_data['claims_notes'];
           }
+          this.selected_claim_data.followup_date = [this.result.month,this.result.day,this.result.year];
           this.notes_details.push({ note: note_val, claim: this.selected_claim_data, type: 'claimpresent', claim_no: this.selected_claim_data['claim_no'] });
           //this.notes_details.patchValue({user:user_id,note:notes,claim:claim_id,type:command_type,claim_no:claim_id['claim_no']});
           //this.note_validation=true;
@@ -869,6 +871,8 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
     console.log(claim_details);
     console.log('finish_followup');
     console.log(this.formGroup.value);
+    this.formGroup.value.followup_date = this.result;
+    console.log('Updated FormGroup',this.formGroup.value);
     if (user_data.hasOwnProperty("notes_opt")) {
       let er_data = user_data.notes_opt.error_types;
       console.log(er_data);
@@ -1155,7 +1159,7 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
   fclaim() {
     return this.fclaims;
   }
-
+   result:any;
   check_follow_date() {
     let f_date: any;
     this.formGroup.get("followup_date")?.valueChanges.subscribe((selectedValue: any) => {
@@ -1166,10 +1170,10 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
         const month: number = date.getUTCMonth() + 1; // Adding 1 since getUTCMonth() returns zero-based month (0-11)
         const day: number = date.getUTCDate();
 
-        const result = { year, month, day };
+         this.result = { year, month, day };
 
-        console.log(result);
-        f_date = result;
+        console.log(this.result);
+        f_date = this.result;
         console.log(f_date);
         if (f_date != '' || f_date != null || f_date != undefined) {
           if (this.minDate.year > f_date.year) {

@@ -70,7 +70,7 @@ export class AuthService {
           next : (message:any) => {
             // // sets an idle timeout of 30 seconds, for testing purposes.
             console.log('Expire Time',message.expires_in);
-            this.idle.setIdle(message.expires_in);
+            this.idle.setIdle(3600);
             // // sets a timeout period of 5 seconds. after 10 seconds of inactivity, the user will be considered timed out.
             // this.idle.setTimeout(5);
             console.log('Running',this.idle.isRunning());

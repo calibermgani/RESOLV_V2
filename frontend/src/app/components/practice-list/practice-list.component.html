@@ -62,7 +62,7 @@
                               </thead><br>
                               <tbody>
                                 <tr *ngFor="let practice of practice_list" class="clickable-row cur-pointer"
-                                  data-href="index.html" routerLink="dashboard" (click)="selectPractice(practice.id)">
+                                  data-href="index.html"  (click)="selectPractice(practice.id)">
                                   <td>{{practice.practice_name}}</td>
                                   <td>{{practice.total_count}}</td>
                                   <td>{{practice.assigned_count}}</td>

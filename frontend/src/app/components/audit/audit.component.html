@@ -22,7 +22,7 @@
             <!-- <li class="hide"><a href="#tab_5" data-toggle="tab"><i class="fa fa-file-text-o"></i> Work Order <span class="tab-divider">|</span></a> </li> -->
             <li *ngIf="user_role == 2 || user_role ==16 " [ngClass]="class_change.tab2"><a href="#tab_2" data-toggle="tab"
                 style="padding-left: 0px;"
-                (click)="getclaim_details(1,'wo','null','null','null','null',null,null,null,null,null);get_statuscodes()"><i
+                (click)="getclaim_details(1,'wo','null','null','null','null',null,null,null,null,null);"><i
                   class="fa fa-file-text"></i> Audit Que <span class="tab-divider">|</span></a></li>
             <li *ngIf="user_role == 2" class=""><a href="#tab_3" data-toggle="tab" style="padding-left: 0px;"
                 aria-expanded="false"
@@ -488,7 +488,7 @@
                           <h3 class="box-title list-heading"><i class="fa fa-filter ar-blue"></i> Filters</h3>
                           <div class="box-tools pull-right">
                             <button class="btn btn-box-tool collapsed" type="button"
-                            (click)="isCollapsed_closed_claims_filters = !isCollapsed_closed_claims_filters" [attr.aria-expanded]="!isCollapsed_closed_claims_filters">
+                            (click)="isCollapsed_closed_claims_filters = !isCollapsed_closed_claims_filters;status_code_select()" [attr.aria-expanded]="!isCollapsed_closed_claims_filters">
                             <i class="fa fa-plus" *ngIf="isCollapsed_closed_claims_filters"></i>
                             <i class="fa fa-minus" *ngIf="!isCollapsed_closed_claims_filters"></i>
                             </button>
@@ -782,7 +782,7 @@
                           <h3 class="box-title list-heading"><i class="fa fa-filter ar-blue"></i> Filters</h3>
                           <div class="box-tools pull-right">
                             <button class="btn btn-box-tool collapsed" type="button"
-                            (click)="isCollapsed_assigned_claims_filters = !isCollapsed_assigned_claims_filters" [attr.aria-expanded]="!isCollapsed_assigned_claims_filters">
+                            (click)="isCollapsed_assigned_claims_filters = !isCollapsed_assigned_claims_filters;status_code_select()" [attr.aria-expanded]="!isCollapsed_assigned_claims_filters">
                             <i class="fa fa-plus" *ngIf="isCollapsed_assigned_claims_filters"></i>
                             <i class="fa fa-minus" *ngIf="!isCollapsed_assigned_claims_filters"></i>
                             </button>
@@ -1085,7 +1085,7 @@
                           <h3 class="box-title list-heading"><i class="fa fa-filter ar-blue"></i> Filters</h3>
                           <div class="box-tools pull-right">
                               <button class="btn btn-box-tool collapsed" type="button"
-                              (click)="isCollapsed_audit_que_filters = !isCollapsed_audit_que_filters" [attr.aria-expanded]="!isCollapsed_audit_que_filters">
+                              (click)="isCollapsed_audit_que_filters = !isCollapsed_audit_que_filters;status_code_select()" [attr.aria-expanded]="!isCollapsed_audit_que_filters">
                             <i class="fa fa-plus" *ngIf="isCollapsed_audit_que_filters"></i>
                             <i class="fa fa-minus" *ngIf="!isCollapsed_audit_que_filters"></i>
                             </button>
@@ -2075,11 +2075,11 @@
                       *ngIf='!claim_notes.length'>
                       <p class="text-center text-gray" style="margin-bottom: 10px;">No Records Found</p>
                     </div>
-                    <!-- <app-atom-spinner
+                    <app-atom-spinner
                               *ngIf="loading == true"
                               [size]="60"
                               [color]="'#1fa5be'"
-                              ></app-atom-spinner> -->
+                              ></app-atom-spinner>
                   </div>
                 </div>
               </div>

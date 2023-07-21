@@ -1070,6 +1070,25 @@ public claim_no:any;
 public claimslection(claim:any)
 {
   console.log('claim',claim);
+  const dateTime = new Date(claim.created_at);
+  const year = dateTime.getFullYear();
+  const month = String(dateTime.getMonth() + 1).padStart(2, '0');
+  const date = String(dateTime.getDate()).padStart(2, '0');
+  const hours = String(dateTime.getHours()).padStart(2, '0');
+  const minutes = String(dateTime.getMinutes()).padStart(2, '0');
+  const seconds = String(dateTime.getSeconds()).padStart(2, '0');
+  let x =  `${year}-${month}-${date} ${hours}:${minutes}:${seconds}`;
+  const dateTime1 = new Date(claim.updated_at);
+  const year1 = dateTime1.getFullYear();
+  const month1 = String(dateTime.getMonth() + 1).padStart(2, '0');
+  const date1 = String(dateTime.getDate()).padStart(2, '0');
+  const hours1 = String(dateTime.getHours()).padStart(2, '0');
+  const minutes1 = String(dateTime.getMinutes()).padStart(2, '0');
+  const seconds1 = String(dateTime.getSeconds()).padStart(2, '0');
+  let y =  `${year1}-${month1}-${date1} ${hours1}:${minutes1}:${seconds1}`;
+  claim.created_at = x;
+  claim.updated_at = y;
+  console.log('UPDATED CLIAM', claim);
   this.claim_no = claim?.claim_no;
   this.claim_note = claim?.claim_note;
   console.log('claim_note',this.claim_note);
@@ -2057,7 +2076,7 @@ public updatenotes(type:any){
       this.class_change_tab['tab1']='tab-pane active';
       this.class_change_tab['tab2']='tab-pane'
 
-      this.get_month_details();
+      // this.get_month_details(); edited...
     }
   }
   weeks:any=[];
@@ -2433,11 +2452,11 @@ public updatenotes(type:any){
   ngOnInit() {
     // this.auth.tokenValue.next(false);
     //this.get_insurance();
-    this.getSearchResults();
+    // this.getSearchResults();
     this.user_role_maintainer();
     this.getSummary();
     //this.getclaim_details(1,'wo','null','null','null','null',null,null,null,null);
-    this.get_statuscodes();
+    // this.get_statuscodes();
 
     this.assignedClaimsFind = this.formBuilder.group({
       dos: [],
@@ -2538,7 +2557,9 @@ public updatenotes(type:any){
         });
 
         this.subscription=this.notify_service.fetch_touch_limit().subscribe(message => {
-          this.touch_count = message });
+          this.touch_count = message
+        console.log('touch count ONIN', this.touch_count);
+        });
 
           const debouncetime = pipe(debounceTime(700));
     this.search_data.valueChanges.pipe(debouncetime)
@@ -2560,6 +2581,7 @@ public updatenotes(type:any){
     if(this.touch_count == undefined)
     {
       this.touch_count=this.notify_service.manual_touch_limit();
+      console.log('touch count afterview', this.touch_count);
     }
     if(this.auth.tokenValue.value == true)
     {let data = localStorage.getItem('token');
@@ -3188,7 +3210,7 @@ public updatenotes(type:any){
     {
       field: 'touch',
       headerName: '',
-      width: 40,
+      width: 50,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -3764,6 +3786,7 @@ public updatenotes(type:any){
     switch (headerName) {
       case 'touch': {
         if (params.value >= this.touch_count || params.value < this.touch_count) {
+          console.log('params touch count',this.touch_count)
           return params.value;
         }
         else
@@ -4294,13 +4317,19 @@ public updatenotes(type:any){
           suppressPivots: true,
           suppressPivotMode: true,
           suppressColumnFilter: false,
-          suppressColumnSelectAll: true,
-          suppressColumnExpandAll: true,
+          suppressColumnSelectAll: false,
+          suppressColumnExpandAll: false,
           cssClasses: ['custom-sidebar'],
         },
       } as ToolPanelDef,
     ],
     defaultToolPanel: 'columns',
   };
+
+  status_select_code(){
+    if(!this.isCollapsed_Revoked || !this.isCollapsed_Assigned || !this.isCollapsed_closed_claim){
+      this.get_statuscodes();this.getSearchResults();
+    }
+  }
 
 }

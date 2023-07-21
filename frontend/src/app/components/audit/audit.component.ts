@@ -2995,7 +2995,7 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
   ngOnInit() {
     // this.auth.tokenValue.next(false);
     this.user_role_maintainer();
-    this.get_statuscodes();
+    // this.get_statuscodes();
     this.auditClaimsFind = this.formBuilder.group({
       dos: [],
       age_filter: [],
@@ -3120,15 +3120,15 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
       this.touch_count = message
     });
     //this.graphStatus();
-    this.getSearchResults();
+    // this.getSearchResults();
 
   }
 
   ngAfterViewInit() {
     // this.get_statuscodes(); CALLED TWO TIMES
-    this.get_audit_codes();
-    this.get_error_param_codes();
-    this.get_error_sub_param_codes();
+    // this.get_audit_codes();
+    // this.get_error_param_codes();
+    // this.get_error_sub_param_codes();
     this.Jarwis.get_audit_table_page('null', 1, 15, 'null', 'null', 'null', null, null, null, null, null).subscribe(
       data => this.assign_page_data(data),
       error => this.handleError(error)
@@ -5680,9 +5680,8 @@ console.log("Total page:", totalPages);
           suppressPivots: true,
           suppressPivotMode: true,
           suppressColumnFilter: false,
-          suppressColumnSelectAll: true,
-          suppressColumnExpandAll: true,
-          cssClasses: ['custom-sidebar'],
+          suppressColumnSelectAll: false,
+          suppressColumnExpandAll: false,
         },
       } as ToolPanelDef,
     ],
@@ -5719,5 +5718,10 @@ console.log("Total page:", totalPages);
     }
   }
 
-}
+  status_code_select(){
+    if((!this.isCollapsed_audit_que_filters) || (!this.isCollapsed_assigned_claims_filters) || (!this.isCollapsed_closed_claims_filters)){
+      this.get_statuscodes();this.getSearchResults()
+    }
+  }
 
+}

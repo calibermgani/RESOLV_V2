@@ -90,6 +90,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       excludeRegexp:[
         '\/api\/getPermissions$',
       ],
+      // exclude:["http://127.0.0.1:8000/api/checktoken","http://127.0.0.1:8000/api/getPermissions"],
       showForeground:true,
     }),
     // GooglePlaceModule,

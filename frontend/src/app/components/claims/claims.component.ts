@@ -27,7 +27,7 @@ import { AgGridAngular } from 'ag-grid-angular';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { AuthService } from 'src/app/Services/auth.service';
 import { LoaderService } from 'src/app/Services/loader.service';
-import { NgxUiLoaderService } from 'ngx-ui-loader';
+import { NgxUiLoaderConfig, NgxUiLoaderHttpModule, NgxUiLoaderModule, NgxUiLoaderRouterModule, NgxUiLoaderService, POSITION, SPINNER } from 'ngx-ui-loader';
 import { Route, Router } from '@angular/router';
 // import 'ag-grid-community/styles/ag-grid.css';
 // import 'ag-grid-community/styles/ag-theme-alpine.css';
@@ -52,13 +52,26 @@ export interface gridData {
   denial_code: any;
   assigned_to: any
 }
-
+const ngxUiLoaderConfig: NgxUiLoaderConfig = {
+  // bgsColor: '#OOACC1',
+  // bgsOpacity: 20,
+  // bgsPosition: POSITION.centerCenter,
+  // bgsSize: 60,
+  // bgsType: SPINNER.threeStrings,
+  fgsColor: '#00ACC1',
+  fgsPosition: POSITION.centerCenter,
+  fgsSize: 60,
+  fgsType: SPINNER.threeStrings,
+  // pbColor: '#00ACC1',
+  // pbDirection: PB_DIRECTION.leftToRight,
+  // pbThickness: 5,
+};
 @Component({
   selector: 'app-claims',
   templateUrl: './claims.component.html',
   styleUrls: ['./claims.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
 })
 
 
@@ -157,15 +170,16 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   mismatch_claim_data_mismatch: any = [];
   mismatch_claim_number_sort: any = [];
   new_claim_data: any = [];
-  file_upload: any;
+  file_upload: any = undefined;
+  error_occur:boolean = true;
   input_data: any = [];
   closeResult: string = '';
   old_value: any = [];
   new_value: any = [];
   fieldselect: any = [];
   roles: any = [];
-  importProcessed: any = undefined;
   datas: string[] = [];
+  importProcessed: any = 1;
   mismatch_field_list: any = [];
   mismatch_selected: string = '';
   @Input('data') table_datas_list: any = [];
@@ -484,7 +498,8 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   public updateignore(message: any) {
-    console.log();
+    this.importProcessed = 1;
+    console.log('Ignore',message);
     // this.process_uld_file(message.upload_id);
   }
 
@@ -497,8 +512,12 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   public handlemessage(message: any) {
     // console.log("Handle",message);
     //assigning backend values to frontend
-
-    this.newclaim = message.message.display_claims.new_filter.length;
+    // console.log('In coming message',message);
+    // message = null;
+    // console.log('OUT coming message',message);
+    if(message){
+      this.toastr.successToastr('Uploaded');
+      this.newclaim = message.message.display_claims.new_filter.length;
     this.duplicate = message.message.display_claims.duplicate_filter.length;
     this.duplicates = message.message.display_claims.filedata.total_claims;
     this.mismatch = message.message.display_claims.mismatch_nos;
@@ -556,12 +575,21 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     // setTimeout(()=>{
     //   this.error = "";
     //   }, 1500);
+    }
+    else
+    {
+      this.error_occur = false;
+    }
+
   }
 
   public handlemessage_new(message: any) {
     // console.log("Handle",message);
     //assigning backend values to frontend
-
+    // console.log('In coming message',message);
+    // message = null;
+    // console.log('OUT coming message',message);
+    if(message){
     this.newclaim = message.message.new_filter.length;
     this.duplicate = message.message.duplicate_filter.length;
     this.duplicates = message.message.filedata.total_claims;
@@ -621,6 +649,10 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     //   this.error = "";
     //   }, 1500);
   }
+  else{
+    this.error_occur = false;
+  }
+  }
 
   notify(error: any) {
     //console.log(error);
@@ -643,7 +675,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.importedfile.forEach((element: any) => {
       this.importProcessed = element.processed;
     });
-    console.log(this.importProcessed);
+    console.log('ImportProcessed',this.importProcessed);
     this.datas = this.tabdat;
     this.upload_total = data.count;
     this.total = data.count;
@@ -812,7 +844,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.formdata.append('practice_dbid', localStorage.getItem('practice_id')!);
     console.log(this.formdata);
     this.Jarwis.upload(this.formdata).subscribe(
-      message => { this.handlemessage(message); this.toastr.successToastr('Uploaded'); },
+      message => { this.handlemessage(message);},
       error => this.notify(error)
     );
     console.log('FormData',this.formdata);
@@ -882,16 +914,21 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   public saveclaims() {
+    this.importProcessed = undefined;
+    this.cellrendered4.bind('settings');
     this.Jarwis.createnewclaims(this.new_claim_data, this.file_upload, this.setus.getId()).subscribe(
       data => this.updatelog(data),
       error => this.handleError(error)
     );
   }
-
   public updatelog(data: any) {
     if (data.error == 'Created') {
       this.toastr.successToastr('New Claims Created.');
       console.log(this.claims_processed);
+      this.Jarwis.get_upload_table_page(1, 15).subscribe(
+        data => this.handleResponse(data),
+        error => this.handleError(error)
+      );
       this.new_claims = [];
       this.newclaim = 0;
     }
@@ -1188,6 +1225,26 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public claimslection(claim: any) {
     console.log('CLIAM', claim);
+    console.log('claims_created_at',claim.created_at);
+    const dateTime = new Date(claim.created_at);
+    const year = dateTime.getFullYear();
+    const month = String(dateTime.getMonth() + 1).padStart(2, '0');
+    const date = String(dateTime.getDate()).padStart(2, '0');
+    const hours = String(dateTime.getHours()).padStart(2, '0');
+    const minutes = String(dateTime.getMinutes()).padStart(2, '0');
+    const seconds = String(dateTime.getSeconds()).padStart(2, '0');
+    let x =  `${year}-${month}-${date} ${hours}:${minutes}:${seconds}`;
+    const dateTime1 = new Date(claim.updated_at);
+    const year1 = dateTime1.getFullYear();
+    const month1 = String(dateTime.getMonth() + 1).padStart(2, '0');
+    const date1 = String(dateTime.getDate()).padStart(2, '0');
+    const hours1 = String(dateTime.getHours()).padStart(2, '0');
+    const minutes1 = String(dateTime.getMinutes()).padStart(2, '0');
+    const seconds1 = String(dateTime.getSeconds()).padStart(2, '0');
+    let y =  `${year1}-${month1}-${date1} ${hours1}:${minutes1}:${seconds1}`;
+    claim.created_at = x;
+    claim.updated_at = y;
+    console.log('UPDATED CLIAM', claim);
     this.claim_no = claim.claim_no;
     this.get_line_items(claim);
     this.check_reassign_alloc(claim);
@@ -2959,7 +3016,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
         //   data => this.assign_page_data(data),
         //   error => this.handleError(error)
         // );
-        this.Jarwis.get_first_table_data(createsearch).then(
+        this.Jarwis.get_first_table_data(this.createClaimsFind.value).then(
           (data:any) => this.assign_page_data(data),
           (error:any) => this.handleError(error)
         )
@@ -4432,7 +4489,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   user_name: any;
   ngOnInit() {
     // this.auth.tokenValue.next(true);
-    this.get_statuscodes();
+    // this.get_statuscodes();
     console.log("YESSSSSSSSSSSSSSSSS");
     // pageChange(1,'claim','null','null','null','null','null','null')
     // this.Jarwis.get_table_page(1, 'claim', 'null', 'null', 'null', 'null', 'null', 'null').subscribe((data: any) => {
@@ -5686,7 +5743,8 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       title="Delete File"></i>`;
       }
       case 'settings': {
-        if(this.importedfile?.[0].id == params.data.id){
+        console.log('IMported FIle',this.importProcessed);
+        if(this.importedfile?.[0].id == params.data.id && this.importProcessed !=1 && this.importProcessed !=undefined){
           return `<i class="fa fa-cog cur-pointer" style="color:#337ab7;width:20px;height:30px"
        title="Process File"></i>`;
         }
@@ -5852,7 +5910,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.selected_claim_nos = [];
     this.rowValue_ID_1 = this.gridApi_1.getSelectedRows();
     const selectedNodes = this.gridApi_1.getSelectedNodes();
-    // console.log('ID1', this.rowValue_ID_1);
+    console.log('ID1', this.rowValue_ID_1);
     if (this.rowValue_ID_1 != '') {
       for (let i = 0; i < this.rowValue_ID_1.length; i++) {
         this.selected_claim_nos.push(this.rowValue_ID_1?.[i].claim_no);
@@ -7086,7 +7144,8 @@ console.log("Total page:", totalPages);
   config: any = {
     backdrop: true,
     animated: true,
-    keyboard: true,
+    keyboard: false,
+    ignoreBackdropClick: true,
     containerClass: 'theme-default'
   };
 
@@ -7351,8 +7410,8 @@ console.log("Total page:", totalPages);
           suppressValues: true,
           suppressPivots: true,
           suppressPivotMode: true,
-          suppressColumnFilter: true,
-          suppressColumnSelectAll: true,
+          suppressColumnFilter: false,
+          suppressColumnSelectAll: false,
         },
       } as ToolPanelDef,
     ],
@@ -7397,4 +7456,9 @@ console.log("Total page:", totalPages);
   //   this.gridOptions6.columnApi.autoSizeColumns(allColumnIds, false);
   //   }
   // }
+  status_code_select(){
+    if(!this.isCollapsed_ClosedClaims || !this.isCollapsed_AllClaims){
+      this.get_statuscodes();
+    }
+  }
 }

@@ -20,7 +20,7 @@
                   class="fa fa-list"></i> Work Orders <span class="tab-divider">|</span></a></li>
             <li *ngIf="(user_role == 1 || user_role == 2 || !(user_role == 16))"><a href="#tab_5" data-toggle="tab"
                 style="padding-left: 0px;" aria-expanded="true"
-                (click)="get_workorder('closedClaims',null,null,1,wo_page_number,null,null,'null','null',null,null,null);"><i
+                (click)="get_workorder('closedClaims',null,null,1,wo_page_number,null,null,'null','null',null,null,null);status_code_select()"><i
                   class="fa fa-drivers-license"></i> Closed Claims <span class="tab-divider">|</span></a></li>
             <!-- <li *ngIf="(user_role == 1 || user_role == 2  || !(user_role == 16))"><a href="#rework" data-toggle="tab" style="padding-left: 0px;" (click)="getclaim_details(1,'allocated','null','null','null','null');" ><i class="fa fa-check"></i> Rework Claims <span class="tab-divider">|</span></a></li>
                   <li *ngIf="(user_role == 1 || user_role == 2  || !(user_role == 16))"><a href="#assigned" data-toggle="tab" style="padding-left: 0px;" (click)="get_workorder('assignedClaims',null,null,1,wo_page_number,null,null,'null','null',null,null,null,null);" ><i class="fa fa-share"></i> Assigned Claims <span class="tab-divider">|</span></a></li> -->
@@ -37,7 +37,7 @@
                 Revoke
                 Claims <span class="tab-divider">|</span></a></li>
             <li *ngIf="(user_role == 1 || user_role == 2 || user_role == 16)" class="" [ngClass]="class_change.tab2"><a href="#tab_6"
-                (click)="pageChange(1,'all_claim',null,null,null,null,null,null);" data-toggle="tab"
+                (click)="pageChange(1,'all_claim',null,null,null,null,null,null);status_code_select()" data-toggle="tab"
                 style="padding-left: 0px;"><i class="fa fa-user"></i> All Claims</a>
             </li>
 
@@ -379,7 +379,7 @@
                         <span class="disabled-tooltip pull-right" tabindex="0" data-toggle="tooltip"
                           title="Please process datas from previous uploaded file"><button
                             class="btn btn-info btn-xs pull-right btn-flat" style="margin-top:4px;"
-                            [disabled]="(importProcessed ==0 && importProcessed != null && importProcessed != undefined)"
+                            [disabled]="(importProcessed ==0 )"
                             (click)="open(page1)"><i class="fa fa-upload"></i> Import</button></span>
 
                         <button class="btn btn-info btn-xs pull-right btn-flat"
@@ -1449,7 +1449,7 @@
                           <h3 class="box-title list-heading"><i class="fa fa-filter ar-blue"></i> Filters</h3>
                           <div class="box-tools pull-right">
                             <button  type="button" class="btn btn-box-tool collapsed" style="margin-left:10px;"
-                            (click)="isCollapsed_ClosedClaims = !isCollapsed_ClosedClaims" [attr.aria-expanded]="!isCollapsed_ClosedClaims"
+                            (click)="isCollapsed_ClosedClaims = !isCollapsed_ClosedClaims;status_code_select()" [attr.aria-expanded]="!isCollapsed_ClosedClaims"
                             aria-controls="collapseBasic">
                             <i class="fa fa-plus" *ngIf="isCollapsed_ClosedClaims"></i>
                             <i class="fa fa-minus" *ngIf="!isCollapsed_ClosedClaims"></i>
@@ -1716,7 +1716,7 @@
                           <h3 class="box-title list-heading"><i class="fa fa-filter ar-blue"></i> Filters</h3>
                           <div class="box-tools pull-right">
                             <button type="button" class="btn btn-box-tool collapsed" style="margin-left:10px;"
-                            (click)="isCollapsed_AllClaims = !isCollapsed_AllClaims" [attr.aria-expanded]="!isCollapsed_AllClaims"
+                            (click)="isCollapsed_AllClaims = !isCollapsed_AllClaims;status_code_select()" [attr.aria-expanded]="!isCollapsed_AllClaims"
                             aria-controls="collapseBasic">
                             <i class="fa fa-plus" *ngIf="isCollapsed_AllClaims"></i>
                             <i class="fa fa-minus" *ngIf="!isCollapsed_AllClaims"></i>
@@ -2476,7 +2476,7 @@
               placeholder="MM-DD-YYYY" (focus)="report_date.toggle()" ngbDatepicker #report_date="ngbDatepicker"
               [ngClass]="{ 'is-invalid': (f['report_date'].touched) && f['report_date'].errors }"> -->
 
-            <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker class="form-control" formControlName="report_date" autocomplete="off"  [minDate]="minDate"
+            <input type="text" placeholder="Datepicker" class="form-control" bsDatepicker class="form-control" formControlName="report_date" autocomplete="off"
             [bsConfig]="bsConfig">
             <div *ngIf="(f['report_date'].touched) && f['report_date'].errors" class="invalid-feedback">
               <div *ngIf="f['report_date'].errors['required']">Report Date is required</div>
@@ -2529,9 +2529,6 @@
       <span aria-hidden="true">&times;</span>
     </button>
     <h4 class="modal-title" id="modal-basic-title">Import Processing</h4>
-  </div>
-  <div *ngIf="file_upload == undefined">
-    <!-- <app-atom-spinner [size]="60" [color]="'#1fa5be'"></app-atom-spinner> -->
   </div>
   <div *ngIf="file_upload != undefined" class="modal-body">
     <form>
@@ -2600,6 +2597,15 @@
         </table>
       </div>
     </form>
+  </div>
+  <div *ngIf="file_upload == undefined">
+    <app-atom-spinner [size]="60" [color]="'#1fa5be'" *ngIf="file_upload == undefined && error_occur == true"></app-atom-spinner>
+    <div *ngIf="!error_occur"><span style="font-weight: 600;
+      font-family: Segoe UI,Noto Sans,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji !important;
+      color: #333333;
+      position: relative;
+      top: 24px;
+      left: 36%;">Something went wrong! Contact Site Admin</span></div>
   </div>
   <div class="modal-footer">
     <!--  <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button> -->
@@ -2787,7 +2793,7 @@
 
 <ng-template #mismatchmodel let-modal>
   <div class="modal-header">
-    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+    <button type="button" class="close" aria-label="Close" (click)="modalRef4?.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
     <h4 class="modal-title" id="modal-basic-title">Mismatch Claims</h4>
@@ -3284,7 +3290,7 @@
                       <p class="text-center text-gray" style="margin-bottom: 10px;">No Records Found</p>
                     </div>
                   </div>
-                  <!-- <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner> -->
+                  <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner>
                   <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                   <div class="col-lg-12 no-padding" style="border-bottom: 1px dashed #f0f0f0;">
                                       <p class="text-justify" style="margin-bottom: 10px;"><span class="ar-blue font600">Mike Hussey <span style="margin-left:3px;margin-right:3px;color:#ccc">/</span> 09/09/18 :</span> <span class="pull-right" style="font-size: 18px;">    </span>  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
@@ -3348,7 +3354,7 @@
                       <p class="text-center text-gray" style="margin-bottom: 10px;">No Records Found</p>
                     </div>
                   </div>
-                  <!-- <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner> -->
+                  <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner>
                 </div>
               </div>
             </div>
@@ -3830,7 +3836,7 @@
                       <p class="text-center text-gray" style="margin-bottom: 10px;">No Records Found</p>
                     </div>
                   </div>
-                  <!-- <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner> -->
+                  <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner>
                 </div>
               </div>
             </div>
@@ -4413,7 +4419,7 @@
                       <p class="text-center text-gray" style="margin-bottom: 10px;">No Records Found</p>
                     </div>
                   </div>
-                  <!-- <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner> -->
+                  <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner>
                 </div>
               </div>
             </div>
@@ -4452,7 +4458,7 @@
                       <p class="text-center text-gray" style="margin-bottom: 10px;">No Records Found</p>
                     </div>
                   </div>
-                  <!-- <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner> -->
+                  <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner>
                 </div>
               </div>
             </div>
@@ -4928,7 +4934,7 @@
                       *ngIf='!process_notes.length'>
                       <p class="text-center text-gray" style="margin-bottom: 10px;">No Records Found</p>
                     </div>
-                    <!-- <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner> -->
+                    <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner>
                   </div>
                   <!--
                               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -4987,7 +4993,7 @@
                       <p class="text-center text-gray" style="margin-bottom: 10px;">No Records Found</p>
                     </div>
                   </div>
-                  <!-- <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner> -->
+                  <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner>
                 </div>
               </div>
             </div>
@@ -5025,7 +5031,7 @@
                       <p class="text-center text-gray" style="margin-bottom: 10px;">No Records Found</p>
                     </div>
                   </div>
-                  <!-- <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner> -->
+                  <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner>
                 </div>
               </div>
             </div>
@@ -5061,7 +5067,7 @@
                       <p class="text-center text-gray" style="margin-bottom: 10px;">No Records Found</p>
                     </div>
                   </div>
-                  <!-- <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner> -->
+                  <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner>
                 </div>
               </div>
             </div>
@@ -5542,8 +5548,8 @@
                         </td>
                       </tr>
                     </tbody>
-                    <!-- <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"
-                      style="padding: left 200px;"></app-atom-spinner> -->
+                    <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"
+                      style="padding: left 200px;"></app-atom-spinner>
                   </table>
                 </div>
               </div>
@@ -5659,7 +5665,7 @@
     </div>
   </div>
   <div *ngIf="detailed_claims == ''">
-    <!-- <app-atom-spinner [size]="60" [color]="'#1fa5be'"></app-atom-spinner> -->
+    <app-atom-spinner [size]="60" [color]="'#1fa5be'"></app-atom-spinner>
   </div>
   <div class="modal-footer">
   </div>
@@ -6277,7 +6283,7 @@
                       <p class="text-center text-gray" style="margin-bottom: 10px;">No Records Found</p>
                     </div>
                   </div>
-                  <!-- <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner> -->
+                  <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner>
                   <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                   <div class="col-lg-12 no-padding" style="border-bottom: 1px dashed #f0f0f0;">
                                       <p class="text-justify" style="margin-bottom: 10px;"><span class="ar-blue font600">Mike Hussey <span style="margin-left:3px;margin-right:3px;color:#ccc">/</span> 09/09/18 :</span> <span class="pull-right" style="font-size: 18px;">    </span>  Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
@@ -6341,7 +6347,7 @@
                       <p class="text-center text-gray" style="margin-bottom: 10px;">No Records Found</p>
                     </div>
                   </div>
-                  <!-- <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner> -->
+                  <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner>
                 </div>
               </div>
             </div>
@@ -6823,7 +6829,7 @@
                       <p class="text-center text-gray" style="margin-bottom: 10px;">No Records Found</p>
                     </div>
                   </div>
-                  <!-- <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner> -->
+                  <app-atom-spinner *ngIf="loading == true" [size]="60" [color]="'#1fa5be'"></app-atom-spinner>
                 </div>
               </div>
             </div>

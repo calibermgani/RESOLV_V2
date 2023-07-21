@@ -99,11 +99,18 @@
   display: inline-flex;
   width: 100%;
 }
+input {
+  position: relative !important;
+  appearance: none;
+  margin: 8px;
+  overflow: hidden;
+  outline: none !important;
+}
 
 input[type=checkbox],
 input[type=radio] {
-  /* margin: 2px 0 0 !important; */
-  margin-top: 1px\9;
+  /* margin: 2px 0 0 !important;
+  margin-top: 1px\9; */
   line-height: normal;
 }
 

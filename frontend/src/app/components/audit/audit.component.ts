@@ -711,12 +711,12 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
       this.gridApi_1.closeToolPanel();
       this.loader.stop();
       console.log('GridData', this.GridrowData1);
-      //this.autoSizeAll();
+      this.autoSizeAll();
     }else{
       this.myGrid_1.api?.setRowData([]);
       this.gridApi_1.closeToolPanel();
       this.loader.stop();
-      //this.autoSizeAll();
+      this.autoSizeAll();
     }
     if(data)
     {this.table_datas = data.data;
@@ -4018,31 +4018,30 @@ console.log("Total page:", totalPages);
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '12px'};
+         'font-size': '12px','width':'auto'};
       },
     },
-    {
-      field: 'touch',
-      headerName: '',
-       width: 63,
-      cellStyle:(params:any):any=>{
-        return {'color': '#363636',
-         'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '12px'};
-      },
-      sortable: true, // Set the `sortable` property to a boolean value
-      cellRenderer: this.cellrendered_auditQue.bind(this, 'touch'),
+    // {
+    //   field: 'touch',
+    //   headerName: '',
+    //    width: 83,
+    //   cellStyle:(params:any):any=>{
+    //     return {'color': '#363636',
+    //      'font-weight': '500',  'font-family': 'sans-serif',
+    //      'font-size': '12px','width':'auto'};
+    //   },
+    //   cellRenderer: this.cellrendered_auditQue.bind(this, 'touch'),
 
-    },
+    // },
     {
       field: 'claim_no',
       headerName: 'Claim No',
       sortable: true, // Set the `sortable` property to a boolean value
-       width: 140,
+       width: 210,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '12px'};
+         'font-size': '12px','width':'auto'};
       },
       cellRenderer: this.cellrendered_auditQue.bind(this, 'claim_no'),
       onCellClicked: this.CellClicked_AuditQue.bind(this, 'claim_no')
@@ -4051,7 +4050,7 @@ console.log("Total page:", totalPages);
       field: 'dos',
       headerName: 'DOS',
       sortable: true,
-       width: 112,
+       width: 212,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -4064,7 +4063,7 @@ console.log("Total page:", totalPages);
       field: 'age',
       headerName: 'Age',
       sortable: true,
-       width: 93,
+       width: 183,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -4077,7 +4076,7 @@ console.log("Total page:", totalPages);
       field: 'acct_no',
       headerName: 'Acc No',
       sortable: true,
-       width: 120,
+       width: 190,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -4090,7 +4089,7 @@ console.log("Total page:", totalPages);
       field: 'patient_name',
       headerName: 'Patient Name',
       sortable: true,
-       width:190,
+       width:300,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -4103,7 +4102,7 @@ console.log("Total page:", totalPages);
       field: 'rendering_prov',
       headerName: 'Rendering Provider',
       sortable: true,
-       width: 210,
+       width: 350,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -4116,7 +4115,7 @@ console.log("Total page:", totalPages);
       field: 'responsibility',
       headerName: 'Responsibility',
       sortable: true,
-       width: 173,
+       width: 263,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -4129,7 +4128,7 @@ console.log("Total page:", totalPages);
       field: 'billed_submit_date',
       headerName: 'BillSubmit Date',
       sortable: true,
-       width:176,
+       width:266,
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
@@ -4979,7 +4978,13 @@ console.log("Total page:", totalPages);
       }
       case 'claim_no': {
         if (params.value) {
-          return params.value;
+          const rowData = params.node.data;
+          const assignedTo = rowData.touch;
+          let x ;
+          if (assignedTo >= this.touch_count || assignedTo < this.touch_count) {
+            x = assignedTo;
+          }
+          return `${x}   ${params.value}`;
         }
         else
           return '-Nil-';

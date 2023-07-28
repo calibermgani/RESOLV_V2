@@ -3214,7 +3214,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       sortable: true, // Set the `sortable` property to a boolean value
       cellRenderer: this.cellrendered.bind(this, 'touch'),
@@ -3228,7 +3228,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered.bind(this, 'claim_no'),
       onCellClicked: this.CellClicked.bind(this, 'claim_no')
@@ -3241,7 +3241,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered.bind(this, 'dos'),
       onCellClicked: this.CellClicked.bind(this, 'dos')
@@ -3254,7 +3254,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered.bind(this, 'age'),
       onCellClicked: this.CellClicked.bind(this, 'age')
@@ -3267,7 +3267,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered.bind(this, 'acct_no'),
       onCellClicked: this.CellClicked.bind(this, 'acct_no')
@@ -3279,7 +3279,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered.bind(this, 'patient_name'),
       onCellClicked: this.CellClicked.bind(this, 'patient_name')
@@ -3292,7 +3292,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered.bind(this, 'rendering_prov'),
       onCellClicked: this.CellClicked.bind(this, 'rendering_prov')
@@ -3305,7 +3305,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered.bind(this, 'responsibility'),
       onCellClicked: this.CellClicked.bind(this, 'responsibility')
@@ -3318,7 +3318,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered.bind(this, 'total_charges'),
       onCellClicked: this.CellClicked.bind(this, 'total_charges')
@@ -3331,7 +3331,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered.bind(this, 'total_ar'),
       onCellClicked: this.CellClicked.bind(this, 'total_ar')
@@ -3344,7 +3344,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered.bind(this, 'claim_Status'),
       onCellClicked: this.CellClicked.bind(this, 'claim_Status')
@@ -3357,7 +3357,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered.bind(this, 'claim_note'),
       onCellClicked: this.CellClicked.bind(this, 'claim_note')
@@ -3370,7 +3370,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered.bind(this, 'created_ats',),
       onCellClicked: this.CellClicked.bind(this, 'created_ats')
@@ -3396,7 +3396,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_ReworkClaims.bind(this, 'claim_no'),
       onCellClicked: this.CellClicked_ReworkClaims.bind(this, 'claim_no')
@@ -3409,7 +3409,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_ReworkClaims.bind(this, 'dos'),
       onCellClicked: this.CellClicked_ReworkClaims.bind(this, 'dos')
@@ -3422,7 +3422,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_ReworkClaims.bind(this, 'age'),
       onCellClicked: this.CellClicked_ReworkClaims.bind(this, 'age')
@@ -3435,7 +3435,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_ReworkClaims.bind(this, 'acct_no'),
       onCellClicked: this.CellClicked_ReworkClaims.bind(this, 'acct_no')
@@ -3447,7 +3447,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_ReworkClaims.bind(this, 'patient_name'),
       onCellClicked: this.CellClicked_ReworkClaims.bind(this, 'patient_name')
@@ -3459,7 +3459,7 @@ public updatenotes(type:any){
       width: 155,cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_ReworkClaims.bind(this, 'rendering_prov'),
       onCellClicked: this.CellClicked_ReworkClaims.bind(this, 'rendering_prov')
@@ -3472,7 +3472,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_ReworkClaims.bind(this, 'responsibility'),
       onCellClicked: this.CellClicked_ReworkClaims.bind(this, 'responsibility')
@@ -3485,7 +3485,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_ReworkClaims.bind(this, 'billed_submit_date'),
       onCellClicked: this.CellClicked_ReworkClaims.bind(this, 'billed_submit_date')
@@ -3498,7 +3498,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_ReworkClaims.bind(this, 'denial_code'),
       onCellClicked: this.CellClicked_ReworkClaims.bind(this, 'denial_code')
@@ -3511,7 +3511,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_ReworkClaims.bind(this, 'total_charges'),
       onCellClicked: this.CellClicked_ReworkClaims.bind(this, 'total_charges')
@@ -3524,7 +3524,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_ReworkClaims.bind(this, 'total_ar'),
       onCellClicked: this.CellClicked_ReworkClaims.bind(this, 'total_ar')
@@ -3537,7 +3537,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_ReworkClaims.bind(this, 'claim_Status'),
       onCellClicked: this.CellClicked_ReworkClaims.bind(this, 'claim_Status')
@@ -3550,7 +3550,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_ReworkClaims.bind(this, 'claim_note'),
       onCellClicked: this.CellClicked_ReworkClaims.bind(this, 'claim_note')
@@ -3563,7 +3563,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_ReworkClaims.bind(this, 'created_ats',),
       onCellClicked: this.CellClicked_ReworkClaims.bind(this, 'created_ats')
@@ -3579,7 +3579,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       sortable: true, // Set the `sortable` property to a boolean value
       cellRenderer: this.cellrendered_closed_claims.bind(this, 'touch'),
@@ -3593,7 +3593,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_closed_claims.bind(this, 'claim_no'),
       onCellClicked: this.CellClicked_closed_claims.bind(this, 'claim_no'),
@@ -3607,7 +3607,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_closed_claims.bind(this, 'dos'),
       onCellClicked: this.CellClicked_closed_claims.bind(this, 'dos'),
@@ -3621,7 +3621,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_closed_claims.bind(this, 'age'),
       onCellClicked: this.CellClicked_closed_claims.bind(this, 'age'),
@@ -3635,7 +3635,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_closed_claims.bind(this, 'acct_no'),
       onCellClicked: this.CellClicked_closed_claims.bind(this, 'acct_no'),
@@ -3648,7 +3648,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_closed_claims.bind(this, 'patient_name'),
       onCellClicked: this.CellClicked_closed_claims.bind(this, 'patient_name'),
@@ -3662,7 +3662,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_closed_claims.bind(this, 'rendering_prov'),
       onCellClicked: this.CellClicked_closed_claims.bind(this, 'rendering_prov'),
@@ -3676,7 +3676,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_closed_claims.bind(this, 'responsibility'),
       onCellClicked: this.CellClicked_closed_claims.bind(this, 'responsibility'),
@@ -3690,7 +3690,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_closed_claims.bind(this, 'billed_submit_date'),
       onCellClicked: this.CellClicked_closed_claims.bind(this, 'billed_submit_date'),
@@ -3704,7 +3704,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_closed_claims.bind(this, 'denial_code'),
       onCellClicked: this.CellClicked_closed_claims.bind(this, 'denial_code'),
@@ -3718,7 +3718,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_closed_claims.bind(this, 'total_charges'),
       onCellClicked: this.CellClicked_closed_claims.bind(this, 'total_charges'),
@@ -3732,7 +3732,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_closed_claims.bind(this, 'total_ar'),
       onCellClicked: this.CellClicked_closed_claims.bind(this, 'total_ar'),
@@ -3746,7 +3746,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_closed_claims.bind(this, 'claim_Status'),
       onCellClicked: this.CellClicked_closed_claims.bind(this, 'claim_Status'),
@@ -3760,7 +3760,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_closed_claims.bind(this, 'claim_note'),
       onCellClicked: this.CellClicked_closed_claims.bind(this, 'claim_note'),
@@ -3774,7 +3774,7 @@ public updatenotes(type:any){
       cellStyle:(params:any):any=>{
         return {'color': '#363636',
          'font-weight': '500',  'font-family': 'sans-serif',
-         'font-size': '15px '};
+         'font-size': '12px '};
       },
       cellRenderer: this.cellrendered_closed_claims.bind(this, 'created_ats',),
       onCellClicked: this.CellClicked_closed_claims.bind(this, 'created_ats'),

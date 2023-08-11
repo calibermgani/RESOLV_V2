@@ -5704,22 +5704,22 @@ console.log("Total page:", totalPages);
     this.gridOptions1.columnApi.getColumns().forEach((column:any) => {
       allColumnIds.push(column.getId());
     });
-    this.gridOptions2.columnApi.getColumns().forEach((column:any) => {
-      allColumnIds.push(column.getId());
-    });
-    this.gridOptions4.columnApi.getColumns().forEach((column:any) => {
-      allColumnIds.push(column.getId());
-    });
-    this.gridOptions3.columnApi.getColumns().forEach((column:any) => {
-      allColumnIds.push(column.getId());
-    });
+    // this.gridOptions2.columnApi.getColumns().forEach((column:any) => {
+    //   allColumnIds.push(column.getId());
+    // });
+    // this.gridOptions4.columnApi.getColumns().forEach((column:any) => {
+    //   allColumnIds.push(column.getId());
+    // });
+    // this.gridOptions3.columnApi.getColumns().forEach((column:any) => {
+    //   allColumnIds.push(column.getId());
+    // });
 
     console.log('Size Resized');
 
     this.gridOptions1.columnApi.autoSizeColumns(allColumnIds, false);
-    this.gridOptions2.columnApi.autoSizeColumns(allColumnIds, false);
-    this.gridOptions3.columnApi.autoSizeColumns(allColumnIds, false);
-    this.gridOptions4.columnApi.autoSizeColumns(allColumnIds, false);
+    // this.gridOptions2.columnApi.autoSizeColumns(allColumnIds, false);
+    // this.gridOptions3.columnApi.autoSizeColumns(allColumnIds, false);
+    // this.gridOptions4.columnApi.autoSizeColumns(allColumnIds, false);
     }
   }
 

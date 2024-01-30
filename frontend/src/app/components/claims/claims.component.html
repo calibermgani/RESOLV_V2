@@ -38,7 +38,15 @@
                 Claims <span class="tab-divider">|</span></a></li>
             <li *ngIf="(user_role == 1 || user_role == 2 || user_role == 16)" class="" [ngClass]="class_change.tab2"><a href="#tab_6"
                 (click)="pageChange(1,'all_claim',null,null,null,null,null,null);status_code_select()" data-toggle="tab"
-                style="padding-left: 0px;"><i class="fa fa-user"></i> All Claims</a>
+                style="padding-left: 0px;"><i class="fa fa-user"></i> All Claims<span class="tab-divider">|</span></a>
+            </li>
+            <li *ngIf="(user_role == 1 || user_role == 2 || user_role == 16)" class="" [ngClass]="class_change.tab2"><a
+                href="#tab_7" (click)="pageChange(1,'claim','null','null','null','null','null','null');status_code_select()"
+                data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-user"></i> Duplicate Claims<span class="tab-divider">|</span></a>
+            </li>
+            <li *ngIf="(user_role == 1 || user_role == 2 || user_role == 16)" class="" [ngClass]="class_change.tab2"><a
+                href="#tab_8" (click)="pageChange(1,'claim','null','null','null','null','null','null');status_code_select()"
+                data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-user"></i>Mismatched Records</a>
             </li>
 
           </ul>
@@ -2017,6 +2025,634 @@
                       <ag-grid-angular class="ag-theme-alpine  no-grid-lines" [columnDefs]="columnDefs6" [gridOptions]="gridOptions6" #myGrid_6
                       (gridReady)="onGridReady_6($event)" [defaultColDef]="defaultColDef" [sideBar]="sideBar" [autoGroupColumnDef]="autoGroupColumnDef"
                       (selectionChanged)="onSelectionChanged_allClaims($event)"></ag-grid-angular>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="tab-pane " id="tab_7" [ngClass]="class_change_tab['tab1']">
+              <div class="box no-shadow no-border">
+                <div class="box-body no-padding">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                      <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4;">
+                        <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                          <h3 class="box-title list-heading"><i class="fa fa-filter ar-blue"></i> Filters</h3>
+                          <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool collapsed" style="margin-left:10px;"
+                            (click)="isCollapsed_AllClaims = !isCollapsed_AllClaims;status_code_select()" [attr.aria-expanded]="!isCollapsed_AllClaims"
+                            aria-controls="collapseBasic">
+                            <i class="fa fa-plus" *ngIf="isCollapsed_AllClaims"></i>
+                            <i class="fa fa-minus" *ngIf="!isCollapsed_AllClaims"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="collapse" id="AllClaimsSearch"  [collapse]="isCollapsed_AllClaims" [isAnimated]="true">
+                          <form [formGroup]="allClaimsFind"
+                            (ngSubmit)="allClaims_search(1,'all_claim',null,null,null,null,null,'search')">
+                            <div class="box-body no-padding" style="margin-top:20px;">
+                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 no-padding">
+                                <!-- <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                      <label>Filename</label>
+                                                      <select class="form-control ngx-dropdown-button" formControlName="file_id" id="id" aria-hidden="true">
+                                                         <option value="default">--Select a File--</option>
+                                                         <option *ngFor="let file of filecount" [value]="file.file_upload_id">
+                                                            {{file.file_name}} ( {{file.file_count}} )
+                                                         </option>
+                                                      </select>
+                                                   </div> -->
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>DOS</label>
+                                  <input type="text" formControlName="dos"  class="form-control"
+                                  class="form-control" id="data-picker" bsDaterangepicker autocomplete="off"
+                                  [bsConfig]="bsConfig">
+                                  <!-- <input type="text" class="form-control" formControlName="dos"> -->
+                                  <!-- <input type="text" class="form-control" ngxDaterangepickerMd formControlName="dos"
+                                    [(ngModel)]="selectedAll" [alwaysShowCalendars]="true" [linkedCalendars]="false"
+                                    [showClearButton]="true" readonly /> -->
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Age</label>
+                                  <select class="form-control ngx-dropdown-button" formControlName="age_filter"
+                                    aria-hidden="true" [(ngModel)]="all_selectedAge">
+                                    <option [ngValue]="null" selected>--Select Age--</option>
+                                    <option *ngFor="let agerange of age_options"
+                                      [ngValue]="{from_age:agerange.from_age,to_age:agerange.to_age}">
+                                      {{agerange.from_age +'-'+ agerange.to_age}}</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Claim Status</label>
+                                  <select formControlName="claim_status" class="form-control ngx-dropdown-button"
+                                    aria-hidden="true">
+                                    <option [ngValue]="null">-- Select Status--</option>
+                                    <option *ngFor="let cstatus of claim_statuses" [value]="cstatus">{{cstatus}}
+                                    </option>
+                                    <!-- <option *ngFor="let scode of status_list" [value]="scode.description">{{scode.description}}</option> -->
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 no-padding">
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Claim No</label>
+                                  <!-- <input type="text" class="form-control" formControlName="dos"> -->
+                                  <input type="text" class="form-control" formControlName="claim_no">
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Acc No</label>
+                                  <input type="text" class="form-control" formControlName="acc_no">
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Patient Name </label>
+                                  <input type="text" class="form-control" formControlName="patient_name">
+                                </div>
+                              </div>
+
+                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 no-padding">
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Responsibility</label>
+                                  <!-- <input type="text" class="form-control" formControlName="dos"> -->
+                                  <input type="text" class="form-control" formControlName="responsibility">
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Total AR</label>
+                                  <input type="text" placeholder="10.00 - 20.00" class="form-control"
+                                    formControlName="total_ar">
+                                  <div *ngIf="(allClaimsFind.controls['total_ar'].touched || submitted)">
+                                    <div *ngIf="allClaimsFind.controls['total_ar'].hasError('pattern')" class="error">
+                                      please provide correct format
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Rendering Provider </label>
+                                  <input type="text" class="form-control" formControlName="rendering_provider">
+                                </div>
+                              </div>
+
+                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 no-padding">
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Payer Name</label>
+                                  <input class="form-control" type="text" formControlName="payer_name"
+                                    placeholder="Search Payer" [(ngModel)]="allclaim_selected_val"
+                                    (keyup)="allclaimSearchOnKeyUp($event)" list="SearchResults">
+                                  <div
+                                    *ngIf="(allclaimSelected == false && allclaim_selected_val != '' && allclaim_selected_val != null)">
+                                    <div *ngFor="let res of allclaim_results">
+                                      <a (click)="allclaimSelectvalue(res)">{{res}}</a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Status Code</label>
+                                  <ngx-select-dropdown formControlName="status_code"
+                                    (change)="allClaim_status_code_changed($event)" [config]="config"
+                                    [options]="status_options"></ngx-select-dropdown>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Sub Status Code</label>
+                                  <ngx-select-dropdown formControlName="sub_status_code" [config]="config"
+                                    [options]="sub_options"></ngx-select-dropdown>
+                                </div>
+                              </div>
+                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 no-padding">
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Date</label>
+                                  <!-- <input type="text" class="form-control" ngxDaterangepickerMd formControlName="date"
+                                    [(ngModel)]="all_select_date" [alwaysShowCalendars]="true" [linkedCalendars]="false"
+                                    [showClearButton]="true" readonly> -->
+                                    <input type="text" formControlName="date"  class="form-control"
+                                  class="form-control" id="data-picker" bsDaterangepicker autocomplete="off"
+                                  [bsConfig]="bsConfig">
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Billed/Last Submit Date</label>
+                                  <input type="text" formControlName="bill_submit_date"  class="form-control"
+                                  class="form-control" id="data-picker" bsDaterangepicker autocomplete="off"
+                                  [bsConfig]="bsConfig">
+                                  <!-- <input type="text" class="form-control" ngxDaterangepickerMd
+                                    formControlName="bill_submit_date" [(ngModel)]="allclaim_billsubmit_date"
+                                    [alwaysShowCalendars]="true" [linkedCalendars]="false" [showClearButton]="true"
+                                    readonly> -->
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Denial Code</label>
+                                  <input type="text" class="form-control" formControlName="denial_code">
+                                </div>
+                              </div>
+                              <!-- <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 no-padding"> -->
+                              <!-- <div class="form-group col-lg-3">
+                                                   <label>Total Charge</label>
+                                                   <input type="text" class="form-control" formControlName="total_charge">
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                   <label>Total AR</label>
+                                                   <input type="text" class="form-control" formControlName="total_ar">
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                   <label>Claim note</label>
+                                                   <input type="text" class="form-control" formControlName="claim_note">
+                                                </div> -->
+                              <!-- <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                   <label>Acc No</label>
+                                                   <input type="text" class="form-control" formControlName="acc_no">
+                                                </div>
+                                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                   <label>Patient Name</label>
+                                                   <input type="text" class="form-control" formControlName="patient_name">
+                                                </div>
+                                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                   <label>Responsibility</label>
+                                                   <input type="text" class="form-control" formControlName="responsibility">
+                                                </div> -->
+                              <!-- </div> -->
+                              <!-- <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 no-padding">
+                                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                   <label>Insurance</label>
+                                                   <select class="form-control ngx-dropdown-button" style="width:100%" aria-hidden="true" [(ngModel)]="createWork" formControlName="insurance">
+                                                      <option value="all" (selected)="createWork='all'">All</option>
+                                                      <option value="primary" (selected)="createWork='primary'">Primary Insurance</option>
+                                                      <option value="secondary" (selected)="createWork='secondary'">Secondary Insurance</option>
+                                                      <option value="tertiary" (selected)="createWork='tertiary'">Tertiary Insurance</option>
+                                                   </select>
+                                                </div>
+                                                <div [ngSwitch]="createWork">
+                                                   <div *ngSwitchCase="'primary'">
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Primary Insurance</label>
+                                                         <input type="text" class="form-control" formControlName="prim_ins_name">
+                                                      </div>
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Primary Policy ID</label>
+                                                         <input type="text" class="form-control" formControlName="prim_pol_id">
+                                                      </div>
+                                                   </div>
+                                                   <div *ngSwitchCase="'secondary'">
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12" >
+                                                         <label>Secondary Insurance</label>
+                                                         <input type="text" class="form-control" formControlName="sec_ins_name">
+                                                      </div>
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Secondary Policy ID</label>
+                                                         <input type="text" class="form-control" formControlName="sec_pol_id">
+                                                      </div>
+                                                   </div>
+                                                   <div *ngSwitchCase="'tertiary'">
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Tertiary Insurance</label>
+                                                         <input type="text" class="form-control" formControlName="ter_ins_name">
+                                                      </div>
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Tertiary Policy ID</label>
+                                                         <input type="text" class="form-control" formControlName="ter_pol_id">
+                                                      </div>
+                                                   </div>
+                                                   <div *ngSwitchCase="'all'">
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Primary Insurance</label>
+                                                         <input type="text" class="form-control" formControlName="prim_ins_name">
+                                                      </div>
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Primary Policy ID</label>
+                                                         <input type="text" class="form-control" formControlName="prim_pol_id">
+                                                      </div>
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Secondary Insurance</label>
+                                                         <input type="text" class="form-control" formControlName="sec_ins_name">
+                                                      </div>
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Secondary Policy ID</label>
+                                                         <input type="text" class="form-control" formControlName="sec_pol_id">
+                                                      </div>
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Tertiary Insurance</label>
+                                                         <input type="text" class="form-control" formControlName="ter_ins_name">
+                                                      </div>
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Tertiary Policy ID</label>
+                                                         <input type="text" class="form-control" formControlName="ter_pol_id">
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div> -->
+                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 no-padding">
+                                <div class="form-group col-md-3 col-sm-3 col-lg-3 col-xs-12 pull-right">
+                                  <input type="button" class="pull-right btn btn-search" value="Search"
+                                    (click)="allClaims_search(1,'all_claim','null','null','null','null','null','search')">
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                      <!-- <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                        <div class="box-tools searchbox"> -->
+                          <input type="text" placeholder="Search.." name="search" class="search_box" [(ngModel)]="search_values_for_all_claims"  (keyup)="onSearch()">
+                          <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+                        <!-- </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="box no-shadow no-border">
+                <div class="box-body no-padding">
+                  <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4;width:100%">
+                    <div class="box-body no-padding colors" id="6">
+                      <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                        <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i>Duplicate Claims</h3>
+                        <div class="box-tools pull-right" style="margin-top: 5px;">
+                          <p class="" style="margin-top:5px;">
+                            Show:
+                              <select (change)="onPageSizeChanged('duplicate_claims')" id="page-size" [(ngModel)]="paginationSizeValue_DuplicateClaims" style="border-radius: 4px;">
+                                <option [ngValue]="15" selected>15</option>
+                                <option value="100">100</option>
+                                <option value="500">500</option>
+                                <option value="1000">1000</option>
+                              </select>
+
+                            <span style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
+                            font-size: 13px !important;
+                            font-weight: 600;
+                            color: #535a68;">entries</span>
+                            <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
+                            <span class="fa fa-refresh" style="cursor:pointer;" title="Refresh Values"
+                              (click)="reload_data_allClaims(1)"></span>
+                            <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span> <i
+                              class="fa fa-file-excel-o" style="cursor:pointer;"
+                              (click)="export_excel_files('excel', 'all_claims_list', null)" title="Excel"></i>
+                          </p>
+                        </div>
+                      </div>
+
+                      <ag-grid-angular class="ag-theme-alpine  no-grid-lines" [columnDefs]="columnDefs7" [gridOptions]="gridOptions7" #myGrid_7
+                      (gridReady)="onGridReady_7($event)" [defaultColDef]="defaultColDef" [sideBar]="sideBar" [autoGroupColumnDef]="autoGroupColumnDef"
+                      (selectionChanged)="onSelectionChanged_DuplicateClaims($event)"></ag-grid-angular>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tab-pane " id="tab_8" [ngClass]="class_change_tab['tab1']">
+              <div class="box no-shadow no-border">
+                <div class="box-body no-padding">
+                  <div class="row">
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                      <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4;">
+                        <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                          <h3 class="box-title list-heading"><i class="fa fa-filter ar-blue"></i> Filters</h3>
+                          <div class="box-tools pull-right">
+                            <button type="button" class="btn btn-box-tool collapsed" style="margin-left:10px;"
+                            (click)="isCollapsed_AllClaims = !isCollapsed_AllClaims;status_code_select()" [attr.aria-expanded]="!isCollapsed_AllClaims"
+                            aria-controls="collapseBasic">
+                            <i class="fa fa-plus" *ngIf="isCollapsed_AllClaims"></i>
+                            <i class="fa fa-minus" *ngIf="!isCollapsed_AllClaims"></i>
+                            </button>
+                          </div>
+                        </div>
+                        <div class="collapse" id="AllClaimsSearch"  [collapse]="isCollapsed_AllClaims" [isAnimated]="true">
+                          <form [formGroup]="allClaimsFind"
+                            (ngSubmit)="allClaims_search(1,'all_claim',null,null,null,null,null,'search')">
+                            <div class="box-body no-padding" style="margin-top:20px;">
+                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 no-padding">
+                                <!-- <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                      <label>Filename</label>
+                                                      <select class="form-control ngx-dropdown-button" formControlName="file_id" id="id" aria-hidden="true">
+                                                         <option value="default">--Select a File--</option>
+                                                         <option *ngFor="let file of filecount" [value]="file.file_upload_id">
+                                                            {{file.file_name}} ( {{file.file_count}} )
+                                                         </option>
+                                                      </select>
+                                                   </div> -->
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>DOS</label>
+                                  <input type="text" formControlName="dos"  class="form-control"
+                                  class="form-control" id="data-picker" bsDaterangepicker autocomplete="off"
+                                  [bsConfig]="bsConfig">
+                                  <!-- <input type="text" class="form-control" formControlName="dos"> -->
+                                  <!-- <input type="text" class="form-control" ngxDaterangepickerMd formControlName="dos"
+                                    [(ngModel)]="selectedAll" [alwaysShowCalendars]="true" [linkedCalendars]="false"
+                                    [showClearButton]="true" readonly /> -->
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Age</label>
+                                  <select class="form-control ngx-dropdown-button" formControlName="age_filter"
+                                    aria-hidden="true" [(ngModel)]="all_selectedAge">
+                                    <option [ngValue]="null" selected>--Select Age--</option>
+                                    <option *ngFor="let agerange of age_options"
+                                      [ngValue]="{from_age:agerange.from_age,to_age:agerange.to_age}">
+                                      {{agerange.from_age +'-'+ agerange.to_age}}</option>
+                                  </select>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Claim Status</label>
+                                  <select formControlName="claim_status" class="form-control ngx-dropdown-button"
+                                    aria-hidden="true">
+                                    <option [ngValue]="null">-- Select Status--</option>
+                                    <option *ngFor="let cstatus of claim_statuses" [value]="cstatus">{{cstatus}}
+                                    </option>
+                                    <!-- <option *ngFor="let scode of status_list" [value]="scode.description">{{scode.description}}</option> -->
+                                  </select>
+                                </div>
+                              </div>
+
+                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 no-padding">
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Claim No</label>
+                                  <!-- <input type="text" class="form-control" formControlName="dos"> -->
+                                  <input type="text" class="form-control" formControlName="claim_no">
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Acc No</label>
+                                  <input type="text" class="form-control" formControlName="acc_no">
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Patient Name </label>
+                                  <input type="text" class="form-control" formControlName="patient_name">
+                                </div>
+                              </div>
+
+                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 no-padding">
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Responsibility</label>
+                                  <!-- <input type="text" class="form-control" formControlName="dos"> -->
+                                  <input type="text" class="form-control" formControlName="responsibility">
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Total AR</label>
+                                  <input type="text" placeholder="10.00 - 20.00" class="form-control"
+                                    formControlName="total_ar">
+                                  <div *ngIf="(allClaimsFind.controls['total_ar'].touched || submitted)">
+                                    <div *ngIf="allClaimsFind.controls['total_ar'].hasError('pattern')" class="error">
+                                      please provide correct format
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Rendering Provider </label>
+                                  <input type="text" class="form-control" formControlName="rendering_provider">
+                                </div>
+                              </div>
+
+                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 no-padding">
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Payer Name</label>
+                                  <input class="form-control" type="text" formControlName="payer_name"
+                                    placeholder="Search Payer" [(ngModel)]="allclaim_selected_val"
+                                    (keyup)="allclaimSearchOnKeyUp($event)" list="SearchResults">
+                                  <div
+                                    *ngIf="(allclaimSelected == false && allclaim_selected_val != '' && allclaim_selected_val != null)">
+                                    <div *ngFor="let res of allclaim_results">
+                                      <a (click)="allclaimSelectvalue(res)">{{res}}</a>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Status Code</label>
+                                  <ngx-select-dropdown formControlName="status_code"
+                                    (change)="allClaim_status_code_changed($event)" [config]="config"
+                                    [options]="status_options"></ngx-select-dropdown>
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Sub Status Code</label>
+                                  <ngx-select-dropdown formControlName="sub_status_code" [config]="config"
+                                    [options]="sub_options"></ngx-select-dropdown>
+                                </div>
+                              </div>
+                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 no-padding">
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Date</label>
+                                  <!-- <input type="text" class="form-control" ngxDaterangepickerMd formControlName="date"
+                                    [(ngModel)]="all_select_date" [alwaysShowCalendars]="true" [linkedCalendars]="false"
+                                    [showClearButton]="true" readonly> -->
+                                    <input type="text" formControlName="date"  class="form-control"
+                                  class="form-control" id="data-picker" bsDaterangepicker autocomplete="off"
+                                  [bsConfig]="bsConfig">
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Billed/Last Submit Date</label>
+                                  <input type="text" formControlName="bill_submit_date"  class="form-control"
+                                  class="form-control" id="data-picker" bsDaterangepicker autocomplete="off"
+                                  [bsConfig]="bsConfig">
+                                  <!-- <input type="text" class="form-control" ngxDaterangepickerMd
+                                    formControlName="bill_submit_date" [(ngModel)]="allclaim_billsubmit_date"
+                                    [alwaysShowCalendars]="true" [linkedCalendars]="false" [showClearButton]="true"
+                                    readonly> -->
+                                </div>
+                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                  <label>Denial Code</label>
+                                  <input type="text" class="form-control" formControlName="denial_code">
+                                </div>
+                              </div>
+                              <!-- <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 no-padding"> -->
+                              <!-- <div class="form-group col-lg-3">
+                                                   <label>Total Charge</label>
+                                                   <input type="text" class="form-control" formControlName="total_charge">
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                   <label>Total AR</label>
+                                                   <input type="text" class="form-control" formControlName="total_ar">
+                                                </div>
+                                                <div class="form-group col-lg-3">
+                                                   <label>Claim note</label>
+                                                   <input type="text" class="form-control" formControlName="claim_note">
+                                                </div> -->
+                              <!-- <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                   <label>Acc No</label>
+                                                   <input type="text" class="form-control" formControlName="acc_no">
+                                                </div>
+                                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                   <label>Patient Name</label>
+                                                   <input type="text" class="form-control" formControlName="patient_name">
+                                                </div>
+                                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                   <label>Responsibility</label>
+                                                   <input type="text" class="form-control" formControlName="responsibility">
+                                                </div> -->
+                              <!-- </div> -->
+                              <!-- <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 no-padding">
+                                                <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                   <label>Insurance</label>
+                                                   <select class="form-control ngx-dropdown-button" style="width:100%" aria-hidden="true" [(ngModel)]="createWork" formControlName="insurance">
+                                                      <option value="all" (selected)="createWork='all'">All</option>
+                                                      <option value="primary" (selected)="createWork='primary'">Primary Insurance</option>
+                                                      <option value="secondary" (selected)="createWork='secondary'">Secondary Insurance</option>
+                                                      <option value="tertiary" (selected)="createWork='tertiary'">Tertiary Insurance</option>
+                                                   </select>
+                                                </div>
+                                                <div [ngSwitch]="createWork">
+                                                   <div *ngSwitchCase="'primary'">
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Primary Insurance</label>
+                                                         <input type="text" class="form-control" formControlName="prim_ins_name">
+                                                      </div>
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Primary Policy ID</label>
+                                                         <input type="text" class="form-control" formControlName="prim_pol_id">
+                                                      </div>
+                                                   </div>
+                                                   <div *ngSwitchCase="'secondary'">
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12" >
+                                                         <label>Secondary Insurance</label>
+                                                         <input type="text" class="form-control" formControlName="sec_ins_name">
+                                                      </div>
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Secondary Policy ID</label>
+                                                         <input type="text" class="form-control" formControlName="sec_pol_id">
+                                                      </div>
+                                                   </div>
+                                                   <div *ngSwitchCase="'tertiary'">
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Tertiary Insurance</label>
+                                                         <input type="text" class="form-control" formControlName="ter_ins_name">
+                                                      </div>
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Tertiary Policy ID</label>
+                                                         <input type="text" class="form-control" formControlName="ter_pol_id">
+                                                      </div>
+                                                   </div>
+                                                   <div *ngSwitchCase="'all'">
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Primary Insurance</label>
+                                                         <input type="text" class="form-control" formControlName="prim_ins_name">
+                                                      </div>
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Primary Policy ID</label>
+                                                         <input type="text" class="form-control" formControlName="prim_pol_id">
+                                                      </div>
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Secondary Insurance</label>
+                                                         <input type="text" class="form-control" formControlName="sec_ins_name">
+                                                      </div>
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Secondary Policy ID</label>
+                                                         <input type="text" class="form-control" formControlName="sec_pol_id">
+                                                      </div>
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Tertiary Insurance</label>
+                                                         <input type="text" class="form-control" formControlName="ter_ins_name">
+                                                      </div>
+                                                      <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
+                                                         <label>Tertiary Policy ID</label>
+                                                         <input type="text" class="form-control" formControlName="ter_pol_id">
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </div> -->
+                              <div class="col-md-12 col-sm-12 col-lg-12 col-xs-12 no-padding">
+                                <div class="form-group col-md-3 col-sm-3 col-lg-3 col-xs-12 pull-right">
+                                  <input type="button" class="pull-right btn btn-search" value="Search"
+                                    (click)="allClaims_search(1,'all_claim','null','null','null','null','null','search')">
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
+                      <!-- <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                        <div class="box-tools searchbox"> -->
+                          <input type="text" placeholder="Search.." name="search" class="search_box" [(ngModel)]="search_values_for_all_claims"  (keyup)="onSearch()">
+                          <!-- <button type="submit"><i class="fa fa-search"></i></button> -->
+                        <!-- </div>
+                      </div> -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="box no-shadow no-border">
+                <!-- /.box-header -->
+                <div class="box-body no-padding">
+                  <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4;width:100%">
+                    <!-- /.box-header -->
+                    <div class="box-body no-padding colors" id="6">
+                      <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                        <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i>MisMatched Records</h3>
+                        <div class="box-tools pull-right" style="margin-top: 5px;">
+                          <p class="" style="margin-top:5px;">
+                            Show:
+                              <select (change)="onPageSizeChanged('misMatched_records')" id="page-size" [(ngModel)]="paginationSizeValue_MismatchedValues" style="border-radius: 4px;">
+                                <option [ngValue]="15" selected>15</option>
+                                <option value="100">100</option>
+                                <option value="500">500</option>
+                                <option value="1000">1000</option>
+                              </select>
+                            <!-- </span> -->
+                            <span style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
+                            font-size: 13px !important;
+                            font-weight: 600;
+                            color: #535a68;">entries</span>
+                            <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
+                            <span class="fa fa-refresh" style="cursor:pointer;" title="Refresh Values"
+                              (click)="reload_data_allClaims(1)"></span>
+
+                            <!-- <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span><i (click)="select_claim(new_workorder);" class="fa fa-user-plus" style="cursor:pointer;" title="Assign Claims"></i> -->
+                            <!-- <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span><span class="fa fa-print" style="cursor:pointer;" title="Print" (click)="export_files('print')"></span> -->
+                            <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span> <i
+                              class="fa fa-file-excel-o" style="cursor:pointer;"
+                              (click)="export_excel_files('excel', 'all_claims_list', null)" title="Excel"></i>
+                            <!-- <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>  <i class="fa fa-file-pdf-o"  (click)="export_pdf_files('PDF', 'create_work_order')" style="cursor:pointer;" title="PDF"></i> -->
+                          </p>
+                          <!-- <a class="font600 cur-pointer"  (click)="open(new_workorder)" data-toggle="modal" data-target="#create-workorder"><i class="fa fa-plus-circle"  ></i> Work Order</a>     <span style="margin-left:10px;margin-right:10px;">|</span> -->
+                          <!-- <a class="font600 cur-pointer"  data-toggle="modal" data-target="#alert-reassign"><i class="fa fa-random" ></i> Re-assign</a>     <span style="margin-left:10px;margin-right:10px;">|</span> -->
+                          <!-- <a class="font600 cur-pointer"><i class="fa fa-plus-circle"></i> Notes</a> -->
+                        </div>
+                      </div>
+
+                      <ag-grid-angular class="ag-theme-alpine  no-grid-lines" [columnDefs]="columnDefs6" [gridOptions]="gridOptions8" #myGrid_8
+                      (gridReady)="onGridReady_8($event)" [defaultColDef]="defaultColDef" [sideBar]="sideBar" [autoGroupColumnDef]="autoGroupColumnDef"
+                      (selectionChanged)="onSelectionChanged_MismathchedRecords($event)"></ag-grid-angular>
 
                     </div>
                   </div>

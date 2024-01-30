@@ -2940,7 +2940,7 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
       this.class_change['tab1'] = '';
       this.class_change['tab2'] = 'active';
 
-      this.class_change_tab['tab1'] = 'tab-pane';
+      this.class_change_tab['tab1'] = 'tab- ';
       this.class_change_tab['tab2'] = 'tab-pane active'
 
 

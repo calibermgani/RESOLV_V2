@@ -259,6 +259,8 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   paginationSizeValue_Import:any = 15;
   paginationSizeValue_reimport:any = 15;
   paginationSizeValue_AllClaims:any = 15;
+  paginationSizeValue_DuplicateClaims:any = 15;
+  paginationSizeValue_MismatchedValues:any = 15;
 
 
   constructor(private formBuilder: FormBuilder,
@@ -3352,16 +3354,24 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     if (data!=null && data !='') {
       this.GridData_CreateWorkOrders = data.data;
       this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
+      this.myGrid_7.api?.setRowData(this.GridData_CreateWorkOrders);
+      this.myGrid_8.api?.setRowData(this.GridData_CreateWorkOrders);
       this.gridApi_1.closeToolPanel();
+      this.gridApi_7.closeToolPanel();
+      this.gridApi_8.closeToolPanel();
       // this.autoSizeAll();
       this.loader.stop();
       //  this.setAutoHeight();
     }
     else {
-      this.GridData_CreateWorkOrders = []
+      this.GridData_CreateWorkOrders = [];
       this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
+      this.myGrid_7.api?.setRowData(this.GridData_CreateWorkOrders);
+      this.myGrid_8.api?.setRowData(this.GridData_CreateWorkOrders);
         //  this.setAutoHeight();
         this.gridApi_1.closeToolPanel();
+        this.gridApi_7.closeToolPanel();
+        this.gridApi_8.closeToolPanel();
         // this.autoSizeAll();
       this.loader.stop();
     }
@@ -5352,6 +5362,8 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   public gridApi_4!: GridApi;
   public gridApi_5!: GridApi;
   public gridApi_6!: GridApi;
+  public gridApi_7!: GridApi;
+  public gridApi_8!: GridApi;
 
 
 
@@ -5893,6 +5905,9 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   rowValue_ID_4:any;
   rowValue_ID_5:any;
   rowValue_ID_6:any;
+  rowValue_ID_7:any;
+  rowValue_ID_8:any;
+
   selectedRowsFirstPage: any;
   currentPageData: any = [];
   resl_dta: any = [];
@@ -5969,12 +5984,51 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   onPageSizeChanged(type:any) {
-    if(type=='create_work_orders'){this.gridApi_1.paginationSetPageSize(Number(this.paginationSizeValue_createWorkOrders));}
-    else if(type=='work_orders'){this.gridApi_2.paginationSetPageSize(Number(this.paginationSizeValue_WorkOrders));}
-    else if(type=='closed_claims'){this.gridApi_3.paginationSetPageSize(Number(this.paginationSizeValue_ClosedClaims));}
-    else if(type == 'import'){this.gridApi_4.paginationSetPageSize(Number(this.paginationSizeValue_Import));}
-    else if(type='reimport'){this.gridApi_5.paginationSetPageSize(Number(this.paginationSizeValue_reimport));}
-    else if(type=='all_claims'){this.gridApi_6.paginationSetPageSize(Number(this.paginationSizeValue_AllClaims));}
+    switch(type)
+    {
+      case 'create_work_orders':{
+        this.gridApi_1.paginationSetPageSize(Number(this.paginationSizeValue_createWorkOrders));
+        break;
+      }
+      case 'work_orders':{
+        this.gridApi_2.paginationSetPageSize(Number(this.paginationSizeValue_WorkOrders));
+        break;
+      }
+      case 'closed_claims':{
+        this.gridApi_3.paginationSetPageSize(Number(this.paginationSizeValue_ClosedClaims));
+        break;
+      }
+      case 'import':{
+        this.gridApi_4.paginationSetPageSize(Number(this.paginationSizeValue_Import));
+        break;
+      }
+      case 'reimport':{
+        this.gridApi_5.paginationSetPageSize(Number(this.paginationSizeValue_reimport));
+        break;
+      }
+      case 'all_claims':{
+        this.gridApi_6.paginationSetPageSize(Number(this.paginationSizeValue_AllClaims));
+        break;
+      }
+      case 'duplicate_claims':{
+        this.gridApi_7.paginationSetPageSize(Number(this.paginationSizeValue_DuplicateClaims));
+        break;
+      }
+      case 'misMatched_records':{
+        this.gridApi_8.paginationSetPageSize(Number(this.paginationSizeValue_MismatchedValues));
+        break;
+      }
+    }
+    // if(type=='create_work_orders'){this.gridApi_1.paginationSetPageSize(Number(this.paginationSizeValue_createWorkOrders));}
+    // else if(type=='work_orders'){this.gridApi_2.paginationSetPageSize(Number(this.paginationSizeValue_WorkOrders));}
+    // else if(type=='closed_claims'){this.gridApi_3.paginationSetPageSize(Number(this.paginationSizeValue_ClosedClaims));}
+    // else if(type == 'import'){this.gridApi_4.paginationSetPageSize(Number(this.paginationSizeValue_Import));}
+    // else if(type='reimport'){this.gridApi_5.paginationSetPageSize(Number(this.paginationSizeValue_reimport));}
+    // else if(type=='all_claims'){this.gridApi_6.paginationSetPageSize(Number(this.paginationSizeValue_AllClaims));}
+  }
+  onPageSizeChanged1(type:any)
+  {
+    this.gridApi_6.paginationSetPageSize(Number(this.paginationSizeValue_AllClaims));
   }
 
   onSelectionChanged_WorkOrders(params: any) {
@@ -5997,6 +6051,14 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   onSelectionChanged_allClaims(params:any){
     this.rowValue_ID_6 = this.gridApi_6.getSelectedRows();
     console.log('ID6', this.rowValue_ID_6);
+  }
+  onSelectionChanged_DuplicateClaims(params:any){
+    this.rowValue_ID_7 = this.gridApi_7.getSelectedRows();
+    console.log('ID7', this.rowValue_ID_7);
+  }
+  onSelectionChanged_MismathchedRecords(params:any){
+    this.rowValue_ID_8 = this.gridApi_8.getSelectedRows();
+    console.log('ID8', this.rowValue_ID_8);
   }
 
 
@@ -6891,6 +6953,236 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     },
   ];
 
+  columnDefs7:ColDef[]=[
+    {
+      field: '',
+      checkboxSelection: true,
+      headerCheckboxSelection: true,
+       width: 40,
+    },
+    {
+      field:'touch',
+      headerName: '',
+      sortable: true, // Set the `sortable` property to a boolean value
+      width:40,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px','width':'auto'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'touch'),
+
+    },
+    {
+      field: 'claim_no',
+      headerName: 'Claim No',
+      sortable: true, // Set the `sortable` property to a boolean value
+       width: 90,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'claim_no'),
+      onCellClicked: this.CellClicked.bind(this, 'claim_no')
+    },
+    {
+      field: 'dos',
+      headerName: 'DOS',
+      sortable: true,
+       width: 100,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'dos'),
+      onCellClicked: this.CellClicked.bind(this, 'dos')
+    },
+    {
+      field: 'age',
+      headerName: 'Age',
+      sortable: true,
+       width: 65,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'age'),
+      onCellClicked: this.CellClicked.bind(this, 'age')
+    },
+    {
+      field: 'acct_no',
+      headerName: 'Acc No',
+      sortable: true,
+       width: 85,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'acct_no'),
+      onCellClicked: this.CellClicked.bind(this, 'acct_no')
+    },
+    {
+      field: 'patient_name',
+      headerName: 'Patient Name',
+      sortable: true,
+       width: 208,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'patient_name'),
+      onCellClicked: this.CellClicked.bind(this, 'patient_name')
+    },
+    {
+      field: 'rendering_prov',
+      headerName: 'Rendering Provider',
+      sortable: true,
+       width: 164,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'rendering_prov'),
+      onCellClicked: this.CellClicked.bind(this, 'rendering_prov')
+    },
+    {
+      field: 'responsibility',
+      headerName: 'Responsibility',
+      sortable: true,
+       width: 128,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'responsibility'),
+      onCellClicked: this.CellClicked.bind(this, 'responsibility')
+    },
+    {
+      field: 'prim_ins_name',
+      headerName: 'Primary',
+      sortable: true,
+       width: 220,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'prim_ins_name'),
+      onCellClicked: this.CellClicked.bind(this, 'prim_ins_name')
+    },
+    {
+      field: 'sec_ins_name',
+      headerName: 'Secondary',
+      sortable: true,
+       width: 135,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'sec_ins_name'),
+      onCellClicked: this.CellClicked.bind(this, 'sec_ins_name')
+    },
+    {
+      field: 'total_charges',
+      headerName: 'Total Charges',
+      sortable: true,
+       width: 123,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'total_charges'),
+      onCellClicked: this.CellClicked.bind(this, 'total_charges')
+    },
+    {
+      field: 'total_ar',
+      headerName: 'Total AR',
+      sortable: true,
+       width: 107,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'total_ar'),
+      onCellClicked: this.CellClicked.bind(this, 'total_ar')
+    },
+    {
+      field: 'claim_Status',
+      headerName: 'Claim Status',
+      sortable: true,
+       width: 118,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'claim_Status'),
+      onCellClicked: this.CellClicked.bind(this, 'claim_Status')
+    },
+    {
+      field: 'denial_code',
+      headerName: 'Denial Code',
+      sortable: true,
+       width: 115,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'denial_code'),
+      onCellClicked: this.CellClicked.bind(this, 'denial_code')
+    },
+    {
+      field: 'billed_submit_date',
+      headerName: 'BillSubmit Date',
+      sortable: true,
+       width: 125,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'billed_submit_date'),
+      onCellClicked: this.CellClicked.bind(this, 'billed_submit_date')
+    },
+    {
+      field: 'claim_note',
+      headerName: 'Claim Note',
+      sortable: true,
+       width: 105,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'claim_note'),
+      onCellClicked: this.CellClicked.bind(this, 'claim_note')
+    },
+    {
+      field: 'created_at',
+      headerName: 'Assigned To|Date',
+      sortable: true,
+       width: 140,
+      cellStyle:(params:any):any=>{
+        return {'color': '#363636',
+         'font-weight': '500',  'font-family': 'sans-serif',
+         'font-size': '12px'};
+      },
+      cellRenderer: this.cellrendered.bind(this, 'created_at',),
+      onCellClicked: this.CellClicked.bind(this, 'created_at')
+    },
+  ];
+
 
   gridOptions1: GridOptions<gridData>= {
     defaultColDef: {
@@ -6910,7 +7202,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   gridOptions2: GridOptions<gridData>  = {
     rowSelection: 'multiple',
     rowHeight: 34,
-    suppressHorizontalScroll: true,
+    suppressHorizontalScroll: false,
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize: this.paginationSizeValue_WorkOrders,
@@ -6920,7 +7212,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   gridOptions3: GridOptions<gridData> = {
     rowSelection: 'multiple',
     rowHeight: 34,
-    suppressHorizontalScroll: true,
+    suppressHorizontalScroll: false,
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_ClosedClaims,
@@ -6931,7 +7223,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     rowSelection: 'multiple',
     suppressDragLeaveHidesColumns: true,
     rowHeight: 40 ,
-    suppressHorizontalScroll: true,
+    suppressHorizontalScroll: false,
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_Import,
@@ -6940,7 +7232,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
   gridOptions5: GridOptions<gridData>  = {
     rowSelection: 'multiple',
     rowHeight: 37,
-    suppressHorizontalScroll: true,
+    suppressHorizontalScroll: false,
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_reimport,
@@ -6954,6 +7246,28 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     suppressMovableColumns:true,
     pagination: true,
     paginationPageSize:this.paginationSizeValue_AllClaims,
+    suppressDragLeaveHidesColumns: true,
+    suppressContextMenu: true,
+  };
+
+  gridOptions7: GridOptions<gridData>  = {
+    rowSelection: 'multiple',
+    rowHeight: 30,
+    suppressHorizontalScroll: false,
+    suppressMovableColumns:true,
+    pagination: true,
+    paginationPageSize:this.paginationSizeValue_DuplicateClaims,
+    suppressDragLeaveHidesColumns: true,
+    suppressContextMenu: true,
+  };
+
+  gridOptions8: GridOptions<gridData>  = {
+    rowSelection: 'multiple',
+    rowHeight: 30,
+    suppressHorizontalScroll: false,
+    suppressMovableColumns:true,
+    pagination: true,
+    paginationPageSize:this.paginationSizeValue_MismatchedValues,
     suppressDragLeaveHidesColumns: true,
     suppressContextMenu: true,
   };
@@ -7109,6 +7423,24 @@ console.log("Total page:", totalPages);
     //   this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
     // }, 4000);
   }
+  onGridReady_7(params: GridReadyEvent) {
+    this.gridApi_7= params.api;
+    console.log('event', params);
+    // setTimeout(() => {
+    //   console.log('444', this.GridData_CreateWorkOrders);
+    //   this.cdtn = true;
+    //   this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
+    // }, 4000);
+  }
+  onGridReady_8(params: GridReadyEvent) {
+    this.gridApi_8 = params.api;
+    console.log('event', params);
+    // setTimeout(() => {
+    //   console.log('444', this.GridData_CreateWorkOrders);
+    //   this.cdtn = true;
+    //   this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
+    // }, 4000);
+  }
 
 
   @ViewChild('template') template!: TemplateRef<any>;
@@ -7130,6 +7462,8 @@ console.log("Total page:", totalPages);
   @ViewChild('myGrid_4') myGrid_4!: AgGridAngular;
   @ViewChild('myGrid_5') myGrid_5!: AgGridAngular;
   @ViewChild('myGrid_6') myGrid_6!: AgGridAngular;
+  @ViewChild('myGrid_7') myGrid_7!: AgGridAngular;
+  @ViewChild('myGrid_8') myGrid_8!: AgGridAngular;
 
 
   modalRef?: BsModalRef ;

@@ -3353,6 +3353,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     console.log('New Data', data);
     if (data!=null && data !='') {
       this.GridData_CreateWorkOrders = data.data;
+
       this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
       this.myGrid_7.api?.setRowData(this.GridData_CreateWorkOrders);
       this.myGrid_8.api?.setRowData(this.GridData_CreateWorkOrders);

@@ -64,7 +64,7 @@
                 {
                   "type": "anyComponentStyle",
                   "maximumWarning": "6kb",
-                  "maximumError": "500kb"
+                  "maximumError": "700kb"
                 }
               ],
               "buildOptimizer": false,

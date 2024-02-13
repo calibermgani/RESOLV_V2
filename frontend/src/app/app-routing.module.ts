@@ -161,7 +161,7 @@ const approutes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(approutes)],
+  imports: [RouterModule.forRoot(approutes,{useHash:true})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -884,7 +884,7 @@ export class JarwisService {
   }
 
   getPracticesList() {
-    return this.http.get(`${this.baseUrl}/getPracticesList`);
+    return this.http.post(`${this.baseUrl}/getPracticesList`,'');
   }
 
   get_audit_graph(id: any) {

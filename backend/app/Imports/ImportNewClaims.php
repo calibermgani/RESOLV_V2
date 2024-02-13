@@ -109,7 +109,8 @@ class ImportNewClaims implements ToCollection, WithHeadingRow
                 foreach ($dateFields as $field) {
                     if (isset($val[$field])) {
                         if (Arr::has($val, $field)) {
-                            $val[$field] = Date::excelToDateTimeObject($val[$field]);
+                            $val[$field] = $val[$field];
+                            // $val[$field] = Date::excelToDateTimeObject($val[$field]);
                         }
                     }
                 }

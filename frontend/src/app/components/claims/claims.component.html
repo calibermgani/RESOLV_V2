@@ -6006,7 +6006,7 @@
           <tr *ngFor="let assts of associates_detail">
             <td><input type="checkbox" style="margin-top:0px;" id="{{assts.id}}"
                 [checked]="selected_associates.includes(assts.id)" (click)="select_associates($event,assts.id)"
-                [(ngModel)]="assts.isChecked"><span class="assigned_nos"> {{assts.firstname}} {{assts.lastname}}- AM{{assts.id}}</span>
+                [(ngModel)]="assts.isChecked"><span class="assigned_nos"> {{assts.firstname}} {{assts.lastname}}</span>
             </td>
             <td>{{assts.assigned_claims}}</td>
             <td *ngIf="!limit_exceeds.includes(assts.id)">{{assts.assign_limit}}</td>

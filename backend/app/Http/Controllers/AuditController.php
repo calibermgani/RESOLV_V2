@@ -399,11 +399,18 @@ class AuditController extends Controller
         $i = 0;
         foreach ($users as $auditor) {
             $claim_count = Import_field::where('assigned_to', $auditor['id'])->where('claim_Status', 'Auditing')->count();
-            $users[$i]['assigned_nos'] = $claim_count;
+            // $users[$i]['assigned_nos'] = $claim_count;
             $assign_limit = User_work_profile::where('user_id', $auditor['id'])->orderBy('id', 'desc')->first();
-            $users[$i]['assigned_claims'] = $claim_count;
-            $users[$i]['assign_limit'] = $assign_limit['claim_assign_limit'] ? $assign_limit['claim_assign_limit'] : 1;
-            $i++;
+            // $users[$i]['assigned_claims'] = $claim_count;
+            // $users[$i]['assign_limit'] = $assign_limit['claim_assign_limit'] ? $assign_limit['claim_assign_limit'] : 1;
+            // $i++;
+            if (isset($claim_count) && isset($assign_limit)) {
+                $users[$i]['assigned_nos'] = $claim_count;
+                $users[$i]['assigned_claims'] = $claim_count;
+                $users[$i]['assign_limit'] = $assign_limit['claim_assign_limit'] ? $assign_limit['claim_assign_limit'] : 1;
+                $i++;
+            }
+
             //dd($assign_limit); echo "<br>";
         } //exit();
 

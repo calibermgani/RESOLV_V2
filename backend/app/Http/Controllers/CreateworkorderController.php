@@ -786,17 +786,18 @@ class CreateworkorderController extends Controller
     public function get_associates(LoginRequest $request)
     {
         try{
-            $users = User::whereIN('role_id', [1, 2, 3])->select('id', 'firstname', 'lastname')->get();
+            $users = User::whereIN('role_id', [1, 2, 3])->select('id', 'firstname', 'lastname')->limit(1)->get();
             $i = 0;
-
             foreach($users as $associates)
             {
                 $assigned_count = Import_field::where('assigned_to', $associates['id'])->where('claim_Status', 'Assigned')->orWhere('claim_Status', 'Client Assistance')->count();
                 $assign_limit = User_work_profile::where('user_id', $associates['id'])->orderBy('id', 'desc')->first();
 
+                if(!empty($assigned_count) &&  !empty($assign_limit['claim_assign_limit'])){
                 $users[$i]['assigned_claims'] = $assigned_count ? $assigned_count : 0;
                 $users[$i]['assign_limit'] = $assign_limit['claim_assign_limit'];
                 $i++;
+                }
             }
 
             return response()->json([

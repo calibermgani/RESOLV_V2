@@ -1,4 +1,4 @@
-import { Component,ViewChildren,ElementRef,QueryList,OnInit,ChangeDetectionStrategy,Input, EventEmitter, Output, OnChanges,ViewEncapsulation } from '@angular/core';
+import { Component,ViewChildren,ElementRef,QueryList,OnInit,ChangeDetectionStrategy,Input, EventEmitter, Output, OnChanges,ViewEncapsulation, ViewChild } from '@angular/core';
 import { SetUserService } from '../../Services/set-user.service';
 import { JarwisService } from '../../Services/jarwis.service';
 import { LoadingBarService } from '@ngx-loading-bar/core';
@@ -23,6 +23,9 @@ import { NgbDatepickerConfig, NgbCalendar, NgbDate, NgbDateStruct,NgbDateParserF
 import { NotesHandlerService } from '../../Services/notes-handler.service';
 import * as moment from 'moment';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
+import { AgGridAngular } from 'ag-grid-angular';
+import { ColDef, GridApi, GridOptions, GridReadyEvent, SideBarDef, ToolPanelDef } from 'ag-grid-community';
+import { gridData } from '../claims/claims.component';
 
 
 @Component({
@@ -78,7 +81,8 @@ isInvalidDate = (m: moment.Moment) =>  {
 	private datepipe: DatePipe,
 	private date_config  : NgbDatepickerConfig,
 	private calendar: NgbCalendar,
-	private notes_hadler:NotesHandlerService,) {
+	private notes_hadler:NotesHandlerService,
+  private datePipe: DatePipe,) {
     this.alwaysShowCalendars = true;
     this.update_monitor=this.notes_hadler.refresh_update().subscribe(message => {
         this.get_report_claims(this.pages,'null','null');
@@ -206,9 +210,9 @@ isInvalidDate = (m: moment.Moment) =>  {
   public dos_endDate:any;
 
   get_report_claims(page:any,sort_type:any,type:any){
-    console.log('Status',this.Status);
-    console.log('Users',this.Users);
-    console.log('date_range',this.date_range);
+    // console.log('Status',this.Status);
+    // console.log('Users',this.Users);
+    // console.log('date_range',this.date_range);
     console.log('212',this.reportSearch_new.value);
 
 
@@ -440,6 +444,399 @@ public assign_data(data: any) {
   this.associates_detail = data.data;
   console.log(this.associates_detail);
 
+}
+
+@ViewChild('myGrid_6') myGrid_6!: AgGridAngular;
+public gridApi_6!: GridApi;
+paginationSizeValue_AllClaims:any = 15;
+
+gridOptions6: GridOptions<gridData>  = {
+  rowSelection: 'multiple',
+  rowHeight: 30,
+  suppressHorizontalScroll: false,
+  suppressMovableColumns:true,
+  pagination: true,
+  paginationPageSize:this.paginationSizeValue_AllClaims,
+  suppressDragLeaveHidesColumns: true,
+  suppressContextMenu: true,
+};
+
+public defaultColDef: ColDef = {
+  editable: false,
+  enableRowGroup: true,
+  enablePivot: true,
+  enableValue: true,
+  sortable: false,
+  resizable: false,
+  filter:false,
+};
+
+
+public sideBar: SideBarDef | string | string[] | boolean | null = {
+  toolPanels: [
+    {
+      id: 'columns',
+      labelDefault: 'Columns Visibility',
+      labelKey: 'columns',
+      iconKey: 'columns',
+      toolPanel: 'agColumnsToolPanel',
+      toolPanelParams: {
+        suppressRowGroups: true,
+        suppressValues: true,
+        suppressPivots: true,
+        suppressPivotMode: true,
+        suppressColumnFilter: false,
+        suppressColumnSelectAll: false,
+      },
+    } as ToolPanelDef,
+  ],
+  defaultToolPanel: 'columns',
+};
+
+public autoGroupColumnDef: ColDef = {
+  minWidth: 200,
+};
+
+
+columnDefs6: ColDef[] = [
+  {
+    field: 'touch',
+    headerName: '',
+    width: 45,
+    cellStyle:(params:any):any=>{
+      return {'color': '#363636',
+      'font-weight': '500',  'font-family': 'sans-serif',
+      'font-size': '15px !important'};
+    },
+    sortable: true, // Set the `sortable` property to a boolean value
+    cellRenderer: this.cellrendered6.bind(this, 'touch'),
+
+  },
+  {
+    field: 'claim_no',
+    headerName: 'Claim No',
+    sortable: true, // Set the `sortable` property to a boolean value
+    minWidth: 60,
+    cellStyle:(params:any):any=>{
+      return {'color': '#363636',
+       'font-weight': '500',  'font-family': 'sans-serif',
+       'font-size': '15px !important'};
+    },
+    cellRenderer: this.cellrendered6.bind(this, 'claim_no'),
+    // onCellClicked: this.CellClicked5.bind(this, 'claim_no')
+  },
+  {
+    field: 'dos',
+    headerName: 'DOS',
+    sortable: true,
+    width: 110,
+    cellStyle:(params:any):any=>{
+      return {'color': '#363636',
+       'font-weight': '500',  'font-family': 'sans-serif',
+       'font-size': '15px !important'};
+    },
+    cellRenderer: this.cellrendered6.bind(this, 'dos'),
+    // onCellClicked: this.CellClicked5.bind(this, 'dos')
+  },
+  {
+    field: 'age',
+    headerName: 'Age',
+    sortable: true,
+    width: 90,
+    cellStyle:(params:any):any=>{
+      return {'color': '#363636',
+       'font-weight': '500',  'font-family': 'sans-serif',
+       'font-size': '15px !important'};
+    },
+    cellRenderer: this.cellrendered6.bind(this, 'age'),
+    // onCellClicked: this.CellClicked5.bind(this, 'age')
+  },
+  {
+    field: 'acct_no',
+    headerName: 'Acc No',
+    sortable: true,
+    width: 105,
+    cellStyle:(params:any):any=>{
+      return {'color': '#363636',
+       'font-weight': '500',  'font-family': 'sans-serif',
+       'font-size': '15px !important'};
+    },
+    cellRenderer: this.cellrendered6.bind(this, 'acct_no'),
+    // onCellClicked: this.CellClicked5.bind(this, 'acct_no')
+  },
+  {
+    field: 'patient_name',
+    headerName: 'Patient Name',
+    sortable: true,
+    width:150,
+    cellStyle:(params:any):any=>{
+      return {'color': '#363636',
+       'font-weight': '500',  'font-family': 'sans-serif',
+       'font-size': '15px !important'};
+    },
+    cellRenderer: this.cellrendered6.bind(this, 'patient_name'),
+    // onCellClicked: this.CellClicked5.bind(this, 'patient_name')
+  },
+  {
+    field: 'rendering_prov',
+    headerName: 'Rendering Provider',
+    sortable: true,
+    width: 175,
+    cellStyle:(params:any):any=>{
+      return {'color': '#363636',
+       'font-weight': '500',  'font-family': 'sans-serif',
+       'font-size': '15px !important'};
+    },
+    cellRenderer: this.cellrendered6.bind(this, 'rendering_prov')
+  },
+  {
+    field: 'responsibility',
+    headerName: 'Responsibility',
+    sortable: true,
+    width: 130,
+    cellStyle:(params:any):any=>{
+      return {'color': '#363636',
+       'font-weight': '500',  'font-family': 'sans-serif',
+       'font-size': '15px !important'};
+    },
+    cellRenderer: this.cellrendered6.bind(this, 'responsibility')
+  },
+  {
+    field: 'billed_submit_date',
+    headerName: 'BillSubmit Date',
+    sortable: true,
+    width:140,
+    cellStyle:(params:any):any=>{
+      return {'color': '#363636',
+       'font-weight': '500',  'font-family': 'sans-serif',
+       'font-size': '15px !important'};
+    },
+    cellRenderer: this.cellrendered6.bind(this, 'billed_submit_date')
+  },
+  {
+    field: 'denial_code',
+    headerName: 'Denial Code',
+    sortable: true,
+    width: 130,
+    cellStyle:(params:any):any=>{
+      return {'color': '#363636',
+       'font-weight': '500',  'font-family': 'sans-serif',
+       'font-size': '15px !important'};
+    },
+    cellRenderer: this.cellrendered6.bind(this, 'denial_code')
+  },
+
+  {
+    field: 'total_charges',
+    headerName: 'Total Charges',
+    sortable: true,
+    width: 125,
+    cellStyle:(params:any):any=>{
+      return {'color': '#363636',
+       'font-weight': '500',  'font-family': 'sans-serif',
+       'font-size': '15px !important'};
+    },
+    cellRenderer: this.cellrendered6.bind(this, 'total_charges'),
+  },
+  {
+    field: 'total_ar',
+    headerName: 'Total AR',
+    sortable: true,
+    width: 110,
+    cellStyle:(params:any):any=>{
+      return {'color': '#363636',
+       'font-weight': '500',  'font-family': 'sans-serif',
+       'font-size': '15px !important'};
+    },
+    cellRenderer: this.cellrendered6.bind(this, 'total_ar')
+  },
+  {
+    field: 'claim_Status',
+    headerName: 'Claim Status',
+    sortable: true,
+    width: 120,
+    cellStyle:(params:any):any=>{
+      return {'color': '#363636',
+       'font-weight': '500',  'font-family': 'sans-serif',
+       'font-size': '15px !important'};
+    },
+    cellRenderer: this.cellrendered6.bind(this, 'claim_Status')
+  },
+  {
+    field: 'assigned_to',
+    headerName: 'Assigned To | Date',
+    sortable: true,
+    width: 160,
+    cellStyle:(params:any):any=>{
+      return {'color': '#363636',
+       'font-weight': '500',  'font-family': 'sans-serif',
+       'font-size': '15px !important'};
+    },
+    cellRenderer: this.cellrendered6.bind(this, 'assigned_to')
+  },
+  {
+    field: 'created_ats',
+    headerName: 'Executive Work Date',
+    sortable: true,
+    width: 170,
+    cellStyle:(params:any):any=>{
+      return {'color': '#363636',
+       'font-weight': '500',  'font-family': 'sans-serif',
+       'font-size': '15px !important'};
+    },
+    cellRenderer: this.cellrendered6.bind(this, 'created_ats',)
+  },
+];
+
+
+cellrendered6(headerName: any, params: any) {
+  switch (headerName) {
+    case 'touch': {
+      if (params.value>=this.touch_count || params.value<this.touch_count) {
+        return  params.value;
+      }
+      else
+        return '-Nil-';
+    }
+    case 'claim_no': {
+      if (params.value) {
+        return params.value;
+      }
+      else
+        return '-Nil-';
+    }
+    case 'dos': {
+      if (params.value) {
+        if (params.value != '11/30/1899') {
+          let x = params.value;
+          x = this.datePipe.transform(x, 'MM/dd/yyyy');
+          return `${x}`;
+        }
+        else {
+          return '01/01/1970';
+        }
+      }
+      else {
+        return '-Nil-';
+      }
+    }
+    case 'age': {
+      if (params.value)
+        if (params.value <= 0) {
+          return 0;
+        }
+        else {
+          return `${params.value}`
+        }
+      else
+        return '-Nil-';
+    }
+    case 'acct_no': {
+      if (params.value)
+        return params.value;
+      else
+        return '-Nil-';
+    }
+    case 'patient_name': {
+      if (params.value)
+        return params.value;
+      else
+        return '-Nil-';
+    }
+    case 'rendering_prov': {
+      if (params.value)
+        return params.value;
+      else
+        return '-Nil-';
+    }
+    case 'responsibility': {
+      if (params.value)
+        return params.value;
+      else
+        return '-Nil-';
+    }
+    case 'total_charges': {
+      if (params.value)
+      if (typeof (params.value) == 'string') { let x = parseInt(params.value); return x.toFixed(2); }
+      else
+      {
+        return '-Nil-';
+      }
+      break;
+    }
+    case 'total_ar': {
+      if (params.value) {
+        if (typeof (params.value) == 'string') { let x = parseInt(params.value); return x.toFixed(2); }
+      }
+      else {
+        return '-Nil-';
+      }
+      break;
+    }
+    case 'claim_Status': {
+      if (params.value)
+        return params.value;
+      else
+        return '-Nil-';
+    }
+    case 'denial_code': {
+      if (params.value)
+        return params.value;
+      else
+        return '-Nil-';
+    }
+    case 'billed_submit_date': {
+      if (params.value)
+        return params.value;
+      else
+        return '-Nil-';
+    }
+    case 'claim_note': {
+      if (params.value)
+        return params.value;
+      else
+        return '-Nil-';
+    }
+
+    case 'assigned_to':{
+      let x = params.value;
+      let rowData = params.node.data;
+      let created_at = rowData.created_at;
+      created_at = created_at.substring(0, 10);
+      created_at = this.datePipe.transform(x, 'MM/dd/yyyy');
+      created_at != null ? created_at : '-Nil-'
+
+      return `${ x != null ? x : 'UA'} | ${created_at}`
+    }
+    case 'created_ats':{
+      let x = params.value;
+      let created_ats = new Date(x);
+      let result = created_ats.toLocaleDateString('en-US');
+      let rowData = params.node.data;
+      let claimStatus = rowData.claim_Status;
+      if(claimStatus!=null || claimStatus != '')
+      return `${result}`
+      else
+      return '-Nil-';
+
+    }
+  }
+}
+
+onGridReady_6(params: GridReadyEvent) {
+  this.gridApi_6 = params.api;
+  console.log('event', params);
+  // setTimeout(() => {
+  //   console.log('444', this.GridData_CreateWorkOrders);
+  //   this.cdtn = true;
+  //   this.myGrid_1.api?.setRowData(this.GridData_CreateWorkOrders);
+  // }, 4000);
+}
+
+rowValue_ID_6:any;
+onSelectionChanged_allClaims(params:any){
+  this.rowValue_ID_6 = this.gridApi_6.getSelectedRows();
+  console.log('ID6', this.rowValue_ID_6);
 }
 
 

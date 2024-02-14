@@ -103,6 +103,7 @@ isInvalidDate = (m: moment.Moment) =>  {
     this.subscription=this.notify_service.fetch_touch_limit().subscribe(message => {
     this.touch_count = message });
     this.formValidator();
+    this.getUsersList();
   }
 
   formValidator(){
@@ -198,6 +199,10 @@ isInvalidDate = (m: moment.Moment) =>  {
   public dos_endDate:any;
 
   get_report_claims(page:any,sort_type:any,type:any){
+    console.log('Status',this.Status);
+    console.log('Users',this.Users);
+    console.log('date_range',this.date_range);
+
 
     let page_count=15;
 
@@ -425,6 +430,8 @@ getUsersList(){
 
 public assign_data(data: any) {
   this.associates_detail = data.data;
+  console.log(this.associates_detail);
+
 }
 
 

@@ -90,6 +90,7 @@ isInvalidDate = (m: moment.Moment) =>  {
   public buyer_name:any;
   submitted = false;
   reportSearch!: FormGroup;
+  reportSearch_new!:FormGroup;
   Status:any;
   Users:any;
   date_range:any;
@@ -112,6 +113,12 @@ isInvalidDate = (m: moment.Moment) =>  {
       dos: [],
       buyer: [],
     });
+
+    this.reportSearch_new = this.formBuilder.group({
+      status:[],
+      users:[],
+      date_range:[]
+    })
   }
 
   get f() { return this.reportSearch.controls; }
@@ -202,6 +209,7 @@ isInvalidDate = (m: moment.Moment) =>  {
     console.log('Status',this.Status);
     console.log('Users',this.Users);
     console.log('date_range',this.date_range);
+    console.log('212',this.reportSearch_new.value);
 
 
     let page_count=15;
@@ -239,10 +247,10 @@ isInvalidDate = (m: moment.Moment) =>  {
        this.dos_endDate = null
     }
 
-    this.Jarwis.get_report_claims(page,page_count,this.reportSearch.value,sort_type,type,this.startTime,this.endTime,this.trans_startDate,this.trans_endDate,this.dos_startDate,this.dos_endDate).subscribe(
-      data  => this.handleReportClaims(data),
-      error => this.handleError(error)
-    );
+    // this.Jarwis.get_report_claims(page,page_count,this.reportSearch.value,sort_type,type,this.startTime,this.endTime,this.trans_startDate,this.trans_endDate,this.dos_startDate,this.dos_endDate).subscribe(
+    //   data  => this.handleReportClaims(data),
+    //   error => this.handleError(error)
+    // );
   }
 
   public report_claims:any|null;

@@ -211,11 +211,11 @@
                     </div>
                     <div class="box-body no-padding" style="margin-top:20px;">
                       <div class="col-lg-12 no-padding">
-                        <form [formGroup]="reportSearch">
+                        <form [formGroup]="reportSearch_new">
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Status</label>
                             <select class="form-control ngx-dropdown-button" style="width:100%" aria-hidden="true"
-                              [(ngModel)]="Status" formControlName="priority">
+                             formControlName="status">
                               <option [ngValue]="null">--Select Status--</option>
                               <option value="Closed">Closed</option>
                               <option value="Assigned">Assigned</option>
@@ -226,7 +226,7 @@
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Users</label>
                             <select class="form-control ngx-dropdown-button" style="width:100%" aria-hidden="true"
-                              [(ngModel)]="Users" formControlName="priority">
+                               formControlName="users">
                               <option [ngValue]="null">--Select User--</option>
                               <option value="Closed" *ngFor="let x of associates_detail">{{x.firstname}}{{ x.lastname }}</option>
 
@@ -234,8 +234,8 @@
                           </div>
                           <div class="form-group col-lg-3 col-md-3 col-sm-3 col-xs-12">
                             <label>Date Range</label>
-                            <input type="text" id="dos" [(ngModel)]="date_range" class="form-control" id="data-picker"
-                              bsDaterangepicker autocomplete="off" [bsConfig]="bsConfig">
+                            <input type="text" id="dos" class="form-control" id="data-picker"
+                              bsDaterangepicker autocomplete="off" [bsConfig]="bsConfig" formControlName="date_range">
                           </div>
                         </form>
                         <div class="form-group col-lg-3 pull-right">

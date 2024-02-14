@@ -90,6 +90,10 @@ isInvalidDate = (m: moment.Moment) =>  {
   public buyer_name:any;
   submitted = false;
   reportSearch!: FormGroup;
+  Status:any;
+  Users:any;
+  date_range:any;
+  associates_detail:any = [];
 
   ngOnInit() {
     // this.auth.tokenValue.next(false);
@@ -412,6 +416,16 @@ public tooltipOptions:any= {
   'background-color': '#9ad9e4'
 };
 
+getUsersList(){
+  this.Jarwis.get_associates(this.setus.getId()).subscribe(
+    data => this.assign_data(data),
+    error => this.handleError(error)
+  );
+}
+
+public assign_data(data: any) {
+  this.associates_detail = data.data;
+}
 
 
 }

@@ -17,7 +17,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
   selector: 'app-claim-op-footer',
   templateUrl: './claim-op-footer.component.html',
   styleUrls: ['./claim-op-footer.component.css'],
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
 export class ClaimOpFooterComponent implements OnInit, OnDestroy {
   @Input() tab: any; //Note you need to import Input from @angular/core

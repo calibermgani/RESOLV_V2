@@ -72,5 +72,6 @@ input[type=checkbox], input[type=radio] {
 } */
 
 ::ng-deep .ngx-dropdown-container .ngx-dropdown-list-container{
-  height: 300px !important;
+  max-height: 300px !important;
 }
+

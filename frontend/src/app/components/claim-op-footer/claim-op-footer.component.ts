@@ -821,10 +821,10 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
 
         console.log(selected_details);
         if (input_type == 'claim_create') {
-          this.Jarwis.claim_note(this.setus.getId(), user_notes, claim_details, 'claim_create').subscribe(
-            data => this.response_handler(data, 'followup'),
-            error => this.handleError(error)
-          );
+          // this.Jarwis.claim_note(this.setus.getId(), user_notes, claim_details, 'claim_create').subscribe(
+          //   data => this.response_handler(data, 'followup'),
+          //   error => this.handleError(error)
+          // );
         }
 
         else if (input_type == 'create_qcnotes') {

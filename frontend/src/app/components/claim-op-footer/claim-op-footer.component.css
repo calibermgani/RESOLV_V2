@@ -66,3 +66,9 @@ input[type=checkbox], input[type=radio] {
   position: fixed;
   margin-left: -12px;
 } */
+
+
+::ng-deep .ngx-dropdown-container .ngx-dropdown-list-container{
+  max-height: 300px !important;
+}
+

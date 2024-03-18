@@ -17,7 +17,7 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
   selector: 'app-claim-op-footer',
   templateUrl: './claim-op-footer.component.html',
   styleUrls: ['./claim-op-footer.component.css'],
-  encapsulation: ViewEncapsulation.None
+  // encapsulation: ViewEncapsulation.None
 })
 export class ClaimOpFooterComponent implements OnInit, OnDestroy {
   @Input() tab: any; //Note you need to import Input from @angular/core
@@ -821,10 +821,10 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
 
         console.log(selected_details);
         if (input_type == 'claim_create') {
-          this.Jarwis.claim_note(this.setus.getId(), user_notes, claim_details, 'claim_create').subscribe(
-            data => this.response_handler(data, 'followup'),
-            error => this.handleError(error)
-          );
+          // this.Jarwis.claim_note(this.setus.getId(), user_notes, claim_details, 'claim_create').subscribe(
+          //   data => this.response_handler(data, 'followup'),
+          //   error => this.handleError(error)
+          // );
         }
 
         else if (input_type == 'create_qcnotes') {

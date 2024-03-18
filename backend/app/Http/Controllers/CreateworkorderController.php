@@ -786,7 +786,7 @@ class CreateworkorderController extends Controller
     public function get_associates(LoginRequest $request)
     {
         try{
-            $users = User::whereIN('role_id', [1, 2, 3])->select('id', 'firstname', 'lastname')->limit(1)->get();
+            $users = User::whereIn('role_id', [1, 2, 3])->select('id', 'firstname', 'lastname')->get();
             $i = 0;
             foreach($users as $associates)
             {

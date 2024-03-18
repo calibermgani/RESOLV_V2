@@ -49,83 +49,135 @@
 <!-- <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet"> -->
 
 
-<div class="container-login100 x1" >
+<!-- <div class="container-login100 x1">
   <div class="col-lg-12" style="color:#000000;position:absolute;top:10px;">
-  <p style="font-size:13px;color:#000000;"><img src="../../../assets/dist/css/main/images/waves-2.png" class="p-r-5" style="width:8%;">
-    <span class="pull-right"> <i class="fa fa-phone"></i>&nbsp; 888-888-8888  &nbsp; &nbsp;| &nbsp; &nbsp;<i class="fa fa-envelope"></i>&nbsp; support@resolv.com </span>  </p>
-</div>
-        <!-- <div class="col-lg-5">
-          <div class="main-text">
-           <h1 class="caption3 font-bigger" style="color:rgba(255,255,255,0.8); text-align:right"><i>Quality is not an Act,</i></h1>
-          <h1 class="caption3 font-bigger" style="color:rgba(0,0,0,0.8);text-align:right"><i>it is a Habit.</i></h1>
-          <h6 style="text-align:right;font-size:12px;font-weight:600; margin-right:5%;color:#212529;"><i>-Aristotle</i></h6>
-        </div>
-        </div> -->
+    <p style="font-size:13px;color:#000000;"><img src="../../../assets/dist/css/main/images/waves-2.png" class="p-r-5"
+        style="width:8%;">
+      <span class="pull-right"> <i class="fa fa-phone"></i>&nbsp; 888-888-8888 &nbsp; &nbsp;| &nbsp; &nbsp;<i
+          class="fa fa-envelope"></i>&nbsp; support@resolv.com </span>
+    </p>
+  </div>
+  <div class="col-lg-3">
+    <div class="col-lg-12 col-md-12">
+      <div class="login-form">
+        <p class="p-b-0">
+          <span class="login100-form-logo">
+            <img src="assets/dist/css/main/images/login_icon_new.png" style="width:80px;border:none">
+          </span>
+        </p>
 
+        <span class="login100-form-title p-b-15 p-t-5" style="letter-spacing:3px;font-size:30px;">
+          <h3 class="p-b-30">WELCOME</h3>
+          <div class="gradient"></div>
+          <div class="spotlight"></div>
+        </span>
 
-        <div class="col-lg-3">
-        <div class="col-lg-12 col-md-12">
-          <div class="login-form">
-            <p class="p-b-0">
-            <span class="login100-form-logo">
-              <img src="assets/dist/css/main/images/login_icon_new.png" style="width:80px;border:none">
-              <!-- <img src="../../../assets/dist/css/main/images/icon-6.jpg" style="width:80px"> -->
-              </span></p>
-
-            <span class="login100-form-title p-b-15 p-t-5" style="letter-spacing:3px;font-size:30px;">
-              <h3 class="p-b-30">WELCOME</h3>
-              <div class="gradient"></div>
-              <div class="spotlight"></div>
-            </span>
-
-        <form class="login100-form" style="padding:10px 20px;border-radius:8px;" #LoginForm=ngForm >
+        <form class="login100-form" style="padding:10px 20px;border-radius:8px;" #LoginForm=ngForm>
 
           <div class="wrap-input100 " data-validate="Enter username">
-              <input class="input100" type="text" name="username" autocomplete="username" placeholder="Username" [(ngModel)]="form.user_name"  (ngModelChange)="usernameInputTouched = true" required>
-              <span class="focus-input100" data-placeholder=""></span>
+            <input class="input100" type="text" name="username" autocomplete="username" placeholder="Username"
+              [(ngModel)]="form.user_name" (ngModelChange)="usernameInputTouched = true" required>
+            <span class="focus-input100" data-placeholder=""></span>
+          </div>
+          <span *ngIf="usernameInputTouched &&  form.user_name == '' " class="error">User Name is required </span>
+
+
+          <div class="wrap-input100 validate-input" data-validate="Enter password">
+            <input class="input100" type="password" name="pass" autocomplete="pass" placeholder="Password"
+              [(ngModel)]="form.password" (ngModelChange)="userpasswordInputTouched = true" required>
+            <span class="focus-input100" data-placeholder=""></span>
+          </div>
+          <span *ngIf="userpasswordInputTouched &&  form.password == '' " class="error">Password is required </span>
+
+          <div class="contact100-form-checkbox">
+            <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
+            <label class="label-checkbox100" for="ckb1">
+              Keep me signed in
+            </label>
+          </div>
+
+          <div class="container-login100-form-btn p-t-25">
+            <button class="login5" style="border:1px solid #06acaa; width:40%; color:#333333"
+              [disabled]="!LoginForm.valid" (click)="onSubmit()">
+              <a style="color:#000000">Sign In</a>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+</div> -->
+
+<div class="row">
+  <div class="col-12">
+    <div class="card" style="margin: 70px 40px;">
+      <div class="row">
+        <div class="col-lg-6">
+          <div style="border-radius: 12px;margin-left: 38px;">
+            <img src="assets/image/login_img.svg" style="width: 720px;height: 750px;border-radius: 12px;">
+          </div>
+
+          <div style="position: relative;bottom: 30px;color: #fff;left: 30px;">
+          <div style="display: flex; align-items: center;">
+            <div style="margin-left: 15px;">
+              <p style="color: #fff;">@ 2024 Resolv. All rights reserved</p>
             </div>
-            <span *ngIf="usernameInputTouched &&  form.user_name == '' " class="error">User Name is required </span>
-
-
-            <div class="wrap-input100 validate-input" data-validate="Enter password" >
-              <input class="input100" type="password" name="pass" autocomplete="pass" placeholder="Password"  [(ngModel)]="form.password"  (ngModelChange)="userpasswordInputTouched = true" required>
-              <span class="focus-input100" data-placeholder=""></span>
+            <div class="d-flex flex-row" style="margin-left: 110px;align-items: center;">
+              <div style="margin-left: 45px;">
+                <img src="assets/image/phone.svg" width="20px" height="20px">
+                <span style="margin-left: 10px;">888-888-8888</span>
+              </div>
+              <div style="margin-left: 20px;">
+                <img src="assets/image/mail.svg" width="20px" height="20px">
+                <span style="margin-left: 10px;">support@resolv.com</span>
+              </div>
             </div>
-            <span *ngIf="userpasswordInputTouched &&  form.password == '' " class="error">Password is required </span>
-
-            <div class="contact100-form-checkbox" >
-              <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-              <label class="label-checkbox100" for="ckb1">
-                Keep me signed in
-              </label>
-              <!-- <div class="text-right" style="float:right">
-                <a class="txt1 text-right" href="#">
-                  Forgot Password?
-                </a>
-              </div> -->
+          </div>
+        </div>
+        </div>
+        <div class="col-lg-6">
+          <div style="display: flex;justify-content: flex-start;flex-direction: column;margin: 151px 127px;width: 406px;">
+            <div class="mb-2">
+              <img src="assets/image/logo.svg" style="width: 194px;height: 56px;">
             </div>
+            <div class="mb-2">
+              <h3>AR management tool</h3>
+            </div>
+            <div class="mb-2">
+              <p>Welcome Login, Please enter your credentials to access your account.</p>
+            </div>
+            <form #LoginForm=ngForm>
+            <div class="mb-2" style="margin-bottom: 20%;">
+                <div class="mb-2">
+                  <label style="font-size: 9px;font-weight: 400;margin-bottom: 4px;">User name</label>
+                  <input type="text" name="username" autocomplete="username" [(ngModel)]="form.user_name"
+                    (ngModelChange)="usernameInputTouched = true" required style="background: #F1EFFF;color: black;border-radius:
+                    4px;padding: 0px 16px 0px 16px;height: 40px;width: 100%;font-size: 13px;">
+                  <span *ngIf="usernameInputTouched &&  form.user_name == '' " class="error">User Name is required </span>
+                </div>
+                <div class="mb-2">
+                  <label style="font-size: 9px;font-weight: 400;margin-bottom: 4px;">Password</label>
+                  <input type="password" name="pass" autocomplete="pass"  [(ngModel)]="form.password" class="eye"
+                    (ngModelChange)="usernameInputTouched = true" required style="background: #F1EFFF;color: black;border-radius:
+                    4px;padding: 0px 16px 0px 16px;height: 40px;width: 100%;font-size: 13px">
+                  <span *ngIf="usernameInputTouched &&  form.password == '' " class="error">User Name is required </span>
+                </div>
 
-            <div class="container-login100-form-btn p-t-25">
-              <button class="login5" style="border:1px solid #06acaa; width:40%; color:#333333" [disabled] = "!LoginForm.valid" (click)="onSubmit()">
-                <a style="color:#000000">Sign In</a>
-              </button>
+            </div>
+            <div style="width: 100%;">
+              <button class="btn-primary" style="background-color: #19114A;
+                            width: 100%;
+                            padding: 7px;
+                            border-radius: 7px;" [disabled]="!LoginForm.valid" (click)="onSubmit()">Sign In</button>
             </div>
           </form>
+          </div>
         </div>
         </div>
-        </div>
-        <div class="clearfix"></div>
-        <!-- <div class="col-lg-12 col-md-12 col-sm-12">
-
-  <div class="social-icons">
-  <p style="font-size:13px;line-height:30px;">
-    <i class="fa fa-facebook"></i>
-    <i class="fa fa-twitter"></i>
-    <i class="fa fa-linkedin"></i>
-    <br>© 2020 Avechealth. All rights reserved.  </p>
+    </div>
   </div>
-</div> -->
-      </div>
+</div>
 
       <!-- <script src="vendor/animsition/js/animsition.min.js"></script> -->
 <script>

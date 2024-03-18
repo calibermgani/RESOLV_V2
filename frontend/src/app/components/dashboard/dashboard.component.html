@@ -261,7 +261,10 @@
                                                             <div class="col-lg-6 col-md-6 col-sm-6">
                                                                     <!-- <fusioncharts  class="fusion-charts" type="pie3d" [dataSource]=pie3d>
                                                                 </fusioncharts> -->
-                                                                <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts>
+                                                                <!-- <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts>
+                                                                 -->
+                                                                <fusioncharts width="770" height="400" type="pareto2d" [dataFormat]="dataFormat" [dataSource]="dataSource3">
+                                                                </fusioncharts>
                                                                </div>
                                                                <div class="col-lg-6 col-md-6 col-sm-6" >
                                                                 <div class="analysis status_code">
@@ -322,7 +325,9 @@
                                                                   width="700"
                                                                   [dataSource]=stacked_chart >
                                                               </fusioncharts> -->
-                                                              <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts>
+                                                              <!-- <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts> -->
+                                                              <fusioncharts width="770" height="400" type="bubble" [dataFormat]="dataFormat" [dataSource]="dataSource4">
+                                                              </fusioncharts>
                                                                 </div>
                                                             </div>
                                                            </div>
@@ -870,7 +875,7 @@
                                                         <div class="box-body chart-responsive collapse in" id="box6">
                                                             <!-- <fusioncharts type="overlappedcolumn2d" [dataSource]=stacked3 >
                                                         </fusioncharts> -->
-                                                        <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts>
+                                                        <fusioncharts  width="1505" height="400" type="column2d" [dataSource]="dataSource5"></fusioncharts>
                                                         </div>
                                                         <!-- /.box-body -->
                                                     </div>

@@ -10,6 +10,7 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
+import { FusionChartsModule } from 'angular-fusioncharts';
 
 
 
@@ -22,6 +23,7 @@ import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
     SidebarModule.forRoot(),
     Ng2SearchPipeModule,
     AgGridModule,
+    // FusionChartsModule
   ],
   declarations: [DashboardComponent,
     PracticeComponent,

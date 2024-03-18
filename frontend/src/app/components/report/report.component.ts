@@ -26,7 +26,8 @@ import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 import { AgGridAngular } from 'ag-grid-angular';
 import { ColDef, GridApi, GridOptions, GridReadyEvent, SideBarDef, ToolPanelDef } from 'ag-grid-community';
 import { gridData } from '../claims/claims.component';
-
+import { NgxUiLoaderService } from 'ngx-ui-loader';
+import 'ag-grid-enterprise';
 
 @Component({
   selector: 'app-report',
@@ -82,6 +83,7 @@ isInvalidDate = (m: moment.Moment) =>  {
 	private date_config  : NgbDatepickerConfig,
 	private calendar: NgbCalendar,
 	private notes_hadler:NotesHandlerService,
+  public loader : NgxUiLoaderService,
   private datePipe: DatePipe,) {
     this.alwaysShowCalendars = true;
     this.update_monitor=this.notes_hadler.refresh_update().subscribe(message => {
@@ -99,6 +101,16 @@ isInvalidDate = (m: moment.Moment) =>  {
   Users:any;
   date_range:any;
   associates_detail:any = [];
+  isCollapsed_AllClaims : boolean = true;
+  status_list: any;
+  all_selectedAge = null; age_options: any = [{ "from_age": 0, "to_age": 30 }, { "from_age": 31, "to_age": 60 }, { "from_age": 61, "to_age": 90 }, { "from_age": 91, "to_age": 120 }, { "from_age": 121, "to_age": 180 }, { "from_age": 181, "to_age": 365 }];
+  claim_statuses: any = ['Closed', 'Assigned', 'Auditing', 'Audit'];
+  decimal_pattern = "^\[0-9]+(\.[0-9][0-9])\-\[0-9]+(\.[0-9][0-9])?$";
+  allClaimsFind!: FormGroup;
+  public status_codes_data: Array<any> = [];
+  public sub_status_codes_data: string[] = [];
+  public status_options: any;
+  public sub_options: any;
 
   ngOnInit() {
     // this.auth.tokenValue.next(false);
@@ -109,6 +121,31 @@ isInvalidDate = (m: moment.Moment) =>  {
     this.touch_count = message });
     this.formValidator();
     this.getUsersList();
+
+    this.allClaimsFind = this.formBuilder.group({
+      dos: [],
+      age_filter: [],
+      claim_no: [],
+      acc_no: [],
+      patient_name: [],
+      responsibility: [],
+      total_charge: [],
+      total_ar: new FormControl(null, [
+        Validators.required,
+        Validators.pattern(this.decimal_pattern),
+      ]),
+      rendering_provider: [],
+      payer_name: [],
+      claim_status: [],
+      bill_submit_date: [],
+      denial_code: [],
+      date: [],
+      status_code: [],
+      sub_status_code: [],
+    });
+
+    this.pageChange(1,'all_claim',null,null,null,null,null,null);
+    this.status_code_select()
   }
 
   formValidator(){
@@ -150,6 +187,367 @@ isInvalidDate = (m: moment.Moment) =>  {
   	);
   }
 
+  status_code_select(){
+    if(!this.isCollapsed_AllClaims){
+      this.get_statuscodes();
+    }
+  }
+
+    //Get Status codes from Backend
+    public get_statuscodes() {
+      this.Jarwis.get_status_codes(this.setus.getId(), 'all').subscribe(
+        (data: any) => { this.status_list = data['status'], this.process_codes(data) }
+      );
+    }
+
+    public process_codes(data: any) {
+      console.log(data);
+      let status_option = [];
+      this.status_codes_data = data.status;
+      this.sub_status_codes_data = data.sub_status;
+      for (let i = 0; i < this.status_codes_data.length; i++) {
+        if (this.status_codes_data[i]['status'] == 1) {
+          // alert(this.status_codes_data[i]['status_code']);
+          status_option.push({ id: this.status_codes_data[i]['id'], description: this.status_codes_data[i]['status_code'] + '-' + this.status_codes_data[i]['description'] });
+        }
+      }
+      this.status_options = status_option;
+    }
+
+    allclaims_filter: any;
+  allClaims_search(page: number, table: any, sort_data: any, sort_type: any, sorting_name: any, sorting_method: any, allclaimsearch: any, searchdata: any) {
+    this.allclaims_filter = searchdata;
+    console.log(searchdata);
+    this.pageChange(page, table, sort_data, sort_type, sorting_name, sorting_method, allclaimsearch, searchdata);
+
+
+  }
+  search: any;
+  searchValue: any;
+  allclaim_pages: number = 0;
+  pageChange(page: number, table: any, sort_data: any, sort_type: any, sorting_name: any, sorting_method: any, createsearch: any, search: any){
+    let allclaimsearch_notNull: any = [];
+    let nullVal: boolean = false;
+    this.search = search;
+    let searchs = this.search;
+    this.searchValue = this.search;
+    let page_count = 15;
+    let allClaims_searchValue: any = [this.allClaimsFind.value];
+    if (typeof allClaims_searchValue === 'object' && allClaims_searchValue !== null) {
+      Object.keys(allClaims_searchValue).forEach(key => {
+        if (typeof allClaims_searchValue[key] === 'object' && allClaims_searchValue[key] !== null) {
+          Object.keys(allClaims_searchValue[key]).forEach(val => {
+            if (typeof allClaims_searchValue[key][val] === 'object' && allClaims_searchValue[key][val] !== null) {
+              Object.keys(allClaims_searchValue[key][val]).forEach(data => {
+                if (allClaims_searchValue[key][val][data] === null) {
+                  nullVal = false;
+                }
+                else {
+                  nullVal = true;
+                }
+              });
+              allclaimsearch_notNull.push(nullVal);
+            }
+            else if (typeof allClaims_searchValue[key][val] !== 'object' && allClaims_searchValue[key][val] !== null && allClaims_searchValue[key][val] != '') {
+              nullVal = true;
+              allclaimsearch_notNull.push(nullVal);
+            }
+            else if (typeof allClaims_searchValue[key][val] !== 'object' && allClaims_searchValue[key][val] !== null && allClaims_searchValue[key][val] == '') {
+              nullVal = false;
+              allclaimsearch_notNull.push(nullVal);
+            }
+          });
+        }
+      });
+    }
+    if (allclaimsearch_notNull.some((x: any) => x === true)) {
+      this.search = this.allclaims_filter;
+      sort_data = 'null';
+      sort_type = 'null';
+      sorting_name = 'null';
+      search = this.search;
+    }
+    else {
+      this.search = null;
+      sort_data = null;
+      sort_type = null;
+      sorting_name = null;
+      sorting_method = null;
+      search = this.search;
+    }
+    searchs = this.search;
+    console.log(searchs);
+    this.allclaim_pages = page;
+    if (sorting_name == null && searchs == null) {
+      // this.Jarwis.all_claim_list(sort_data, page, page_count, sort_type, null, sorting_method, null, search).subscribe(
+      //   data => this.assign_page_data(data),
+      //   error => this.handleError(error)
+      // );
+      this.Jarwis.all_claim_list_new('null').subscribe(
+        data => this.assign_page_data(data),
+        error => this.handleError(error)
+      );
+    } else if (searchs == 'search') {
+      if (this.allClaimsFind.value.dos?.[0] != null && this.allClaimsFind.value.dos?.[1] != null) {
+        console.log(this.allClaimsFind.value);
+        this.allClaimsFind.value.dos.startDate = this.datepipe.transform(new Date(this.allClaimsFind.value.dos?.[0]), 'yyyy-MM-dd');
+        this.allClaimsFind.value.dos.endDate = this.datepipe.transform(new Date(this.allClaimsFind.value.dos?.[1]), 'yyyy-MM-dd');
+        this.allClaimsFind.value.dos.pop(this.allClaimsFind.value.dos[0]);
+        this.allClaimsFind.value.dos.pop(this.allClaimsFind.value.dos[1]);
+        const obj = { ... this.allClaimsFind.controls['dos'].value }; // { 0: 1, 1: 2, 2: 3 }
+
+        this.allClaimsFind.value.dos = obj;
+        console.log('OBJ', obj);
+
+        console.log('Updated claims', this.allClaimsFind.value.dos);
+
+      }
+      if (this.allClaimsFind.value.date?.[0] != null && this.allClaimsFind.value.date?.[1] != null) {
+        console.log(this.allClaimsFind.controls['date'].value);
+        this.allClaimsFind.value.date.startDate = this.datepipe.transform(new Date(this.allClaimsFind.value.date?.[0]), 'yyyy-MM-dd');
+        this.allClaimsFind.value.date.endDate = this.datepipe.transform(new Date(this.allClaimsFind.value.date?.[1]), 'yyyy-MM-dd');
+        this.allClaimsFind.value.date.pop(this.allClaimsFind.value.date[0]);
+        this.allClaimsFind.value.date.pop(this.allClaimsFind.value.date[1]);
+        const obj = { ... this.allClaimsFind.controls['date'].value }; // { 0: 1, 1: 2, 2: 3 }
+
+        this.allClaimsFind.value.date = obj;
+        console.log('OBJ', obj);
+
+        console.log('Updated claims', this.allClaimsFind.value.date);
+      }
+      if (this.allClaimsFind.value.bill_submit_date?.[0] != null && this.allClaimsFind.value.bill_submit_date?.[1] != null) {
+        // console.log(this.createClaimsFind.controls.bill_submit_date.value);
+        this.allClaimsFind.value.bill_submit_date.startDate = this.datepipe.transform(new Date(this.allClaimsFind.value.bill_submit_date?.[0]), 'yyyy-MM-dd');
+        this.allClaimsFind.value.bill_submit_date.endDate = this.datepipe.transform(new Date(this.allClaimsFind.value.bill_submit_date?.[1]), 'yyyy-MM-dd');
+        this.allClaimsFind.value.bill_submit_date.pop(this.allClaimsFind.value.bill_submit_date[0]);
+        this.allClaimsFind.value.bill_submit_date.pop(this.allClaimsFind.value.bill_submit_date[1]);
+        const obj = { ... this.allClaimsFind.controls['bill_submit_date'].value }; // { 0: 1, 1: 2, 2: 3 }
+
+        this.allClaimsFind.value.bill_submit_date = obj;
+        console.log('OBJ', obj);
+
+        console.log('Updated claims', this.allClaimsFind.value.bill_submit_date);
+      }
+
+      // this.Jarwis.all_claim_list(sort_data, page, page_count, sort_type, sorting_name, this.sortByAsc, this.allClaimsFind.value, this.search).subscribe(
+      //   data => this.assign_page_data(data),
+      //   error => this.handleError(error)
+      // );
+      this.Jarwis.all_claim_list_new(this.allClaimsFind.value).subscribe(
+        data => this.assign_page_data(data),
+        error => this.handleError(error)
+      );
+
+    } else {
+      // this.Jarwis.all_claim_list(sort_data, page, page_count, sort_type, sorting_name, this.sortByAsc, null, this.search).subscribe(
+      //   data => this.assign_page_data(data),
+      //   error => this.handleError(error)
+      // );
+      this.Jarwis.all_claim_list_new(null).subscribe(
+        data => this.assign_page_data(data),
+        error => this.handleError(error)
+      );
+    }
+  }
+
+  GridData_AllClaims:any = [];
+  selected_claim_data: any;
+  cwo_total: any;
+  skip_row: any;
+  current_row: any;
+  public assign_page_data(data: any) {
+    console.log('New Data', data);
+    if(data!=null && data !=''){
+      console.log('INNNN');
+      this.GridData_AllClaims = data.data;
+      this.myGrid_6.api?.setRowData(this.GridData_AllClaims);
+        //  this.setAutoHeight();
+        this.gridApi_6.closeToolPanel();
+        // this.autoSizeAll();
+      this.loader.stop();
+    }
+    else
+    {
+      this.GridData_AllClaims = [];
+      this.myGrid_6.api?.setRowData(this.GridData_AllClaims);
+        //  this.setAutoHeight();
+        this.gridApi_6.closeToolPanel();
+        // this.autoSizeAll();
+      this.loader.stop();
+    }
+    if(data){
+      this.selected_claim_data = data.selected_claim_data;
+      this.cwo_total = data.total;
+      this.current_total = data.current_total;
+      this.skip = data.skip + 1;
+      this.total_row = data.total;
+    }
+
+
+    this.skip_row = this.skip;
+    this.current_row = this.skip + this.current_total - 1;
+
+  }
+
+  searchResults: any = [];
+  searchFromArray(arr: any, regex: any) {
+    let matches = [], i;
+    for (i = 0; i < arr.length; i++) {
+      if (arr[i].match(regex)) {
+        matches.push(arr[i]);
+      }
+    }
+    return matches;
+  };
+
+  allclaimSelected: boolean = false;
+  allclaim_selected_val: any = null;
+  allclaim_results: any = [];
+  search_values_for_all_claims:any;
+  allclaimSearchOnKeyUp(event: any) {
+    let input = event.target.value;
+    if (input.length > 0) {
+      this.allclaim_results = this.searchFromArray(this.searchResults, input);
+    }
+    else {
+      this.allclaim_selected_val = null;
+      this.allclaimSelected = false;
+    }
+  }
+  allclaimSelectvalue(value: any) {
+    if (value != '' || value != null) {
+      this.allclaimSelected = true;
+      this.allclaim_selected_val = value;
+    }
+    else {
+      this.allclaim_selected_val = null;
+      this.allclaimSelected = false;
+    }
+  }
+
+  public allClaim_status_code_changed(event: any) {
+    if (event.value != undefined) {
+      let sub_status: any = this.sub_status_codes_data[event.value.id];
+      let sub_status_option: any = [];
+      console.log('sub_status_option');
+      if (sub_status == undefined || sub_status == '') {
+        this.sub_options = [];
+        this.allClaimsFind.patchValue({
+          sub_status_code: ''
+        });
+      }
+      else {
+        for (let i = 0; i < sub_status.length; i++) {
+          if (sub_status[i]['status'] == 1) {
+            sub_status_option.push({ id: sub_status[i]['id'], description: sub_status[i]['status_code'] + '-' + sub_status[i]['description'] });
+          }
+          this.sub_options = sub_status_option;
+          if (this.sub_options.length != 0) {
+            this.allClaimsFind.patchValue({
+              sub_status_code: { id: this.sub_options[0]['id'], description: this.sub_options[0]['description'] }
+            });
+          }
+          else {
+            this.allClaimsFind.patchValue({
+              sub_status_code: ""
+            });
+          }
+        }
+      }
+      // this.modified_stats.push(event);
+    }
+  }
+
+  onSearch() {
+    // this.myGrid_1.api?.setQuickFilter(this.search_values_for_create_work);
+    // this.myGrid_2.api?.setQuickFilter(this.search_values_for_work_orders);
+    // this.myGrid_3.api?.setQuickFilter(this.search_values_for_closed_claims);
+    this.myGrid_6.api?.setQuickFilter(this.search_values_for_all_claims);
+  }
+
+  onPageSizeChanged1(type:any)
+  {
+    this.gridApi_6.paginationSetPageSize(Number(this.paginationSizeValue_AllClaims));
+  }
+
+  reload_data_allClaims(page:any){
+    this.pages = page;
+    // this.modalRef?.hide();
+    // this.Jarwis.get_first_table_data(null).subscribe((data: any) => {
+    //   this.myGrid_1.api?.setRowData(data.data);
+    // });
+
+    console.log(this.modalService.hasOpenModals());
+    if (this.modalService.hasOpenModals() == false) {
+      // this.pageChange(this.pages, 'claim', null, null, 'null', 'null', null, 'null');
+
+      // for (let i = 0; i < this.selected_claim_data.length; i++) {
+      //   let claim = this.selected_claim_data[i]['claim_no'];
+      //   let ind = this.selected_claim_nos.indexOf(claim);
+      //   this.selected_claims.splice(ind, 1);
+      //   this.selected_claim_nos.splice(ind, 1);
+
+      // }
+
+      this.Jarwis.all_claim_list_new('null').subscribe(
+        data => this.assign_page_data(data),
+        error => this.handleError(error)
+      );
+
+      // this.checkboxes.forEach((element) => {
+      //   element.nativeElement.checked = false;
+      // });
+
+      this.allClaimsFind.reset();
+
+    }
+  }
+
+  public searchClaims: any;
+  public workordersearch: any;
+  public export_excel_files(type: any, table_name: string, search: any) {
+
+    // const exportParams: ExcelExportParams = {
+    //   skipHeader: false,
+    //   columnWidth: 20,
+    //   sheetName: 'My Sheet Name',
+    //   fileName: 'my-file-name.xlsx',
+    //   customHeader: [
+    //   ]
+    // };
+    // call exportDataAsExcel() to export your data as an Excel file
+    // this.myGrid_1.api?.exportDataAsCsv();
+
+    console.log(table_name);
+    // if (table_name == 'Create_work_order_claims') {
+    //   this.searchClaims = this.createClaimsFind.value;
+    // } else if (table_name == 'Closed_claims') {
+    //   this.searchClaims = this.closedClaimsFind.value;
+    // } else if (table_name == 'work_orders') {
+    //   this.workordersearch = this.workOrderFind.value;
+    // }
+    // else if(table_name == 'all_claims_list'){
+    //   this.searchClaims = this.allClaimsFind.value;
+    // }
+
+    // if(table_name !='all_claims_list')
+    // {
+    // this.Jarwis.fetch_create_claims_export_data(this.setus.getId(), table_name, this.search, this.searchClaims, this.workordersearch).subscribe(
+    //   data => this.export_handler.create_claim_export_excel(data),
+    //   error => this.error_handler(error)
+    // );
+    // }
+   if(table_name == 'all_claims_list'){
+      this.Jarwis.fetch_all_claims_export_data(this.setus.getId(),table_name,this.search,this.searchClaims,this.workordersearch).subscribe(
+        data => this.export_handler.create_claim_export_excel(data),
+      error => this.error_handler(error)
+      )
+    }
+  }
+
+  ExportExcel(){
+    this.gridApi_6.exportDataAsExcel();
+  }
 
   display_notes(data:any){
   	this.buyer_name = data.data;

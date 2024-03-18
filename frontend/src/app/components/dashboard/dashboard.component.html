@@ -86,6 +86,7 @@
                                                             <div class="col-lg-7 col-md-7 col-sm-7">
                                                                     <!-- <fusioncharts class="fusion-charts" type="pyramid" [dataSource]="pyramid">
                                                                 </fusioncharts> -->
+                                                                <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts>
                                                             </div>
                                                             <div class="col-lg-5 col-md-5 col-sm-5">
                                                                     <ul   *ngFor="let aging of agingBucket" class="analysis aging_analysis ">
@@ -145,6 +146,14 @@
                                                             <div class="col-lg-7 col-md-7 col-sm-7">
                                                                     <!-- <fusioncharts  class="fusion-charts pie-chart" type="pie2d" [dataSource]=dataSource >
                                                                 </fusioncharts> -->
+                                                                <fusioncharts
+                                                                width=770
+                                                                height=400
+                                                                type="line"
+                                                                [dataFormat]="dataFormat"
+                                                                [dataSource]="dataSource1"
+                                                              >
+                                                              </fusioncharts>
                                                             </div>
                                                             <div class="col-lg-5 col-md-5 col-sm-5" >
                                                                 <div class="payer analysis">
@@ -198,8 +207,15 @@
                                                             <div class="col-lg-8 col-md-8 col-sm-8">
                                                                     <!-- <fusioncharts  class="fusion-charts" type="stackedbar2d" [dataSource]=stacked>
                                                                 </fusioncharts> -->
+                                                                <!-- <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts> -->
+                                                                <fusioncharts
+                                                                width="770"
+                                                                height="400"
+                                                                type="pie3d"
+                                                                [dataFormat]="dataFormat"
+                                                                [dataSource]="dataSource2"></fusioncharts>
                                                                  </div>
-                                                                 <div class="col-lg-4 col-md-4 col-sm-4 text-left">
+                                                                 <!-- <div class="col-lg-4 col-md-4 col-sm-4 text-left">
                                                                      <ul class="touch-analysis">
                                                                     <li><p style="margin-top:15px;"><i class="fa fa-square" style="color:#3ad6b1"></i> &lt; 3 Touches</p></li>
                                                                     <li><p><i class="fa fa-square" style="color:#40beec"></i> 3 Touches</p></li>
@@ -208,7 +224,7 @@
                                                                     <li><p><i class="fa fa-square" style="color:#94d39d"></i> 6 Touches</p></li>
                                                                     <li><i class="fa fa-square" style="color:#e2b170"></i> &gt;6 Touches</li>
                                                                 </ul>
-                                                                </div>
+                                                                </div> -->
                                                                 </div>
                                                             <div class="col-lg-12" style="border-top:1px solid #dee0e8;">
                                                                 <div class="col-lg-6">
@@ -245,6 +261,7 @@
                                                             <div class="col-lg-6 col-md-6 col-sm-6">
                                                                     <!-- <fusioncharts  class="fusion-charts" type="pie3d" [dataSource]=pie3d>
                                                                 </fusioncharts> -->
+                                                                <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts>
                                                                </div>
                                                                <div class="col-lg-6 col-md-6 col-sm-6" >
                                                                 <div class="analysis status_code">
@@ -305,6 +322,7 @@
                                                                   width="700"
                                                                   [dataSource]=stacked_chart >
                                                               </fusioncharts> -->
+                                                              <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts>
                                                                 </div>
                                                             </div>
                                                            </div>
@@ -852,6 +870,7 @@
                                                         <div class="box-body chart-responsive collapse in" id="box6">
                                                             <!-- <fusioncharts type="overlappedcolumn2d" [dataSource]=stacked3 >
                                                         </fusioncharts> -->
+                                                        <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts>
                                                         </div>
                                                         <!-- /.box-body -->
                                                     </div>

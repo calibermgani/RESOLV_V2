@@ -142,6 +142,107 @@ export class DashboardComponent implements OnInit {
       associates_chart_worked:any=[];
       associates_chart_resolved:any=[];
 
+      width = 600;
+      height = 400;
+      type = "line";
+      dataFormat = "json";
+      dataSource1= {
+        chart: {
+          caption: "Average Fastball Velocity",
+          yaxisname: "Velocity (in mph)",
+          subcaption: "[2005-2016]",
+          numbersuffix: " mph",
+          rotatelabels: "1",
+          setadaptiveymin: "1",
+          theme: "candy"
+        },
+        data: [
+          {
+            label: "2005",
+            value: "89.45"
+          },
+          {
+            label: "2006",
+            value: "89.87"
+          },
+          {
+            label: "2007",
+            value: "89.64"
+          },
+          {
+            label: "2008",
+            value: "90.13"
+          },
+          {
+            label: "2009",
+            value: "90.67"
+          },
+          {
+            label: "2010",
+            value: "90.54"
+          },
+          {
+            label: "2011",
+            value: "90.75"
+          },
+          {
+            label: "2012",
+            value: "90.8"
+          },
+          {
+            label: "2013",
+            value: "91.16"
+          },
+          {
+            label: "2014",
+            value: "91.37"
+          },
+          {
+            label: "2015",
+            value: "91.66"
+          },
+          {
+            label: "2016",
+            value: "91.8"
+          }
+        ]
+      };
+      dataSource2 = {
+        chart: {
+          caption: "Recommended Portfolio Split",
+          subcaption: "For a net-worth of $1M",
+          showvalues: "1",
+          showpercentintooltip: "0",
+          numberprefix: "$",
+          enablemultislicing: "1",
+          theme: "gammel"
+        },
+        data: [
+          {
+            label: "Equity",
+            value: "300000"
+          },
+          {
+            label: "Debt",
+            value: "230000"
+          },
+          {
+            label: "Bullion",
+            value: "180000"
+          },
+          {
+            label: "Real-estate",
+            value: "270000"
+          },
+          {
+            label: "Insurance",
+            value: "20000"
+          }
+        ]
+      };
+
+      // dataSource: Object;
+      chartConfig: any;
 
       constructor(
         private setus: SetUserService,
@@ -151,6 +252,51 @@ export class DashboardComponent implements OnInit {
       private auth : AuthService
       )
       {
+
+        this.chartConfig = {
+          width: '770',
+          height: '400',
+          type: 'column2d',
+          dataFormat: 'json',
+      };
+
+      this.dataSource = {
+          "chart": {
+            "caption": "Countries With Most Oil Reserves [2017-18]",
+            "subCaption": "In MMbbl = One Million barrels",
+            "xAxisName": "Country",
+            "yAxisName": "Reserves (MMbbl)",
+            "numberSuffix": "K",
+            "theme": "gammel",
+          },
+          "data": [{
+            "label": "Venezuela",
+            "value": "290"
+          }, {
+            "label": "Saudi",
+            "value": "260"
+          }, {
+            "label": "Canada",
+            "value": "180"
+          }, {
+            "label": "Iran",
+            "value": "140"
+          }, {
+            "label": "Russia",
+            "value": "115"
+          }, {
+            "label": "UAE",
+            "value": "100"
+          }, {
+            "label": "US",
+            "value": "30"
+          }, {
+            "label": "China",
+            "value": "30"
+          }]
+        };
+
+
         let id: number = 0;
         //  this.notify_service.get_notify_data().subscribe(message => { this.process_notify(message) });
         this.dataservice.getdata(id).subscribe(

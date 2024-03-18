@@ -10,7 +10,12 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
-
+import { FusionChartsModule } from 'angular-fusioncharts';
+import * as FusionCharts from 'fusioncharts';
+import * as Charts from 'fusioncharts/fusioncharts.charts';
+// Load fusion theme
+import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
+FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme)
 
 
 @NgModule({
@@ -22,7 +27,7 @@ import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
     SidebarModule.forRoot(),
     Ng2SearchPipeModule,
     AgGridModule,
-    // FusionChartsModule
+    FusionChartsModule
   ],
   declarations: [DashboardComponent,
     PracticeComponent,

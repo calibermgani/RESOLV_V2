@@ -10,7 +10,6 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
-import { FusionChartsModule } from 'angular-fusioncharts';
 
 
 

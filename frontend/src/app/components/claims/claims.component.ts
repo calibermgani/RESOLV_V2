@@ -4514,6 +4514,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.user_role_maintainer();
     this.formValidators();
     this.claimValidators();
+
     // this.pageChange(1, 'all', null, null, null, null, null, null); // removed...
     // this.formGroup = new FormGroup({
     //   report_date: new FormControl('', [
@@ -4757,7 +4758,8 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     console.log(role_id);
     if (role_id == 5 || role_id == 3 || role_id == 2) {
       this.user_role = 2;
-      this.class_change['tab1'] = 'active';
+      this.class_change['tab2'] = 'active';
+      // this.pageChange(1,'claim','null','null','null','null','null','null');
       this.class_change_tab['tab2'] = 'tab-pane active';
     }
     else if (role_id == 1) {
@@ -4847,6 +4849,9 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     // this.gridApi_4.sizeColumnsToFit();
     // this.gridApi_5.sizeColumnsToFit();
     // this.gridApi_6.sizeColumnsToFit();
+    setTimeout(() => {
+      this.pageChange(1,'claim','null','null','null','null','null','null');
+    }, 1000);
   }
 
   get_initial_values() {

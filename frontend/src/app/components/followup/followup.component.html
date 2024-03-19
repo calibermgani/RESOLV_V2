@@ -24,8 +24,41 @@
                         <div class="col-md-6 col-sm-6 col-lg-6">
                            <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
                               <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
-                                 <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Todo List</h3>
+                                 <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue mr-2"></i>Month wise Summary</h3>
                               </div>
+                              <div class="box no-shadow no-border">
+                                <!-- /.box-header -->
+                                <div class="box-body no-padding">
+                                  <div class="box no-shadow no-bottom" style="border-top: 1px solid #d8dbe4;">
+                                    <!-- /.box-header -->
+
+                                    <div class="box-body no-padding collapse in" style="" id="box13">
+                                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table ">
+                                        <div class="col-lg-6" style="border-right: 1px dashed #fff">
+                                          <p class="text-dark">Total Assigned <span class="pull-right">1472</span></p>
+                                          <p class="text-dark">Total Worked <span class="pull-right">632</span></p>
+                                          <p class="text-dark">Follow up <span class="pull-right">53</span></p>
+                                          <p class="text-dark">Client Assistance<span class="pull-right">12</span></p>
+                                          <p class="text-dark">QC Passed<span class="pull-right">617</span></p>
+                                          <p class="text-dark">Error pending<span class="pull-right">2</span></p>
+                                        </div>
+                                        <!-- <div class="col-lg-6">
+                                          <p class="text-dark"><span class="pull-right ">{{work_status['followup']}}</span></p>
+                                          <p class="text-dark">Audit Claims <span class="pull-right">{{work_status['auditclaims']}}</span></p>
+                                          <p class="text-dark">&gt;3 Touches <span class="pull-right">{{work_status['3touches']}}</span></p>
+                                        </div> -->
+                                        <!-- <div class="col-lg-4">
+                                          <h5 class="ar-blue" style="font-weight: 600;"><i class="fa fa-bars ar-blue margin-r-5"></i> MTD Production &amp; Quality</h5>
+                                          <p class="text-dark">Production Score <span class="pull-right">98%</span></p>
+                                          <p class="text-dark">Quality Score <span class="pull-right">92%</span></p>
+                                          <p class="text-dark">Resolution Score <span class="pull-right">79%</span></p>
+                                        </div> -->
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+
                            </div>
                         </div>
                      </div>
@@ -60,104 +93,7 @@
                                                 </thead>
                                                 <tbody>
                                                    <tr>
-                                                      <td></td>
-                                                      <td class="text-center" *ngFor="let datee of days" >{{datee.date | date:'MM/dd' }}</td>
-                                                   </tr>
-                                                   <tr>
-                                                      <td class="ar-blue font600">Target</td>
-                                                      <td class="text-center" *ngFor="let target of assigned_target">{{target}}</td>
-                                                   </tr>
-                                                   <tr>
-                                                      <td class="ar-blue font600">Achieved</td>
-                                                      <td class="text-center" *ngFor="let achieve of achieved_target">{{achieve}}</td>
-                                                   </tr>
-                                                   <tr style="background: #f5f5f5">
-                                                      <td class="ar-blue font600">Achieved %</td>
-                                                      <td class="text-center" *ngFor="let ach_per of achi_targ_per">
-                                                         <span class="text-red font600" *ngIf="ach_per <= 70">{{ach_per}}</span><span *ngIf="ach_per > 70">{{ach_per}}</span>
-                                                      </td>
-                                                   </tr>
-                                                   <tr>
-                                                      <!-- <td class="ar-blue font600">Error</td> -->
-                                                      <!-- <td>1</td>
-                                                      <td>0</td>
-                                                      <td>3</td>
-                                                      <td>12</td>
-                                                      <td>15</td>
-                                                      <td>19</td>
-                                                      <td>10</td>
-                                                      <td>20</td>
-                                                      <td>12</td>
-                                                      <td>27</td>
-                                                      <td>31</td>
-                                                      <td>0</td>
-                                                      <td>11</td>
-                                                      <td>17</td>
-                                                      <td>7</td>
-                                                      <td>15</td>
-                                                      <td>0</td>
-                                                      <td>13</td>
-                                                      <td>14</td>
-                                                      <td>9</td> -->
-                                                   </tr>
-                                                   <tr style="background: #f7f7f7">
-                                                      <!-- <td class="ar-blue font600">Error %</td> -->
-                                                      <!-- <td>1.5</td>
-                                                      <td>0</td>
-                                                      <td>10</td>
-                                                      <td>28</td> -->
-                                                      <td class="text-red font600">
-                                                         <!-- <span class="spnDetails">70</span> -->
-                                                         <!-- <span class="spnTooltip">
-                                                            <strong class="text-red">09/05 : 70% Error Rate</strong><br>
-                                                            This is the alert message for the Error rate below 70%.
-                                                            </span> -->
-                                                      </td>
-                                                      <td class="text-red font600">
-                                                         <!-- <span class="spnDetails">80</span> -->
-                                                         <!-- <span class="spnTooltip">
-                                                            <strong class="text-red">09/08 : 80% Error Rate</strong><br>
-                                                            This is the alert message for the Error rate below 70%.
-                                                            </span> -->
-                                                      </td>
-                                                      <!-- <td>20%</td> -->
-                                                      <td class="text-red font600">
-                                                         <!-- <span class="spnDetails">70</span> -->
-                                                         <!-- <span class="spnTooltip">
-                                                            <strong class="text-red">09/10 : 70% Error Rate</strong><br>
-                                                            This is the alert message for the Error rate below 70%.
-                                                            </span> -->
-                                                      </td>
-                                                      <td class="text-red font600">
-                                                         <!-- <span class="spnDetails">66</span> -->
-                                                         <!-- <span class="spnTooltip">
-                                                            <strong class="text-red">09/11 : 66% Error Rate</strong><br>
-                                                            This is the alert message for the Error rate below 70%.
-                                                            </span> -->
-                                                      </td>
-                                                      <!-- <td class="">18</td> -->
-                                                      <td class="text-red font600">
-                                                         <!-- <span class="spnDetails">87</span> -->
-                                                         <!-- <span class="spnTooltip">
-                                                            <strong class="text-red">09/15 : 87% Error Rate</strong><br>
-                                                            This is the alert message for the Error rate below 70%.
-                                                            </span> -->
-                                                      </td>
-                                                      <!-- <td>0</td>
-                                                      <td>22</td> -->
-                                                      <td class="text-red font600">
-                                                         <!-- <span class="spnDetails">77</span> -->
-                                                         <!-- <span class="spnTooltip">
-                                                            <strong class="text-red">09/18 : 77% Error Rate</strong><br>
-                                                            This is the alert message for the Error rate below 70%.
-                                                            </span> -->
-                                                      </td>
-                                                      <!-- <td>18</td>
-                                                      <td>17</td>
-                                                      <td>0</td>
-                                                      <td>14</td>
-                                                      <td>11</td>
-                                                      <td>16</td> -->
+                                                    <td></td>
                                                    </tr>
                                                 </tbody>
                                              </table>
@@ -170,9 +106,9 @@
                         </div>
                         <div class="col-md-6 col-sm-6 col-lg-6">
                            <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
-                              <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                              <!-- <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                  <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Recent Activities</h3>
-                              </div>
+                              </div> -->
                            </div>
                         </div>
                      </div>
@@ -222,12 +158,10 @@
                               </div>
                            </div>
                         </div>
-                        <div class="col-lg-6">
+                        <!-- <div class="col-lg-6">
                            <div class="box no-shadow no-border">
-                              <!-- /.box-header -->
                               <div class="box-body no-padding">
                                  <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
-                                    <!-- /.box-header -->
                                     <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                        <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Top 5 Performers</h3>
                                        <div class="box-tools pull-right">
@@ -238,12 +172,10 @@
                                     </div>
                                     <div class="box-body no-padding collapse in" style="margin-top:10px;" id="top-5">
                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 perfomer-table ">
-                                          <!-- <img src="dist/img/perfomer1.jpg" class="">-->
                                           <table class="table table-striped" style="margin-top:10px;">
                                              <tbody>
                                                 <tr>
                                                    <td>
-                                                      <!--<img src="dist/img/user7-128x128.jpg" class="user-image" style="width:32px;border-radius: 50%;">-->
                                                    </td>
                                                    <td>1</td>
                                                    <td>Chris Smith</td>
@@ -252,7 +184,6 @@
                                                 </tr>
                                                 <tr>
                                                    <td>
-                                                      <!--<img src="dist/img/user7-128x128.jpg" class="user-image" style="width:32px;border-radius: 50%;">-->
                                                    </td>
                                                    <td>2</td>
                                                    <td>Chris Smith</td>
@@ -261,7 +192,6 @@
                                                 </tr>
                                                 <tr>
                                                    <td>
-                                                      <!--<img src="dist/img/user7-128x128.jpg" class="user-image" style="width:32px;border-radius: 50%;">-->
                                                    </td>
                                                    <td>3</td>
                                                    <td>Chris Smith</td>
@@ -270,7 +200,6 @@
                                                 </tr>
                                                 <tr>
                                                    <td>
-                                                      <!--<img src="dist/img/u-1.png" class="user-image" style="width:32px;border-radius: 50%;">-->
                                                    </td>
                                                    <td>4</td>
                                                    <td>Mike Hussey</td>
@@ -286,7 +215,6 @@
                                                 </tr>
                                                 <tr>
                                                    <td>
-                                                      <!--<img src="dist/img/user1-128x128.jpg" class="user-image" style="width:32px;border-radius: 50%;">-->
                                                    </td>
                                                    <td>6</td>
                                                    <td>Ricky Pointing</td>
@@ -295,7 +223,6 @@
                                                 </tr>
                                                 <tr>
                                                    <td>
-                                                      <!--<img src="dist/img/user7-128x128.jpg" class="user-image" style="width:32px;border-radius: 50%;">-->
                                                    </td>
                                                    <td>7</td>
                                                    <td>David Willey</td>
@@ -304,7 +231,6 @@
                                                 </tr>
                                                 <tr>
                                                    <td>
-                                                      <!--<img src="dist/img/user7-128x128.jpg" class="user-image" style="width:32px;border-radius: 50%;">-->
                                                    </td>
                                                    <td>8</td>
                                                    <td>David</td>
@@ -313,7 +239,6 @@
                                                 </tr>
                                                 <tr style="background: #e0f4fc">
                                                    <td>
-                                                      <!--<img src="dist/img/user2-160x160.jpg" class="user-image" style="width:32px;border-radius: 50%;">-->
                                                    </td>
                                                    <td>14</td>
                                                    <td>John</td>
@@ -327,7 +252,7 @@
                                  </div>
                               </div>
                            </div>
-                        </div>
+                        </div> -->
                      </div>
                      <div class="box no-shadow no-border">
                         <!-- /.box-header -->
@@ -889,7 +814,7 @@
                      </div>
                   </div>
                 <div class="tab-pane" id="tab_5">
-                    <div class="box no-shadow no-border">
+                    <!-- <div class="box no-shadow no-border">
                       <div class="box-body no-padding">
                          <div class="row">
                             <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
@@ -911,7 +836,6 @@
                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
                                               <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
                                                  <label>DOS</label>
-                                                 <!-- <input type="text" class="form-control" ngxDaterangepickerMd   formControlName="dos"  [(ngModel)]="selectedReAssigin" [alwaysShowCalendars]="true" [linkedCalendars]="false"  [showClearButton]="true" readonly > -->
                                                  <input type="text" formControlName="dos"   placement="right" formControlName="dos"  [(ngModel)]="selectedReAssigin"
                                     class="form-control" id="data-picker" bsDaterangepicker   autocomplete="off"
                                     [bsConfig]="bsConfig">
@@ -939,7 +863,6 @@
                                               </div>
                                               <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
                                                  <label>Date</label>
-                                                 <!-- <input type="text" class="form-control" ngxDaterangepickerMd formControlName="date" [(ngModel)]="reassigned_select_date" [alwaysShowCalendars]="true" [linkedCalendars]="false"  [showClearButton]="true" readonly > -->
                                                  <input type="text" formControlName="dos"   placement="right" formControlName="date" [(ngModel)]="reassigned_select_date"
                                     class="form-control" id="data-picker" bsDaterangepicker   autocomplete="off"
                                     [bsConfig]="bsConfig">
@@ -986,7 +909,6 @@
                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
                                               <div class="form-group col-md-4 col-sm-4 col-lg-4 col-xs-12">
                                                 <label>Billed/Last Submit Date</label>
-                                                <!-- <input type="text" class="form-control" ngxDaterangepickerMd formControlName="bill_submit_date" [(ngModel)]="submit_date" [alwaysShowCalendars]="true" [linkedCalendars]="false"  [showClearButton]="true" readonly > -->
                                                 <input type="text" formControlName="dos"   placement="right" formControlName="bill_submit_date" [(ngModel)]="submit_date"
                                                 class="form-control" id="data-picker" bsDaterangepicker   autocomplete="off"
                                                 [bsConfig]="bsConfig">
@@ -1008,29 +930,19 @@
                                </div>
                             </div>
                             <div class="col-md-6 col-sm-6 col-lg-6 col-xs-12">
-                               <!-- <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
-                                  <div class="box-tools searchbox"> -->
                                      <input type="text" placeholder="Search.." name="search" (keyup)="onSearch()" [(ngModel)]="search_value_reworks"   class="search_box" ((keyup))="onSearch()" autocomplete="off">
-
-                                  <!-- </div>
-                               </div> -->
                             </div>
                          </div>
                       </div>
                    </div>
                      <div class="box no-shadow no-border">
-                        <!-- /.box-header -->
                         <div class="box-body no-padding">
                            <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
-                              <!-- /.box-header -->
                               <div class="box-body no-padding">
-                                 <!-- <h4 class="list-heading" style="background: #e2e6ef;padding: 10px 10px;margin-top: 0px;margin-bottom:0px;border-bottom: 2px solid #fff;border-radius: 2px 2px 0px 0px;"> Assigned Claims </h4> -->
                                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding listing-table">
                                     <div class="box no-shadow no-border">
-                                       <!-- /.box-header -->
                                        <div class="box-body no-padding">
                                           <div class="no-shadow no-bottom">
-                                             <!-- /.box-header -->
                                              <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                                 <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Reworks/Call back/Pending Claims </h3>
                                                 <div class="box-tools pull-right">
@@ -1042,7 +954,6 @@
                                                          <option value="500">500</option>
                                                          <option value="1000">1000</option>
                                                       </select>
-                                                   <!-- </span> -->
                                                      <span style="margin-left:10px;font-family: 'Maven Pro', sans-serif;
                                                       font-size: 13px !important;
                                                       font-weight: 600;
@@ -1050,11 +961,8 @@
                                                       <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
                                                       <span class="fa fa-refresh" style="cursor:pointer;" title="Refresh Values" (click)="reload_data()" ></span>
                                                       <span *ngIf="user_role!=1" style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
-                                                      <span *ngIf="user_role!=1" class="fa fa-user-o" style="cursor:pointer;" title="Reassign" (click)="reassign(confirmation)"></span> <!-- reassign()-->
-                                                      <!-- <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span> -->
-                                                      <!-- <span class="fa fa-print" style="cursor:pointer;" title="Print" (click)="export_files('print')"></span> -->
+                                                      <span *ngIf="user_role!=1" class="fa fa-user-o" style="cursor:pointer;" title="Reassign" (click)="reassign(confirmation)"></span>
                                                       <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span> <i class="fa fa-file-excel-o" style="cursor:pointer;" (click)="export_excel_files('excel', 'Assigned_claims')" title="Excel"></i>
-                                                      <!-- <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>  --> <!-- <i class="fa fa-file-pdf-o"  (click)="export_pdf_files('PDF', 'assigned_claims')" style="cursor:pointer;" title="PDF"></i> -->
                                                       <span style="margin-left:10px;color:#ccc;margin-right:10px;">|</span>
                                                       <button class="btn btn-box-tool collapsed" type="button"
                                                       (click)="isCollapsed_Grid2 = !isCollapsed_Grid2" [attr.aria-expanded]="!isCollapsed_Grid2"
@@ -1063,136 +971,7 @@
                                                       <i class="fa fa-minus" *ngIf="!isCollapsed_Grid2"></i>
                                                       </button>
                                                    </p>
-                                                   <!-- <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-                                                      </button>                                                                                                 -->
                                                 </div>
-                                                <!-- <div class="box-body no-padding collapse in" style="margin-top:20px;" id="box17">
-                                                  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
-                                                     <div class="table table-responsive">
-                                                        <table class="table-striped1 table">
-                                                           <thead>
-                                                              <tr>
-                                                                 <th style="width:1%">
-                                                                    <input type="checkbox" style="margin-top:0px;" [checked]="check_all[pages]==true" (click)="reassigned_selected($event,'all','all');check_all_assign(pages,$event)" title="Select All"></th>
-                                                                 <th></th>
-
-                                                                 <th (click) = "reassigned_order_list('reallocated','claim_no', 'null', 'null','null','null','null','null')" class="font600  line-height-24">Claim No <i class="fa fa-fw fa-sort"></i></th>
-
-                                                                 <th (click) = "reassigned_order_list('reallocated','dos', 'null', 'null','null','null','null','null')" class="font600 line-height-24">DOS <i class="fa fa-fw fa-sort"></i></th>
-
-                                                                 <th class="font600 line-height-24">Age <i class="fa fa-fw fa-sort"></i></th>
-
-                                                                 <th (click) = "reassigned_order_list('reallocated','acct_no', 'null', 'null','null','null','null','null')" class="font600  line-height-24">Acct No <i class="fa fa-fw fa-sort"></i></th>
-
-                                                                 <th (click) = "reassigned_order_list('reallocated','patient_name', 'null', 'null','null','null','null','null')">Patient Name <i class="fa fa-fw fa-sort"></i></th>
-
-                                                                 <th (click) = "reassigned_order_list('reallocated','rendering_prov', 'null', 'null','null','null','null','null')" class="font600 line-height-24">Rendering Provider<i class="fa fa-fw fa-sort"></i></th>
-
-                                                                 <th (click) = "reassigned_order_list('reallocated','responsibility', 'null', 'null','null','null','null','null')" class="font600 line-height-24">Responsibility<i class="fa fa-fw fa-sort"></i></th>
-                                                                 <th (click) = "reassigned_order_list('reallocated','billed_submit_date', 'null', 'null','null','null','null','null')" class="font600 line-height-24">BillSubmit Date<i class="fa fa-fw fa-sort"></i></th>
-                                                                 <th (click) = "reassigned_order_list('reallocated','denial_code', 'null', 'null','null','null','null','null')" class="font600 line-height-24">Denial Code<i class="fa fa-fw fa-sort"></i></th> -->
-
-                                                                   <!-- ALREADY COMMANDED -->
-                                                                 <!-- <th (click) = "reassigned_order_list('reallocated','prim_ins_name', 'null', 'null')" class="font600 line-height-24">Primary Insurance <i class="fa fa-fw fa-sort"></i></th>
-
-                                                                 <th (click) = "reassigned_order_list('reallocated','sec_ins_name', 'null', 'null')" class="font600 line-height-24">Secondary Insurance<i class="fa fa-fw fa-sort"></i></th>
-
-                                                                 <th (click) = "reassigned_order_list('reallocated','ter_ins_name', 'null', 'null')" class="font600 line-height-24">Tertiary Insurance<i class="fa fa-fw fa-sort"></i></th> -->
-
-                                                                 <!-- <th (click) = "reassigned_order_list('reallocated','total_charges', 'null', 'null','null','null','null','null')" class="font600 line-height-24">Total Charges<i class="fa fa-fw fa-sort"></i></th>
-
-                                                                 <th (click) = "reassigned_order_list('reallocated','total_ar', 'null', 'null','null','null','null','null')" class="font600 line-height-24">Total AR<i class="fa fa-fw fa-sort"></i></th>
-
-                                                                 <th (click) = "reassigned_order_list('reallocated','claim_Status', 'null', 'null','null','null','null','null')" (click)="sort_details('status')" class="font600 line-height-24">Claim Status <i class="fa fa-fw fa-sort"></i></th>
-
-                                                                 <th (click) = "reassigned_order_list('reallocated','claims_notes', 'null', 'null','null','null','null','null')" class="font600 line-height-24">Claim Note<i class="fa fa-fw fa-sort"></i></th>
-
-                                                                 <th (click) = "reassigned_order_list('reallocated','created_ats', 'null', 'null','null','null','null','null')" class="font600 line-height-24">Assigned To| Date<i class="fa fa-fw fa-sort"></i></th>
-
-                                                              </tr>
-                                                           </thead>
-                                                           <tbody> -->
-                                                              <!-- ALREADY COMMANDED -->
-                                                              <!-- <app-atom-spinner
-                                                              *ngIf="tab_load == true && !reallocated_claims"
-                                                              [size]="60"
-                                                              [color]="'#1fa5be'"
-                                                              ></app-atom-spinner> -->
-
-                                                              <!-- <tr *ngFor="let x of reallocated_claims | paginate: { id: 'realloc_claims',itemsPerPage: 15, currentPage: realloc_pages, totalItems:total_reallocated};let i = index"  class="clickable-row cur-pointer" >
-
-                                                                 <td><input type="checkbox" class="checkbox" [checked]="selected_claim_nos.includes(x.claim_no)" style="margin-top:0px;" (click)="reassigned_selected($event,x.claim_no,i)"></td> -->
-
-                                                                   <!-- ALREADY COMMANDED -->
-                                                                 <!-- <td *ngIf="x.touch < touch_count" title="Touch Count" (click)="open(claimpage);reasignedclaimslection(x);check_reassign_alloc();claim_check(x.touch);"><span class="ar">{{x.touch}}</span></td>
-                                                                 <td *ngIf="x.touch >= touch_count" title="Touch Count" (click)="open(claimpage);claimslection(x);check_reassign_alloc();claim_check(x.touch);"><span class="ar-red">{{x.touch}}</span></td> -->
-
-                                                                 <!-- <ng-template [ngIf]="x.touch < touch_count" [ngIfElse]="second"><td title="Touch Count" (click)="open(claimpage);note_refresh();check_reassign_alloc(x);claim_check(x.touch);"><span class="ar">{{x.touch}}</span></td></ng-template>
-                                                                 <ng-template #second>
-                                                                   <ng-template [ngIf]="x.touch >= touch_count" [ngIfElse]="third"><td title="Touch Count" (click)="open(claimpage);note_refresh();check_reassign_alloc(x);claim_check(x.touch);"><span class="ar-red">{{x.touch}}</span></td></ng-template>
-                                                                 </ng-template>
-                                                                 <ng-template #third>
-                                                                   <ng-template [ngIf]="!x.touch"><td title="Touch Count"><span class="ar"></span></td></ng-template>
-                                                                 </ng-template>
-
-                                                                 <td class="cur-pointer" (click)="open(claimpage);claimslection(x);claim_check(x.touch);" (mouseover)="tooltip(x)"><span tooltip="HtmlContent" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" tooltip-append-to-body="true"><span *ngIf="x.claim_no==null">-Nil-</span><span *ngIf="x.claim_no!=null">{{x.claim_no}}</span></span></td>
-
-                                                                 <td class="cur-pointer dos-date" (click)="open(claimpage);claimslection(x);check_reassign_alloc(x);claim_check(x.touch);" (mouseover)="tooltip(x)"><span tooltip="HtmlContent" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" tooltip-append-to-body="true"><span *ngIf="x.dos==null">-Nil-</span><span *ngIf="x.dos!=null">{{x.dos | date: 'MM/dd/yyyy'}}</span></span></td>
-
-                                                                 <td class="cur-pointer" (click)="open(claimpage);claimslection(x);check_reassign_alloc(x);claim_check(x.touch);" (mouseover)="tooltip(x)"><span tooltip="HtmlContent" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" tooltip-append-to-body="true"><span *ngIf="x.age==null">-Nil-</span><span *ngIf="x.age!=null && x.age > 0">{{x.age}}</span><span *ngIf="x.age <= 0">0</span></span></td>
-
-                                                                 <td class="cur-pointer" (click)="open(claimpage);claimslection(x);check_reassign_alloc(x);claim_check(x.touch);"><span tooltip="AccNo" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" tooltip-append-to-body="true" (mouseover)="tooltip(x)"><span *ngIf="x.acct_no==null">-Nil-</span><span *ngIf="x.acct_no!=null">{{x.acct_no}}</span></span></td>
-
-                                                                 <td class="cur-pointer" (click)="open(claimpage);claimslection(x);check_reassign_alloc(x);claim_check(x.touch);"><span tooltip="AccNo" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" tooltip-append-to-body="true" (mouseover)="tooltip(x)"><span *ngIf="x.patient_name==null">-Nil-</span><span *ngIf="x.patient_name!=null">{{x.patient_name}}</span></span></td>
-
-                                                                 <td><span *ngIf="x.rendering_prov==null">-Nil-</span><span *ngIf="x.rendering_prov!=null">{{x.rendering_prov}}</span></td>
-
-                                                                 <td><span *ngIf="x.responsibility==null">-Nil-</span><span *ngIf="x.responsibility!=null">{{x.responsibility}}</span></td>
-                                                                 <td><span *ngIf="x.billed_submit_date==null || x.billed_submit_date==''">-Nil-</span><span *ngIf="x.billed_submit_date!=null || x.billed_submit_date!=''">{{x.billed_submit_date}}</span></td>
-                                                                 <td><span *ngIf="x.denial_code==null || x.denial_code==''">-Nil-</span><span *ngIf="x.denial_code!=null || x.denial_code!=''">{{x.denial_code}}</span></td> -->
-
-                                                                 <!-- ALREADY COMMANDED -->
-                                                                 <!-- <td class="cur-pointer" (click)="open(claimpage);claimslection(x);check_reassign_alloc();claim_check(x.touch);"><span tooltip="PriInsurance" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" tooltip-append-to-body="true" (mouseover)="tooltip(x)"><span *ngIf="x.prim_ins_name==null">-Nil-</span><span *ngIf="x.prim_ins_name!=null">{{x.prim_ins_name}}</span></span></td>
-
-                                                                 <td><span tooltip="SecInsurance" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" tooltip-append-to-body="true" (mouseover)="tooltip(x)"><span *ngIf="x.sec_ins_name==null">-Nil-</span><span *ngIf="x.sec_ins_name!=null">{{x.sec_ins_name}}</span></span></td>
-
-                                                                 <td><span tooltip="TerInsurance" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" tooltip-append-to-body="true" (mouseover)="tooltip(x)"><span *ngIf="x.ter_ins_name==null">-Nil-</span><span *ngIf="x.ter_ins_name!=null">{{x.ter_ins_name}}</span></span></td> -->
-
-                                                                 <!-- <td class="cur-pointer" (click)="open(claimpage);claimslection(x);check_reassign_alloc(x);claim_check(x.touch);"><span *ngIf="x.total_charges==null">-Nil-</span><span *ngIf="x.total_charges!=null">{{x.total_charges | number:'1.2-2'}}</span></td>
-
-                                                                 <td class="cur-pointer ar-total" (click)="open(claimpage);claimslection(x);check_reassign_alloc(x);claim_check(x.touch);" (mouseover)="tooltip(x)"><span tooltip="TotalAr" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" tooltip-append-to-body="true"><span *ngIf="x.total_ar==null">-Nil-</span><span *ngIf="x.total_ar!=null">{{x.total_ar | number:'1.2-2'}}</span></span></td>
-
-                                                                 <td class="cur-pointer" (click)="open(claimpage);claimslection(x);check_reassign_alloc(x);claim_check(x.touch);"><span *ngIf="x.claim_Status==null">-Nil-</span><span *ngIf="x.claim_Status!=null">{{x.claim_Status}}</span></td>
-
-                                                                 <td><span *ngIf="x.claims_notes==null">-Nil-</span><span *ngIf="x.claims_notes!=null"><i class="fa fa-info-circle" aria-hidden="true" title="{{x.claims_notes}}"></i></span></td>
-
-                                                                 <td (click)="open(claimpage);claimslection(x);check_reassign_alloc(x);claim_check(x.touch);"><span *ngIf="!x.assigned_to ">UA</span><span *ngIf="x.assigned_to">{{x.assigned_to}}</span>|<span *ngIf="!x.created_ats ">UA</span><span *ngIf="x.created_ats">{{x.created_ats}}</span></td>
-                                                              </tr>
-                                                              <tr *ngIf="reallocate_total_row==0">
-                                                                 <td colspan="12" align="center"><b>No Records Found</b></td>
-                                                              </tr>
-                                                           </tbody>
-                                                        </table>
-                                                     </div>
-                                                     <div class="row">
-                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                                                           <div class="has-text-centered">
-                                                              <pagination-controls id="realloc_claims" (pageChange)="getclaim_details($event,'reallocated','null','null','null','null','null','null','null','null');" [maxSize]="9">
-                                                              </pagination-controls>
-                                                           </div>
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align: right;" class="showing_count" *ngIf="reallocate_total_row != 0">
-                                                           <div><span>Showing {{skip_row}}  </span>  <span>to {{current_row}} </span> <span> of {{reallocate_total_row}} records</span> </div>
-                                                        </div>
-                                                        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align: right;" class="showing_count" *ngIf="reallocate_total_row == 0">
-                                                           <div><span>Showing 0  </span>  <span>to 0 </span> <span> of 0 records</span> </div>
-                                                        </div>
-                                                     </div>
-                                                  </div>
-                                               </div> -->
-
-
-
                                              </div>
                                           </div>
                                        </div>
@@ -1206,7 +985,7 @@
                               </div>
                            </div>
                         </div>
-                     </div>
+                     </div> -->
                     <br>
 
                     <div class="box no-shadow no-border">
@@ -1408,6 +1187,14 @@
                                                   <label>Denial Code</label>
                                                   <input type="text" class="form-control" formControlName="denial_code">
                                                 </div>
+                                                <div class="form-group col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                                                  <label>Claim Status</label>
+                                                  <select class="form-control ngx-dropdown-button" formControlName="age_filter" aria-hidden="true" [(ngModel)]="selectedAge">
+                                                     <option [ngValue]="null" selected>--Select Status--</option>
+                                                     <option >Rework</option>
+                                                     <option >FollowUp</option>
+                                                  </select>
+                                               </div>
                                              </div>
                                              <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding">
                                                 <div class="form-group col-md-3 col-sm-3 col-lg-3 col-xs-12 pull-right">

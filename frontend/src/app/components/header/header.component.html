@@ -159,10 +159,15 @@
           <li routerLinkActive="active" *ngIf="user_type.includes('claims')"><a [routerLink]="['/claims']" class=""><i
                 class="fa fa-file-text-o p-r-5 text-gray"></i> Claims
               <span>&nbsp;</span></a></li>
-          <li routerLinkActive="active" *ngIf="user_type.includes('followup')"><a [routerLink]="['/followup']"
+          <li routerLinkActive="active" *ngIf="user_type.includes('followup') || user_type.includes('myworkorder')"><a [routerLink]="['/followup']"
               class=""><i class="fa fa-exchange p-r-5 text-gray"></i> Followup <span>&nbsp;</span></a>
           </li>
 
+          <!-- <li routerLinkActive="active" *ngIf="user_type.includes('myworkorder')"><a [routerLink]="['/followup']"
+            class=""><i class="fa fa-exchange p-r-5 text-gray"></i> My Work Order<span>&nbsp;</span></a>
+        </li> -->
+
+          <!-- {{ userRole == 1 ? 'My Work Order' : 'Followup' }} -->
 
           <li routerLinkActive="active" *ngIf="user_type.includes('audit')"><a [routerLink]="['/audit']" class=""><i
                 class="fa fa-vcard p-r-5 text-gray"></i> Audit <span>&nbsp;</span></a></li>

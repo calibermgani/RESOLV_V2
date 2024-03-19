@@ -149,104 +149,118 @@ export class DashboardComponent implements OnInit {
       dataSource1= {
         chart: {
           caption: "ATB - Payer Classification",
-          yaxisname: "Velocity (in mph)",
-          subcaption: "[2005-2016]",
-          numbersuffix: " mph",
-          rotatelabels: "1",
-          setadaptiveymin: "1",
+          yaxisname: "Sum of Insurance Balance",
+          subcaption: "Sum of Insurance Balance",
           theme: "candy"
         },
         data: [
           {
-            label: "2005",
-            value: "89.45"
+            label: "AETNA",
+            value: "50875.58"
           },
           {
-            label: "2006",
-            value: "89.87"
+            label: "Assist Health Group",
+            value: "13051"
           },
           {
-            label: "2007",
-            value: "89.64"
+            label: "BLUE CROSS BLUE SHIELD",
+            value: "29888.7"
           },
           {
-            label: "2008",
-            value: "90.13"
+            label: "CIGNA HEALTHCARE",
+            value: "315"
           },
           {
-            label: "2009",
-            value: "90.67"
+            label: "GUARANTEE TRUST LIFE",
+            value: "250"
           },
           {
-            label: "2010",
-            value: "90.54"
+            label: "HEALTH ALLIANCE",
+            value: "101708.98"
           },
           {
-            label: "2011",
-            value: "90.75"
+            label: "HUMANA",
+            value: "27786.84"
           },
           {
-            label: "2012",
-            value: "90.8"
+            label: "IPA",
+            value: "31827.48"
           },
           {
-            label: "2013",
-            value: "91.16"
+            label: "MEDICARE",
+            value: "21205.44"
           },
           {
-            label: "2014",
-            value: "91.37"
+            label: "MEDI-SHARE",
+            value: "532"
           },
           {
-            label: "2015",
-            value: "91.66"
+            label: "MERIDIAN HEALTH PLAN",
+            value: "18326"
           },
           {
-            label: "2016",
-            value: "91.8"
-          }
+            label: "MOLINA IPA",
+            value: "50753.78"
+          },
+          {
+            label: "PHYSICIANS MUTUAL INS CO",
+            value: "4802.14"
+          },
+          {
+            label: "TRICARE EAST REGION",
+            value: "1573.7"
+          },
+          {
+            label: "UNITED HEALTH CARE",
+            value: "28860.87"
+          },
+          {
+            label: "WELLCARE",
+            value: "33971.61"
+          },
         ]
       };
       dataSource2 = {
         chart: {
           caption: "ATB - Touch Analysis",
-          subcaption: "For a net-worth of $1M",
+          subcaption: "Claims Touches",
           showvalues: "1",
           showpercentintooltip: "0",
-          numberprefix: "$",
+          // numberprefix: "$",
           enablemultislicing: "1",
           theme: "gammel"
         },
         data: [
           {
-            label: "Equity",
-            value: "300000"
+            label: "1-Touch",
+            value: "552"
           },
           {
-            label: "Debt",
-            value: "230000"
+            label: "2-Touch",
+            value: "497"
           },
           {
-            label: "Bullion",
-            value: "180000"
+            label: "3-Touch",
+            value: "372"
           },
           {
-            label: "Real-estate",
-            value: "270000"
+            label: "4-Touch",
+            value: "176"
           },
-          {
-            label: "Insurance",
-            value: "20000"
-          }
+          // {
+          //   label: "Insurance",
+          //   value: "20000"
+          // }
         ]
       };
       dataSource3 = {
         chart: {
           caption: "ATB - Status Code",
-          subcaption: "Last month",
-          pyaxisname: "No. of Occurrence",
+          subcaption: "MTD",
+          pyaxisname: "Amount",
           theme: "gammel",
           showsecondarylimits: "0",
+          numberprefix: "$",
           showdivlinesecondaryvalue: "0",
           plottooltext:
             "Due to $label, late arrivals count is : <b>$dataValue</b> of the total <b>$sum</b> employees",
@@ -254,28 +268,61 @@ export class DashboardComponent implements OnInit {
         },
         data: [
           {
-            label: "Traffic",
-            value: "5680"
+            label: "Approved To pay",
+            value: "44.88"
           },
           {
-            label: "Family Engagement",
-            value: "1036"
+            label: "Authorization",
+            value: "2,445.57"
           },
           {
-            label: "Public Transport",
-            value: "950"
+            label: "Claim not on File",
+            value: "75.00"
           },
           {
-            label: "Weather",
-            value: "500"
+            label: "Claim Paid",
+            value: "4,728.88"
           },
           {
-            label: "Emergency",
-            value: "140"
+            label: "Claim Rejected as Missing/Invalid Information",
+            value: "616.96"
           },
           {
-            label: "Others",
-            value: "68"
+            label: "Clearing House Rejection",
+            value: "93.26"
+          },
+          {
+            label: "Incorrectly Processed ",
+            value: "403.04"
+          },
+          {
+            label: "Missing Primary EOB",
+            value: "1,892.27"
+          },
+          {
+            label: "No Coverage",
+            value: "849.50"
+          },
+
+          {
+            label: "No Original Claim on File",
+            value: "38.24"
+          },
+          {
+            label: "Past Timely Filing",
+            value: "6,801.84"
+          },
+          {
+            label: "Primary/Secondary 11th Set",
+            value: "3,447.47"
+          },
+          {
+            label: "Primary/Secondary 12th Set",
+            value: "10.00"
+          },
+          {
+            label: "Past Timely Filing",
+            value: "6,801.84"
           }
         ]
       }
@@ -414,37 +461,34 @@ export class DashboardComponent implements OnInit {
       dataSource5 = {
         "chart": {
           "caption": "Client Assistance Report",
-          "subCaption": "In MMbbl = One Million barrels",
-          "xAxisName": "Country",
-          "yAxisName": "Reserves (MMbbl)",
-          "numberSuffix": "K",
+          "subCaption": "",
+          // "xAxisName": "",
+          "yAxisName": "Client Assitance",
+          // "numberSuffix": "K",
           "theme": "gammel",
         },
         "data": [{
-          "label": "Venezuela",
-          "value": "290"
+          "label": "Auth Assistance",
+          "value": "3"
         }, {
-          "label": "Saudi",
-          "value": "260"
+          "label": "Patient Billing Assiatnce",
+          "value": "2"
         }, {
-          "label": "Canada",
-          "value": "180"
+          "label": "Adjustment Approval",
+          "value": "1"
         }, {
-          "label": "Iran",
-          "value": "140"
+          "label": "Rebilling Assitance",
+          "value": "1"
         }, {
-          "label": "Russia",
-          "value": "115"
+          "label": "Webportal Access",
+          "value": "1"
         }, {
-          "label": "UAE",
-          "value": "100"
+          "label": "Coding Assitance",
+          "value": "1"
         }, {
-          "label": "US",
-          "value": "30"
-        }, {
-          "label": "China",
-          "value": "30"
-        }]
+          "label": "Medical Record Assistance",
+          "value": "1"
+        },]
       };
 
       // dataSource: Object;
@@ -469,37 +513,31 @@ export class DashboardComponent implements OnInit {
       this.dataSource = {
           "chart": {
             "caption": "ATB - Aging Analysis",
-            "subCaption": "In MMbbl = One Million barrels",
-            "xAxisName": "Country",
-            "yAxisName": "Reserves (MMbbl)",
-            "numberSuffix": "K",
+            "subCaption": "Sum of Insurance Balance",
+            "xAxisName": "Aging",
+            "yAxisName": "Sum of Insurance Balance",
+            // "numberSuffix": "K",
             "theme": "gammel",
           },
           "data": [{
-            "label": "Venezuela",
-            "value": "290"
+            "label": "120-180(15)",
+            "value": "17154.03"
           }, {
-            "label": "Saudi",
-            "value": "260"
+            "label": "181-365(19)",
+            "value": "34188.84"
           }, {
-            "label": "Canada",
-            "value": "180"
+            "label": "31-60(168)",
+            "value": "274716.41"
           }, {
-            "label": "Iran",
-            "value": "140"
+            "label": "366+(9)",
+            "value": "31640.6"
           }, {
-            "label": "Russia",
-            "value": "115"
+            "label": "61-90(334)",
+            "value": "38171.23"
           }, {
-            "label": "UAE",
-            "value": "100"
-          }, {
-            "label": "US",
-            "value": "30"
-          }, {
-            "label": "China",
-            "value": "30"
-          }]
+            "label": "91-120(9)",
+            "value": "19858.01"
+          },]
         };
 
 

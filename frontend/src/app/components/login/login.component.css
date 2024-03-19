@@ -982,3 +982,6 @@ a:hover > .ico {
   background-repeat: no-repeat;
   background-position: 20px;
 } */
+input:before {
+  border: none !important;
+}

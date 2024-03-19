@@ -7,10 +7,10 @@
         <!-- <ngx-ui-loader [hasProgressBar]="false" ></ngx-ui-loader> -->
         <div class="tabs nav-tabs-custom">
           <ul class="tabs nav nav-tabs" id="myTab">
-            <li *ngIf="(user_role == 1 || user_role == 2 || !(user_role == 16))" [ngClass]="class_change.tab1"><a href="#tab_1"
+            <!-- <li *ngIf="(user_role == 1 || user_role == 2 || !(user_role == 16))" [ngClass]="class_change.tab1"><a href="#tab_1"
                 (click)="get_graph_stats()" role="tab" data-toggle="tab" style="padding-left: 0px;"><i
-                  class="fa fa-file-text"></i> Analytics <span class="tab-divider">|</span></a></li>
-            <li *ngIf="(user_role == 1 || user_role == 2 || !(user_role == 16))" class=""><a href="#tab_2"
+                  class="fa fa-file-text"></i> Analytics <span class="tab-divider">|</span></a></li> -->
+            <li *ngIf="(user_role == 1 || user_role == 2 || !(user_role == 16))" [ngClass]="class_change.tab2"><a href="#tab_2"
                 (click)="pageChange(1,'claim','null','null','null','null','null','null');"
                 data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-user"></i> Create Work Orders <span
                   class="tab-divider">|</span></a></li>
@@ -18,47 +18,46 @@
                 style="padding-left: 0px;" aria-expanded="true"
                 (click)="get_workorder(null,null,null,1,wo_page_number,null,null,'null','null',null,null,null);"><i
                   class="fa fa-list"></i> Work Orders <span class="tab-divider">|</span></a></li>
+                  <li *ngIf="(user_role == 1 || user_role == 2 || !(user_role == 16))" class=""><a href="#tab_8"
+                    (click)="get_userlist();" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-users"></i>
+                    Re-assigned Claims <span class="tab-divider">|</span></a></li>
             <li *ngIf="(user_role == 1 || user_role == 2 || !(user_role == 16))"><a href="#tab_5" data-toggle="tab"
                 style="padding-left: 0px;" aria-expanded="true"
                 (click)="get_workorder('closedClaims',null,null,1,wo_page_number,null,null,'null','null',null,null,null);status_code_select()"><i
-                  class="fa fa-drivers-license"></i> Closed Claims <span class="tab-divider">|</span></a></li>
+                  class="fa fa-drivers-license"></i> Completed Claims <span class="tab-divider">|</span></a></li>
             <!-- <li *ngIf="(user_role == 1 || user_role == 2  || !(user_role == 16))"><a href="#rework" data-toggle="tab" style="padding-left: 0px;" (click)="getclaim_details(1,'allocated','null','null','null','null');" ><i class="fa fa-check"></i> Rework Claims <span class="tab-divider">|</span></a></li>
                   <li *ngIf="(user_role == 1 || user_role == 2  || !(user_role == 16))"><a href="#assigned" data-toggle="tab" style="padding-left: 0px;" (click)="get_workorder('assignedClaims',null,null,1,wo_page_number,null,null,'null','null',null,null,null,null);" ><i class="fa fa-share"></i> Assigned Claims <span class="tab-divider">|</span></a></li> -->
             <!-- <li *ngIf="(user_role == 1 || user_role == 2  || !(user_role == 16))"><a href="#re_assigned" data-toggle="tab" style="padding-left: 0px;" (click)="get_statuscodes();getclaim_details(1,'reallocated','null','null','null','null');"><i class="fa fa-retweet"></i>Reassigned Claims <span class="tab-divider">|</span></a></li> -->
             <!-- <li *ngIf="(user_role == 1 || user_role == 2 || user_role == 16)" class=""><a href="#tab_7" (click)="get_statuscodes();pageChange(1,'reallocate_claims',null,null,null,null,null,null);" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-user"></i> Reallocate Claims</a></li> -->
+            <li *ngIf="(user_role == 1 || user_role == 2 || user_role == 16)" class="" [ngClass]="class_change.tab6"><a href="#tab_6"
+              (click)="pageChange(1,'all_claim',null,null,null,null,null,null);status_code_select()" data-toggle="tab"
+              style="padding-left: 0px;"><i class="fa fa-user"></i> All Claims<span class="tab-divider">|</span></a>
+          </li>
             <li *ngIf="(user_role == 1 || user_role == 2  || !(user_role == 16))"><a href="#tab_3"
                 (click)="reload_datas(1,'import');clear()" data-toggle="tab" style="padding-left: 0px;"><i
-                  class="fa fa-upload"></i> Import <span class="tab-divider">|</span></a></li>
-            <li *ngIf="(user_role == 1 || user_role == 2  || !(user_role == 16))"><a href="#reimport"
+                  class="fa fa-upload"></i> Import</a></li>
+            <!-- <li *ngIf="(user_role == 1 || user_role == 2  || !(user_role == 16))"><a href="#reimport"
                 (click)="load_reimport_data(1);clear()" data-toggle="tab" style="padding-left: 0px;"><i
-                  class="fa fa-upload"></i> ReImport <span class="tab-divider">|</span></a></li>
-            <li *ngIf="(user_role == 1 || user_role == 2 || !(user_role == 16))" class=""><a href="#tab_8"
-                (click)="get_userlist();" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-users"></i>
-                Revoke
-                Claims <span class="tab-divider">|</span></a></li>
-            <li *ngIf="(user_role == 1 || user_role == 2 || user_role == 16)" class="" [ngClass]="class_change.tab2"><a href="#tab_6"
-                (click)="pageChange(1,'all_claim',null,null,null,null,null,null);status_code_select()" data-toggle="tab"
-                style="padding-left: 0px;"><i class="fa fa-user"></i> All Claims<span class="tab-divider">|</span></a>
-            </li>
-            <li *ngIf="(user_role == 1 || user_role == 2 || user_role == 16)" class="" [ngClass]="class_change.tab2"><a
+                  class="fa fa-upload"></i> ReImport <span class="tab-divider">|</span></a></li> -->
+            <!-- <li *ngIf="(user_role == 1 || user_role == 2 || user_role == 16)" class="" [ngClass]="class_change.tab2"><a
                 href="#tab_7" (click)="pageChange(1,'claim','null','null','null','null','null','null');status_code_select()"
                 data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-user"></i> Duplicate Claims<span class="tab-divider">|</span></a>
             </li>
             <li *ngIf="(user_role == 1 || user_role == 2 || user_role == 16)" class="" [ngClass]="class_change.tab2"><a
                 href="#tab_8" (click)="pageChange(1,'claim','null','null','null','null','null','null');status_code_select()"
                 data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-user"></i>Mismatched Records</a>
-            </li>
+            </li> -->
 
           </ul>
           <div class="tab-content no-padding">
-            <div class="tab-pane" id="tab_1" [ngClass]="class_change_tab['tab2']">
+            <!-- <div class="tab-pane" id="tab_1">
               <h3>Claim Reports</h3>
 
-            </div>
+            </div> -->
 
 
             <!-- Tab 2 -->
-            <div class="tab-pane " id="tab_2">
+            <div class="tab-pane " id="tab_2" [ngClass]="class_change_tab['tab2']">
               <div class="box no-shadow no-border">
                 <div class="box-body no-padding">
                   <div class="row">
@@ -1714,7 +1713,7 @@
                   Date : 07/01/2023
                   Purpose : All Claims report show -->
 
-            <div class="tab-pane " id="tab_6" [ngClass]="class_change_tab['tab1']">
+            <div class="tab-pane " id="tab_6" >
               <div class="box no-shadow no-border">
                 <div class="box-body no-padding">
                   <div class="row">

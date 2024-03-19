@@ -7,7 +7,7 @@
            </div> -->
 <div class="row" style="margin-bottom: 25px;">
   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <app-summary></app-summary>
+    <!-- <app-summary></app-summary> -->
     <div class="box no-shadow no-border no-bottom">
       <!-- /.box-header -->
       <div class="no-padding">
@@ -15,7 +15,7 @@
         <!-- <ngx-ui-loader [hasProgressBar]="false" ></ngx-ui-loader> -->
         <div class="tabs nav-tabs-custom">
           <ul class="tabs nav nav-tabs">
-            <li *ngIf="user_role == 1 || user_role == 3 || user_role == 16" [ngClass]="class_change.tab1"><a href="#tab_4" data-toggle="tab"
+            <li *ngIf="user_role == 1 || user_role == 3 || user_role == 16" [ngClass]=""><a href="#tab_4" data-toggle="tab"
                 aria-expanded="true"><i class="fa fa-dashboard" (click)="graphStatus()"></i> Analytics <span
                   class="tab-divider">|</span></a> </li>
             <!-- <li *ngIf="user_role == 1"><a href="#tab_2" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-file-text"></i> Assigned Claims <span class="tab-divider">|</span></a></li>-->
@@ -38,7 +38,7 @@
                   class="fa fa-drivers-license"></i>Closed Claims<span class="tab-divider">|</span></a></li>
           </ul>
           <div class="tab-content no-padding">
-            <div [ngClass]="class_change_tab['tab1']" id="tab_4">
+            <div class="tab-pane" id="tab_4">
               <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                   <!-- AREA CHART -->

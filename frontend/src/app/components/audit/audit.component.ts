@@ -2940,7 +2940,7 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
       this.class_change['tab1'] = '';
       this.class_change['tab2'] = 'active';
 
-      this.class_change_tab['tab1'] = 'tab- ';
+      this.class_change_tab['tab1'] = ' ';
       this.class_change_tab['tab2'] = 'tab-pane active'
 
 
@@ -2950,16 +2950,16 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
     else if (role_id == 4) {
       this.user_role = 1;
 
-      this.class_change['tab1'] = 'active';
+      this.class_change['tab1'] = '';
       this.class_change['tab2'] = '';
 
-      this.class_change_tab['tab1'] = 'tab-pane active';
+      this.class_change_tab['tab1'] = '';
       this.class_change_tab['tab2'] = 'tab-pane'
     }
     else if(role_id == 16){
       this.user_role = 16;
-      this.class_change['tab1'] = 'active';
-      this.class_change_tab['tab1'] = 'tab-pane active';
+      this.class_change['tab1'] = '';
+      this.class_change_tab['tab1'] = '';
       this.class_change_tab['tab2'] = 'tab-pane';
     }
 

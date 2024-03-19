@@ -27,7 +27,7 @@ export class HeaderComponent implements OnInit  {
   public touch_count!:number;
   @ViewChild('confirm_modal') mymodal!: ElementRef;
   public practice_name:any;
-
+  public userRole : any;
   constructor(
     private Auth:AuthService,
     private router: Router,
@@ -174,6 +174,14 @@ update_user_role()
     }
   }
 
+  ngAfterViewInit(): void {
+    //Called after ngAfterContentInit when the component's view has been initialized. Applies to components only.
+    //Add 'implements AfterViewInit' to the class.
+    setTimeout(() => {
+      this.userRole = localStorage.getItem('role_id');
+    console.log('userRole',this.userRole);
+    }, 1000);
+  }
 
 
 }

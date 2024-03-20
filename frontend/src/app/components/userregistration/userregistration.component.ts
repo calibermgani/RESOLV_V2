@@ -296,7 +296,7 @@ ngOnInit() {
     this.formGroup = new FormGroup({
       username: new FormControl('', [
         Validators.required,
-        Validators.minLength(5),
+        Validators.minLength(4),
         Validators.maxLength(20),
 
       ]),

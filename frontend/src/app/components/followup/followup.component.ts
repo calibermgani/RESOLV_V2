@@ -4350,4 +4350,7 @@ public updatenotes(type:any){
     }
   }
 
+  exportExcel(){
+    this.myGrid_1.api.exportDataAsExcel();
+  }
 }

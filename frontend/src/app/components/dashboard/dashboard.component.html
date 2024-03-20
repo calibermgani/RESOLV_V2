@@ -13,11 +13,7 @@
                                     </button>
                                 </div>
                             </div>
-
-
-                            <!-- /.box-header -->
                             <div class="box-body">
-                                <!-- Conversations are loaded here -->
                                 <div class="col-lg-12 no-padding">
                                     <h4 class="font600"><span class="ar-blue">20 SEP</span> <span class="pull-right" style="font-size:12px;"><i>Thursday</i></span></h4>
                                     <p style="padding-bottom: 10px;"> Call Atena by 5pm <i class="fa fa-check-circle pull-right text-gray"></i></p>
@@ -27,54 +23,34 @@
                                     <p style="padding-bottom: 10px;"> Client Assistance <i class="fa fa-check-circle pull-right text-gray"></i></p>
 
                                 </div>
-                                <!--/.direct-chat-messages-->
-
-                                <!-- Contacts are loaded here -->
-
-                                <!-- /.direct-chat-pane -->
                             </div>
 
                             <div class="box-footer no-border">
                                 <p class="text-center" style="margin-bottom: 20px;"><span class="ar-blue">Today</span> &nbsp;<span class="text-gray">|</span>&nbsp; Tomorrow &nbsp;<span class="text-gray">|</span>&nbsp; Week</p>
                                  <i class="fa fa-plus-circle ar-blue" style="font-size:40px;margin-top:-10px;margin-left:-20px;position: absolute"></i>
                             </div>
-                            <!-- /.box-body -->
-
-                            <!-- /.box-footer-->
                         </div>
                     </div>
                 </div>
             </div>
-        <!-- ./col -->
-            <!-- small box -->
             <section class="content no-padding">
-
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
                         <div class="box no-shadow no-border no-bottom">
-                            <!-- /.box-header -->
-                            <div class="no-padding">
-
+                            <div class="no-padding" *ngIf="userrole != 1">
                                 <div class="tabs nav-tabs-custom">
                                     <ul class="tabs nav nav-tabs">
                                         <li class="active"><a href="#tab_2" data-toggle="tab" style="padding-left: 0px;" aria-expanded="true"><i class="fa fa-pie-chart"></i>  Analysis Report<span class="tab-divider">|</span></a></li>
                                         <li class=""><a href="#tab_3" data-toggle="tab" style="padding-left: 0px;" aria-expanded="false"><i class="fa fa-bar-chart"></i> Productivity Report<span class="tab-divider">|</span></a></li>
                                         <li class=""><a href="#tab_4" data-toggle="tab" style="padding-left: 0px;" aria-expanded="false"><i class="fa fa-users"></i> Client Assistance</a></li>
                                     </ul>
-
                                     <div class="tab-content no-padding">
-
                                         <div class="tab-pane active" id="tab_2">
-
                                             <div class="row">
-
-                                                <!-- /.col (LEFT) -->
                                                 <div class="col-md-6">
-                                                    <!-- LINE CHART -->
                                                     <div class="box box-primary no-shadow" style="border:1px solid #dee0e8;" >
                                                         <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                                             <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> ATB - Aging Analysis</h3>
-
                                                             <div class="box-tools pull-right">
                                                                 <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="collapse" data-target="#box1" aria-expanded="true" aria-controls="collapsePanel">
                                                                     <i class="fa fa-plus"></i>
@@ -84,8 +60,6 @@
                                                         <div class="box-body chart-responsive collapse in" id="box1">
                                                             <div class="row">
                                                             <div class="col-lg-7 col-md-7 col-sm-7">
-                                                                    <!-- <fusioncharts class="fusion-charts" type="pyramid" [dataSource]="pyramid">
-                                                                </fusioncharts> -->
                                                                 <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts>
                                                             </div>
                                                             <div class="col-lg-5 col-md-5 col-sm-5">
@@ -124,14 +98,9 @@
 
                                                             </div>
                                                         </div>
-                                                        <!-- /.box-body -->
                                                     </div>
-                                                    <!-- /.box -->
-                                                    <!-- BAR CHART -->
-                                                    <!-- /.box -->
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <!-- AREA CHART -->
                                                     <div class="box box-primary no-shadow" style="border:1px solid #dee0e8;">
                                                         <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                                             <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> ATB - Payer Classification</h3>
@@ -144,15 +113,12 @@
                                                         <div class="box-body chart-responsive collapse in" id="box2">
                                                             <div class="row">
                                                             <div class="col-lg-7 col-md-7 col-sm-7">
-                                                                    <!-- <fusioncharts  class="fusion-charts pie-chart" type="pie2d" [dataSource]=dataSource >
-                                                                </fusioncharts> -->
                                                                 <fusioncharts
                                                                 width=770
                                                                 height=400
                                                                 type="line"
                                                                 [dataFormat]="dataFormat"
-                                                                [dataSource]="dataSource1"
-                                                              >
+                                                                [dataSource]="dataSource1">
                                                               </fusioncharts>
                                                             </div>
                                                             <div class="col-lg-5 col-md-5 col-sm-5" >
@@ -188,11 +154,8 @@
                                                     </div>
                                                 </div>
                                             </div>
-
-
                                             <div class="row">
                                                 <div class="col-md-6">
-                                                    <!-- AREA CHART -->
                                                     <div class="box box-primary no-shadow" style="border:1px solid #dee0e8;">
                                                         <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                                             <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> ATB - Touch Analysis</h3>
@@ -205,9 +168,6 @@
                                                         <div class="box-body chart-responsive collapse in" id="box3">
                                                             <div class="row">
                                                             <div class="col-lg-8 col-md-8 col-sm-8">
-                                                                    <!-- <fusioncharts  class="fusion-charts" type="stackedbar2d" [dataSource]=stacked>
-                                                                </fusioncharts> -->
-                                                                <!-- <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts> -->
                                                                 <fusioncharts
                                                                 width="770"
                                                                 height="400"
@@ -215,18 +175,8 @@
                                                                 [dataFormat]="dataFormat"
                                                                 [dataSource]="dataSource2"></fusioncharts>
                                                                  </div>
-                                                                 <!-- <div class="col-lg-4 col-md-4 col-sm-4 text-left">
-                                                                     <ul class="touch-analysis">
-                                                                    <li><p style="margin-top:15px;"><i class="fa fa-square" style="color:#3ad6b1"></i> &lt; 3 Touches</p></li>
-                                                                    <li><p><i class="fa fa-square" style="color:#40beec"></i> 3 Touches</p></li>
-                                                                    <li><p><i class="fa fa-square" style="color:#90a3d1"></i> 4 Touches</p></li>
-                                                                    <li><p><i class="fa fa-square" style="color:#f3d9a1"></i> 5 Touches</p></li>
-                                                                    <li><p><i class="fa fa-square" style="color:#94d39d"></i> 6 Touches</p></li>
-                                                                    <li><i class="fa fa-square" style="color:#e2b170"></i> &gt;6 Touches</li>
-                                                                </ul>
-                                                                </div> -->
                                                                 </div>
-                                                            <div class="col-lg-12" style="border-top:1px solid #dee0e8;">
+                                                            <!-- <div class="col-lg-12" style="border-top:1px solid #dee0e8;">
                                                                 <div class="col-lg-6">
                                                                     <h5 style="margin-top:20px;margin-bottom: 5px" class="text-center">Avg Touches Per Account</h5>
                                                                     <h4 class="font600 ar-blue text-center" style="margin-top:0px;">3422</h4>
@@ -235,17 +185,11 @@
                                                                     <h5 style="margin-top:20px;margin-bottom: 5px" class="text-center">Avg Touches Per Associate</h5>
                                                                     <h4 class="font600 text-red text-center" style="margin-top:0px;">63433</h4>
                                                                 </div>
-                                                            </div>
+                                                            </div> -->
                                                         </div>
-                                                        <!-- /.box-body -->
                                                     </div>
-                                                    <!-- /.box -->
-                                                    <!-- DONUT CHART -->
-                                                    <!-- /.box -->
                                                 </div>
-                                                <!-- /.col (LEFT) -->
                                                 <div class="col-md-6">
-                                                    <!-- LINE CHART -->
                                                     <div class="box box-primary no-shadow" style="border:1px solid #dee0e8;">
                                                         <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                                             <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> ATB - Status Code</h3>
@@ -259,10 +203,6 @@
                                                         <div class="box-body chart-responsive collapse in" id="box4">
                                                             <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6">
-                                                                    <!-- <fusioncharts  class="fusion-charts" type="pie3d" [dataSource]=pie3d>
-                                                                </fusioncharts> -->
-                                                                <!-- <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts>
-                                                                 -->
                                                                 <fusioncharts width="770" height="400" type="pareto2d" [dataFormat]="dataFormat" [dataSource]="dataSource3">
                                                                 </fusioncharts>
                                                                </div>
@@ -274,17 +214,9 @@
                                                                         </li>
                                                                     </ul>
                                                                 </div>
-                                                                <!-- <p style="margin-top:5px;"><i class="fa fa-square" style="color:#ef7e86"></i> Resubmission <span class="pull-right">43</span></p>
-                                                                <p><i class="fa fa-square" style="color:#faeb6b"></i> Adjustment <span class="pull-right">242</span></p>
-                                                                <p><i class="fa fa-square" style="color:#80c3dc"></i> Appeals <span class="pull-right">532</span></p>
-                                                                <p><i class="fa fa-square" style="color:#bea4dc"></i> Patient Followup <span class="pull-right">231</span></p>
-                                                                <p><i class="fa fa-square" style="color:#94d39d"></i> Followup Required <span class="pull-right">353</span></p>
-                                                                <p><i class="fa fa-square" style="color:#e2b170"></i> Coding Denials <span class="pull-right">745</span></p>
-                                                                <p><i class="fa fa-square" style="color:#ddc19d"></i> EOB Posting <span class="pull-right">43</span></p>
-                                                                <p><i class="fa fa-square" style="color:#57b8a2"></i> Medical Records <span class="pull-right">75</span></p> -->
                                                             </div>
                                                             </div>
-                                                            <div class="col-lg-12" style="border-top:1px solid #dee0e8;">
+                                                            <!-- <div class="col-lg-12" style="border-top:1px solid #dee0e8;">
                                                                 <div class="col-lg-6 text-center">
                                                                     <h5 style="margin-top:20px;margin-bottom: 5px">Total Claims</h5>
                                                                     <div *ngFor="let status of statusFooter">
@@ -299,7 +231,7 @@
                                                                     </div>
                                                                 </div>
 
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -308,7 +240,7 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <!-- AREA CHART -->
-                                                    <div class="box box-primary no-shadow mb-3" style="border:1px solid #dee0e8;">
+                                                    <!-- <div class="box box-primary no-shadow mb-3" style="border:1px solid #dee0e8;">
                                                         <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                                             <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> MTD - Associates Performance</h3>
                                                             <div class="box-tools pull-right">
@@ -320,18 +252,43 @@
                                                         <div class="box-body chart-responsive collapse in" id="box5">
                                                             <div class="row">
                                                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                                                    <!-- <fusioncharts class="fusion-charts chart chart-responsive stack-chart"
+                                                                    <fusioncharts class="fusion-charts chart chart-responsive stack-chart"
                                                                   type="msstackedcolumn2d"
                                                                   width="700"
                                                                   [dataSource]=stacked_chart >
-                                                              </fusioncharts> -->
-                                                              <!-- <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts> -->
+                                                              </fusioncharts>
+                                                              <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts>
                                                               <fusioncharts width="770" height="400" type="bubble" [dataFormat]="dataFormat" [dataSource]="dataSource4">
                                                               </fusioncharts>
                                                                 </div>
                                                             </div>
                                                            </div>
-                                                    </div>
+                                                    </div> -->
+                                                    <div class="box box-primary no-shadow mb-3" style="border:1px solid #dee0e8;">
+                                                      <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                                          <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> MTD - QA Associates Performance</h3>
+                                                          <div class="box-tools pull-right">
+                                                              <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="collapse" data-target="#box5">
+                                                                  <i class="fa fa-plus"></i>
+                                                              </button>
+                                                          </div>
+                                                      </div>
+                                                      <div class="box-body chart-responsive collapse in" id="box5">
+                                                          <div class="row">
+                                                              <div class="col-lg-12 col-md-12 col-sm-12">
+                                                                  <!-- <fusioncharts class="fusion-charts chart chart-responsive stack-chart"
+                                                                type="msstackedcolumn2d"
+                                                                width="700"
+                                                                [dataSource]=stacked_chart >
+                                                            </fusioncharts> -->
+                                                            <!-- <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts> -->
+                                                            <!-- <fusioncharts width="770" height="400" type="bubble" [dataFormat]="dataFormat" [dataSource]="dataSource4">
+                                                            </fusioncharts> -->
+                                                            <img src="assets/image/quality.png" style="width: 100%;height:400px">
+                                                              </div>
+                                                          </div>
+                                                         </div>
+                                                  </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                   <!-- AREA CHART -->
@@ -364,14 +321,12 @@
                                             </div>
 
                                             <div class="box no-shadow no-border no-bottom hide">
-                                                <!-- /.box-header -->
                                                 <div class="box-body no-padding">
                                                     <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
                                                         <div class="box-body no-padding">
                                                             <h4 class="list-heading" style="background: #e2e6ef;padding: 10px 10px;margin-top: 0px;margin-bottom:20px;border-radius: 2px 2px 0px 0px;"> Summary</h4>
                                                             <div class="row ">
                                                                 <div class="col-md-6">
-                                                                    <!-- AREA CHART -->
                                                                     <div class="box box-primary no-border no-shadow">
                                                                         <div class="box-header no-border p-t-0 p-b-0">
                                                                             <h3 class="box-title list-heading p-t-0 p-b-0"><i class="fa fa-bars ar-blue"></i> Area Chart</h3>
@@ -384,10 +339,7 @@
                                                                         <div class="box-body chart-responsive">
                                                                             <div class="chart" id="revenue-chart" style="height: 230px;"></div>
                                                                         </div>
-                                                                        <!-- /.box-body -->
                                                                     </div>
-                                                                    <!-- /.box -->
-                                                                    <!-- DONUT CHART -->
                                                                     <div class="box box-danger no-border no-shadow hide">
                                                                         <div class="box-header no-border p-t-0 p-b-0">
                                                                             <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Donut Chart</h3>
@@ -400,14 +352,9 @@
                                                                         <div class="box-body chart-responsive">
                                                                             <div class="chart" id="sales-chart" style="height: 230px; position: relative;"></div>
                                                                         </div>
-                                                                        <!-- /.box-body -->
                                                                     </div>
-                                                                    <!-- /.box -->
-
                                                                 </div>
-                                                                <!-- /.col (LEFT) -->
                                                                 <div class="col-md-6">
-                                                                    <!-- LINE CHART -->
                                                                     <div class="box box-info no-border no-shadow">
                                                                         <div class="box-header no-border p-t-0 p-b-0">
                                                                             <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Line Chart</h3>
@@ -420,36 +367,18 @@
                                                                         <div class="box-body chart-responsive">
                                                                             <div class="chart" id="line-chart" style="height: 230px;"></div>
                                                                         </div>
-                                                                        <!-- /.box-body -->
                                                                     </div>
-                                                                    <!-- /.box -->
-
-                                                                    <!-- BAR CHART -->
-
-                                                                    <!-- /.box -->
-
                                                                 </div>
-                                                                <!-- /.col (RIGHT) -->
                                                             </div>
-
                                                         </div>
-
-
-                                                        <!-- /.box-header -->
-
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-
-
                                         <div class="tab-pane" id="tab_3">
-
                                              <div class="box no-shadow no-border">
-                                                <!-- /.box-header -->
                                                 <div class="box-body no-padding">
                                                     <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
-                                                        <!-- /.box-header -->
                                                         <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                                             <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Team Activity</h3>
 
@@ -485,7 +414,6 @@
                                                                             <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="1">Week 1</th>
                                                                             <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 2</th>
                                                                             <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 3</th>
-                                                                            <!-- <th class="font600 text-center line-height-24" colspan="5">Week 4</th> -->
                                                                         </tr>
 
                                                                     </thead>
@@ -632,10 +560,8 @@
                                             </div>
 
                                             <div class="box no-shadow no-border mb-3">
-                                                <!-- /.box-header -->
                                                 <div class="box-body no-padding">
                                                     <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
-                                                        <!-- /.box-header -->
                                                         <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                                             <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Hourly Production</h3>
 
@@ -658,7 +584,6 @@
                                                                     <thead>
                                                                         <tr>
                                                                             <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">Associate Name</th>
-                                                                            <!-- <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">18:00</th> -->
                                                                             <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">19:00</th>
                                                                             <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">20:00</th>
                                                                             <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">21:00</th>
@@ -725,12 +650,9 @@
 
 
                                          <div class="tab-pane" id="tab_4">
-
                                             <div class="box no-shadow no-border">
-                                                <!-- /.box-header -->
                                                 <div class="row">
                                                 <div class="col-lg-12 col-md-12 col-sm-12">
-                                                    <!-- AREA CHART -->
                                                     <div class="box box-primary no-shadow no-bottom" style="border:1px solid #dee0e8;">
                                                         <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                                             <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Client Assistance Report</h3>
@@ -741,25 +663,17 @@
                                                             </div>
                                                         </div>
                                                         <div class="box-body chart-responsive collapse in" id="box6">
-                                                            <!-- <fusioncharts type="overlappedcolumn2d" [dataSource]=stacked3 >
-                                                        </fusioncharts> -->
                                                         <fusioncharts  width="1505" height="400" type="column2d" [dataSource]="dataSource5"></fusioncharts>
                                                         </div>
-                                                        <!-- /.box-body -->
                                                     </div>
-                                                    <!-- /.box -->
                                                 </div>
-                                                <!-- /.col (LEFT) -->
-
                                             </div>
                                             </div>
 
 
                                               <div class="box no-shadow no-border">
-                                                <!-- /.box-header -->
                                                 <div class="box-body no-padding">
                                                     <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
-                                                        <!-- /.box-header -->
                                                         <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                                             <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Sub Status Code</h3>
 
@@ -776,7 +690,7 @@
                                                                 <table class="table-striped1 table">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th class="font600  line-height-24" style="border-right: 1px solid #fff;">Name</th>
+                                                                            <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">Name</th>
                                                                             <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">JAN</th>
                                                                             <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">FEB</th>
                                                                             <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">MAR</th>
@@ -876,117 +790,593 @@
                                 </div>
 
                             </div>
-                            <!-- /.box-body -->
+
+                            <div *ngIf="userrole == 1">
+                              <div class="row">
+                                 <div class="col-md-6 col-sm-6 col-lg-6">
+                                    <app-summary></app-summary>
+                                 </div>
+                                 <div class="col-md-6 col-sm-6 col-lg-6">
+                                    <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                                       <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                          <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue mr-2"></i>Month wise Summary</h3>
+                                       </div>
+                                       <div class="box no-shadow no-border" style="margin-bottom: 0px !important;">
+                                         <!-- /.box-header -->
+                                         <div class="box-body no-padding">
+                                           <div class="box no-shadow no-bottom" style="border-top: 1px solid #d8dbe4;">
+                                             <!-- /.box-header -->
+
+                                             <div class="box-body no-padding collapse in" style="" id="box13">
+                                               <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table ">
+                                                 <div class="col-lg-6" style="border-right: 1px dashed #fff">
+                                                   <p class="text-dark">Total Assigned <span class="pull-right">1472</span></p>
+                                                   <p class="text-dark">Total Worked <span class="pull-right">632</span></p>
+                                                   <p class="text-dark">Follow up <span class="pull-right">53</span></p>
+                                                   <p class="text-dark">Client Assistance<span class="pull-right">12</span></p>
+                                                   <p class="text-dark">QC Passed<span class="pull-right">617</span></p>
+                                                   <p class="text-dark">Error pending<span class="pull-right">2</span></p>
+                                                 </div>
+                                                 <!-- <div class="col-lg-6">
+                                                   <p class="text-dark"><span class="pull-right ">{{work_status['followup']}}</span></p>
+                                                   <p class="text-dark">Audit Claims <span class="pull-right">{{work_status['auditclaims']}}</span></p>
+                                                   <p class="text-dark">&gt;3 Touches <span class="pull-right">{{work_status['3touches']}}</span></p>
+                                                 </div> -->
+                                                 <!-- <div class="col-lg-4">
+                                                   <h5 class="ar-blue" style="font-weight: 600;"><i class="fa fa-bars ar-blue margin-r-5"></i> MTD Production &amp; Quality</h5>
+                                                   <p class="text-dark">Production Score <span class="pull-right">98%</span></p>
+                                                   <p class="text-dark">Quality Score <span class="pull-right">92%</span></p>
+                                                   <p class="text-dark">Resolution Score <span class="pull-right">79%</span></p>
+                                                 </div> -->
+                                               </div>
+                                             </div>
+                                           </div>
+                                         </div>
+                                       </div>
+
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="row">
+                                 <div class="col-md-6 col-sm-6 col-lg-6">
+                                    <div class="box no-shadow no-border">
+                                       <!-- /.box-header -->
+                                       <div class="box-body no-padding">
+                                          <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                                             <!-- /.box-header -->
+                                             <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                                <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i>Production and Quality</h3>
+                                                <div class="box-tools pull-right">
+                                                   <button type="button" class="btn btn-box-tool" style="margin-left:10px;" data-widget="collapse" data-toggle="collapse" data-target="#dashboard">
+                                                   <i class="fa fa-plus"></i>
+                                                   </button>
+                                                </div>
+                                             </div>
+                                             <div class="box-body no-padding" style="margin-top:20px;" id="dashboard">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 production-table no-padding">
+                                                   <div class="table-responsive" style="padding:0 5px">
+                                                      <table class="table-striped1 table">
+                                                         <thead>
+                                                            <tr>
+                                                               <th class="font600  line-height-24"></th>
+                                                               <!-- <th *ngFor="let wnos of weeks ; let i=index " class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" [attr.colspan]="col_span[i]">Week {{i+1}}</th> -->
+                                                               <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 1</th>
+                                                                  <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 2</th>
+                                                                  <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 3</th>
+                                                                  <!-- <th class="font600 text-center line-height-24" colspan="5">Week 4</th> -->
+                                                            </tr>
+                                                         </thead>
+                                                         <tbody>
+                                                            <tr>
+                                                             <td class="text-center">Target</td>
+                                                             <td class="text-center" colspan="5">40</td>
+                                                             <td class="text-center" colspan="5">200</td>
+                                                             <td class="text-center" colspan="5">200</td>
+                                                            </tr>
+                                                            <tr>
+                                                             <td class="text-center">Achieved</td>
+                                                             <td class="text-center" colspan="5">41</td>
+                                                             <td class="text-center" colspan="5">212</td>
+                                                             <td class="text-center" colspan="5">197</td>
+                                                            </tr>
+                                                            <tr>
+                                                             <td class="text-center">Achieved %</td>
+                                                             <td class="text-center" colspan="5">101</td>
+                                                             <td class="text-center" colspan="5">112</td>
+                                                             <td class="text-center" colspan="5">97</td>
+                                                            </tr>
+                                                            <tr>
+                                                             <td class="text-center">Quality %</td>
+                                                             <td class="text-center" colspan="5">41</td>
+                                                             <td class="text-center" colspan="5">212</td>
+                                                             <td class="text-center" colspan="5">197</td>
+                                                            </tr>
+                                                            <tr>
+                                                             <td class="text-center">Excess</td>
+                                                             <td class="text-center" colspan="5">+1</td>
+                                                             <td class="text-center" colspan="5">+12</td>
+                                                             <td class="text-center" colspan="5">-3</td>
+                                                            </tr>
+                                                         </tbody>
+                                                      </table>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-md-6 col-sm-6 col-lg-6">
+                                   <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                                     <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                        <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue mr-2"></i>Team Performance</h3>
+                                     </div>
+                                     <div class="box no-shadow no-border">
+                                       <!-- /.box-header -->
+                                       <div class="box-body no-padding">
+                                         <div class="box no-shadow no-bottom" style="border-top: 1px solid #d8dbe4;">
+                                           <!-- /.box-header -->
+
+                                           <div class="box-body no-padding collapse in" style="" i d="box13">
+                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table ">
+                                               <div class="col-lg-6" style="border-right: 1px dashed #fff">
+                                                 <p class="text-dark">MTD Team Target<span class="pull-right">1680</span></p>
+                                                 <p class="text-dark">Total Worked <span class="pull-right">1597</span></p>
+                                                 <p class="text-dark">Excess <span class="pull-right">83</span></p>
+                                                 <p class="text-dark">Month target to <span class="pull-right">2520</span></p>
+                                                 <p class="text-dark">QC Passed<span class="pull-right">617</span></p>
+                                                 <p class="text-dark">RM rate regd<span class="pull-right">132/day</span></p>
+                                               </div>
+                                               <!-- <div class="col-lg-6">
+                                                 <p class="text-dark"><span class="pull-right ">{{work_status['followup']}}</span></p>
+                                                 <p class="text-dark">Audit Claims <span class="pull-right">{{work_status['auditclaims']}}</span></p>
+                                                 <p class="text-dark">&gt;3 Touches <span class="pull-right">{{work_status['3touches']}}</span></p>
+                                               </div> -->
+                                               <!-- <div class="col-lg-4">
+                                                 <h5 class="ar-blue" style="font-weight: 600;"><i class="fa fa-bars ar-blue margin-r-5"></i> MTD Production &amp; Quality</h5>
+                                                 <p class="text-dark">Production Score <span class="pull-right">98%</span></p>
+                                                 <p class="text-dark">Quality Score <span class="pull-right">92%</span></p>
+                                                 <p class="text-dark">Resolution Score <span class="pull-right">79%</span></p>
+                                               </div> -->
+                                             </div>
+                                           </div>
+                                         </div>
+                                       </div>
+                                     </div>
+
+                                  </div>
+                                 </div>
+                              </div>
+
+                              <div class="box no-shadow no-border">
+                                 <!-- /.box-header -->
+                                 <div class="box-body no-padding">
+                                    <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                                       <!-- /.box-header -->
+                                       <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                          <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Status Wise Summary</h3>
+                                          <div class="box-tools pull-right" style="margin-top:1px;">
+                                             <select id="size_select" class="form-control select2 select2-hidden-accessible" tabindex="-1" aria-hidden="true">
+                                                <option value="option1">Assigned</option>
+                                                <option value="option2">Insurance</option>
+                                                <option value="option3">Worked</option>
+                                             </select>
+                                             <!-- <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 98px;">
+                                                <span class="selection">
+                                                    <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-size_select-container">
+                                                        <span class="select2-selection__rendered" id="select2-size_select-container" title="Assigned">Assigned</span>
+                                                        <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b>
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                                <span class="dropdown-wrapper" aria-hidden="true"></span>
+                                                </span> -->
+                                          </div>
+                                       </div>
+                                       <div class="box-body no-padding" style="margin-top:20px;">
+                                          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 production-table no-padding">
+                                             <div class=" table-responsive"  style="padding:0 5px">
+                                                <table class="table-striped1 table table-responsive size_chart" id="option1">
+                                                   <thead>
+                                                      <tr>
+                                                         <th class="font600  line-height-24"></th>
+                                                         <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="1">Week 1</th>
+                                                         <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 2</th>
+                                                         <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 3</th>
+                                                         <th class="font600 text-center line-height-24" colspan="5">Week 4</th>
+                                                      </tr>
+                                                   </thead>
+                                                   <tbody>
+                                                      <tr>
+                                                         <td class="text-center"></td>
+                                                         <td class="text-center">03/01</td>
+                                                         <td class="text-center">03/04</td>
+                                                         <td class="text-center">03/05</td>
+                                                         <td class="text-center">03/06</td>
+                                                         <td class="text-center">03/07</td>
+                                                         <td class="text-center">03/08</td>
+                                                         <td class="text-center">03/11</td>
+                                                         <td class="text-center">03/12</td>
+                                                         <td class="text-center">03/13</td>
+                                                         <td class="text-center">03/14</td>
+                                                         <td class="text-center">03/15</td>
+                                                         <td class="text-center">03/18</td>
+                                                         <td class="text-center">03/19</td>
+                                                         <td class="text-center">03/20</td>
+                                                         <td class="text-center">03/21</td>
+                                                         <td class="text-center">03/22</td>
+                                                      </tr>
+                                                      <tr>
+                                                         <td class="ar-blue font600">Completed</td>
+                                                         <td class="text-center">40</td>
+                                                         <td class="text-center">25</td>
+                                                         <td class="text-center">79</td>
+                                                         <td class="text-center">56</td>
+                                                         <td class="text-center">18</td>
+                                                         <td class="text-center">36</td>
+                                                         <td class="text-center">34</td>
+                                                         <td class="text-center">70</td>
+                                                         <td class="text-center">60</td>
+                                                         <td class="text-center">48</td>
+                                                         <td class="text-center">44</td>
+                                                         <td class="text-center">60</td>
+                                                         <td class="text-center">40</td>
+                                                         <td class="text-center">35</td>
+                                                         <td class="text-center">53</td>
+                                                         <td class="text-center">43</td>
+                                                      </tr>
+                                                      <tr>
+                                                         <td class="ar-blue font600">Client Assistance</td>
+                                                         <td class="text-center">2</td>
+                                                         <td class="text-center">5</td>
+                                                         <td class="text-center">9</td>
+                                                         <td class="text-center">6</td>
+                                                         <td class="text-center">18</td>
+                                                         <td class="text-center">10</td>
+                                                         <td class="text-center">3</td>
+                                                         <td class="text-center">7</td>
+                                                         <td class="text-center">14</td>
+                                                         <td class="text-center">13</td>
+                                                         <td class="text-center">4</td>
+                                                         <td class="text-center">16</td>
+                                                         <td class="text-center">24</td>
+                                                         <td class="text-center">30</td>
+                                                         <td class="text-center">13</td>
+                                                         <td class="text-center">23</td>
+                                                      </tr>
+                                                      <tr>
+                                                         <td class="ar-blue font600">Followup</td>
+                                                         <td class="text-center">10</td>
+                                                         <td class="text-center">15</td>
+                                                         <td class="text-center">29</td>
+                                                         <td class="text-center">1</td>
+                                                         <td class="text-center">2</td>
+                                                         <td class="text-center">9</td>
+                                                         <td class="text-center">4</td>
+                                                         <td class="text-center">7</td>
+                                                         <td class="text-center">10</td>
+                                                         <td class="text-center">18</td>
+                                                         <td class="text-center">24</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">9</td>
+                                                         <td class="text-center">15</td>
+                                                         <td class="text-center">13</td>
+                                                         <td class="text-center">13</td>
+                                                      </tr>
+
+                                                   </tbody>
+                                                </table>
+                                             </div>
+                                             <table class="table-striped1 table table-responsive size_chart" id="option2" style="display: none;">
+                                                <thead>
+                                                   <tr>
+                                                      <th class="font600  line-height-24"></th>
+                                                      <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 1</th>
+                                                      <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 2</th>
+                                                      <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 3</th>
+                                                      <th class="font600 text-center line-height-24" colspan="5">Week 4</th>
+                                                   </tr>
+                                                </thead>
+                                                <tbody>
+                                                   <tr>
+                                                      <td class="text-center"></td>
+                                                      <td class="text-center">09/01</td>
+                                                      <td class="text-center">09/02</td>
+                                                      <td class="text-center">09/03</td>
+                                                      <td class="text-center">09/04</td>
+                                                      <td class="text-center">09/05</td>
+                                                      <td class="text-center">09/08</td>
+                                                      <td class="text-center">09/09</td>
+                                                      <td class="text-center">09/10</td>
+                                                      <td class="text-center">09/11</td>
+                                                      <td class="text-center">09/12</td>
+                                                      <td class="text-center">09/15</td>
+                                                      <td class="text-center">09/16</td>
+                                                      <td class="text-center">09/17</td>
+                                                      <td class="text-center">09/18</td>
+                                                      <td class="text-center">09/19</td>
+                                                      <td class="text-center">09/22</td>
+                                                      <td class="text-center">09/23</td>
+                                                      <td class="text-center">09/24</td>
+                                                      <td class="text-center">09/25</td>
+                                                      <td class="text-center">09/26</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="ar-blue font600">Medicare</td>
+                                                      <td class="text-center">43</td>
+                                                      <td class="text-center">35</td>
+                                                      <td class="text-center">79</td>
+                                                      <td class="text-center">96</td>
+                                                      <td class="text-center">78</td>
+                                                      <td class="text-center">56</td>
+                                                      <td class="text-center">34</td>
+                                                      <td class="text-center">90</td>
+                                                      <td class="text-center">64</td>
+                                                      <td class="text-center">50</td>
+                                                      <td class="text-center">45</td>
+                                                      <td class="text-center">60</td>
+                                                      <td class="text-center">50</td>
+                                                      <td class="text-center">45</td>
+                                                      <td class="text-center">53</td>
+                                                      <td class="text-center">43</td>
+                                                      <td class="text-center">87</td>
+                                                      <td class="text-center">55</td>
+                                                      <td class="text-center">80</td>
+                                                      <td class="text-center">70</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="ar-blue font600">Medicaid</td>
+                                                      <td class="text-center">40</td>
+                                                      <td class="text-center">25</td>
+                                                      <td class="text-center">79</td>
+                                                      <td class="text-center">56</td>
+                                                      <td class="text-center">18</td>
+                                                      <td class="text-center">36</td>
+                                                      <td class="text-center">34</td>
+                                                      <td class="text-center">70</td>
+                                                      <td class="text-center">60</td>
+                                                      <td class="text-center">48</td>
+                                                      <td class="text-center">44</td>
+                                                      <td class="text-center">60</td>
+                                                      <td class="text-center">40</td>
+                                                      <td class="text-center">35</td>
+                                                      <td class="text-center">53</td>
+                                                      <td class="text-center">43</td>
+                                                      <td class="text-center">80</td>
+                                                      <td class="text-center">53</td>
+                                                      <td class="text-center">78</td>
+                                                      <td class="text-center">60</td>
+                                                   </tr>
+                                                   <tr style="background: #f5f5f5">
+                                                      <td class="ar-blue font600">BCBS</td>
+                                                      <td class="text-center">38</td>
+                                                      <td class="text-center">22</td>
+                                                      <td class="text-center">70</td>
+                                                      <td class="text-red font600">
+                                                         <span class="spnDetails">15</span>
+                                                         <!-- <span class="spnTooltip">
+                                                            <strong class="ar-blue">09/04 : 75% Achieved</strong><br>
+                                                            This is the alert message for the accuracy below 70% in the target achieved
+                                                            </span> -->
+                                                      </td>
+                                                      <td class="text-red font600">
+                                                         <span class="spnDetails">10</span>
+                                                         <!-- <span class="spnTooltip">
+                                                            <strong class="ar-blue">09/05 : 23% Achieved</strong><br>
+                                                            This is the alert message for the accuracy below 70% in the target achieved
+                                                            </span> -->
+                                                      </td>
+                                                      <td class="text-red font600">
+                                                         <span class="spnDetails">20</span>
+                                                         <!-- <span class="spnTooltip">
+                                                            <strong class="ar-blue">09/06 : 70% Achieved</strong><br>
+                                                            This is the alert message for the accuracy below 70% in the target achieved
+                                                            </span> -->
+                                                      </td>
+                                                      <td class="text-center">34</td>
+                                                      <td class="text-center">62</td>
+                                                      <td class="text-center">54</td>
+                                                      <td class="text-center">41</td>
+                                                      <td class="text-center">38</td>
+                                                      <td class="text-center">51</td>
+                                                      <td class="text-center">40</td>
+                                                      <td class="text-red font600">
+                                                         <span class="spnDetails">14</span>
+                                                         <!-- <span class="spnTooltip">
+                                                            <strong class="ar-blue">09/06 : 72% Achieved</strong><br>
+                                                            This is the alert message for the accuracy below 70% in the target achieved
+                                                            </span> -->
+                                                      </td>
+                                                      <td class="text-center">53</td>
+                                                      <td class="text-center">38</td>
+                                                      <td class="text-center">71</td>
+                                                      <td class="text-center">50</td>
+                                                      <td class="text-center">72</td>
+                                                      <td class="text-center">55</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="ar-blue font600">Aetna</td>
+                                                      <td class="text-center">40</td>
+                                                      <td class="text-center">25</td>
+                                                      <td class="text-center">79</td>
+                                                      <td class="text-center">56</td>
+                                                      <td class="text-center">18</td>
+                                                      <td class="text-center">36</td>
+                                                      <td class="text-center">34</td>
+                                                      <td class="text-center">70</td>
+                                                      <td class="text-center">60</td>
+                                                      <td class="text-center">48</td>
+                                                      <td class="text-center">44</td>
+                                                      <td class="text-center">60</td>
+                                                      <td class="text-center">40</td>
+                                                      <td class="text-center">35</td>
+                                                      <td class="text-center">53</td>
+                                                      <td class="text-center">43</td>
+                                                      <td class="text-center">80</td>
+                                                      <td class="text-center">53</td>
+                                                      <td class="text-center">78</td>
+                                                      <td class="text-center">60</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="ar-blue font600">UHC</td>
+                                                      <td class="text-center">40</td>
+                                                      <td class="text-center">25</td>
+                                                      <td class="text-center">79</td>
+                                                      <td class="text-center">56</td>
+                                                      <td class="text-center">18</td>
+                                                      <td class="text-center">36</td>
+                                                      <td class="text-center">34</td>
+                                                      <td class="text-center">70</td>
+                                                      <td class="text-center">60</td>
+                                                      <td class="text-center">48</td>
+                                                      <td class="text-center">44</td>
+                                                      <td class="text-center">60</td>
+                                                      <td class="text-center">40</td>
+                                                      <td class="text-center">35</td>
+                                                      <td class="text-center">53</td>
+                                                      <td class="text-center">43</td>
+                                                      <td class="text-center">80</td>
+                                                      <td class="text-center">53</td>
+                                                      <td class="text-center">78</td>
+                                                      <td class="text-center">60</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="ar-blue font600">Others</td>
+                                                      <td class="text-center">40</td>
+                                                      <td class="text-center">25</td>
+                                                      <td class="text-center">79</td>
+                                                      <td class="text-center">56</td>
+                                                      <td class="text-center">18</td>
+                                                      <td class="text-center">36</td>
+                                                      <td class="text-center">34</td>
+                                                      <td class="text-center">70</td>
+                                                      <td class="text-center">60</td>
+                                                      <td class="text-center">48</td>
+                                                      <td class="text-center">44</td>
+                                                      <td class="text-center">60</td>
+                                                      <td class="text-center">40</td>
+                                                      <td class="text-center">35</td>
+                                                      <td class="text-center">53</td>
+                                                      <td class="text-center">43</td>
+                                                      <td class="text-center">80</td>
+                                                      <td class="text-center">53</td>
+                                                      <td class="text-center">78</td>
+                                                      <td class="text-center">60</td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                             <table class="table-striped1 table table-responsive size_chart" id="option3" style="display: none;">
+                                                <thead>
+                                                   <tr>
+                                                      <th class="font600  line-height-24"></th>
+                                                      <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 1</th>
+                                                      <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 2</th>
+                                                      <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 3</th>
+                                                      <th class="font600 text-center line-height-24" colspan="5">Week 4</th>
+                                                   </tr>
+                                                </thead>
+                                                <tbody>
+                                                   <tr>
+                                                      <td class="text-center"></td>
+                                                      <td class="text-center">09/01</td>
+                                                      <td class="text-center">09/02</td>
+                                                      <td class="text-center">09/03</td>
+                                                      <td class="text-center">09/04</td>
+                                                      <td class="text-center">09/05</td>
+                                                      <td class="text-center">09/08</td>
+                                                      <td class="text-center">09/09</td>
+                                                      <td class="text-center">09/10</td>
+                                                      <td class="text-center">09/11</td>
+                                                      <td class="text-center">09/12</td>
+                                                      <td class="text-center">09/15</td>
+                                                      <td class="text-center">09/16</td>
+                                                      <td class="text-center">09/17</td>
+                                                      <td class="text-center">09/18</td>
+                                                      <td class="text-center">09/19</td>
+                                                      <td class="text-center">09/22</td>
+                                                      <td class="text-center">09/23</td>
+                                                      <td class="text-center">09/24</td>
+                                                      <td class="text-center">09/25</td>
+                                                      <td class="text-center">09/26</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="ar-blue font600">Followup</td>
+                                                      <td class="text-center">43</td>
+                                                      <td class="text-center">35</td>
+                                                      <td class="text-center">79</td>
+                                                      <td class="text-center">96</td>
+                                                      <td class="text-center">78</td>
+                                                      <td class="text-center">56</td>
+                                                      <td class="text-center">34</td>
+                                                      <td class="text-center">90</td>
+                                                      <td class="text-center">64</td>
+                                                      <td class="text-center">50</td>
+                                                      <td class="text-center">45</td>
+                                                      <td class="text-center">60</td>
+                                                      <td class="text-center">50</td>
+                                                      <td class="text-center">45</td>
+                                                      <td class="text-center">53</td>
+                                                      <td class="text-center">43</td>
+                                                      <td class="text-center">87</td>
+                                                      <td class="text-center">55</td>
+                                                      <td class="text-center">80</td>
+                                                      <td class="text-center">70</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="ar-blue font600">Client Assistance</td>
+                                                      <td class="text-center">40</td>
+                                                      <td class="text-center">25</td>
+                                                      <td class="text-center">79</td>
+                                                      <td class="text-center">56</td>
+                                                      <td class="text-center">18</td>
+                                                      <td class="text-center">36</td>
+                                                      <td class="text-center">34</td>
+                                                      <td class="text-center">70</td>
+                                                      <td class="text-center">60</td>
+                                                      <td class="text-center">48</td>
+                                                      <td class="text-center">44</td>
+                                                      <td class="text-center">60</td>
+                                                      <td class="text-center">40</td>
+                                                      <td class="text-center">35</td>
+                                                      <td class="text-center">53</td>
+                                                      <td class="text-center">43</td>
+                                                      <td class="text-center">80</td>
+                                                      <td class="text-center">53</td>
+                                                      <td class="text-center">78</td>
+                                                      <td class="text-center">60</td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td class="ar-blue font600">Completed</td>
+                                                      <td class="text-center">40</td>
+                                                      <td class="text-center">25</td>
+                                                      <td class="text-center">79</td>
+                                                      <td class="text-center">56</td>
+                                                      <td class="text-center">18</td>
+                                                      <td class="text-center">36</td>
+                                                      <td class="text-center">34</td>
+                                                      <td class="text-center">70</td>
+                                                      <td class="text-center">60</td>
+                                                      <td class="text-center">48</td>
+                                                      <td class="text-center">44</td>
+                                                      <td class="text-center">60</td>
+                                                      <td class="text-center">40</td>
+                                                      <td class="text-center">35</td>
+                                                      <td class="text-center">53</td>
+                                                      <td class="text-center">43</td>
+                                                      <td class="text-center">80</td>
+                                                      <td class="text-center">53</td>
+                                                      <td class="text-center">78</td>
+                                                      <td class="text-center">60</td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                            </div>
                         </div>
                     </div>
-
-                    <!-- <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 p-l-0 p-r-0">
-                        <ng-sidebar-container>
-
-                            <ng-sidebar [(opened)]="_opened" [position]="_POSITIONS[_positionNum]" [mode]="_MODES[_modeNum]"
-                            [closeOnClickOutside]="closeOnClickOutside"
-                            style="position: relative !important;">
-
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
-                                            <div class="box-body">
-
-                                                <div class="alert alert-error alert-dismissible" style="padding-right: 10px;">
-                                                    <button type="button" class="close hide" data-dismiss="alert" aria-hidden="true">×</button>
-
-                                                    <h4>Red Alert</h4>
-                                                    <table class="table no-border no-bottom">
-                                                        <tbody><tr>
-                                                            <td class="text-center">&gt;3 Touches</td>
-                                                            <td class="text-center">396</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center">Crossed Due Date</td>
-                                                            <td class="text-center">185</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center">Audit Pending</td>
-                                                            <td class="text-center">201</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td class="text-center">Inprogress Claims</td>
-                                                            <td class="text-center">981</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                                </div>
-                                        </div>
-                                    </div>
-                            </div>
-                            </ng-sidebar>
-                            <div ng-sidebar-content>
-                                <button (click)="_toggleMode();redalert();_togglePosition();_toggleCloseOnClickOutside()" class="a" >
-                                <p>Red Alert</p>
-                                </button>
-                            </div>
-
-
-                            <ng-sidebar [(opened)]="isOpen" [position]="_POSITIONS[_positionNum]" [mode]="_MODES[_modeNum]" [closeOnClickOutside]="closeOnClickOutside">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="margin-top:20px;">
-                                            <div class="box-body">
-                                                <div class="alert alert-info alert-dismissible">
-                                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                                    <h4>My Notes</h4>
-                                                  <p class=""> Weekly Reports Due on 12/05/2018</p>
-                                                </div>
-
-                                        </div>
-                                    </div>
-                            </div>
-                            </ng-sidebar>
-                            <div ng-sidebar-content>
-                                <button class="b" (click)="mynotes();">
-                                <p>My Notes </p>
-                                </button>
-                            </div>
-
-                     </ng-sidebar-container>
-                </div> -->
                 </div>
             </section>
-        <!-- <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12" style="margin-top:20px;">
-            <div class="col-lg-12 p-l-0">
-                <div class="box-body" style="position: fixed;top: 220px;right: 7px;">
-
-
-                    <div class="alert alert-error alert-dismissible" style="padding-right: 10px;">
-                        <button type="button" class="close hide" data-dismiss="alert" aria-hidden="true">×</button>
-
-                        <h4>Red Alert</h4>
-                        <table class="table no-border no-bottom">
-                            <tbody><tr>
-                                <td class="text-center">&gt;3 Touches</td>
-                                <td class="text-center">396</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">Crossed Due Date</td>
-                                <td class="text-center">185</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">Audit Pending</td>
-                                <td class="text-center">201</td>
-                            </tr>
-                            <tr>
-                                <td class="text-center">Inprogress Claims</td>
-                                <td class="text-center">981</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    </div>
-
-
-                    <div class="alert alert-info alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h4>My Notes</h4>
-                      <p class=""> Weekly Reports Due on 12/05/2018</p>
-                    </div>
-
-                </div>
-            </div>
-        </div>   -->

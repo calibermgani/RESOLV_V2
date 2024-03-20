@@ -43,6 +43,7 @@ export class LoginComponent implements OnInit {
   handleResponse(data:any){
     //console.log(data);
     this.Token.handle(data.access_token);
+    //  localStorage.setItem('role_id',data.user.role_id);
     // this.setus.setId(data.user.id,data.user.firstname,data.role[0],data.user.role_id);
     this.setus.setId(data.user.id,data.user.firstname);
     this.auth.changeAuthStatus(true);

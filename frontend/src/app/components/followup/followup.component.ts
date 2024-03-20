@@ -213,6 +213,7 @@ reallocate_total_row:any;
           this.GridrowData3 = this.completed_claims;
           this.myGrid_3.api.setRowData(this.GridrowData3);
           this.gridApi_3.closeToolPanel();
+          this.myGrid_3.api?.sizeColumnsToFit();
           this.loader.stop();
           this.completed_claims_data = data.data.datas;
           this.total_completed_claims=data.count;
@@ -245,6 +246,7 @@ reallocate_total_row:any;
           this.GridrowData1 = this.allocated_claims;
           this.myGrid_1.api.setRowData(this.GridrowData1);
           this.gridApi_1.closeToolPanel();
+          this.myGrid_1.api?.sizeColumnsToFit();
           this.loader.stop();
           this.assigned_claims = data.data.datas;
           this.total_allocated=data.count;
@@ -279,8 +281,8 @@ reallocate_total_row:any;
         if(data){
           this.reallocated_claims=data.data.datas;
           this.GridrowData2 = this.reallocated_claims;
-          this.myGrid_2.api.setRowData(this.GridrowData2);
-          this.gridApi_2.closeToolPanel();
+          // this.myGrid_2.api.setRowData(this.GridrowData2);
+          // this.gridApi_2.closeToolPanel();
           this.loader.stop();
           this.reassigned_claims_data = data.data.datas;
           this.total_reallocated=data.count;
@@ -293,8 +295,8 @@ reallocate_total_row:any;
         else
         {
           this.GridrowData2 = [];
-          this.myGrid_2.api.setRowData(this.GridrowData2);
-          this.gridApi_2.closeToolPanel();
+          // this.myGrid_2.api.setRowData(this.GridrowData2);
+          // this.gridApi_2.closeToolPanel();
           this.loader.stop();
         }
         console.log('reallocated_claims',this.reallocated_claims);
@@ -1001,6 +1003,9 @@ this.getclaim_details(1,'all',null,null,'null','null',null,null,null,null);
 public assign_page_data(data:any)
 {
   this.workorder_table=data.data;
+ setTimeout(() => {
+  this.myGrid_1.api?.sizeColumnsToFit();
+ }, 1000);
 //  console.log(this.workorder_table);
   this.total=data.total;
   this.loader.stop();
@@ -2586,7 +2591,9 @@ public updatenotes(type:any){
     if(this.auth.tokenValue.value == true)
     {let data = localStorage.getItem('token');
     this.auth.login(data);}
-
+    setTimeout(() => {
+      this.getclaim_details(1,'allocated','null','null','null','null','null','null','null','null')
+    }, 1000);
   }
 
   ngOnDestroy(){

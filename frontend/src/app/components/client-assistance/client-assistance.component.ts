@@ -16,6 +16,7 @@ import { NgbDatepickerConfig, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 // import { NgbDateCustomParserFormatter} from '../../date_file';
 import { NotesHandlerService } from '../../Services/notes-handler.service';
 import * as moment from 'moment';
+import { AuthService } from 'src/app/Services/auth.service';
 
 
 @Component({
@@ -81,6 +82,7 @@ export class ClientAssistanceComponent implements OnInit {
   private datepipe: DatePipe,
   private date_config  : NgbDatepickerConfig,
   private calendar: NgbCalendar,
+  private auth : AuthService,
   private notes_hadler:NotesHandlerService,) {
 
     this.observalble=this.setus.update_edit_perm().subscribe(message => {this.check_edit_permission(message)} );
@@ -1537,6 +1539,9 @@ ngAfterViewInit()
   {
     this.touch_count=this.notify_service.manual_touch_limit();
   }
+  if(this.auth.tokenValue.value == true)
+    {let data = localStorage.getItem('token');
+    this.auth.login(data);}
 }
 
 ngOnDestroy(){

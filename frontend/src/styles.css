@@ -371,3 +371,7 @@ input[type=radio]:focus {
   clear: both;
   display: table;
 }
+
+input[type=checkbox]:before {
+  border: none !important;
+}

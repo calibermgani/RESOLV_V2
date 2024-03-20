@@ -1081,6 +1081,7 @@ export class DashboardComponent implements OnInit {
 
   }
 
+  userrole:any;
   ngAfterViewInit() {
     console.log('LAST IN DASHBOARD COMP');
 
@@ -1088,6 +1089,8 @@ export class DashboardComponent implements OnInit {
     if(this.auth.tokenValue.value == true )
     {let data = localStorage.getItem('token');
     this.auth.login(data);
+
+    this.userrole = localStorage.getItem('role_id');
   }
 //  if(localStorage.getItem('role') =='Admin'){
 //       this.auth.tokenValue.next(true);

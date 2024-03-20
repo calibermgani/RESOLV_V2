@@ -6,17 +6,17 @@
             <!-- <ngx-loading-bar color="#f39c12"></ngx-loading-bar> -->
             <div class="tabs nav-tabs-custom">
                <ul class="tabs nav nav-tabs">
-                  <li *ngIf="(user_role == 1 || user_role == 2)" [ngClass]="class_change.tab1" (click)="get_month_details()"><a href="#tab_4" data-toggle="tab"><i class="fa fa-dashboard"></i> Dashboard <span class="tab-divider">|</span></a> </li>
-                  <li *ngIf="(user_role == 1 || user_role != 2)" ><a href="#tab_5" data-toggle="tab" style="padding-left: 0px;" (click)="getclaim_details(1,'allocated','null','null','null','null','null','null','null','null');  getclaim_details(1,'reallocated','null','null','null','null','null','null','null','null');" ><i class="fa fa-share"></i> Assigned Claims <span class="tab-divider">|</span></a></li>
+                  <!-- <li *ngIf="(user_role == 1 || user_role == 2)"  (click)="get_month_details()"><a href="#tab_4" data-toggle="tab"><i class="fa fa-dashboard"></i> Dashboard <span class="tab-divider">|</span></a> </li> -->
+                  <li *ngIf="(user_role == 1 || user_role != 2)" [ngClass]="class_change.tab1" ><a href="#tab_5" data-toggle="tab" style="padding-left: 0px;" (click)="getclaim_details(1,'allocated','null','null','null','null','null','null','null','null'); " ><i class="fa fa-share"></i> Assigned Claims </a></li>
                   <!-- <li *ngIf="(!user_role == 2 || user_role == 1)"><a href="#tab_6" data-toggle="tab" style="padding-left: 0px;" (click)="getclaim_details(1,'reallocated','null','null','null','null');"><i class="fa fa-retweet"></i>Reassigned Claims <span class="tab-divider">|</span></a></li> -->
-                  <li *ngIf="(user_role == 1 || user_role != 2)"><a href="#tab_3" data-toggle="tab" style="padding-left: 0px;" (click)="getclaim_details(1,'completed','null','null','null','null','null','null','null','null');"><i class="fa fa-stop-circle-o"></i>Closed Claims<span class="tab-divider">|</span></a></li>
+                  <!-- <li *ngIf="(user_role == 1 || user_role != 2)"><a href="#tab_3" data-toggle="tab" style="padding-left: 0px;" (click)="getclaim_details(1,'completed','null','null','null','null','null','null','null','null');"><i class="fa fa-stop-circle-o"></i>Closed Claims<span class="tab-divider">|</span></a></li> -->
                   <!--<li *ngIf="user_role == 2" [ngClass]="class_change.tab2"><a href="#tab_2" data-toggle="tab" style="padding-left: 0px;" (click)="getclaim_details(1,'wo','null','null');"><i class="fa fa-file-text"></i> Claim Status <span class="tab-divider">|</span></a></li>
-                     <li *ngIf="user_role == 2"><a href="#tab_5" data-toggle="tab" style="padding-left: 0px;" (click)="getclaim_details(1,'allocated','null','null');"><i class="fa fa-retweet"></i>Assigned Claims <span class="tab-divider">|</span></a></li>
+                     <li *ngIf="user_role == 2"><a href="#tab_5" data-toggle="tab" style="padding-left: 0px;" (click)="getclaim_details(1,'allocated','null','null');"><i class="fa fa-retweet"></i>Assigned Claims <span class="tab-divider">|</span></a></li> getclaim_details(1,'reallocated','null','null','null','null','null','null','null','null');
 
                      <li *ngIf="user_role == 2"><a href="#tab_3" data-toggle="tab" style="padding-left: 0px;" (click)="getclaim_details(1,'completed','null','null');"><i class="fa fa-drivers-license"></i>Worked Claims<span class="tab-divider">|</span></a></li> -->
                </ul>
                <div class="tab-content no-padding">
-                  <div [ngClass]="class_change_tab['tab1']" id="tab_4">
+                  <!-- <div [ngClass]="class_change_tab['tab1']" id="tab_4">
                      <div class="row">
                         <div class="col-md-6 col-sm-6 col-lg-6">
                            <app-summary></app-summary>
@@ -27,11 +27,8 @@
                                  <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue mr-2"></i>Month wise Summary</h3>
                               </div>
                               <div class="box no-shadow no-border">
-                                <!-- /.box-header -->
                                 <div class="box-body no-padding">
                                   <div class="box no-shadow no-bottom" style="border-top: 1px solid #d8dbe4;">
-                                    <!-- /.box-header -->
-
                                     <div class="box-body no-padding collapse in" style="" id="box13">
                                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table ">
                                         <div class="col-lg-6" style="border-right: 1px dashed #fff">
@@ -42,17 +39,6 @@
                                           <p class="text-dark">QC Passed<span class="pull-right">617</span></p>
                                           <p class="text-dark">Error pending<span class="pull-right">2</span></p>
                                         </div>
-                                        <!-- <div class="col-lg-6">
-                                          <p class="text-dark"><span class="pull-right ">{{work_status['followup']}}</span></p>
-                                          <p class="text-dark">Audit Claims <span class="pull-right">{{work_status['auditclaims']}}</span></p>
-                                          <p class="text-dark">&gt;3 Touches <span class="pull-right">{{work_status['3touches']}}</span></p>
-                                        </div> -->
-                                        <!-- <div class="col-lg-4">
-                                          <h5 class="ar-blue" style="font-weight: 600;"><i class="fa fa-bars ar-blue margin-r-5"></i> MTD Production &amp; Quality</h5>
-                                          <p class="text-dark">Production Score <span class="pull-right">98%</span></p>
-                                          <p class="text-dark">Quality Score <span class="pull-right">92%</span></p>
-                                          <p class="text-dark">Resolution Score <span class="pull-right">79%</span></p>
-                                        </div> -->
                                       </div>
                                     </div>
                                   </div>
@@ -65,10 +51,9 @@
                      <div class="row">
                         <div class="col-md-6 col-sm-6 col-lg-6">
                            <div class="box no-shadow no-border">
-                              <!-- /.box-header -->
                               <div class="box-body no-padding">
                                  <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
-                                    <!-- /.box-header -->
+
                                     <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                        <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> My Production and Quality</h3>
                                        <div class="box-tools pull-right">
@@ -84,7 +69,6 @@
                                                 <thead>
                                                    <tr>
                                                       <th class="font600  line-height-24"></th>
-                                                      <!-- <th *ngFor="let wnos of weeks ; let i=index " class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" [attr.colspan]="col_span[i]">Week {{i+1}}</th> -->
                                                       <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 1</th>
                                                          <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 2</th>
                                                          <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 3</th>
@@ -93,7 +77,39 @@
                                                 </thead>
                                                 <tbody>
                                                    <tr>
-                                                    <td></td>
+                                                    <td class="text-center">Target</td>
+                                                    <td class="text-center" colspan="5">40</td>
+                                                    <td class="text-center" colspan="5">200</td>
+                                                    <td class="text-center" colspan="5">200</td>
+                                                    <td class="text-center" colspan="5">300</td>
+                                                   </tr>
+                                                   <tr>
+                                                    <td class="text-center">Achieved</td>
+                                                    <td class="text-center" colspan="5">41</td>
+                                                    <td class="text-center" colspan="5">212</td>
+                                                    <td class="text-center" colspan="5">197</td>
+                                                    <td class="text-center" colspan="5">200</td>
+                                                   </tr>
+                                                   <tr>
+                                                    <td class="text-center">Achieved %</td>
+                                                    <td class="text-center" colspan="5">41</td>
+                                                    <td class="text-center" colspan="5">212</td>
+                                                    <td class="text-center" colspan="5">197</td>
+                                                    <td class="text-center" colspan="5">200</td>
+                                                   </tr>
+                                                   <tr>
+                                                    <td class="text-center">Quality %</td>
+                                                    <td class="text-center" colspan="5">41</td>
+                                                    <td class="text-center" colspan="5">212</td>
+                                                    <td class="text-center" colspan="5">197</td>
+                                                    <td class="text-center" colspan="5">200</td>
+                                                   </tr>
+                                                   <tr>
+                                                    <td class="text-center">Excess</td>
+                                                    <td class="text-center" colspan="5">41</td>
+                                                    <td class="text-center" colspan="5">212</td>
+                                                    <td class="text-center" colspan="5">197</td>
+                                                    <td class="text-center" colspan="5">200</td>
                                                    </tr>
                                                 </tbody>
                                              </table>
@@ -105,20 +121,38 @@
                            </div>
                         </div>
                         <div class="col-md-6 col-sm-6 col-lg-6">
-                           <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
-                              <!-- <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
-                                 <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Recent Activities</h3>
-                              </div> -->
-                           </div>
+                          <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
+                            <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                               <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue mr-2"></i>Team Performance</h3>
+                            </div>
+                            <div class="box no-shadow no-border">
+                              <div class="box-body no-padding">
+                                <div class="box no-shadow no-bottom" style="border-top: 1px solid #d8dbe4;">
+
+                                  <div class="box-body no-padding collapse in" style="" i d="box13">
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table ">
+                                      <div class="col-lg-6" style="border-right: 1px dashed #fff">
+                                        <p class="text-dark">MTD Team Target<span class="pull-right">1680</span></p>
+                                        <p class="text-dark">Total Worked <span class="pull-right">1597</span></p>
+                                        <p class="text-dark">Excess <span class="pull-right">83</span></p>
+                                        <p class="text-dark">Month target to <span class="pull-right">2520</span></p>
+                                        <p class="text-dark">QC Passed<span class="pull-right">617</span></p>
+                                        <p class="text-dark">RM rate regd<span class="pull-right">132/day</span></p>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+
+                         </div>
                         </div>
                      </div>
                      <div class="row">
                         <div class="col-lg-6">
                            <div class="box no-shadow no-border">
-                              <!-- /.box-header -->
                               <div class="box-body no-padding">
                                  <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
-                                    <!-- /.box-header -->
                                     <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                        <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Individual Performance</h3>
                                        <div class="box-tools pull-right">
@@ -128,17 +162,8 @@
                                        </div>
                                     </div>
                                     <div class="box-body no-padding collapse in" style="margin-top:20px;" id="individual">
-                                       <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table ">
-                                          <div class="box-body no-padding" style="margin-top:20px;"> -->
                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table ">
-                                          <!-- <fusioncharts
-                                             width=320
-                                             type="multilevelpie"
-                                             [dataSource]=chart_val >
-                                          </fusioncharts> -->
                                        </div>
-                                       <!-- </div>
-                                          </div> -->
                                        <div class="col-lg-12" style="border-top:1px solid #dee0e8;">
                                           <div class="col-lg-4">
                                              <h5 style="margin-top:20px;margin-bottom: 5px" class="text-center">Assigned Cliams</h5>
@@ -158,107 +183,10 @@
                               </div>
                            </div>
                         </div>
-                        <!-- <div class="col-lg-6">
-                           <div class="box no-shadow no-border">
-                              <div class="box-body no-padding">
-                                 <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
-                                    <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
-                                       <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Top 5 Performers</h3>
-                                       <div class="box-tools pull-right">
-                                          <button type="button" class="btn btn-box-tool" style="margin-left:10px;" data-widget="collapse" data-toggle="collapse" data-target="#top-5">
-                                          <i class="fa fa-plus"></i>
-                                          </button>
-                                       </div>
-                                    </div>
-                                    <div class="box-body no-padding collapse in" style="margin-top:10px;" id="top-5">
-                                       <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 perfomer-table ">
-                                          <table class="table table-striped" style="margin-top:10px;">
-                                             <tbody>
-                                                <tr>
-                                                   <td>
-                                                   </td>
-                                                   <td>1</td>
-                                                   <td>Chris Smith</td>
-                                                   <td>AR Analyst</td>
-                                                   <td>90.3% Accuracy</td>
-                                                </tr>
-                                                <tr>
-                                                   <td>
-                                                   </td>
-                                                   <td>2</td>
-                                                   <td>Chris Smith</td>
-                                                   <td>AR Caller</td>
-                                                   <td>85.3% Accuracy</td>
-                                                </tr>
-                                                <tr>
-                                                   <td>
-                                                   </td>
-                                                   <td>3</td>
-                                                   <td>Chris Smith</td>
-                                                   <td>AR Caller</td>
-                                                   <td>95.3% Accuracy</td>
-                                                </tr>
-                                                <tr>
-                                                   <td>
-                                                   </td>
-                                                   <td>4</td>
-                                                   <td>Mike Hussey</td>
-                                                   <td>AR Analyst</td>
-                                                   <td>95.0% Accuracy</td>
-                                                </tr>
-                                                <tr>
-                                                   <td><img src="http://gravatar.com/avatar/2c0ad52fc5943b78d6abe069cc08f320?s=32" class="user-image" style="width:32px;border-radius: 50%;"></td>
-                                                   <td>5</td>
-                                                   <td>David Miller</td>
-                                                   <td>AR Caller</td>
-                                                   <td>94.1% Accuracy</td>
-                                                </tr>
-                                                <tr>
-                                                   <td>
-                                                   </td>
-                                                   <td>6</td>
-                                                   <td>Ricky Pointing</td>
-                                                   <td>AR Analyst</td>
-                                                   <td>93.8% Accuracy</td>
-                                                </tr>
-                                                <tr>
-                                                   <td>
-                                                   </td>
-                                                   <td>7</td>
-                                                   <td>David Willey</td>
-                                                   <td>AR Caller</td>
-                                                   <td>93.6% Accuracy</td>
-                                                </tr>
-                                                <tr>
-                                                   <td>
-                                                   </td>
-                                                   <td>8</td>
-                                                   <td>David</td>
-                                                   <td>AR Caller</td>
-                                                   <td>90.6% Accuracy</td>
-                                                </tr>
-                                                <tr style="background: #e0f4fc">
-                                                   <td>
-                                                   </td>
-                                                   <td>14</td>
-                                                   <td>John</td>
-                                                   <td>AR Analyst</td>
-                                                   <td>87.5% Accuracy</td>
-                                                </tr>
-                                             </tbody>
-                                          </table>
-                                       </div>
-                                    </div>
-                                 </div>
-                              </div>
-                           </div>
-                        </div> -->
                      </div>
                      <div class="box no-shadow no-border">
-                        <!-- /.box-header -->
                         <div class="box-body no-padding">
                            <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
-                              <!-- /.box-header -->
                               <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                  <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Status Wise Summary</h3>
                                  <div class="box-tools pull-right" style="margin-top:1px;">
@@ -267,16 +195,6 @@
                                        <option value="option2">Insurance</option>
                                        <option value="option3">Worked</option>
                                     </select>
-                                    <!-- <span class="select2 select2-container select2-container--default" dir="ltr" style="width: 98px;">
-                                       <span class="selection">
-                                           <span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-size_select-container">
-                                               <span class="select2-selection__rendered" id="select2-size_select-container" title="Assigned">Assigned</span>
-                                               <span class="select2-selection__arrow" role="presentation"><b role="presentation"></b>
-                                               </span>
-                                           </span>
-                                       </span>
-                                       <span class="dropdown-wrapper" aria-hidden="true"></span>
-                                       </span> -->
                                  </div>
                               </div>
                               <div class="box-body no-padding" style="margin-top:20px;">
@@ -438,24 +356,12 @@
                                                 <td>70</td>
                                                 <td class="text-red font600">
                                                    <span class="spnDetails">15</span>
-                                                   <!-- <span class="spnTooltip">
-                                                      <strong class="ar-blue">09/04 : 75% Achieved</strong><br>
-                                                      This is the alert message for the accuracy below 70% in the target achieved
-                                                      </span> -->
                                                 </td>
                                                 <td class="text-red font600">
                                                    <span class="spnDetails">10</span>
-                                                   <!-- <span class="spnTooltip">
-                                                      <strong class="ar-blue">09/05 : 23% Achieved</strong><br>
-                                                      This is the alert message for the accuracy below 70% in the target achieved
-                                                      </span> -->
                                                 </td>
                                                 <td class="text-red font600">
                                                    <span class="spnDetails">20</span>
-                                                   <!-- <span class="spnTooltip">
-                                                      <strong class="ar-blue">09/06 : 70% Achieved</strong><br>
-                                                      This is the alert message for the accuracy below 70% in the target achieved
-                                                      </span> -->
                                                 </td>
                                                 <td>34</td>
                                                 <td>62</td>
@@ -466,10 +372,6 @@
                                                 <td>40</td>
                                                 <td class="text-red font600">
                                                    <span class="spnDetails">14</span>
-                                                   <!-- <span class="spnTooltip">
-                                                      <strong class="ar-blue">09/06 : 72% Achieved</strong><br>
-                                                      This is the alert message for the accuracy below 70% in the target achieved
-                                                      </span> -->
                                                 </td>
                                                 <td>53</td>
                                                 <td>38</td>
@@ -591,24 +493,12 @@
                                              <td>70</td>
                                              <td class="text-red font600">
                                                 <span class="spnDetails">15</span>
-                                                <!-- <span class="spnTooltip">
-                                                   <strong class="ar-blue">09/04 : 75% Achieved</strong><br>
-                                                   This is the alert message for the accuracy below 70% in the target achieved
-                                                   </span> -->
                                              </td>
                                              <td class="text-red font600">
                                                 <span class="spnDetails">10</span>
-                                                <!-- <span class="spnTooltip">
-                                                   <strong class="ar-blue">09/05 : 23% Achieved</strong><br>
-                                                   This is the alert message for the accuracy below 70% in the target achieved
-                                                   </span> -->
                                              </td>
                                              <td class="text-red font600">
                                                 <span class="spnDetails">20</span>
-                                                <!-- <span class="spnTooltip">
-                                                   <strong class="ar-blue">09/06 : 70% Achieved</strong><br>
-                                                   This is the alert message for the accuracy below 70% in the target achieved
-                                                   </span> -->
                                              </td>
                                              <td>34</td>
                                              <td>62</td>
@@ -619,10 +509,6 @@
                                              <td>40</td>
                                              <td class="text-red font600">
                                                 <span class="spnDetails">14</span>
-                                                <!-- <span class="spnTooltip">
-                                                   <strong class="ar-blue">09/06 : 72% Achieved</strong><br>
-                                                   This is the alert message for the accuracy below 70% in the target achieved
-                                                   </span> -->
                                              </td>
                                              <td>53</td>
                                              <td>38</td>
@@ -812,8 +698,8 @@
                            </div>
                         </div>
                      </div>
-                  </div>
-                <div class="tab-pane" id="tab_5">
+                  </div> -->
+                <div [ngClass]="class_change_tab['tab1']" id="tab_5">
                     <!-- <div class="box no-shadow no-border">
                       <div class="box-body no-padding">
                          <div class="row">
@@ -2325,19 +2211,19 @@
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding" style="border-top: 5px solid #e9ecf3;border-bottom: 3px solid #e9ecf3;">
                <div class="box-tools pull-right">
-                  <a aria-expanded="false" class="cur-pointer collapsed" data-target="#Process_Notes" data-toggle="collapse" style="margin-right: 15px;font-size: 16px;" title="Process Notes">
+                  <!-- <a aria-expanded="false" class="cur-pointer collapsed" data-target="#Process_Notes" data-toggle="collapse" style="margin-right: 15px;font-size: 16px;" title="Process Notes">
                      <span style="text-decoration: underline">Process Notes</span>
-                  </a>
+                  </a> -->
                   <a aria-expanded="false" class="cur-pointer collapsed" data-target="#Claim_Note" data-toggle="collapse" style="margin-right: 15px;font-size: 16px;" title="Claim Notes">
                      <span style="text-decoration: underline">Claim Notes</span>
                   </a>
                   <a *ngIf="type == 'reallocated'" aria-expanded="false" class="cur-pointer collapsed" data-target="#QC_Note" data-toggle="collapse" style="margin-right: 15px;font-size: 16px;" title="QC Notes">
                      <span style="text-decoration: underline">QC Notes</span>
                   </a>
-                  <a data-toggle="collapse" data-target="#followupview" class="cur-pointer collapsed" title="Followup View" style="margin-right: 15px;font-size: 16px;" aria-expanded="false" (click)="send_calim_det('followup')"><i class="fa fa-external-link-square" title="Followup Template View" ></i> <span style="text-decoration: underline">F.Template View</span></a>
+                  <!-- <a data-toggle="collapse" data-target="#followupview" class="cur-pointer collapsed" title="Followup View" style="margin-right: 15px;font-size: 16px;" aria-expanded="false" (click)="send_calim_det('followup')"><i class="fa fa-external-link-square" title="Followup Template View" ></i> <span style="text-decoration: underline">F.Template View</span></a>
                   <span *ngIf="curr_reassigned_claims.includes(claim_clicked.claim_no) == false">
-                  <!-- <a *ngIf="edit_permission==true" data-toggle="collapse" data-target="#followup-list3" (click)="send_calim_det('followup')" class="cur-pointer collapsed" title="Followup Template" style="margin-right: 15px;font-size: 16px;" aria-expanded="false"><i class="fa fa-headphones" title="Followup Template"></i> <span style="text-decoration: underline">F.Template</span></a> -->
-                  </span>
+                  <a *ngIf="edit_permission==true" data-toggle="collapse" data-target="#followup-list3" (click)="send_calim_det('followup')" class="cur-pointer collapsed" title="Followup Template" style="margin-right: 15px;font-size: 16px;" aria-expanded="false"><i class="fa fa-headphones" title="Followup Template"></i> <span style="text-decoration: underline">F.Template</span></a>
+                  </span> -->
 
                   <!-- <a data-toggle="collapse" href="#y{{x.id}}" class="cur-pointer collapsed" title="Followup View" style="margin-right: 15px;font-size: 16px;" aria-expanded="false" (click)="send_calim_det('followup')">
                      <i class="fa fa-external-link-square" title="Followup Template View"></i>
@@ -3055,7 +2941,8 @@
    </div>
    <div class="modal-footer">
       <button type="button" class="btn btn-default btn-sm" data-dismiss="modal" (click)="modalRef2?.hide();close_clear_data();">Close</button>
-      <button type="button" [disabled] = "!modalform.valid" class="btn btn-info btn-sm" (click)="savenotes('claimnotes');modalRef2?.hide()"  *ngIf="!editnote_value">Sav</button>
+      <button type="button" [disabled] = "!modalform.valid" class="btn btn-info btn-sm" (click)="savenotes('claimnotes');modalRef2?.hide()"  *ngIf="!editnote_value">Save</button>
+      <button type="button" [disabled] = "!modalform.valid" class="btn btn-info btn-sm"  *ngIf="!editnote_value">Save and Submit</button>
       <button type="button" [disabled] = "!modalform.valid" (click)="updatenotes('claimnotes');modalRef2?.hide()"  class="btn btn-info btn-sm" *ngIf="editnote_value">Update</button>
    </div>
 </ng-template>

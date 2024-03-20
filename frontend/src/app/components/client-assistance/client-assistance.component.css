@@ -121,6 +121,6 @@
   position: relative;
  }
 
- input[type=checkbox]:before {
+ :host input[type=checkbox]:before {
   border: 0px !important;
 }

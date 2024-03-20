@@ -6013,7 +6013,7 @@
             </td>
             <td *ngIf="selected_associates.includes(assts.id) && claim_assign_type == 'Manual'"><input type="text"
                 value="{{assigned_data[assts.id]}}" size="3" (keyup)="manual_assign($event,assts.id)" knifeOnlyNumbers
-                [(ngModel)]="associateCount"></td>
+                ></td>
             <td *ngIf="selected_associates.includes(assts.id) && claim_assign_type == 'Auto'"><input type="text"
                 value="0" size="2" disabled></td>
           </tr>

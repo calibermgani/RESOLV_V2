@@ -2721,6 +2721,11 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     this.assigntype_reset = this.assign_type(this.type);
     this.assigntype_reset = '';
     this.associateCount = '';
+    this.assigned_claim_nos  = 0;
+    this.assigned_data = [];
+    this.selected_associates = [];
+    this.claim_assign_type = '';
+    this.assigned_claims_details = [];
   }
 
   public work_order_notify(data: any) {
@@ -2764,6 +2769,7 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
       this.associates_detail[i].isChecked = val;
     }
     this.associateCount = '';
+    this.selected_associates = [];
   }
 
   public clear_fields() {

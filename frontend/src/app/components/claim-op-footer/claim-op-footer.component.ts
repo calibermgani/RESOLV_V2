@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef, ViewEncapsulation, Input, OnDestroy, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewEncapsulation, Input, OnDestroy, EventEmitter, Output, ViewChild } from '@angular/core';
 import { JarwisService } from '../../Services/jarwis.service';
 import { LoadingBarService } from '@ngx-loading-bar/core';
 import { SetUserService } from '../../Services/set-user.service';
@@ -457,8 +457,8 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
     this.sub_status_codes_data = data.sub_status;
     for (let i = 0; i < this.status_codes_data.length; i++) {
       if (this.status_codes_data[i]['status'] == 1) {
-        // alert(this.status_codes_data[i]['status_code']);
-        status_option.push({ id: this.status_codes_data[i]['id'], description: this.status_codes_data[i]['status_code'] + '-' + this.status_codes_data[i]['description'] });
+        // alert(this.status_codes_data[i]['status_code']);    //////   '-' + this.status_codes_data[i]['description']
+        status_option.push({ id: this.status_codes_data[i]['id'], description: this.status_codes_data[i]['status_code']});
       }
     }
     this.options = status_option;
@@ -478,6 +478,7 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
     } */
   }
 
+  @ViewChild('option1') option1!: TemplateRef<any>;
   //Handle Claim Code Changed event
   public status_code_changed(event: any) {
     console.log('event', event.type);
@@ -540,6 +541,7 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
         sub_status_code: { id: this.selected_claim_data['substatus_code'], description: this.sub_options[index]['description'] }
       });
     }
+    // this.openModal(this.option1);
   }
 
   //Configuration of Dropdown Search
@@ -787,8 +789,10 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
   }
 
   openModal(model_name: TemplateRef<any>) {
-    console.log('IN');
     this.modalRef = this.modal.show(model_name, this.config);
+  }
+  closeModal(modal_name: any){
+   this.modal.hide(modal_name);
   }
 
   public followup_process_notes() {

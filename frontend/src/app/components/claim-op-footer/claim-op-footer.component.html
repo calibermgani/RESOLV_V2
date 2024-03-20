@@ -119,3 +119,68 @@
     <button type="button" ngbAutofocus class="btn btn-danger" (click)="modalRef?.hide()">No</button>
   </div>
 </ng-template>
+
+<ng-template #option1 let-modal>
+  <div class="modal-header">
+    <button type="button" class="close" (click)="modalRef?.hide();" aria-label="Close">
+    <span aria-hidden="true">×</span></button>
+    <ul class="nav nav-tabs no-border">
+       <li class="testClass">
+          <a href="#{main_tab}" data-toggle="tab" class="no-padding">
+          <h4 class="modal-title list-heading">Option 1</h4>
+          </a>
+       </li>
+       <!-- <li class="testClass" >
+       <a data-toggle="tab">
+          <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">×</span></button>
+          <h4 class="modal-title list-heading">Option 1</h4>
+       </a>
+       </li> -->
+    </ul>
+ </div>
+  <div class="table-responsive" style="padding:0 5px">
+    <table class="table-striped1 table">
+       <thead>
+          <tr>
+            <th class="font600  line-height-24" colspan="12">Claim denied for lack of additional information</th>
+            <!-- <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 1</th>
+            <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 2</th>
+            <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 3</th> -->
+          </tr>
+       </thead>
+       <tbody>
+          <tr>
+           <td class="text-center" colspan="2">1</td>
+           <td class="text-center" colspan="10">May I know the Claim received date and denial date?</td>
+           <td class="text-center" colspan="5">May I know what additonal information is required and from whom?	</td>
+           <td class="text-center" colspan="5">200</td>
+          </tr>
+          <tr>
+           <td class="text-center">Achieved</td>
+           <td class="text-center" colspan="5">41</td>
+           <td class="text-center" colspan="5">212</td>
+           <td class="text-center" colspan="5">197</td>
+          </tr>
+          <tr>
+           <td class="text-center">Achieved %</td>
+           <td class="text-center" colspan="5">101</td>
+           <td class="text-center" colspan="5">112</td>
+           <td class="text-center" colspan="5">97</td>
+          </tr>
+          <tr>
+           <td class="text-center">Quality %</td>
+           <td class="text-center" colspan="5">41</td>
+           <td class="text-center" colspan="5">212</td>
+           <td class="text-center" colspan="5">197</td>
+          </tr>
+          <tr>
+           <td class="text-center">Excess</td>
+           <td class="text-center" colspan="5">+1</td>
+           <td class="text-center" colspan="5">+12</td>
+           <td class="text-center" colspan="5">-3</td>
+          </tr>
+       </tbody>
+    </table>
+ </div>
+</ng-template>

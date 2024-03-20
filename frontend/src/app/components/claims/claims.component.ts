@@ -21,7 +21,7 @@ import { NgbDatepickerConfig, NgbCalendar, NgbDate, NgbDateStruct, NgbDateParser
 // import { NgbDateCustomParserFormatter} from '../../date_file';
 import { NotesHandlerService } from '../../Services/notes-handler.service';
 import * as moment from 'moment';
-import { CheckboxSelectionCallbackParams, ColDef, ExcelExportParams, GridApi, GridOptions, GridReadyEvent, HeaderCheckboxSelectionCallbackParams, ICellRendererParams, ILoadingCellRendererParams, SideBarDef, ToolPanelDef } from 'ag-grid-community';
+import { CheckboxSelectionCallbackParams, ColDef, ExcelExportParams, GridApi, GridOptions, GridReadyEvent, HeaderCheckboxSelectionCallbackParams, ICellRendererParams, ILoadingCellRendererParams, RowClassRules, SideBarDef, ToolPanelDef } from 'ag-grid-community';
 import { BsModalRef, BsModalService, ModalDirective, ModalOptions } from 'ngx-bootstrap/modal';
 import { AgGridAngular } from 'ag-grid-angular';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
@@ -7204,7 +7204,6 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     suppressDragLeaveHidesColumns: true,
     suppressContextMenu: true,
   };
-
   gridOptions2: GridOptions<gridData>  = {
     rowSelection: 'multiple',
     rowHeight: 34,

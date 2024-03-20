@@ -15,7 +15,7 @@ import { pipe } from 'rxjs';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { ColDef, GridApi, GridOptions, GridReadyEvent, SideBarDef, ToolPanelDef } from 'ag-grid-community';
+import { ColDef, GridApi, GridOptions, GridReadyEvent, RowClassRules, SideBarDef, ToolPanelDef } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AuthService } from 'src/app/Services/auth.service';
@@ -3132,6 +3132,17 @@ public updatenotes(type:any){
     paginationPageSize: this.paginationSizeValue_assigned,
     suppressDragLeaveHidesColumns: true,
   };
+  public rowClassRules: RowClassRules = {
+    // row style function
+    "appear_red": (params) => {
+      console.log(params.data);
+
+      var numSickDays = params.data.claim_no;
+      console.log(numSickDays);
+      return numSickDays == 196541 ;
+    },
+  };
+
   gridOptions2: GridOptions = {
     defaultColDef: {
       sortable: true,

@@ -686,7 +686,7 @@
                                                                     <td *ngIf="tab_dat.touch >= touch_count" title="Touch Count"><span class="ar-red">{{tab_dat.touch}}</span></td>
                                                                     <!-- <td title="Touch Count"><span audclass="ar-red">{{tab_dat.touch}}</span></td> -->
 
-                                                                    <td tooltip="HtmlContent" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer" (click)="open(claimpage);claimslection(tab_dat);" (mouseover)="tooltip(tab_dat)"><span *ngIf="tab_dat.claim_no==null">-Nil-</span><span *ngIf="tab_dat.claim_no!=null">{{tab_dat.claim_no}}</span></td>
+                                                                    <td tooltip="HtmlContent" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer" (click)="openModal(claimpage);claimslection(tab_dat);" (mouseover)="tooltip(tab_dat)"><span *ngIf="tab_dat.claim_no==null">-Nil-</span><span *ngIf="tab_dat.claim_no!=null">{{tab_dat.claim_no}}</span></td>
 
                                                                     <td tooltip="HtmlContent" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer dos-date" (mouseover)="tooltip(tab_dat)"><span *ngIf="tab_dat.dos==null">-Nil-</span><span *ngIf="tab_dat.dos!=null">{{tab_dat.dos  | date: 'MM/dd/yyyy'}}</span></td>
 
@@ -1063,7 +1063,7 @@
         <h4 class="modal-title list-heading">Claim No: {{claim_clicked.claim_no}}</h4>
     </div> -->
     <div class="modal-header">
-        <button type="button" class="close" (click)="modal.dismiss();clear_refer();" aria-label="Close">
+        <button type="button" class="close" (click)="modalRef?.hide();clear_refer();" aria-label="Close">
             <span aria-hidden="true">×</span>
         </button>
         <ul class="nav nav-tabs">
@@ -1235,19 +1235,19 @@
                 </div>
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding" style="border-top: 5px solid #e9ecf3;border-bottom: 3px solid #e9ecf3;">
                     <div class="box-tools pull-right">
-                       <a aria-expanded="false" class="cur-pointer collapsed" data-target="#Process_Notes" data-toggle="collapse" style="margin-right: 15px;font-size: 16px;" title="Process Notes">
+                       <!-- <a aria-expanded="false" class="cur-pointer collapsed" data-target="#Process_Notes" data-toggle="collapse" style="margin-right: 15px;font-size: 16px;" title="Process Notes">
                           <span style="text-decoration: underline">Process Notes</span>
-                       </a>
+                       </a> -->
                        <a aria-expanded="false" class="cur-pointer collapsed" data-target="#Claim_Note" data-toggle="collapse" style="margin-right: 15px;font-size: 16px;" title="Claim Notes">
                           <span style="text-decoration: underline">Claim Notes</span>
                        </a>
                        <a aria-expanded="false" class="cur-pointer collapsed" data-target="#Client_Notes" data-toggle="collapse" style="margin-right: 15px;font-size: 16px;" title="Client Notes">
                         <span style="text-decoration: underline">Client Notes</span>
                      </a>
-                       <a data-toggle="collapse" data-target="#followupview" class="cur-pointer collapsed" title="Followup View" style="margin-right: 15px;font-size: 16px;" aria-expanded="false" (click)="send_calim_det('followup')"><i class="fa fa-external-link-square" title="Followup Template View" ></i> <span style="text-decoration: underline">F.Template View</span></a>
+                       <!-- <a data-toggle="collapse" data-target="#followupview" class="cur-pointer collapsed" title="Followup View" style="margin-right: 15px;font-size: 16px;" aria-expanded="false" (click)="send_calim_det('followup')"><i class="fa fa-external-link-square" title="Followup Template View" ></i> <span style="text-decoration: underline">F.Template View</span></a>
                           <span *ngIf="curr_reassigned_claims.includes(claim_clicked.claim_no) == false">
                           <a *ngIf="edit_permission==true" data-toggle="collapse" data-target="#followup-list3" (click)="send_calim_det('followup')" class="cur-pointer collapsed" title="Followup Template" style="margin-right: 15px;font-size: 16px;" aria-expanded="false"><i class="fa fa-headphones" title="Followup Template"></i> <span style="text-decoration: underline">F.Template</span></a>
-                          </span>
+                          </span> -->
 
                        <!-- <a data-toggle="collapse" href="#y{{x.id}}" class="cur-pointer collapsed" title="Followup View" style="margin-right: 15px;font-size: 16px;" aria-expanded="false" (click)="send_calim_det('followup')">
                           <i class="fa fa-external-link-square" title="Followup Template View"></i>
@@ -1383,7 +1383,7 @@
                     </div>
                     <app-claim-op-footer></app-claim-op-footer>
                     <div class="text-center close-btn">
-                        <button type="button" class="btn btn-default text-center btn-md" (click)="modal.dismiss()" style="min-width: 80px;">close</button>
+                        <button type="button" class="btn btn-default text-center btn-md" (click)="modalRef?.hide()" style="min-width: 80px;">close</button>
                     </div>
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding " style="background: #f9f9f9;">
                         <div id="client-assistant-list" class="collapse" style="margin-top:10px;">
@@ -1729,7 +1729,7 @@
                     <span *ngIf="refer_claim_editable == 'true'">
                         <app-claim-op-footer></app-claim-op-footer>
                         <div class="text-center close-btn">
-                            <button type="button" class="btn btn-default text-center btn-md" (click)="modal.dismiss()" style="min-width: 80px;">close</button>
+                            <button type="button" class="btn btn-default text-center btn-md" (click)="modalRef?.hide()" style="min-width: 80px;">close</button>
                         </div>
                     </span>
                     <span *ngIf="refer_claim_editable == 'false'">

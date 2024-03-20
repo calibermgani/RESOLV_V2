@@ -155,7 +155,7 @@ export class DashboardComponent implements OnInit {
         },
         data: [
           {
-            label: "AETNA",
+            label: "Aetna",
             value: "50875.58"
           },
           {
@@ -163,23 +163,23 @@ export class DashboardComponent implements OnInit {
             value: "13051"
           },
           {
-            label: "BLUE CROSS BLUE SHIELD",
+            label: "BCBS",
             value: "29888.7"
           },
           {
-            label: "CIGNA HEALTHCARE",
+            label: "Cigna",
             value: "315"
           },
           {
-            label: "GUARANTEE TRUST LIFE",
+            label: "Gurantee",
             value: "250"
           },
           {
-            label: "HEALTH ALLIANCE",
+            label: "Health Alliance",
             value: "101708.98"
           },
           {
-            label: "HUMANA",
+            label: "Humana",
             value: "27786.84"
           },
           {
@@ -187,35 +187,35 @@ export class DashboardComponent implements OnInit {
             value: "31827.48"
           },
           {
-            label: "MEDICARE",
+            label: "ACR",
             value: "21205.44"
           },
           {
-            label: "MEDI-SHARE",
+            label: "M-Share",
             value: "532"
           },
           {
-            label: "MERIDIAN HEALTH PLAN",
+            label: "Meridian",
             value: "18326"
           },
           {
-            label: "MOLINA IPA",
+            label: "Molina",
             value: "50753.78"
           },
           {
-            label: "PHYSICIANS MUTUAL INS CO",
+            label: "Physicians Mutual",
             value: "4802.14"
           },
           {
-            label: "TRICARE EAST REGION",
+            label: "Tricare",
             value: "1573.7"
           },
           {
-            label: "UNITED HEALTH CARE",
+            label: "UTTC",
             value: "28860.87"
           },
           {
-            label: "WELLCARE",
+            label: "Wellcare",
             value: "33971.61"
           },
         ]

@@ -1,4 +1,4 @@
-import { Component,ViewChildren,ElementRef,QueryList,OnInit,ChangeDetectionStrategy,Input, EventEmitter, Output, OnChanges,ViewEncapsulation } from '@angular/core';
+import { Component,ViewChildren,ElementRef,QueryList,OnInit,ChangeDetectionStrategy,Input, EventEmitter, Output, OnChanges,ViewEncapsulation, TemplateRef } from '@angular/core';
 import { SetUserService } from '../../Services/set-user.service';
 import { JarwisService } from '../../Services/jarwis.service';
 import { LoadingBarService } from '@ngx-loading-bar/core';
@@ -17,6 +17,7 @@ import { NgbDatepickerConfig, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { NotesHandlerService } from '../../Services/notes-handler.service';
 import * as moment from 'moment';
 import { AuthService } from 'src/app/Services/auth.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 
 @Component({
@@ -67,6 +68,7 @@ export class ClientAssistanceComponent implements OnInit {
   results:any = [] = [];
   searchResults:any = [] = [];
   selected_val:any = null;
+  modalRef?: BsModalRef;
 
   constructor(
   private formBuilder: FormBuilder,
@@ -83,7 +85,7 @@ export class ClientAssistanceComponent implements OnInit {
   private date_config  : NgbDatepickerConfig,
   private calendar: NgbCalendar,
   private auth : AuthService,
-  private notes_hadler:NotesHandlerService,) {
+  private notes_hadler:NotesHandlerService, private modal: BsModalService,) {
 
     this.observalble=this.setus.update_edit_perm().subscribe(message => {this.check_edit_permission(message)} );
 
@@ -362,6 +364,10 @@ sorting_name:any;
     }, (reason) => {
       this.closeResult = `${this.getDismissReason()}`;
     });
+}
+
+openModal(model_name: TemplateRef<any>) {
+  this.modalRef = this.modal.show(model_name, this.config);
 }
 
 //Modal Dismiss on Clicking Outside the Modal

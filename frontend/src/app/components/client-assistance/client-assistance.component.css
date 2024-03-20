@@ -5,12 +5,12 @@
 }
 }
 
-.custom-class .modal-content {
+ .modal-content {
     right: -178px;
     top: 80px;
 
   }
-  .custom-class .close {
+  .close {
     color: #000;
     opacity: .2;
   }
@@ -84,7 +84,7 @@
     background-color: #9ad9e4 !important;
     color: #646464 !important;
     overflow: visible !important;
-     /*margin-left: -25px !important; 
+     /*margin-left: -25px !important;
     margin-top: 20px !important;*/
   }
   .new-tooltip-class {

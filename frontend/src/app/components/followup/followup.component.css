@@ -213,3 +213,16 @@ cursor: pointer;
 /* .custom-header  {
   background: #686c7d
 } */
+
+.appear_red
+{
+  background-color: #CC333344 !important;
+}
+
+
+    .ag-theme-alpine
+    {
+      --ag-row-hover-color: transparent !important;
+      /* --ag-header-background-color : #594585 !important; */
+       --ag-selected-row-background-color : transparent !important;
+    }

@@ -159,7 +159,7 @@ export class DashboardComponent implements OnInit {
             value: "50875.58"
           },
           {
-            label: "Assist Health Group",
+            label: "AHG",
             value: "13051"
           },
           {
@@ -175,7 +175,7 @@ export class DashboardComponent implements OnInit {
             value: "250"
           },
           {
-            label: "Health Alliance",
+            label: "HA",
             value: "101708.98"
           },
           {
@@ -202,22 +202,22 @@ export class DashboardComponent implements OnInit {
             label: "Molina",
             value: "50753.78"
           },
-          {
-            label: "Physicians Mutual",
-            value: "4802.14"
-          },
-          {
-            label: "Tricare",
-            value: "1573.7"
-          },
-          {
-            label: "UTTC",
-            value: "28860.87"
-          },
-          {
-            label: "Wellcare",
-            value: "33971.61"
-          },
+          // {
+          //   label: "Physicians Mutual",
+          //   value: "4802.14"
+          // },
+          // {
+          //   label: "Tricare",
+          //   value: "1573.7"
+          // },
+          // {
+          //   label: "UTTC",
+          //   value: "28860.87"
+          // },
+          // {
+          //   label: "Wellcare",
+          //   value: "33971.61"
+          // },
         ]
       };
       dataSource2 = {
@@ -268,15 +268,15 @@ export class DashboardComponent implements OnInit {
         },
         data: [
           {
-            label: "Approved To pay",
+            label: "ATP",
             value: "44.88"
           },
           {
-            label: "Authorization",
+            label: "Hospic",
             value: "2,445.57"
           },
           {
-            label: "Claim not on File",
+            label: "CNOF",
             value: "75.00"
           },
           {
@@ -284,19 +284,19 @@ export class DashboardComponent implements OnInit {
             value: "4,728.88"
           },
           {
-            label: "Claim Rejected as Missing/Invalid Information",
+            label: "Claim Rejected",
             value: "616.96"
           },
           {
-            label: "Clearing House Rejection",
+            label: "CHR",
             value: "93.26"
           },
           {
-            label: "Incorrectly Processed ",
+            label: "ICP",
             value: "403.04"
           },
           {
-            label: "Missing Primary EOB",
+            label: "MP EOB",
             value: "1,892.27"
           },
           {
@@ -305,25 +305,14 @@ export class DashboardComponent implements OnInit {
           },
 
           {
-            label: "No Original Claim on File",
+            label: "Inclusive",
             value: "38.24"
           },
           {
-            label: "Past Timely Filing",
+            label: "PTF",
             value: "6,801.84"
           },
-          {
-            label: "Primary/Secondary 11th Set",
-            value: "3,447.47"
-          },
-          {
-            label: "Primary/Secondary 12th Set",
-            value: "10.00"
-          },
-          {
-            label: "Past Timely Filing",
-            value: "6,801.84"
-          }
+
         ]
       }
       dataSource4 = {
@@ -521,7 +510,7 @@ export class DashboardComponent implements OnInit {
           },
         "data": [
         {
-          "label": "31-60(168)",
+          "label": "31-60(9)",
           "value": "19858.01"
         },
         {
@@ -529,7 +518,7 @@ export class DashboardComponent implements OnInit {
           "value": "38171.23"
         },
         {
-          "label": "91-120(9)",
+          "label": "91-120(168)",
           "value": "274716.41"
         },
         {

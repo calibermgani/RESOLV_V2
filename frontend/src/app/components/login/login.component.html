@@ -150,14 +150,14 @@
             <form #LoginForm=ngForm>
             <div class="mb-2" style="margin-bottom: 17%;">
                 <div class="mb-2">
-                  <label style="font-size: 9px;font-weight: 400;margin-bottom: 4px;">User name</label>
+                  <label style="font-weight: 400;margin-bottom: 4px;">User name</label>
                   <input type="text" name="username" autocomplete="username" [(ngModel)]="form.user_name"
                     (ngModelChange)="usernameInputTouched = true" required style="background: #F1EFFF;color: black;border-radius:
                     4px;padding: 0px 16px 0px 16px;height: 40px;width: 100%;font-size: 13px;">
                   <span *ngIf="usernameInputTouched &&  form.user_name == '' " class="error">User Name is required </span>
                 </div>
                 <div class="mb-2">
-                  <label style="font-size: 9px;font-weight: 400;margin-bottom: 4px;">Password</label>
+                  <label style="font-weight: 400;margin-bottom: 4px;">Password</label>
                   <input type="password" name="pass" autocomplete="pass"  [(ngModel)]="form.password" class="eye"
                     (ngModelChange)="usernameInputTouched = true" required style="background: #F1EFFF;color: black;border-radius:
                     4px;padding: 0px 16px 0px 16px;height: 40px;width: 100%;font-size: 13px">

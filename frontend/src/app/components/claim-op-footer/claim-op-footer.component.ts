@@ -479,6 +479,7 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
   }
 
   @ViewChild('option1') option1!: TemplateRef<any>;
+  selectedOptions:any
   //Handle Claim Code Changed event
   public status_code_changed(event: any) {
     console.log('event', event.type);
@@ -541,7 +542,10 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
         sub_status_code: { id: this.selected_claim_data['substatus_code'], description: this.sub_options[index]['description'] }
       });
     }
-    this.openModal(this.option1);
+    console.log('sss',this.selectedOptions);
+    console.log('INside');
+
+    // this.openModal(this.option1);
   }
   // ShowQuestions(event:any){
   //   console.log('Select Target Value',event.target.value);

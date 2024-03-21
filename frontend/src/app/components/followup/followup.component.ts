@@ -3135,10 +3135,7 @@ public updatenotes(type:any){
   public rowClassRules: RowClassRules = {
     // row style function
     "appear_red": (params) => {
-      console.log(params.data);
-
       var numSickDays = params.data.claim_no;
-      console.log(numSickDays);
       return numSickDays == 196541 ;
     },
   };

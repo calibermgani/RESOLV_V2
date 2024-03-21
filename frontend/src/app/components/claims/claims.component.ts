@@ -3858,28 +3858,32 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
     console.log(table_name);
     if (table_name == 'Create_work_order_claims') {
       this.searchClaims = this.createClaimsFind.value;
+      this.myGrid_1.api?.exportDataAsExcel();
     } else if (table_name == 'Closed_claims') {
       this.searchClaims = this.closedClaimsFind.value;
+      this.myGrid_3.api?.exportDataAsExcel();
     } else if (table_name == 'work_orders') {
       this.workordersearch = this.workOrderFind.value;
+      this.myGrid_2.api?.exportDataAsExcel();
     }
     else if(table_name == 'all_claims_list'){
       this.searchClaims = this.allClaimsFind.value;
+      this.myGrid_6.api?.exportDataAsExcel();
     }
 
-    if(table_name !='all_claims_list')
-    {
-    this.Jarwis.fetch_create_claims_export_data(this.setus.getId(), table_name, this.search, this.searchClaims, this.workordersearch).subscribe(
-      data => this.export_handler.create_claim_export_excel(data),
-      error => this.error_handler(error)
-    );
-    }
-    else if(table_name == 'all_claims_list'){
-      this.Jarwis.fetch_all_claims_export_data(this.setus.getId(),table_name,this.search,this.searchClaims,this.workordersearch).subscribe(
-        data => this.export_handler.create_claim_export_excel(data),
-      error => this.error_handler(error)
-      )
-    }
+    // if(table_name !='all_claims_list')
+    // {
+    // this.Jarwis.fetch_create_claims_export_data(this.setus.getId(), table_name, this.search, this.searchClaims, this.workordersearch).subscribe(
+    //   data => this.export_handler.create_claim_export_excel(data),
+    //   error => this.error_handler(error)
+    // );
+    // }
+    // else if(table_name == 'all_claims_list'){
+    //   this.Jarwis.fetch_all_claims_export_data(this.setus.getId(),table_name,this.search,this.searchClaims,this.workordersearch).subscribe(
+    //     data => this.export_handler.create_claim_export_excel(data),
+    //   error => this.error_handler(error)
+    //   )
+    // }
   }
 
   public export_pdf_files(type: any, table_name: any) {
@@ -3895,10 +3899,11 @@ export class ClaimsComponent implements OnInit, OnDestroy, AfterViewInit {
 
   public export_excel_wo_files(type: any, table_name: any) {
     console.log(this.searchValue);
-    this.Jarwis.fetch_work_order_export_data(this.setus.getId(), table_name, this.searchValue, this.workOrderFind.value).subscribe(
-      data => this.export_handler.create_wo_export_excel(data),
-      error => this.error_handler(error)
-    );
+    // this.Jarwis.fetch_work_order_export_data(this.setus.getId(), table_name, this.searchValue, this.workOrderFind.value).subscribe(
+    //   data => this.export_handler.create_wo_export_excel(data),
+    //   error => this.error_handler(error)
+    // );
+    this.myGrid_2.api?.exportDataAsExcel()
   }
 
   public export_pdf_wo_files(type: any, table_name: any) {

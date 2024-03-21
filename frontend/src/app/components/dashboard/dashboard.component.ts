@@ -522,7 +522,7 @@ export class DashboardComponent implements OnInit {
         "data": [
         {
           "label": "31-60(168)",
-          "value": "274716.41"
+          "value": "19858.01"
         },
         {
           "label": "61-90(334)",
@@ -530,7 +530,7 @@ export class DashboardComponent implements OnInit {
         },
         {
           "label": "91-120(9)",
-          "value": "19858.01"
+          "value": "274716.41"
         },
         {
           "label": "120-180(15)",

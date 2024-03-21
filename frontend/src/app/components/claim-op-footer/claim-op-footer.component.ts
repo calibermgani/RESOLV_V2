@@ -541,8 +541,13 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
         sub_status_code: { id: this.selected_claim_data['substatus_code'], description: this.sub_options[index]['description'] }
       });
     }
-    // this.openModal(this.option1);
+    this.openModal(this.option1);
   }
+  // ShowQuestions(event:any){
+  //   console.log('Select Target Value',event.target.value);
+
+  //   // this.openModal(this.option1);
+  // }
 
   //Configuration of Dropdown Search
 

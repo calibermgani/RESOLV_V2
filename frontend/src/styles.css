@@ -375,3 +375,8 @@ input[type=radio]:focus {
 /* input[type=checkbox]:before {
   border: none !important;
 } */
+
+::ng-deep .raphael-group-zdnrcXbQ
+{
+  display: none !important;
+}

@@ -163,3 +163,8 @@
   width: 108px !important;
   top: 77.2% !important;
 }
+
+::ng-deep .raphael-group-zdnrcXbQ
+{
+  display: none !important;
+}

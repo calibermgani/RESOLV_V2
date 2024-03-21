@@ -20,11 +20,11 @@
                   class="fa fa-list"></i> Work Orders <span class="tab-divider">|</span></a></li>
                   <li *ngIf="(user_role == 1 || user_role == 2 || !(user_role == 16))" class=""><a href="#tab_8"
                     (click)="get_userlist();" data-toggle="tab" style="padding-left: 0px;"><i class="fa fa-users"></i>
-                    Re-assigned Claims <span class="tab-divider">|</span></a></li>
+                    Re-assigned  <span class="tab-divider">|</span></a></li>
             <li *ngIf="(user_role == 1 || user_role == 2 || !(user_role == 16))"><a href="#tab_5" data-toggle="tab"
                 style="padding-left: 0px;" aria-expanded="true"
                 (click)="get_workorder('closedClaims',null,null,1,wo_page_number,null,null,'null','null',null,null,null);status_code_select()"><i
-                  class="fa fa-drivers-license"></i> Completed Claims <span class="tab-divider">|</span></a></li>
+                  class="fa fa-drivers-license"></i> Completed  <span class="tab-divider">|</span></a></li>
             <!-- <li *ngIf="(user_role == 1 || user_role == 2  || !(user_role == 16))"><a href="#rework" data-toggle="tab" style="padding-left: 0px;" (click)="getclaim_details(1,'allocated','null','null','null','null');" ><i class="fa fa-check"></i> Rework Claims <span class="tab-divider">|</span></a></li>
                   <li *ngIf="(user_role == 1 || user_role == 2  || !(user_role == 16))"><a href="#assigned" data-toggle="tab" style="padding-left: 0px;" (click)="get_workorder('assignedClaims',null,null,1,wo_page_number,null,null,'null','null',null,null,null,null);" ><i class="fa fa-share"></i> Assigned Claims <span class="tab-divider">|</span></a></li> -->
             <!-- <li *ngIf="(user_role == 1 || user_role == 2  || !(user_role == 16))"><a href="#re_assigned" data-toggle="tab" style="padding-left: 0px;" (click)="get_statuscodes();getclaim_details(1,'reallocated','null','null','null','null');"><i class="fa fa-retweet"></i>Reassigned Claims <span class="tab-divider">|</span></a></li> -->
@@ -6833,10 +6833,10 @@
             <a data-toggle="collapse" data-target="#QC_Notes" class="cur-pointer collapsed" title="QC Notes"
               style="margin-right: 15px;font-size: 16px;" aria-expanded="false"><span
                 style="text-decoration: underline">QC Notes</span></a>
-            <a data-toggle="collapse" data-target="#followupview" class="cur-pointer collapsed" title="Followup View"
+            <!-- <a data-toggle="collapse" data-target="#followupview" class="cur-pointer collapsed" title="Followup View"
               style="margin-right: 15px;font-size: 16px;" aria-expanded="false" (click)="send_calim_det('claims')"><i
                 class="fa fa-external-link-square" title="Followup Template View"></i> <span
-                style="text-decoration: underline">F.Template View</span></a>
+                style="text-decoration: underline">F.Template View</span></a> -->
           </div>
         </div>
         <!-- <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 no-padding" style="border-top:15px solid #e9ecf3;">

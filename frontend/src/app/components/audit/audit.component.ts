@@ -2934,12 +2934,14 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
   class_change_tab: any = [];
   user_role_maintainer() {
     let role_id = Number(this.setus.get_role_id());
+    console.log('Role ID',role_id);
     if (role_id == 5 || role_id == 3 || role_id == 2) {
       this.user_role = 2;
       this.class_change['tab1'] = '';
-      // this.class_change['tab5'] = 'active';
+      this.class_change['tab2'] = 'active';
       this.class_change_tab['tab1'] = ' ';
-      // this.class_change_tab['tab5'] = 'tab-pane active'
+      this.class_change_tab['tab2'] = 'tab-pane active'
+      this.class_change_tab['tab5'] = 'tab-pane'
     }
     else if (role_id == 4) {
       this.user_role = 1;

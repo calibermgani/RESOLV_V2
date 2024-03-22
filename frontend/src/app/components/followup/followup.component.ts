@@ -3136,7 +3136,7 @@ public updatenotes(type:any){
     // row style function
     "appear_red": (params) => {
       var numSickDays = params.data.claim_no;
-      return numSickDays == 196541 ;
+      return numSickDays == 196541 || numSickDays == 176727;
     },
   };
 

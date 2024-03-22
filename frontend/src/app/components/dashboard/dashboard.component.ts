@@ -129,7 +129,6 @@ export class DashboardComponent implements OnInit {
 
       pyramid!: Object;
       stacked!: object;
-      dataSource!: object;
       pie3d!: object;
       stacked_chart!: object;
       data!: Object;
@@ -151,7 +150,7 @@ export class DashboardComponent implements OnInit {
           caption: "ATB - Payer Classification",
           yaxisname: "Sum of Insurance Balance",
           subcaption: "Sum of Insurance Balance",
-          theme: "candy"
+          theme: "gammel"
         },
         data: [
           {
@@ -457,7 +456,7 @@ export class DashboardComponent implements OnInit {
         },
         "data": [{
           "label": "Auth Assistance",
-          "value": "3"
+          "value": "1"
         }, {
           "label": "Patient Billing Assiatnce",
           "value": "2"
@@ -467,20 +466,54 @@ export class DashboardComponent implements OnInit {
         }, {
           "label": "Rebilling Assitance",
           "value": "1"
-        }, {
-          "label": "Webportal Access",
-          "value": "1"
-        }, {
-          "label": "Coding Assitance",
-          "value": "1"
-        }, {
-          "label": "Medical Record Assistance",
-          "value": "1"
-        },]
+        },
+        //  {
+        //   "label": "Webportal Access",
+        //   "value": "1"
+        // }, {
+        //   "label": "Coding Assitance",
+        //   "value": "1"
+        // }, {
+        //   "label": "Medical Record Assistance",
+        //   "value": "1"
+        // },
+      ]
+      };
+      dataSource0 = {
+        chart: {
+          caption: "ATB - Aging Analysis",
+          subCaption: "Sum of Insurance Balance",
+          xAxisName: "Aging",
+          yAxisName: "Sum of Insurance Balance",
+          theme: "gammel",
+        },
+      data:[
+      {
+        label: "31-60(9)",
+        value: "19858.01"
+      },
+      {
+        label: "61-90(334)",
+        value: "38171.23"
+      },
+      {
+        label: "91-120(168)",
+        value: "274716.41"
+      },
+      {
+        label: "120-180(15)",
+        value: "17154.03"
+      },
+      {
+        label: "181-365(19)",
+        value: "34188.84"
+      },{
+        label: "366+(9)",
+        value: "31640.6"
+      }]
       };
 
-      // dataSource: Object;
-      chartConfig: any;
+      chartConfig : any;
 
       constructor(
         private setus: SetUserService,
@@ -498,40 +531,7 @@ export class DashboardComponent implements OnInit {
           dataFormat: 'json',
       };
 
-      this.dataSource = {
-          "chart": {
-            "caption": "ATB - Aging Analysis",
-            "subCaption": "Sum of Insurance Balance",
-            "xAxisName": "Aging",
-            "yAxisName": "Sum of Insurance Balance",
-            // "numberSuffix": "K",
-            "theme": "gammel",
-          },
-        "data": [
-        {
-          "label": "31-60(9)",
-          "value": "19858.01"
-        },
-        {
-          "label": "61-90(334)",
-          "value": "38171.23"
-        },
-        {
-          "label": "91-120(168)",
-          "value": "274716.41"
-        },
-        {
-          "label": "120-180(15)",
-          "value": "17154.03"
-        },
-        {
-          "label": "181-365(19)",
-          "value": "34188.84"
-        },{
-          "label": "366+(9)",
-          "value": "31640.6"
-        }]
-        };
+
 
 
         let id: number = 0;
@@ -892,19 +892,19 @@ export class DashboardComponent implements OnInit {
   }
    console.log(this.chartData)
     }
-    this.dataSource = {
-      "chart": {
-        "showLegend": "0",
-         "showLabels": "0",
-        "showValues": "0",
-        "numberPrefix" : "$",
-        "enableMultiSlicing":"1",
-        "width": "500",
-        "height": "300",
-        "theme":"fusion"
-      },
-       data: this.chartData
-    };
+    // this.dataSource = {
+    //   "chart": {
+    //     "showLegend": "0",
+    //      "showLabels": "0",
+    //     "showValues": "0",
+    //     "numberPrefix" : "$",
+    //     "enableMultiSlicing":"1",
+    //     "width": "500",
+    //     "height": "300",
+    //     "theme":"fusion"
+    //   },
+    //    data: this.chartData
+    // };
 
         //Status Code
         this.status_code.push(data.data.status_code.header);

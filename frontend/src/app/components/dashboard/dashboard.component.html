@@ -60,7 +60,9 @@
                                                         <div class="box-body chart-responsive collapse in" id="box1">
                                                             <div class="row">
                                                             <div class="col-lg-7 col-md-7 col-sm-7">
-                                                                <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts>
+                                                                <fusioncharts   width ="770"
+                                                                height="400"
+                                                                type="column2d" [dataFormat]="dataFormat" [dataSource]="dataSource0"></fusioncharts>
                                                             </div>
                                                             <div class="col-lg-5 col-md-5 col-sm-5">
                                                                     <ul   *ngFor="let aging of agingBucket" class="analysis aging_analysis ">
@@ -608,17 +610,15 @@
                                                         <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                                             <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Hourly Production</h3>
 
-                                                            <div class="box-tools pull-right">
+                                                            <!-- <div class="box-tools pull-right">
                                                                 <div class="col-lg-6 p-r-0">
                                                                 <select id="colorselector" class="form-control select2" style="width:100px">
                                                                         <option value="1">-- Filter --</option>
                                                                         <option value="2">Audit</option>
                                                                         <option value="3">RCM Team</option>
-
                                                                     </select>
                                                                 </div>
-
-                                                            </div>
+                                                            </div> -->
                                                         </div>
                                                         <div class="box-body no-padding" style="margin-top:20px;">
                                                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
@@ -695,8 +695,8 @@
                                          <div class="tab-pane" id="tab_4">
                                             <div class="box no-shadow no-border">
                                                 <div class="row">
-                                                <div class="col-lg-12 col-md-12 col-sm-12">
-                                                    <div class="box box-primary no-shadow no-bottom" style="border:1px solid #dee0e8;">
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                    <div class="box box-primary no-shadow no-bottom" style="border:1px solid #dee0e8;height: 465px;">
                                                         <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
                                                             <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Client Assistance Report</h3>
                                                             <div class="box-tools pull-right">
@@ -706,15 +706,141 @@
                                                             </div>
                                                         </div>
                                                         <div class="box-body chart-responsive collapse in" id="box6">
-                                                        <fusioncharts  width="1505" height="400" type="column2d" [dataSource]="dataSource5"></fusioncharts>
+                                                        <fusioncharts  width="770" height="400" type="column2d" [dataSource]="dataSource5"></fusioncharts>
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="col-lg-6 col-md-6 col-sm-6">
+                                                  <!-- <div class="box box-primary no-shadow no-bottom" style="border:1px solid #dee0e8;">
+                                                      <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                                          <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Client Assistance Report</h3>
+                                                          <div class="box-tools pull-right">
+                                                              <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="collapse" data-target="#box6">
+                                                                  <i class="fa fa-plus"></i>
+                                                              </button>
+                                                          </div>
+                                                      </div>
+                                                      <div class="box-body chart-responsive collapse in" id="box6">
+                                                      <fusioncharts  width="1505" height="400" type="column2d" [dataSource]="dataSource5"></fusioncharts>
+                                                      </div>
+                                                  </div> -->
+                                                  <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4;height: 465px;">
+                                                    <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                                        <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Sub Status Code</h3>
+
+                                                        <div class="box-tools pull-right">
+                                                            <button type="button" class="btn btn-box-tool" style="margin-left:10px;" data-widget="collapse" data-toggle="collapse" data-target="#box7">
+                                                                <i class="fa fa-plus"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="box-body no-padding collapse in" style="margin-top:20px;" id="box7">
+                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 listing-table no-padding">
+                                                            <div class="table-responsive">
+                                                            <table class="table-striped1 table">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th class="font600 line-height-24" style="border-right: 1px solid #fff;">Name</th>
+                                                                        <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">JAN</th>
+                                                                        <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">FEB</th>
+                                                                        <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">MAR</th>
+                                                                        <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">APR</th>
+                                                                        <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">MAY</th>
+                                                                        <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">JUN</th>
+                                                                        <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">JUL</th>
+                                                                        <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">AUG</th>
+                                                                        <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">SEP</th>
+                                                                        <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">OCT</th>
+                                                                        <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">NOV</th>
+                                                                        <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">DEC</th>
+                                                                        <th class="font600 text-center line-height-24">TOTAL</th>
+
+                                                                    </tr>
+
+                                                                </thead>
+                                                                <tbody>
+                                                                    <tr>
+                                                                        <td class="">Patient Billing Assistance</td>
+                                                                        <td class="text-center">5</td>
+                                                                        <td class="text-center">4</td>
+                                                                        <td class="text-center">7</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center ar-blue font600">16</td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td class="">Credential Assistance</td>
+                                                                        <td class="text-center">4</td>
+                                                                        <td class="text-center">3</td>
+                                                                        <td class="text-center">1</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center ar-blue font600">8</td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td class="">Adjustment Approval</td>
+                                                                        <td class="text-center">8</td>
+                                                                        <td class="text-center">7</td>
+                                                                        <td class="text-center">9</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center ar-blue font600">24</td>
+                                                                    </tr>
+
+                                                                    <tr>
+                                                                        <td class="">Posting Assistance</td>
+                                                                        <td class="text-center">2</td>
+                                                                        <td class="text-center">0</td>
+                                                                        <td class="text-center">1</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center">-</td>
+                                                                        <td class="text-center ar-blue font600">3</td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                              </div>
+
                                             </div>
                                             </div>
 
 
-                                              <div class="box no-shadow no-border">
+                                              <!-- <div class="box no-shadow no-border">
                                                 <div class="box-body no-padding">
                                                     <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4">
                                                         <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
@@ -733,7 +859,7 @@
                                                                 <table class="table-striped1 table">
                                                                     <thead>
                                                                         <tr>
-                                                                            <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">Name</th>
+                                                                            <th class="font600 line-height-24" style="border-right: 1px solid #fff;">Name</th>
                                                                             <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">JAN</th>
                                                                             <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">FEB</th>
                                                                             <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">MAR</th>
@@ -753,7 +879,7 @@
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>
-                                                                            <td class="text-center">Patient Billing Assistance</td>
+                                                                            <td class="">Patient Billing Assistance</td>
                                                                             <td class="text-center">5</td>
                                                                             <td class="text-center">4</td>
                                                                             <td class="text-center">7</td>
@@ -766,11 +892,11 @@
                                                                             <td class="text-center">-</td>
                                                                             <td class="text-center">-</td>
                                                                             <td class="text-center">-</td>
-                                                                            <td class="text-center ar-blue font600">110</td>
+                                                                            <td class="text-center ar-blue font600">16</td>
                                                                         </tr>
 
                                                                         <tr>
-                                                                            <td class="text-center">Credential Assistance</td>
+                                                                            <td class="">Credential Assistance</td>
                                                                             <td class="text-center">4</td>
                                                                             <td class="text-center">3</td>
                                                                             <td class="text-center">1</td>
@@ -783,11 +909,11 @@
                                                                             <td class="text-center">-</td>
                                                                             <td class="text-center">-</td>
                                                                             <td class="text-center">-</td>
-                                                                            <td class="text-center ar-blue font600">60</td>
+                                                                            <td class="text-center ar-blue font600">8</td>
                                                                         </tr>
 
                                                                         <tr>
-                                                                            <td class="text-center">Adjustment Approval</td>
+                                                                            <td class="">Adjustment Approval</td>
                                                                             <td class="text-center">8</td>
                                                                             <td class="text-center">7</td>
                                                                             <td class="text-center">9</td>
@@ -800,11 +926,11 @@
                                                                             <td class="text-center">-</td>
                                                                             <td class="text-center">-</td>
                                                                             <td class="text-center">-</td>
-                                                                            <td class="text-center ar-blue font600">150</td>
+                                                                            <td class="text-center ar-blue font600">24</td>
                                                                         </tr>
 
                                                                         <tr>
-                                                                            <td class="text-center">Posting Assistance</td>
+                                                                            <td class="">Posting Assistance</td>
                                                                             <td class="text-center">2</td>
                                                                             <td class="text-center">0</td>
                                                                             <td class="text-center">1</td>
@@ -817,7 +943,7 @@
                                                                             <td class="text-center">-</td>
                                                                             <td class="text-center">-</td>
                                                                             <td class="text-center">-</td>
-                                                                            <td class="text-center ar-blue font600">80</td>
+                                                                            <td class="text-center ar-blue font600">3</td>
                                                                         </tr>
                                                                     </tbody>
                                                                 </table>
@@ -826,7 +952,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
 
                                         </div>
                                     </div>
@@ -855,8 +981,8 @@
                                                  <div class="col-lg-6" style="border-right: 1px dashed #fff">
                                                    <p class="text-dark">Total Assigned <span class="pull-right">1472</span></p>
                                                    <p class="text-dark">Total Worked <span class="pull-right">632</span></p>
-                                                   <p class="text-dark">Follow up <span class="pull-right">53</span></p>
-                                                   <p class="text-dark">Client Assistance<span class="pull-right">12</span></p>
+                                                   <p class="text-dark">Follow up <span class="pull-right">1</span></p>
+                                                   <p class="text-dark">Client Assistance<span class="pull-right">5</span></p>
                                                    <p class="text-dark">QC Passed<span class="pull-right">617</span></p>
                                                    <p class="text-dark">Error pending<span class="pull-right">2</span></p>
                                                  </div>
@@ -906,7 +1032,7 @@
                                                                <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 1</th>
                                                                   <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 2</th>
                                                                   <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 3</th>
-                                                                  <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 3</th>
+                                                                  <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;" colspan="5">Week 4</th>
                                                                   <!-- <th class="font600 text-center line-height-24" colspan="5">Week 4</th> -->
                                                             </tr>
                                                          </thead>
@@ -921,30 +1047,30 @@
                                                             <tr>
                                                              <td class="text-center">Achieved</td>
                                                              <td class="text-center" colspan="5">39</td>
-                                                             <td class="text-center" colspan="5">112</td>
+                                                             <td class="text-center" colspan="5">200</td>
                                                              <td class="text-center" colspan="5">197</td>
-                                                             <td class="text-center" colspan="5">103</td>
+                                                             <td class="text-center" colspan="5">199</td>
                                                             </tr>
                                                             <tr>
                                                              <td class="text-center">Achieved %</td>
                                                              <td class="text-center" colspan="5">99%</td>
-                                                             <td class="text-center" colspan="5">52%</td>
+                                                             <td class="text-center" colspan="5">100%</td>
                                                              <td class="text-center" colspan="5">97%</td>
-                                                             <td class="text-center" colspan="5">50%</td>
+                                                             <td class="text-center" colspan="5">99%</td>
                                                             </tr>
                                                             <tr>
                                                              <td class="text-center">Quality %</td>
                                                              <td class="text-center" colspan="5">99%</td>
-                                                             <td class="text-center" colspan="5">98%</td>
+                                                             <td class="text-center" colspan="5">99%</td>
                                                              <td class="text-center" colspan="5">97%</td>
                                                              <td class="text-center" colspan="5">98%</td>
                                                             </tr>
                                                             <tr>
-                                                             <td class="text-center">Excess/Definity</td>
+                                                             <td class="text-center">Excess/Deficite</td>
                                                              <td class="text-center" colspan="5">-1</td>
-                                                             <td class="text-center" colspan="5">-88</td>
+                                                             <td class="text-center" colspan="5">0</td>
                                                              <td class="text-center" colspan="5">-3</td>
-                                                             <td class="text-center" colspan="5">-97</td>
+                                                             <td class="text-center" colspan="5">-1</td>
                                                             </tr>
                                                          </tbody>
                                                       </table>
@@ -1076,41 +1202,44 @@
                                                       </tr>
                                                       <tr>
                                                          <td class="ar-blue font600">Client Assistance</td>
-                                                         <td class="text-center">2</td>
-                                                         <td class="text-center">4</td>
+                                                         <td class="text-center">0</td>
+
+                                                         <td class="text-center">0</td>
                                                          <td class="text-center">1</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
+
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
                                                          <td class="text-center">2</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
+
                                                          <td class="text-center">2</td>
-                                                         <td class="text-center">4</td>
-                                                         <td class="text-center">4</td>
-                                                         <td class="text-center">4</td>
-                                                         <td class="text-center">1</td>
-                                                         <td class="text-center">3</td>
-                                                         <td class="text-center">4</td>
-                                                         <td class="text-center">1</td>
-                                                         <td class="text-center">3</td>
-                                                         <td class="text-center">3</td>
-                                                         <td class="text-center">4</td>
-                                                         <td class="text-center">2</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
                                                       </tr>
                                                       <tr>
                                                          <td class="ar-blue font600">Followup</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
                                                          <td class="text-center">1</td>
-                                                         <td class="text-center">3</td>
-                                                         <td class="text-center">3</td>
-                                                         <td class="text-center">1</td>
-                                                         <td class="text-center">3</td>
-                                                         <td class="text-center">2</td>
-                                                         <td class="text-center">2</td>
-                                                         <td class="text-center">3</td>
-                                                         <td class="text-center">1</td>
-                                                         <td class="text-center">1</td>
-                                                         <td class="text-center">2</td>
-                                                         <td class="text-center">1</td>
-                                                         <td class="text-center">3</td>
-                                                         <td class="text-center">1</td>
-                                                         <td class="text-center">3</td>
-                                                         <td class="text-center">2</td>
+                                                         <td class="text-center">0</td>
+                                                         <td class="text-center">0</td>
                                                       </tr>
 
                                                    </tbody>

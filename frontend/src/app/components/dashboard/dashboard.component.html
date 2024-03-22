@@ -58,47 +58,46 @@
                                                             </div>
                                                         </div>
                                                         <div class="box-body chart-responsive collapse in" id="box1">
-                                                            <div class="row">
-                                                            <div class="col-lg-7 col-md-7 col-sm-7">
-                                                                <fusioncharts   width ="770"
-                                                                height="400"
-                                                                type="column2d" [dataFormat]="dataFormat" [dataSource]="dataSource0"></fusioncharts>
-                                                            </div>
-                                                            <div class="col-lg-5 col-md-5 col-sm-5">
-                                                                    <ul   *ngFor="let aging of agingBucket" class="analysis aging_analysis ">
-                                                                        <li><p style="margin-top:15px;"><span class="pull-right">{{ aging.day30 }} <i class="fa fa-square" style="color:#5d62b5"></i></span></p></li>
-                                                                        <li><p> <span class="pull-right">{{ aging.day60 }} <i class="fa fa-square" style="color:#29c3be"></i></span></p></li>
-                                                                        <li><p> <span class="pull-right">{{ aging.day90 }} <i class="fa fa-square" style="color:#f2726f"></i></span></p></li>
-                                                                        <li><p> <span class="pull-right">{{ aging.day120 }} <i class="fa fa-square" style="color:#ffc533"></i></span></p></li>
-                                                                        <li><p> <span class="pull-right">{{ aging.day180 }} <i class="fa fa-square" style="color:#62b58f"></i></span></p></li>
-                                                                        <li><p> <span class="pull-right">{{ aging.day365 }} <i class="fa fa-square" style="color:#bc95df"></i></span></p></li>
-                                                                        <li><p> <span class="pull-right">{{ aging.day366 }} <i class="fa fa-square" style="color:#67cdf2"></i></span></p></li>
-                                                                    </ul>
-                                                            </div>
-                                                        </div>
-                                                            <!-- <div class="col-lg-12 text-center" style="border-top:1px solid #dee0e8;">
-                                                                <div class="col-lg-4">
-                                                                    <h5 style="margin-top:20px;margin-bottom: 5px">ATB Claims</h5>
-                                                                 <div *ngFor="let aging of agingBucket">
-                                                               <h4 class="font600 ar-blue" style="margin-top:0px;">{{ aging.atb_claims }}</h4>
-                                                                   </div>
-                                                                </div>
+                                                          <fusioncharts type="column2d" [dataFormat]="dataFormat" [dataSource]="dataSource0"  width ="770" height="400"></fusioncharts>
+                                                          <!-- <div class="row">
+                                                                                                                    <div class="col-lg-7 col-md-7 col-sm-7">
 
-                                                                <div class="col-lg-4 text-center">
-                                                                    <h5 style="margin-top:20px;margin-bottom: 5px" class="text-orange">ATB Value</h5>
-                                                                    <div *ngFor="let aging of agingBucket">
-                                                                        <h4 class="font600 ar-blue" style="margin-top:0px;">{{ aging.atb_values }}</h4>
-                                                                     </div>
-                                                                </div>
+                                                                                                                    </div>
+                                                                                                                    <div class="col-lg-5 col-md-5 col-sm-5">
+                                                                                                                            <ul   *ngFor="let aging of agingBucket" class="analysis aging_analysis ">
+                                                                                                                                <li><p style="margin-top:15px;"><span class="pull-right">{{ aging.day30 }} <i class="fa fa-square" style="color:#5d62b5"></i></span></p></li>
+                                                                                                                                <li><p> <span class="pull-right">{{ aging.day60 }} <i class="fa fa-square" style="color:#29c3be"></i></span></p></li>
+                                                                                                                                <li><p> <span class="pull-right">{{ aging.day90 }} <i class="fa fa-square" style="color:#f2726f"></i></span></p></li>
+                                                                                                                                <li><p> <span class="pull-right">{{ aging.day120 }} <i class="fa fa-square" style="color:#ffc533"></i></span></p></li>
+                                                                                                                                <li><p> <span class="pull-right">{{ aging.day180 }} <i class="fa fa-square" style="color:#62b58f"></i></span></p></li>
+                                                                                                                                <li><p> <span class="pull-right">{{ aging.day365 }} <i class="fa fa-square" style="color:#bc95df"></i></span></p></li>
+                                                                                                                                <li><p> <span class="pull-right">{{ aging.day366 }} <i class="fa fa-square" style="color:#67cdf2"></i></span></p></li>
+                                                                                                                            </ul>
+                                                                                                                    </div>
+                                                                                                                </div> -->
+                                                          <!-- <div class="col-lg-12 text-center" style="border-top:1px solid #dee0e8;">
+                                                                                                                        <div class="col-lg-4">
+                                                                                                                            <h5 style="margin-top:20px;margin-bottom: 5px">ATB Claims</h5>
+                                                                                                                         <div *ngFor="let aging of agingBucket">
+                                                                                                                       <h4 class="font600 ar-blue" style="margin-top:0px;">{{ aging.atb_claims }}</h4>
+                                                                                                                           </div>
+                                                                                                                        </div>
 
-                                                                <div class="col-lg-4 text-center">
-                                                                    <h5 style="margin-top:20px;margin-bottom: 5px">{{prevMonth}} VS {{thisMonth}}</h5>
-                                                                    <div *ngFor="let aging of agingBucket">
-                                                                        <h4 class="font600 ar-blue" style="margin-top:0px;">{{ aging.month }}</h4>
-                                                                      </div>
-                                                                </div>
+                                                                                                                        <div class="col-lg-4 text-center">
+                                                                                                                            <h5 style="margin-top:20px;margin-bottom: 5px" class="text-orange">ATB Value</h5>
+                                                                                                                            <div *ngFor="let aging of agingBucket">
+                                                                                                                                <h4 class="font600 ar-blue" style="margin-top:0px;">{{ aging.atb_values }}</h4>
+                                                                                                                             </div>
+                                                                                                                        </div>
 
-                                                            </div> -->
+                                                                                                                        <div class="col-lg-4 text-center">
+                                                                                                                            <h5 style="margin-top:20px;margin-bottom: 5px">{{prevMonth}} VS {{thisMonth}}</h5>
+                                                                                                                            <div *ngFor="let aging of agingBucket">
+                                                                                                                                <h4 class="font600 ar-blue" style="margin-top:0px;">{{ aging.month }}</h4>
+                                                                                                                              </div>
+                                                                                                                        </div>
+
+                                                                                                                    </div> -->
                                                         </div>
                                                     </div>
                                                 </div>
@@ -123,16 +122,17 @@
                                                                 [dataSource]="dataSource1">
                                                               </fusioncharts>
                                                             </div>
-                                                            <div class="col-lg-5 col-md-5 col-sm-5" >
-                                                                <div class="payer analysis">
+                                                            <!-- <div class="col-lg-5 col-md-5 col-sm-5">
+                                                              <div class="payer analysis">
                                                                 <ul *ngFor="let value of payer_classfication ;let i=index ">
-                                                                    <li *ngFor="let val of value ;let j=index">
-                                                                <p><i class="fa fa-circle-o"></i> {{ val.Insurance }}<span class="pull-right"><i class="fa fa-long-arrow-right" aria-hidden="true"></i>
-                                                                   &nbsp;{{ val.totalCharges }}</span></p>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                            </div>
+                                                                  <li *ngFor="let val of value ;let j=index">
+                                                                    <p><i class="fa fa-circle-o"></i> {{ val.Insurance }}<span class="pull-right"><i class="fa fa-long-arrow-right"
+                                                                          aria-hidden="true"></i>
+                                                                        &nbsp;{{ val.totalCharges }}</span></p>
+                                                                  </li>
+                                                                </ul>
+                                                              </div>
+                                                            </div> -->
                                                         </div>
 
                                                             <!-- <div class="col-lg-12" style="border-top:1px solid #dee0e8;">
@@ -268,7 +268,7 @@
                                                     </div> -->
                                                     <div class="box box-primary no-shadow mb-3" style="border:1px solid #dee0e8;">
                                                       <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
-                                                          <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i>Production</h3>
+                                                          <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue" style="margin-right: 5px;"></i>Production</h3>
                                                           <div class="box-tools pull-right">
                                                               <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="collapse" data-target="#box5">
                                                                   <i class="fa fa-plus"></i>
@@ -278,15 +278,9 @@
                                                       <div class="box-body chart-responsive collapse in" id="box5">
                                                           <div class="row">
                                                               <div class="col-lg-12 col-md-12 col-sm-12">
-                                                                  <!-- <fusioncharts class="fusion-charts chart chart-responsive stack-chart"
-                                                                type="msstackedcolumn2d"
-                                                                width="700"
-                                                                [dataSource]=stacked_chart >
-                                                            </fusioncharts> -->
-                                                            <!-- <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts> -->
-                                                            <!-- <fusioncharts width="770" height="400" type="bubble" [dataFormat]="dataFormat" [dataSource]="dataSource4">
-                                                            </fusioncharts> -->
-                                                            <img src="assets/image/production.png" style="width: 100%;height:400px">
+                                                            <fusioncharts width="770" height="400" type="mscolumn2d" [dataFormat]="dataFormat" [dataSource]="dataSource4">
+                                                            </fusioncharts>
+                                                            <!-- <img src="assets/image/production.png" style="width: 100%;height:400px"> -->
                                                               </div>
                                                           </div>
                                                          </div>
@@ -296,7 +290,7 @@
                                                   <!-- AREA CHART -->
                                                   <div class="box box-primary no-shadow mb-3" style="border:1px solid #dee0e8;">
                                                       <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
-                                                          <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i>Quality Performance</h3>
+                                                          <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue" style="margin-right: 5px;"></i>Quality Performance</h3>
                                                           <div class="box-tools pull-right">
                                                               <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="collapse" data-target="#box5">
                                                                   <i class="fa fa-plus"></i>
@@ -306,16 +300,10 @@
                                                       <div class="box-body chart-responsive collapse in" id="box5">
                                                           <div class="row">
                                                               <div class="col-lg-12 col-md-12 col-sm-12">
-                                                                  <!-- <fusioncharts class="fusion-charts chart chart-responsive stack-chart"
-                                                                type="msstackedcolumn2d"
-                                                                width="700"
-                                                                [dataSource]=stacked_chart >
-                                                            </fusioncharts> -->
                                                             <!-- <fusioncharts  [chartConfig]="chartConfig" [dataSource]="dataSource"></fusioncharts> -->
-                                                            <!-- <fusioncharts width="770" height="400" type="bubble" [dataFormat]="dataFormat" [dataSource]="dataSource4">
-                                                            </fusioncharts> -->
-                                                            <img src="assets/image/quality.png" style="width: 100%;height:400px">
-                                                              </div>
+                                                            <fusioncharts width="770" height="400" type="mscolumn2d" [dataFormat]="dataFormat" [dataSource]="dataSource6">
+                                                            </fusioncharts>
+                                                            </div>
                                                           </div>
                                                          </div>
                                                   </div>
@@ -632,13 +620,11 @@
                                                                             <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">21:00</th>
                                                                             <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">22:00</th>
                                                                             <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">23:00</th>
-                                                                            <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">0:00</th>
-                                                                            <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">1:00</th>
-                                                                            <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">2:00</th>
+                                                                            <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">24:00</th>
+                                                                            <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">01:00</th>
+                                                                            <th class="font600 text-center line-height-24" style="border-right: 1px solid #fff;">02:00</th>
                                                                             <th class="font600 text-center line-height-24">EOD</th>
-
                                                                         </tr>
-
                                                                     </thead>
                                                                     <tbody>
                                                                         <tr>

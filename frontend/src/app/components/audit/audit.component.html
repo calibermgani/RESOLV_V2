@@ -28,7 +28,7 @@
                 aria-expanded="false"
                 (click)="get_workorder(null,null,null,2,wo_page_number,null,null,'null','null',null,null,null)"><i
                   class="fa fa-list"></i> Work Orders <span class="tab-divider">|</span></a></li>
-            <li *ngIf="(user_role == 2 || user_role == 1 || user_role == 12)"><a href="#tab_5" data-toggle="tab"
+            <li *ngIf="(user_role == 2 || user_role == 1 || user_role == 12)" [ngClass]="class_change.tab5"><a href="#tab_5" data-toggle="tab"
                 style="padding-left: 0px;"
                 (click)="getclaim_details(1,'allocated','null','null','null','null','null','null','null','null','null');"><i
                   class="fa fa-share"></i>Assigned Claims<span class="tab-divider">|</span></a></li>
@@ -772,7 +772,7 @@
                 </div>
               </div>
             </div>
-            <div class="tab-pane" id="tab_5">
+            <div [ngClass]="class_change_tab['tab5']" id="tab_5">
               <div class="box no-shadow no-border">
                 <div class="box-body no-padding">
                   <div class="row">
@@ -1075,7 +1075,7 @@
 
 
 
-            <div [ngClass]="class_change_tab['tab2']" id="tab_2">
+            <div  id="tab_2">
               <div class="box no-shadow no-border">
                 <div class="box-body no-padding">
                   <div class="row">

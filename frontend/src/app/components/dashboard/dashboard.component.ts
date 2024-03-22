@@ -150,7 +150,7 @@ export class DashboardComponent implements OnInit {
           caption: "ATB - Payer Classification",
           yaxisname: "Sum of Insurance Balance",
           subcaption: "Sum of Insurance Balance",
-          theme: "gammel"
+          theme: "fusion"
         },
         data: [
           {
@@ -227,7 +227,7 @@ export class DashboardComponent implements OnInit {
           showpercentintooltip: "0",
           // numberprefix: "$",
           enablemultislicing: "1",
-          theme: "gammel"
+          theme: "fusion"
         },
         data: [
           {
@@ -257,12 +257,12 @@ export class DashboardComponent implements OnInit {
           caption: "ATB - Status Code",
           subcaption: "MTD",
           pyaxisname: "Amount",
-          theme: "gammel",
+          theme: "fusion",
           showsecondarylimits: "0",
           numberprefix: "$",
           showdivlinesecondaryvalue: "0",
-          plottooltext:
-            "Due to $label, late arrivals count is : <b>$dataValue</b> of the total <b>$sum</b> employees",
+          // plottooltext:
+          //   "Due to $label, late arrivals count is : <b>$dataValue</b> of the total <b>$sum</b> employees",
           drawcrossline: "1"
         },
         data: [
@@ -315,131 +315,207 @@ export class DashboardComponent implements OnInit {
       }
       dataSource4 = {
         chart: {
-          caption: "MTD - Associates Performance",
-          subcaption: "Conversions as % of total",
-          xaxisname: "# Conversions",
-          yaxisname: "Cost Per Conversion",
-          numberprefix: "$",
-          theme: "gammel",
-          plottooltext: "$name : Share of total conversion: $zvalue%"
+          caption: "Production",
+          formatnumberscale: "1",
+          theme: "fusion",
+          drawcrossline: "1"
         },
         categories: [
           {
-            verticallinealpha: "20",
             category: [
               {
-                label: "0",
-                x: "0"
+                label: "3/1/24"
               },
               {
-                label: "1500",
-                x: "1500",
-                showverticalline: "1"
+                label: "3/4/24"
               },
               {
-                label: "3000",
-                x: "3000",
-                showverticalline: "1"
+                label: "3/5/24"
               },
               {
-                label: "4500",
-                x: "4500",
-                showverticalline: "1"
+                label: "3/6/24"
               },
               {
-                label: "6000",
-                x: "6000",
-                showverticalline: "1"
+                label: "3/7/24"
+              },
+              {
+                label: "3/8/24"
+              },
+              {
+                label: "3/11/24"
+              },
+              {
+                label: "3/12/24"
+              },
+              {
+                label: "3/13/24"
+              },
+              {
+                label: "3/14/24"
+              },
+              {
+                label: "3/15/24"
+              },
+              {
+                label: "3/16/24"
+              },
+              {
+                label: "3/17/24"
+              },
+              {
+                label: "3/18/24"
+              },
+              {
+                label: "3/19/24"
               }
             ]
           }
         ],
         dataset: [
           {
+            seriesname: "Nancy",
             data: [
               {
-                x: "5540",
-                y: "16.09",
-                z: "30.63",
-                name: "Campaign 1"
+                value: "39"
               },
               {
-                x: "4406",
-                y: "12.74",
-                z: "24.36",
-                name: "Campaign 2"
+                value: "45"
               },
               {
-                x: "1079",
-                y: "15.79",
-                z: "5.97",
-                name: "Campaign 3"
+                value: "37"
               },
               {
-                x: "1700",
-                y: "8.27",
-                z: "9.4",
-                name: "Campaign 4"
+                value: "40"
               },
               {
-                x: "853",
-                y: "15.89",
-                z: "4.71",
-                name: "Campaign 5"
+                value: "40"
               },
               {
-                x: "1202",
-                y: "10.74",
-                z: "6.65",
-                name: "Campaign 6"
+                value: "-"
               },
               {
-                x: "2018",
-                y: "6.14",
-                z: "11.16",
-                name: "Campaign 7"
+                value: "51"
               },
               {
-                x: "413",
-                y: "19.83",
-                z: "2.28",
-                name: "Campaign 8"
+                value: "49"
               },
               {
-                x: "586",
-                y: "13.96",
-                z: "3.24",
-                name: "Campaign 9"
+                value: "55"
               },
               {
-                x: "184",
-                y: "15.82",
-                z: "1.02",
-                name: "Campaign 10"
+                value: "59"
               },
               {
-                x: "311",
-                y: "5.83",
-                z: "1.72",
-                name: "Campaign 11"
+                value: "56"
               },
               {
-                x: "35",
-                y: "10.76",
-                z: "0.19",
-                name: "Campaign 12"
+                value: "39"
               },
               {
-                x: "55",
-                y: "2.73",
-                z: "0.3",
-                name: "Campaign 13"
+                value: "50"
               },
               {
-                x: "6",
-                y: "21.22",
-                z: "0.03",
-                name: "Campaign 14"
+                value: "51"
+              }
+            ]
+          },
+          {
+            seriesname: "Dave",
+            data: [
+              {
+                value: "25"
+              },
+              {
+                value: "40"
+              },
+              {
+                value: "55"
+              },
+              {
+                value: "49"
+              },
+              {
+                value: "27"
+              },
+              {
+                value: "35"
+              },
+              {
+                value: "38"
+              },
+              {
+                value: "39"
+              },
+              {
+                value: "37"
+              },
+              {
+                value: "40"
+              },
+              {
+                value: "47"
+              },
+              {
+                value: "36"
+              },
+              {
+                value: "51"
+              },
+              {
+                value: "56"
+              },
+              {
+                value: "29"
+              }
+            ]
+          },
+          {
+            seriesname: "Jeni",
+            data: [
+              {
+                value: "56"
+              },
+              {
+                value: "39"
+              },
+              {
+                value: "50"
+              },
+              {
+                value: "51"
+              },
+              {
+                value: "52"
+              },
+              {
+                value: "40"
+              },
+              {
+                value: "40"
+              },
+              {
+                value: "-"
+              },
+              {
+                value: "51"
+              },
+              {
+                value: "49"
+              },
+              {
+                value: "55"
+              },
+              {
+                value: "59"
+              },
+              {
+                value: "39"
+              },
+              {
+                value: "45"
+              },
+              {
+                value: "37"
               }
             ]
           }
@@ -452,7 +528,7 @@ export class DashboardComponent implements OnInit {
           // "xAxisName": "",
           "yAxisName": "Client Assitance",
           // "numberSuffix": "K",
-          "theme": "gammel",
+          "theme": "fusion",
         },
         "data": [{
           "label": "Auth Assistance",
@@ -485,33 +561,125 @@ export class DashboardComponent implements OnInit {
           subCaption: "Sum of Insurance Balance",
           xAxisName: "Aging",
           yAxisName: "Sum of Insurance Balance",
-          theme: "gammel",
+          theme: "fusion",
         },
-      data:[
-      {
-        label: "31-60(9)",
-        value: "19858.01"
-      },
-      {
-        label: "61-90(334)",
-        value: "38171.23"
-      },
-      {
-        label: "91-120(168)",
-        value: "274716.41"
-      },
-      {
-        label: "120-180(15)",
-        value: "17154.03"
-      },
-      {
-        label: "181-365(19)",
-        value: "34188.84"
-      },{
-        label: "366+(9)",
-        value: "31640.6"
-      }]
+        data: [
+          {
+            label: "31-60(9)",
+            value: "19858.01"
+          },
+          {
+            label: "61-90(334)",
+            value: "38171.23"
+          },
+          {
+            label: "91-120(168)",
+            value: "274716.41"
+          },
+          {
+            label: "120-180(15)",
+            value: "17154.03"
+          },
+          {
+            label: "181-365(19)",
+            value: "34188.84"
+          }, {
+            label: "366+(9)",
+            value: "31640.6"
+          }]
       };
+
+      dataSource6 = {
+        chart: {
+          caption: "Quality Performance",
+          formatnumberscale: "1",
+          theme: "fusion",
+          drawcrossline: "1"
+        },
+        categories: [
+          {
+            category: [
+              {
+                label: "ACTION NOT TAKEN"
+              },
+              {
+                label: "INCORRECT ANALYSIS"
+              },
+              {
+                label: "CALL NOT MADE"
+              },
+              {
+                label: "NOTES NOT POSTED"
+              },
+              {
+                label: "DOCUMENTATION ERROR"
+              }
+            ]
+          }
+        ],
+        dataset: [
+          {
+            seriesname: "Nancy",
+            data: [
+              {
+                value: "2"
+              },
+              {
+                value: "3"
+              },
+              {
+                value: "4"
+              },
+              {
+                value: "1"
+              },
+              {
+                value: "5"
+              }
+            ]
+          },
+          {
+            seriesname: "Dave",
+            data: [
+              {
+                value: "4"
+              },
+              {
+                value: "1"
+              },
+              {
+                value: "5"
+              },
+              {
+                value: "1"
+              },
+              {
+                value: "3"
+              }
+            ]
+          },
+          {
+            seriesname: "Jeni",
+            data: [
+              {
+                value: "5"
+              },
+              {
+                value: "3"
+              },
+              {
+                value: "2"
+              },
+              {
+                value: "2"
+              },
+              {
+                value: "2"
+              }
+            ]
+          }
+        ]
+      }
 
       chartConfig : any;
 

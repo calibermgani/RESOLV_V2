@@ -13,7 +13,6 @@ import { AgGridAngular, AgGridModule } from 'ag-grid-angular';
 import { FusionChartsModule } from 'angular-fusioncharts';
 import * as FusionCharts from 'fusioncharts';
 import * as Charts from 'fusioncharts/fusioncharts.charts';
-// Load fusion theme
 import * as FusionTheme from 'fusioncharts/themes/fusioncharts.theme.fusion';
 FusionChartsModule.fcRoot(FusionCharts, Charts, FusionTheme)
 

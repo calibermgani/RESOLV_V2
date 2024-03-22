@@ -543,6 +543,8 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
       });
     }
     console.log('sss',this.selectedOptions);
+    console.log('Form control',this.formGroup.value);
+    console.log('Form control status',this.formGroup.get('status_code')?.value);
     console.log('INside');
 
     // this.openModal(this.option1);

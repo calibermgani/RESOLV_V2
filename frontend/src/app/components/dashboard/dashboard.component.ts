@@ -233,19 +233,19 @@ export class DashboardComponent implements OnInit {
         data: [
           {
             label: "1-Touch",
-            value: "552"
+            value: "300"
           },
           {
             label: "2-Touch",
-            value: "497"
+            value: "180"
           },
           {
             label: "3-Touch",
-            value: "372"
+            value: "100"
           },
           {
             label: "4-Touch",
-            value: "176"
+            value: "32"
           },
           // {
           //   label: "Insurance",
@@ -268,11 +268,11 @@ export class DashboardComponent implements OnInit {
         },
         data: [
           {
-            label: "ATP",
+            label: "CPnP",
             value: "44.88"
           },
           {
-            label: "Hospic",
+            label: "CIP",
             value: "2,445.57"
           },
           {
@@ -280,39 +280,38 @@ export class DashboardComponent implements OnInit {
             value: "75.00"
           },
           {
-            label: "Claim Paid",
+            label: "MR Reg",
             value: "4,728.88"
           },
           {
-            label: "Claim Rejected",
+            label: "Inclusive",
             value: "616.96"
           },
           {
-            label: "CHR",
+            label: "Duplicate",
             value: "93.26"
           },
           {
-            label: "ICP",
+            label: "Credentialing",
             value: "403.04"
           },
-          {
-            label: "MP EOB",
-            value: "1,892.27"
-          },
-          {
-            label: "No Coverage",
-            value: "849.50"
-          },
+          // {
+          //   label: "MP EOB",
+          //   value: "1,892.27"
+          // },
+          // {
+          //   label: "No Coverage",
+          //   value: "849.50"
+          // },
 
-          {
-            label: "Inclusive",
-            value: "38.24"
-          },
-          {
-            label: "PTF",
-            value: "6,801.84"
-          },
-
+          // {
+          //   label: "Inclusive",
+          //   value: "38.24"
+          // },
+          // {
+          //   label: "PTF",
+          //   value: "6,801.84"
+          // },
         ]
       }
       dataSource4 = {

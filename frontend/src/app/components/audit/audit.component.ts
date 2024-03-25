@@ -3143,6 +3143,7 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
     if(this.auth.tokenValue.value == true)
     {let data = localStorage.getItem('token');
     this.auth.login(data);}
+    this.getclaim_details(1,'allocated','null','null','null','null','null','null','null','null','null')
   }
 
   ngOnDestroy() {

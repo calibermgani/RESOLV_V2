@@ -3119,6 +3119,8 @@ public updatenotes(type:any){
     resizable: false,
   };
 
+  customSortModel = [{ colId: 'yourColumnId', sort: 'asc' }];
+
   gridOptions1: GridOptions = {
     defaultColDef: {
       sortable: true,
@@ -3131,14 +3133,28 @@ public updatenotes(type:any){
     pagination: true,
     paginationPageSize: this.paginationSizeValue_assigned,
     suppressDragLeaveHidesColumns: true,
+    // getRowId: this.getRowNodeId,
+    // sortModel: this.customSortModel,
   };
   public rowClassRules: RowClassRules = {
     // row style function
-    "appear_red": (params) => {
-      var numSickDays = params.data.claim_no;
-      return numSickDays == 196541 || numSickDays == 179462;
+    "appear_red": (params:any) => {
+      var numSickDays = params.data.touch;
+
+
+      // if(numSickDays >0){
+      //   // console.log(params);
+      //   // console.log(params.data);
+      //   setTimeout(() => {
+      //     this.myGrid_1.api.ensureIndexVisible(params.rowIndex, 'top');
+      //   },1000);
+      // }
+      return numSickDays > 0;
     },
   };
+  getRowNodeId(params: any) {
+    return params;
+  }
 
   gridOptions2: GridOptions = {
     defaultColDef: {

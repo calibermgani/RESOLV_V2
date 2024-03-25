@@ -324,49 +324,49 @@ export class DashboardComponent implements OnInit {
           {
             category: [
               {
-                label: "3/1/24"
+                label: "3/1"
               },
               {
-                label: "3/4/24"
+                label: "3/4"
               },
               {
-                label: "3/5/24"
+                label: "3/5"
               },
               {
-                label: "3/6/24"
+                label: "3/6"
               },
               {
-                label: "3/7/24"
+                label: "3/7"
               },
               {
-                label: "3/8/24"
+                label: "3/8"
               },
               {
-                label: "3/11/24"
+                label: "3/11"
               },
               {
-                label: "3/12/24"
+                label: "3/12"
               },
               {
-                label: "3/13/24"
+                label: "3/13"
               },
               {
-                label: "3/14/24"
+                label: "3/14"
               },
               {
-                label: "3/15/24"
+                label: "3/15"
               },
               {
-                label: "3/16/24"
+                label: "3/16"
               },
               {
-                label: "3/17/24"
+                label: "3/17"
               },
               {
-                label: "3/18/24"
+                label: "3/18"
               },
               {
-                label: "3/19/24"
+                label: "3/19"
               }
             ]
           }
@@ -519,7 +519,18 @@ export class DashboardComponent implements OnInit {
               }
             ]
           }
-        ]
+        ],
+        "trendlines": [
+          {
+              "line": [
+                  {
+                      "startvalue": "40",
+                      "valueOnRight": "1",
+                      "displayvalue": "Target"
+                  }
+              ]
+          }
+      ]
       };
       dataSource5 = {
         "chart": {

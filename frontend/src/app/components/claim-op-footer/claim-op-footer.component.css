@@ -72,3 +72,12 @@ input[type=checkbox], input[type=radio] {
   max-height: 300px !important;
 }
 
+.table-striped1 thead tr th{
+  height: 0px !important;
+  padding: 2px !important;
+  border: none !important;
+}
+.table-striped1>tbody>tr{
+  height: 0px !important;
+  padding: 0px !important;
+}

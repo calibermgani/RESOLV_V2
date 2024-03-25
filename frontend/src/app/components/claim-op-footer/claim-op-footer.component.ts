@@ -542,12 +542,14 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
         sub_status_code: { id: this.selected_claim_data['substatus_code'], description: this.sub_options[index]['description'] }
       });
     }
-    console.log('sss',this.selectedOptions);
-    console.log('Form control',this.formGroup.value);
-    console.log('Form control status',this.formGroup.get('status_code')?.value);
-    console.log('INside');
-
-    // this.openModal(this.option1);
+    // console.log('sss',this.selectedOptions);
+    // console.log('Form control',this.formGroup.value);
+    // console.log('Form control status',this.formGroup.value['status_code']);
+    let status_code_value = this.formGroup.value['status_code'];
+    console.log('INside',status_code_value.description);
+    if(status_code_value.description == "Claim Not On File"){
+      this.openModal(this.option1);
+    }
   }
   // ShowQuestions(event:any){
   //   console.log('Select Target Value',event.target.value);

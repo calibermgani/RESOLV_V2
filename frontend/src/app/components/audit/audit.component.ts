@@ -3144,6 +3144,13 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
     {let data = localStorage.getItem('token');
     this.auth.login(data);}
     this.getclaim_details(1,'allocated','null','null','null','null','null','null','null','null','null')
+
+    setTimeout(() => {
+      // this.gridApi_1?.sizeColumnsToFit();
+      // this.gridApi_2?.sizeColumnsToFit();
+      // this.gridApi_3?.sizeColumnsToFit();
+      // this.gridApi_4?.sizeColumnsToFit();
+    }, 1000);
   }
 
   ngOnDestroy() {
@@ -5697,29 +5704,29 @@ console.log("Total page:", totalPages);
   };
 
   autoSizeAll() {
-    if(this.GridrowData1 || this.GridrowData2 || this.GridrowData3 || this.GridrowData4)
-    {
-      let allColumnIds:any = [];
-    this.gridOptions1.columnApi.getColumns().forEach((column:any) => {
-      allColumnIds.push(column.getId());
-    });
-    // this.gridOptions2.columnApi.getColumns().forEach((column:any) => {
+    // if(this.GridrowData1 || this.GridrowData2 || this.GridrowData3 || this.GridrowData4)
+    // {
+    //   let allColumnIds:any = [];
+    // this.gridOptions1.columnApi.getColumns().forEach((column:any) => {
     //   allColumnIds.push(column.getId());
     // });
-    // this.gridOptions4.columnApi.getColumns().forEach((column:any) => {
-    //   allColumnIds.push(column.getId());
-    // });
-    // this.gridOptions3.columnApi.getColumns().forEach((column:any) => {
-    //   allColumnIds.push(column.getId());
-    // });
+    // // this.gridOptions2.columnApi.getColumns().forEach((column:any) => {
+    // //   allColumnIds.push(column.getId());
+    // // });
+    // // this.gridOptions4.columnApi.getColumns().forEach((column:any) => {
+    // //   allColumnIds.push(column.getId());
+    // // });
+    // // this.gridOptions3.columnApi.getColumns().forEach((column:any) => {
+    // //   allColumnIds.push(column.getId());
+    // // });
 
-    console.log('Size Resized');
+    // console.log('Size Resized');
 
-    this.gridOptions1.columnApi.autoSizeColumns(allColumnIds, false);
-    // this.gridOptions2.columnApi.autoSizeColumns(allColumnIds, false);
-    // this.gridOptions3.columnApi.autoSizeColumns(allColumnIds, false);
-    // this.gridOptions4.columnApi.autoSizeColumns(allColumnIds, false);
-    }
+    // this.gridOptions1.columnApi.autoSizeColumns(allColumnIds, false);
+    // // this.gridOptions2.columnApi.autoSizeColumns(allColumnIds, false);
+    // // this.gridOptions3.columnApi.autoSizeColumns(allColumnIds, false);
+    // // this.gridOptions4.columnApi.autoSizeColumns(allColumnIds, false);
+    // }
   }
 
   status_code_select(){

@@ -357,16 +357,16 @@ export class DashboardComponent implements OnInit {
                 label: "3/15"
               },
               {
-                label: "3/16"
-              },
-              {
-                label: "3/17"
-              },
-              {
                 label: "3/18"
               },
               {
                 label: "3/19"
+              },
+              {
+                label: "3/20"
+              },
+              {
+                label: "3/21"
               }
             ]
           }
@@ -530,7 +530,8 @@ export class DashboardComponent implements OnInit {
                   }
               ]
           }
-      ]
+        ],
+
       };
       dataSource5 = {
         "chart": {

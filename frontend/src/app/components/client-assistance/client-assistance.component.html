@@ -670,7 +670,7 @@
 
                                                                 <!-- <th (click)="order_list('wo','claims_notes','null','null')" class="font600 line-height-24">Claim Note<i class="fa fa-fw fa-sort"></i></th> -->
 
-                                                                <th (click)="order_list('wo','followup_date','null','null','null','null')" class="font600 line-height-24">Followup Date<i class="fa fa-fw fa-sort"></i></th>
+                                                                <!-- <th (click)="order_list('wo','followup_date','null','null','null','null')" class="font600 line-height-24">Followup Date<i class="fa fa-fw fa-sort"></i></th> -->
 
                                                                 <th (click)="order_list('wo','created_at','null','null','null','null')" class="font600 line-height-24">AssignedUser|Date<i class="fa fa-fw fa-sort"></i></th>
                                                                 <th  class="font600 line-height-24">Work Date<i class="fa fa-fw fa-sort"></i></th>
@@ -687,15 +687,15 @@
                                                                     <td *ngIf="tab_dat.touch >= touch_count" title="Touch Count"><span class="ar-red">{{tab_dat.touch}}</span></td>
                                                                     <!-- <td title="Touch Count"><span audclass="ar-red">{{tab_dat.touch}}</span></td> -->
 
-                                                                    <td tooltip="HtmlContent" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer" (click)="openModal(claimpage);claimslection(tab_dat);" (mouseover)="tooltip(tab_dat)"><span *ngIf="tab_dat.claim_no==null">-Nil-</span><span *ngIf="tab_dat.claim_no!=null">{{tab_dat.claim_no}}</span></td>
+                                                                    <td tooltip="HtmlContent" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer" (click)="openModal(claimpage);claimslection(tab_dat);" ><span *ngIf="tab_dat.claim_no==null">-Nil-</span><span *ngIf="tab_dat.claim_no!=null">{{tab_dat.claim_no}}</span></td>
 
-                                                                    <td tooltip="HtmlContent" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer dos-date" (mouseover)="tooltip(tab_dat)"><span *ngIf="tab_dat.dos==null">-Nil-</span><span *ngIf="tab_dat.dos!=null">{{tab_dat.dos  | date: 'MM/dd/yyyy'}}</span></td>
+                                                                    <td tooltip="HtmlContent" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer dos-date" ><span *ngIf="tab_dat.dos==null">-Nil-</span><span *ngIf="tab_dat.dos!=null">{{tab_dat.dos  | date: 'MM/dd/yyyy'}}</span></td>
 
                                                                     <td class="cur-pointer"><span *ngIf="tab_dat.age==null">-Nil-</span><span *ngIf="tab_dat.age!=null && tab_dat.age > 0">{{tab_dat.age}}</span><span *ngIf="tab_dat.age <= 0">0</span></td>
 
-                                                                    <td tooltip="AccNo" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer" (click)="open(claimpage);claimslection(tab_dat);" (mouseover)="tooltip(tab_dat)"><span *ngIf="tab_dat.acct_no==null">-Nil-</span><span *ngIf="tab_dat.acct_no!=null">{{tab_dat.acct_no}}</span></td>
+                                                                    <td tooltip="AccNo" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer" (click)="open(claimpage);claimslection(tab_dat);" ><span *ngIf="tab_dat.acct_no==null">-Nil-</span><span *ngIf="tab_dat.acct_no!=null">{{tab_dat.acct_no}}</span></td>
 
-                                                                    <td tooltip="AccNo" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer" (mouseover)="tooltip(tab_dat)"><span *ngIf="tab_dat.patient_name==null">-Nil-</span><span *ngIf="tab_dat.patient_name!=null">{{tab_dat.patient_name}}</span></td>
+                                                                    <td tooltip="AccNo" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer" ><span *ngIf="tab_dat.patient_name==null">-Nil-</span><span *ngIf="tab_dat.patient_name!=null">{{tab_dat.patient_name}}</span></td>
 
                                                                     <!-- <td class="cur-pointer"><span *ngIf="tab_dat.rendering_prov==null">-Nil-</span><span *ngIf="tab_dat.rendering_prov!=null">{{tab_dat.rendering_prov}}</span></td>
 
@@ -705,11 +705,11 @@
 
                                                                     <td class="cur-pointer"><span *ngIf="tab_dat.denial_code==null || tab_dat.denial_code==''">-Nil-</span><span *ngIf="tab_dat.denial_code!=null || tab_dat.denial_code!=''">{{tab_dat.denial_code}}</span></td> -->
 
-                                                                    <!-- <td class="cur-pointer" tooltip="PriInsurance" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" (mouseover)="tooltip(tab_dat)"><span *ngIf="tab_dat.prim_ins_name==null">-Nil-</span><span *ngIf="tab_dat.prim_ins_name!=null">{{tab_dat.prim_ins_name}}</span></td>
+                                                                    <!-- <td class="cur-pointer" tooltip="PriInsurance" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" ><span *ngIf="tab_dat.prim_ins_name==null">-Nil-</span><span *ngIf="tab_dat.prim_ins_name!=null">{{tab_dat.prim_ins_name}}</span></td>
 
-                                                                    <td class="cur-pointer" tooltip="SecInsurance" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" (mouseover)="tooltip(tab_dat)"><span *ngIf="tab_dat.sec_ins_name==null">-Nil-</span><span *ngIf="tab_dat.sec_ins_name!=null">{{tab_dat.sec_ins_name}}</span></td>
+                                                                    <td class="cur-pointer" tooltip="SecInsurance" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" ><span *ngIf="tab_dat.sec_ins_name==null">-Nil-</span><span *ngIf="tab_dat.sec_ins_name!=null">{{tab_dat.sec_ins_name}}</span></td>
 
-                                                                    <td class="cur-pointer" tooltip="TerInsurance" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" (mouseover)="tooltip(tab_dat)"><span *ngIf="tab_dat.ter_ins_name==null">-Nil-</span><span *ngIf="tab_dat.ter_ins_name!=null">{{tab_dat.ter_ins_name}}</span></td> -->
+                                                                    <td class="cur-pointer" tooltip="TerInsurance" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" ><span *ngIf="tab_dat.ter_ins_name==null">-Nil-</span><span *ngIf="tab_dat.ter_ins_name!=null">{{tab_dat.ter_ins_name}}</span></td> -->
 
                                                                     <td class="cur-pointer"><span *ngIf="tab_dat.statuscode==null">-Nil-</span><span *ngIf="tab_dat.statuscode!=null">{{tab_dat.statuscode}}</span></td>
 
@@ -717,13 +717,13 @@
 
                                                                     <td class="cur-pointer"><span *ngIf="tab_dat.total_charges==null">-Nil-</span><span *ngIf="tab_dat.total_charges!=null">{{tab_dat.total_charges | number:'1.2-2'}}</span></td>
 
-                                                                    <td tooltip="TotalAr" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer" (mouseover)="tooltip(tab_dat)"><span *ngIf="tab_dat.total_ar==null">-Nil-</span><span *ngIf="tab_dat.total_ar!=null">{{tab_dat.total_ar | number:'1.2-2'}}</span></td>
+                                                                    <td tooltip="TotalAr" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer" ><span *ngIf="tab_dat.total_ar==null">-Nil-</span><span *ngIf="tab_dat.total_ar!=null">{{tab_dat.total_ar | number:'1.2-2'}}</span></td>
 
                                                                     <td class="cur-pointer"><span *ngIf="tab_dat.claim_Status==null">-Nil-</span><span *ngIf="tab_dat.claim_Status!=null">{{tab_dat.claim_Status}}</span></td>
 
                                                                     <!-- <td class="cur-pointer"><span *ngIf="tab_dat.claims_notes==null">-Nil-</span><span *ngIf="tab_dat.claims_notes!=null">{{tab_dat.claims_notes}}</span></td> -->
 
-                                                                    <td class="cur-pointer"><span *ngIf="!tab_dat.followup_date ">NA</span><span *ngIf="tab_dat.followup_date">{{tab_dat.followup_date | date: 'MM/dd/yyyy'}}</span></td>
+                                                                    <!-- <td class="cur-pointer"><span *ngIf="!tab_dat.followup_date ">NA</span><span *ngIf="tab_dat.followup_date">{{tab_dat.followup_date | date: 'MM/dd/yyyy'}}</span></td> -->
 
                                                                     <td class="cur-pointer"><span *ngIf="!tab_dat.assigned_to ">UA</span><span *ngIf="tab_dat.assigned_to">{{tab_dat.assigned_to}}</span> | <span *ngIf="!tab_dat.created_ats ">UA</span><span *ngIf="tab_dat.created_ats">{{tab_dat.created_ats}}</span></td>
                                                                     <td class="cur-pointer"><span *ngIf="!tab_dat.created_at ">UA</span><span *ngIf="tab_dat.created_at">{{tab_dat.created_at | date: 'dd/MM/yyyy'}}</span></td>

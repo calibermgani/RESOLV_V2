@@ -151,6 +151,7 @@
   }
   input[type="checkbox"]:before {
     border-radius: 2px;
+    /* border: none !important; */
   }
   input[type="checkbox"]:after {
     width: 9px;
@@ -160,6 +161,7 @@
     background-color: transparent;
     box-shadow: 4px 4px 0px 0px #179db7;
   }
+
   input[type="checkbox"]:checked:after {
     animation: toggleOnCheckbox 0.2s ease forwards;
   }

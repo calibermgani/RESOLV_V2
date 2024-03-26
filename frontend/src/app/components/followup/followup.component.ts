@@ -15,7 +15,7 @@ import { pipe } from 'rxjs';
 import * as moment from 'moment';
 import { DatePipe } from '@angular/common';
 import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
-import { ColDef, GridApi, GridOptions, GridReadyEvent, RowClassRules, SideBarDef, ToolPanelDef } from 'ag-grid-community';
+import { ColDef, GridApi, GridOptions, GridReadyEvent, RowClassRules, RowNodeTransaction, SideBarDef, ToolPanelDef } from 'ag-grid-community';
 import { AgGridAngular } from 'ag-grid-angular';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AuthService } from 'src/app/Services/auth.service';
@@ -2576,6 +2576,7 @@ public updatenotes(type:any){
   }
 
 
+  res:any;
   ngAfterViewInit()
   {
     console.log('LAST IN FOllowUP COMP');
@@ -2594,7 +2595,51 @@ public updatenotes(type:any){
     setTimeout(() => {
       this.getclaim_details(1,'allocated','null','null','null','null','null','null','null','null')
     }, 1000);
+
+    this.res =  this.myGrid_1.api?.applyTransaction({
+      add: [{
+        'touch':0,
+        'claim_no':'12345',
+        'dos':'01/01/2024',
+        'age':'123',
+        'acct_no':'4323',
+        'patient_name':'Selva',
+        'rendering_prov':'-Nil-',
+        'responsibility':'Submitted',
+        'total_charges':'50.00',
+        'total_ar':'34.00',
+        'claim_Status':'Assigned',
+        'claim_note':'-Nil-',
+        'created_ats':'User | 20/4/2023'
+      }
+    ],
+      addIndex: 2,
+    });
+    setTimeout(() => {
+      this.printResult(this.res);
+    }, 2000);
   }
+
+   printResult(res: RowNodeTransaction) {
+    console.log("---------------------------------------");
+    if (res.add) {
+      res.add.forEach((rowNode) => {
+        console.log("Added Row Node", rowNode);
+      });
+    }
+    if (res.remove) {
+      res.remove.forEach((rowNode) => {
+        console.log("Removed Row Node", rowNode);
+      });
+    }
+    if (res.update) {
+      res.update.forEach((rowNode) => {
+        console.log("Updated Row Node", rowNode);
+      });
+    }
+  }
+
+
 
   ngOnDestroy(){
     // prevent memory leak when component destroyed
@@ -3877,14 +3922,14 @@ public updatenotes(type:any){
       }
       case 'total_charges': {
         if (params.value) {
-          if (typeof (params.value) == 'string') { let x = parseInt(params.value); return x.toFixed(2); }
+          if (typeof (params.value) == 'string') { let x = parseInt(params.value); return `$${x.toFixed(2)}`; }
         }
         else
           return '-Nil-';
         break;
       }
       case 'total_ar': {
-        if (params.value) { if (typeof (params.value) == 'string') { let x = parseInt(params.value); return x.toFixed(2); } }
+        if (params.value) { if (typeof (params.value) == 'string') { let x = parseInt(params.value); return `$${x.toFixed(2)}`; } }
         else
           return '-Nil-';
         break;

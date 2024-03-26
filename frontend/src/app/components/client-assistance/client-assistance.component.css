@@ -121,6 +121,14 @@
   position: relative;
  }
 
-:host ::ng-deep input[type=checkbox]:before {
+input[type=checkbox]:before {
   border: 0px !important;
+}
+
+input:before{
+  border: none !important;
+}
+
+input:after{
+  display: none !important;
 }

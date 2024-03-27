@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
   usernameInputTouched:boolean = false;
   userpasswordInputTouched:boolean = false;
 
-
   public error = null;
 
   constructor(

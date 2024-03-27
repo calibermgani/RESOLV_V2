@@ -985,3 +985,15 @@ a:hover > .ico {
 input:before {
   border: none !important;
 }
+
+input[type=checkbox]:before {
+  border: 0px !important;
+}
+
+input:before{
+  border: none !important;
+}
+
+input:after{
+  display: none !important;
+}

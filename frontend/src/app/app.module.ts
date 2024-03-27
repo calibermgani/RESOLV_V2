@@ -97,6 +97,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
   ],
   providers: [JarwisService,NotifyService,
     // {provide: HTTP_INTERCEPTORS,useClass:AuthInterceptorService,multi:true}
+
   ],
   bootstrap: [AppComponent],
 })

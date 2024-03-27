@@ -2596,28 +2596,28 @@ public updatenotes(type:any){
       this.getclaim_details(1,'allocated','null','null','null','null','null','null','null','null')
     }, 1000);
 
-    this.res =  this.myGrid_1.api?.applyTransaction({
-      add: [{
-        'touch':0,
-        'claim_no':'12345',
-        'dos':'01/01/2024',
-        'age':'123',
-        'acct_no':'4323',
-        'patient_name':'Selva',
-        'rendering_prov':'-Nil-',
-        'responsibility':'Submitted',
-        'total_charges':'50.00',
-        'total_ar':'34.00',
-        'claim_Status':'Assigned',
-        'claim_note':'-Nil-',
-        'created_ats':'User | 20/4/2023'
-      }
-    ],
-      addIndex: 2,
-    });
-    setTimeout(() => {
-      this.printResult(this.res);
-    }, 2000);
+    // this.res =  this.myGrid_1.api?.applyTransaction({
+    //   add: [{
+    //     'touch':0,
+    //     'claim_no':'12345',
+    //     'dos':'01/01/2024',
+    //     'age':'123',
+    //     'acct_no':'4323',
+    //     'patient_name':'Selva',
+    //     'rendering_prov':'-Nil-',
+    //     'responsibility':'Submitted',
+    //     'total_charges':'50.00',
+    //     'total_ar':'34.00',
+    //     'claim_Status':'Assigned',
+    //     'claim_note':'-Nil-',
+    //     'created_ats':'User | 20/4/2023'
+    //   }
+    // ],
+    //   addIndex: 2,
+    // });
+    // setTimeout(() => {
+    //   this.printResult(this.res);
+    // }, 2000);
   }
 
    printResult(res: RowNodeTransaction) {
@@ -3196,6 +3196,11 @@ public updatenotes(type:any){
       // }
       return numSickDays > 0;
     },
+    "appear_yellow": (params: any) => {
+      // console.log(params);
+      let rowIndex = params.node.rowIndex
+      return rowIndex == 3;
+    }
   };
   getRowNodeId(params: any) {
     return params;

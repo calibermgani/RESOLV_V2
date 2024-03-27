@@ -218,6 +218,12 @@ cursor: pointer;
 {
   background-color: #CC333344 !important;
 }
+.appear_yellow{
+  background-color: #f0ff73  !important;
+  opacity: 0.3 !important;
+  cursor:not-allowed !important;
+  pointer-events:none !important;
+}
 
 
     .ag-theme-alpine

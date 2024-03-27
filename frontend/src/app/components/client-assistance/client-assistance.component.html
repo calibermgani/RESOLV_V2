@@ -668,7 +668,7 @@
 
                                                                 <th (click)="order_list('wo','total_ar','null','null','null','null')" class="font600 line-height-24">Total AR<i class="fa fa-fw fa-sort"></i></th>
 
-                                                                <th (click)="order_list('wo','claim_Status','null','null','null','null')" class="font600 line-height-24">Claim Status<i class="fa fa-fw fa-sort"></i></th>
+                                                                <!-- <th (click)="order_list('wo','claim_Status','null','null','null','null')" class="font600 line-height-24">Claim Status<i class="fa fa-fw fa-sort"></i></th> -->
 
                                                                 <!-- <th (click)="order_list('wo','claims_notes','null','null')" class="font600 line-height-24">Claim Note<i class="fa fa-fw fa-sort"></i></th> -->
 
@@ -719,11 +719,11 @@
 
                                                                     <td class="cur-pointer"><span *ngIf="tab_dat.substatuscode==null">-Nil-</span><span *ngIf="tab_dat.substatuscode!=null">{{tab_dat.substatuscode}}</span></td>
 
-                                                                    <td class="cur-pointer"><span *ngIf="tab_dat.total_charges==null">-Nil-</span><span *ngIf="tab_dat.total_charges!=null">{{tab_dat.total_charges | number:'1.2-2'}}</span></td>
+                                                                    <td class="cur-pointer"><span *ngIf="tab_dat.total_charges==null">-Nil-</span><span *ngIf="tab_dat.total_charges!=null">${{tab_dat.total_charges | number:'1.2-2'}}</span></td>
 
-                                                                    <td tooltip="TotalAr" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer" ><span *ngIf="tab_dat.total_ar==null">-Nil-</span><span *ngIf="tab_dat.total_ar!=null">{{tab_dat.total_ar | number:'1.2-2'}}</span></td>
+                                                                    <td tooltip="TotalAr" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer" ><span *ngIf="tab_dat.total_ar==null">-Nil-</span><span *ngIf="tab_dat.total_ar!=null">${{tab_dat.total_ar | number:'1.2-2'}}</span></td>
 
-                                                                    <td class="cur-pointer"><span *ngIf="tab_dat.claim_Status==null">-Nil-</span><span *ngIf="tab_dat.claim_Status!=null">{{tab_dat.claim_Status}}</span></td>
+                                                                    <!-- <td class="cur-pointer"><span *ngIf="tab_dat.claim_Status==null">-Nil-</span><span *ngIf="tab_dat.claim_Status!=null">{{tab_dat.claim_Status}}</span></td> -->
 
                                                                     <!-- <td class="cur-pointer"><span *ngIf="tab_dat.claims_notes==null">-Nil-</span><span *ngIf="tab_dat.claims_notes!=null">{{tab_dat.claims_notes}}</span></td> -->
 

@@ -555,16 +555,6 @@ export class DashboardComponent implements OnInit {
           "label": "Rebilling Assitance",
           "value": "1"
         },
-        //  {
-        //   "label": "Webportal Access",
-        //   "value": "1"
-        // }, {
-        //   "label": "Coding Assitance",
-        //   "value": "1"
-        // }, {
-        //   "label": "Medical Record Assistance",
-        //   "value": "1"
-        // },
       ]
       };
       dataSource0 = {

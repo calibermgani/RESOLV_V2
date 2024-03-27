@@ -479,6 +479,15 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
   }
 
   @ViewChild('option1') option1!: TemplateRef<any>;
+  @ViewChild('option2') option2!: TemplateRef<any>;
+  @ViewChild('option3') option3!: TemplateRef<any>;
+  @ViewChild('option4') option4!: TemplateRef<any>;
+  @ViewChild('option5') option5!: TemplateRef<any>;
+  @ViewChild('option6') option6!: TemplateRef<any>;
+  @ViewChild('option7') option7!: TemplateRef<any>;
+  @ViewChild('option8') option8!: TemplateRef<any>;
+  @ViewChild('option9') option9!: TemplateRef<any>;
+  @ViewChild('option10') option10!: TemplateRef<any>;
   selectedOptions:any
   //Handle Claim Code Changed event
   public status_code_changed(event: any) {
@@ -549,6 +558,77 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
     console.log('INside',status_code_value.description);
     if(status_code_value.description == "Claim Not On File"){
       this.openModal(this.option1);
+      let date = new Date();
+
+      let updatedDate = new Date(date.setDate(date.getDate() + 7));
+      let formattedDate = updatedDate.toLocaleDateString('en-US');
+
+      console.log('asasasasasas',formattedDate);
+      this.model = formattedDate;
+    }
+    else if(status_code_value.description == "Capitation"){
+      this.openModal(this.option2);
+    }
+    else if(status_code_value.description == "Claim denied for lack of Primary EOB"){
+      this.openModal(this.option3);
+    }
+    else if(status_code_value.description == "Claim has been forwarded to pricing center"){
+      this.openModal(this.option4);
+    }
+    else if(status_code_value.description == "Co-ordination of Benefits"){
+      this.openModal(this.option5);
+    }
+    else if(status_code_value.description == "Coverage terminated"){
+      this.openModal(this.option6);
+    }
+    else if(status_code_value.description == "Deductible"){
+      this.openModal(this.option7);
+    }
+    else if(status_code_value.description == "Duplicate Claim"){
+      this.openModal(this.option8);
+    }
+    else if(status_code_value.description == "Global"){
+      this.openModal(this.option9);
+    }
+    else if(status_code_value.description == "Hospice"){
+      this.openModal(this.option10);
+    }
+    else if(status_code_value.description == "Inclusive/bundled/global"){
+      this.openModal(this.option5);
+    }
+    else if(status_code_value.description == "In-process"){
+      this.openModal(this.option5);
+      let date = new Date();
+
+      let updatedDate = new Date(date.setDate(date.getDate() + 7));
+      let formattedDate = updatedDate.toLocaleDateString('en-US');
+
+      console.log('asasasasasas',formattedDate);
+      this.model = formattedDate;
+    }
+    else if(status_code_value.description == "Medical records"){
+      this.openModal(this.option5);
+    }
+    else if(status_code_value.description == "No claim on file or Claim not on file"){
+      this.openModal(this.option5);
+    }
+    else if(status_code_value.description == "Offset Adjustment"){
+      this.openModal(this.option5);
+    }
+    else if(status_code_value.description == "Claim Paid to Provider"){
+      this.openModal(this.option5);
+    }
+    else if(status_code_value.description == "Patient can’t be identified"){
+      this.openModal(this.option5);
+    }
+    else if(status_code_value.description == "Required W9 form"){
+      this.openModal(this.option5);
+    }
+    else if(status_code_value.description == "Voicemail"){
+      this.openModal(this.option5);
+    }
+    else if(status_code_value.description == "Claim Paid to PT"){
+      this.openModal(this.option5);
     }
   }
   // ShowQuestions(event:any){

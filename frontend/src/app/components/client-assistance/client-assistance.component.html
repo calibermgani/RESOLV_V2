@@ -644,6 +644,8 @@
 
                                                                 <th (click)="order_list('wo','patient_name','null','null','null','null')">Patient Name<i class="fa fa-fw fa-sort"></i></th>
 
+                                                                <th >Insurance Name<i class="fa fa-fw fa-sort"></i></th>
+
                                                                 <!-- <th (click)="order_list('wo','rendering_prov','null','null','null','null')" class="font600 line-height-24">Rendering Provider<i class="fa fa-fw fa-sort"></i></th>
 
                                                                 <th (click)="order_list('wo','responsibility','null','null','null','null')" class="font600 line-height-24">Responsibility<i class="fa fa-fw fa-sort"></i></th>
@@ -696,6 +698,8 @@
                                                                     <td tooltip="AccNo" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer" (click)="open(claimpage);claimslection(tab_dat);" ><span *ngIf="tab_dat.acct_no==null">-Nil-</span><span *ngIf="tab_dat.acct_no!=null">{{tab_dat.acct_no}}</span></td>
 
                                                                     <td tooltip="AccNo" content-type="template" tooltip-class="tooltip-feedback" [options]="tooltipOptions" class="cur-pointer" ><span *ngIf="tab_dat.patient_name==null">-Nil-</span><span *ngIf="tab_dat.patient_name!=null">{{tab_dat.patient_name}}</span></td>
+
+                                                                    <td  class="cur-pointer" ><span *ngIf="tab_dat.prim_ins_name==null">-Nil-</span><span *ngIf="tab_dat.prim_ins_name!=null">{{tab_dat.prim_ins_name}}</span></td>
 
                                                                     <!-- <td class="cur-pointer"><span *ngIf="tab_dat.rendering_prov==null">-Nil-</span><span *ngIf="tab_dat.rendering_prov!=null">{{tab_dat.rendering_prov}}</span></td>
 

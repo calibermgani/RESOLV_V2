@@ -3199,7 +3199,7 @@ public updatenotes(type:any){
     "appear_yellow": (params: any) => {
       // console.log(params);
       let rowIndex = params.node.rowIndex
-      return rowIndex == 3;
+      return rowIndex == 2;
     }
   };
   getRowNodeId(params: any) {

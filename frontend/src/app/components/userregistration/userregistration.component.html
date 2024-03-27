@@ -219,7 +219,7 @@
                      <th>Practice</th>
                      <th>Role</th>
                      <th>Assign Limit</th>
-                     <th>Caller Benchmark</th>
+                     <!-- <th>Caller Benchmark</th> -->
                      <th>Action</th>
                   </tr>
                </thead>
@@ -247,13 +247,13 @@
                         <div *ngIf="process_fields.controls[fields.assign_lim].hasError('pattern')">Only Numbers are Allowed.</div>
                       </div>
                   </td>
-                  <td>
+                  <!-- <td>
                      <input type="number" name="{{fields.caller_bm}}" class="form-control" id="{{fields.caller_bm}}" formControlName="{{fields.caller_bm}}" placeholder="%" required>
                      <div *ngIf="(process_fields.controls[fields.caller_bm].touched || submitted) && process_fields.controls[fields.caller_bm].errors" class="invalid-feedback">
                         <div *ngIf="process_fields.controls[fields.caller_bm].hasError('required')">Caller Benchmark is required</div>
                         <div *ngIf="process_fields.controls[fields.caller_bm].hasError('pattern')">Only Numbers are Allowed.</div>
                       </div>
-                  </td>
+                  </td> -->
                   <td style="padding-left: 16px;">
                      <span *ngIf="field_details.length ==  i+1 && practice.length > practice_nos">
                      <button type="button" class="add btn btn-info btn-sm" aria-label="Add" (click)="add_practice()">

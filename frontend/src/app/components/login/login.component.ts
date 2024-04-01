@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
 
   usernameInputTouched:boolean = false;
   userpasswordInputTouched:boolean = false;
+  token:string = '';
 
   public error = null;
 
@@ -86,6 +87,10 @@ export class LoginComponent implements OnInit {
     if(this.auth.tokenValue.value == true)
     {let data = localStorage.getItem('token');
     this.auth.login(data);}
+  }
+
+  resolved(captchaResponse: any) {
+    console.log(`Resolved captcha with response: ${captchaResponse}`);
   }
 
   // ngOnDestroy(){

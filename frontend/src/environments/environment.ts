@@ -4,7 +4,8 @@
 import { IEnvironment } from './environment.interface';
 export const environment:IEnvironment = {
   production: false,
-  apiUrl: 'http://127.0.0.1:8000/api'
+  apiUrl: 'http://127.0.0.1:8000/api',
+  // siteKey: '6LdHRqspAAAAANIY7xmolyRm1Q7in54qP8t2jzg-',
 };
 // apiUrl: 'http://127.0.0.1:8000/api'
 /*

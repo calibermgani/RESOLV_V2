@@ -34,6 +34,7 @@ import { RolesComponent } from './components/roles/roles.component';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule,NgxUiLoaderConfig, POSITION, SPINNER, NgxUiLoaderRouterModule } from 'ngx-ui-loader';
 import { NgIdleKeepaliveModule } from '@ng-idle/keepalive';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 
 const ngxUiLoaderConfig: NgxUiLoaderConfig = {
@@ -93,6 +94,7 @@ const ngxUiLoaderConfig: NgxUiLoaderConfig = {
       // exclude:["http://127.0.0.1:8000/api/checktoken","http://127.0.0.1:8000/api/getPermissions"],
       showForeground:true,
     }),
+    RecaptchaModule,
     // GooglePlaceModule,
   ],
   providers: [JarwisService,NotifyService,

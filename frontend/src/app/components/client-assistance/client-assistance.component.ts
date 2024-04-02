@@ -118,6 +118,8 @@ alloc_pages!:number;
 sortByAsc: boolean = true;
 sorting_name:any;
 
+maxSize:number = 9;
+
   search:any;
 
   public claims_filter(page:any,type:any,sort_data:any,sort_type:any,sorting_name:any,sorting_method:any,claim_searh:any,search:any){

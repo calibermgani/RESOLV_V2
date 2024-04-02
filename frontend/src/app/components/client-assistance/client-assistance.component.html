@@ -744,8 +744,8 @@
                                                     <div class="row">
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                             <div class="has-text-centered noprint">
-                                                                <!-- <pagination-controls id="claims" (pageChange)="getclaim_details($event,'wo');" maxSize="9">
-                                                                </pagination-controls> -->
+                                                                <pagination-controls id="claims" (pageChange)="getclaim_details($event,'wo',null,null,'null','null',null,null);" [maxSize]="9">
+                                                                </pagination-controls>
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12" style="text-align: right;" class="showing_count" *ngIf="total_claims != 0">

@@ -130,7 +130,7 @@
               </div> -->
               <div style="margin-left: 20px;">
                 <img src="assets/image/mail.svg" width="20px" height="20px">
-                <span style="margin-left: 10px;">resolvsupport@annexmed.net</span>
+                <span style="margin-left: 10px;">resolvsupport&copy;annexmed.net</span>
               </div>
             </div>
           </div>
@@ -189,11 +189,14 @@
                     </div>
                   </div> -->
                   <re-captcha (resolved)="resolved($event)" siteKey="6LdHRqspAAAAANIY7xmolyRm1Q7in54qP8t2jzg-"></re-captcha>
+                  <!-- <div *ngIf="recaptcha.invalid && (recaptcha.dirty || recaptcha.touched)" class="error">
+                    <div *ngIf="recaptcha.errors?.['required']">This field is required.</div>
+                  </div> -->
                 </div>
             </div>
             <div style="width: 100%;">
               <button class="btn-primary" style="background-color: #19114A;width: 100%;padding: 7px;border-radius: 7px;"
-                [disabled]="!LoginForm.valid" (click)="onSubmit()">Sign In</button>
+                [disabled]="!LoginForm.valid" (click)="onSubmit(LoginForm)">Sign In</button>
             </div>
           </form>
           </div>

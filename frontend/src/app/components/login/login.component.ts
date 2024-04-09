@@ -6,6 +6,7 @@ import { AuthService } from '../../Services/auth.service';
 import { SetUserService } from '../../Services/set-user.service';
 import {HttpClient} from '@angular/common/http';
 import { ToastrManager } from 'ng6-toastr-notifications';
+import { NgForm } from '@angular/forms';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   public form = {
     user_name: null,
-    password:null
+    password:null,
   };
 
   usernameInputTouched:boolean = false;
@@ -34,11 +35,18 @@ export class LoginComponent implements OnInit {
     public toastr: ToastrManager,
   ) { }
 
-  onSubmit() {
+  onSubmit(form : NgForm) {
+    // if (form.invalid) {
+    // for (const control of Object.keys(form.controls)) {
+    //   form.controls[control].markAsTouched();
+    // }
+  // }
+  // else{
     this.Jarwis.login(this.form).subscribe(
       data => this.handleResponse(data),
       error => this.handleError(error)
     );
+  // }
   }
   handleResponse(data:any){
     //console.log(data);

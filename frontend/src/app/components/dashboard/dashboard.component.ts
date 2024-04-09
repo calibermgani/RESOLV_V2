@@ -324,50 +324,50 @@ export class DashboardComponent implements OnInit {
           {
             category: [
               {
-                label: "3/1"
+                label: "4/1"
               },
               {
-                label: "3/4"
+                label: "4/2"
               },
               {
-                label: "3/5"
+                label: "4/3"
               },
               {
-                label: "3/6"
+                label: "4/4"
               },
               {
-                label: "3/7"
+                label: "4/5"
               },
               {
-                label: "3/8"
+                label: "4/8"
               },
               {
-                label: "3/11"
+                label: "4/9"
               },
               {
-                label: "3/12"
+                label: "4/10"
               },
               {
-                label: "3/13"
+                label: "4/11"
               },
               {
-                label: "3/14"
+                label: "4/12"
               },
-              {
-                label: "3/15"
-              },
-              {
-                label: "3/18"
-              },
-              {
-                label: "3/19"
-              },
-              {
-                label: "3/20"
-              },
-              {
-                label: "3/21"
-              }
+              // {
+              //   label: "3/15"
+              // },
+              // {
+              //   label: "3/18"
+              // },
+              // {
+              //   label: "3/19"
+              // },
+              // {
+              //   label: "3/20"
+              // },
+              // {
+              //   label: "3/21"
+              // }
             ]
           }
         ],
@@ -405,18 +405,18 @@ export class DashboardComponent implements OnInit {
               {
                 value: "59"
               },
-              {
-                value: "56"
-              },
-              {
-                value: "39"
-              },
-              {
-                value: "50"
-              },
-              {
-                value: "51"
-              }
+              // {
+              //   value: "56"
+              // },
+              // {
+              //   value: "39"
+              // },
+              // {
+              //   value: "50"
+              // },
+              // {
+              //   value: "51"
+              // }
             ]
           },
           {
@@ -455,18 +455,18 @@ export class DashboardComponent implements OnInit {
               {
                 value: "47"
               },
-              {
-                value: "36"
-              },
-              {
-                value: "51"
-              },
-              {
-                value: "56"
-              },
-              {
-                value: "29"
-              }
+              // {
+              //   value: "36"
+              // },
+              // {
+              //   value: "51"
+              // },
+              // {
+              //   value: "56"
+              // },
+              // {
+              //   value: "29"
+              // }
             ]
           },
           {
@@ -505,18 +505,18 @@ export class DashboardComponent implements OnInit {
               {
                 value: "55"
               },
-              {
-                value: "59"
-              },
-              {
-                value: "39"
-              },
-              {
-                value: "45"
-              },
-              {
-                value: "37"
-              }
+              // {
+              //   value: "59"
+              // },
+              // {
+              //   value: "39"
+              // },
+              // {
+              //   value: "45"
+              // },
+              // {
+              //   value: "37"
+              // }
             ]
           }
         ],
@@ -544,16 +544,16 @@ export class DashboardComponent implements OnInit {
         },
         "data": [{
           "label": "Auth Assistance",
-          "value": "1"
+          "value": "2"
         }, {
           "label": "Patient Billing Assiatnce",
-          "value": "2"
+          "value": "3"
         }, {
           "label": "Adjustment Approval",
           "value": "1"
         }, {
           "label": "Rebilling Assitance",
-          "value": "1"
+          "value": "2"
         },
       ]
       };

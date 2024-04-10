@@ -736,17 +736,22 @@
                                                       </div>
                                                   </div> -->
                                                   <div class="box no-shadow no-bottom" style="border:1px solid #d8dbe4;height: 465px;">
-                                                    <div class="box-header" style="border-bottom: 1px solid #e9ecf3;">
+                                                    <div class="box-header" style="border-bottom: 1px solid #e9ecf3;display: flex;flex-direction: row;">
+                                                      <div>
                                                         <h3 class="box-title list-heading"><i class="fa fa-bars ar-blue"></i> Sub Status Code</h3>
+                                                      </div>
 
-                                                        <div>
-                                                          <button class="btn btn-primary" (click)="downloadExcel()">Export</button>
-                                                        </div>
-                                                        <div class="box-tools pull-right">
-                                                            <button type="button" class="btn btn-box-tool" style="margin-left:10px;" data-widget="collapse" data-toggle="collapse" data-target="#box7">
-                                                                <i class="fa fa-plus"></i>
-                                                            </button>
-                                                        </div>
+                                                      <!-- <div class="pull-right">
+
+                                                      </div> -->
+                                                      <div class="box-tools pull-right">
+                                                        <!-- <button class="btn btn-primary" >Export</button> -->
+                                                        <a (click)="downloadExcel()" style="text-decoration: underline;cursor: pointer;">Export</a>
+                                                        <button type="button" class="btn btn-box-tool" style="margin-left:10px;" data-widget="collapse"
+                                                          data-toggle="collapse" data-target="#box7">
+                                                          <i class="fa fa-plus"></i>
+                                                        </button>
+                                                      </div>
                                                     </div>
 
                                                     <div class="box-body no-padding collapse in" style="margin-top:20px;" id="box7">

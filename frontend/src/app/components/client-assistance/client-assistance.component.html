@@ -730,7 +730,7 @@
                                                                     <!-- <td class="cur-pointer"><span *ngIf="!tab_dat.followup_date ">NA</span><span *ngIf="tab_dat.followup_date">{{tab_dat.followup_date | date: 'MM/dd/yyyy'}}</span></td> -->
 
                                                                     <td class="cur-pointer"><span *ngIf="!tab_dat.assigned_to ">UA</span><span *ngIf="tab_dat.assigned_to">{{tab_dat.assigned_to}}</span> | <span *ngIf="!tab_dat.created_ats ">UA</span><span *ngIf="tab_dat.created_ats">{{tab_dat.created_ats}}</span></td>
-                                                                    <td class="cur-pointer"><span *ngIf="!tab_dat.created_at ">UA</span><span *ngIf="tab_dat.created_at">{{tab_dat.created_at | date: 'dd/MM/yyyy'}}</span></td>
+                                                                    <td class="cur-pointer"><span *ngIf="!tab_dat.follows_date ">UA</span><span *ngIf="tab_dat.follows_date">{{tab_dat.follows_date }}</span></td>
 
                                                                 </tr>
                                                                 <tr *ngIf="total_claims==0">

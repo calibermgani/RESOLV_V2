@@ -324,34 +324,34 @@ export class DashboardComponent implements OnInit {
           {
             category: [
               {
-                label: "4/1"
+                label: "5/2"
               },
               {
-                label: "4/2"
+                label: "5/3"
               },
               {
-                label: "4/3"
+                label: "5/6"
               },
               {
-                label: "4/4"
+                label: "5/7"
               },
               {
-                label: "4/5"
+                label: "5/8"
               },
               {
-                label: "4/8"
+                label: "5/9"
               },
               {
-                label: "4/9"
+                label: "5/10"
               },
               {
-                label: "4/10"
+                label: "5/13"
               },
               {
-                label: "4/11"
+                label: "5/14"
               },
               {
-                label: "4/12"
+                label: "5/15"
               },
               // {
               //   label: "3/15"

@@ -543,17 +543,17 @@ export class DashboardComponent implements OnInit {
           "theme": "fusion",
         },
         "data": [{
-          "label": "Auth Assistance",
+          "label": "Credential Assistance",
           "value": "2"
         }, {
           "label": "Patient Billing Assiatnce",
-          "value": "3"
-        }, {
-          "label": "Adjustment Approval",
           "value": "1"
         }, {
-          "label": "Rebilling Assitance",
+          "label": "Adjustment Approval",
           "value": "2"
+        }, {
+          "label": "Positing Assitance",
+          "value": "1"
         },
       ]
       };

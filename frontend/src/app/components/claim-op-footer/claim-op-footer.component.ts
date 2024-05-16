@@ -488,8 +488,11 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
   @ViewChild('option8') option8!: TemplateRef<any>;
   @ViewChild('option9') option9!: TemplateRef<any>;
   @ViewChild('option10') option10!: TemplateRef<any>;
+  @ViewChild('option11') option11!: TemplateRef<any>;
+  @ViewChild('option12') option12!: TemplateRef<any>;
   selectedOptions:any
   //Handle Claim Code Changed event
+  followUpDateValidate : boolean = false;
   public status_code_changed(event: any) {
     console.log('event', event.type);
 
@@ -499,11 +502,13 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
       let sub_status_option = [];
 
       console.log('sub_status_option');
+      console.log('Sub Status',sub_status);
+
 
       if (sub_status == undefined || sub_status == '') {
         this.sub_options = [];
         this.formGroup.patchValue({
-          sub_status_code: ''
+          sub_status_code: {id:21,description:'Reprocess'}   //edited
         });
       }
       else {
@@ -567,37 +572,68 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
       this.model = formattedDate;
     }
     else if(status_code_value.description == "Capitation"){
+      this.formGroup.controls['closed'].disable();
+      this.followUpDateValidate = false;
+      this.formGroup.controls['followup_date'].clearValidators();
       this.openModal(this.option2);
     }
     else if(status_code_value.description == "Claim denied for lack of Primary EOB"){
+      this.formGroup.controls['closed'].disable();
+      this.followUpDateValidate = false;
+      this.formGroup.controls['followup_date'].clearValidators();
       this.openModal(this.option3);
     }
     else if(status_code_value.description == "Claim has been forwarded to pricing center"){
+      this.formGroup.controls['closed'].disable();
+      this.followUpDateValidate = false;
+      this.formGroup.controls['followup_date'].clearValidators();
       this.openModal(this.option4);
     }
     else if(status_code_value.description == "Co-ordination of Benefits"){
+      this.followUpDateValidate = true;
+      this.formGroup.controls['followup_date'].setValidators([Validators.required]);
       this.openModal(this.option5);
     }
     else if(status_code_value.description == "Coverage terminated"){
+      this.formGroup.controls['closed'].disable();
+      this.followUpDateValidate = false;
+      this.formGroup.controls['followup_date'].clearValidators();
       this.openModal(this.option6);
     }
     else if(status_code_value.description == "Deductible"){
+      this.formGroup.controls['closed'].disable();
+      this.followUpDateValidate = false;
+      this.formGroup.controls['followup_date'].clearValidators();
       this.openModal(this.option7);
     }
     else if(status_code_value.description == "Duplicate Claim"){
+      this.formGroup.controls['closed'].disable();
+      this.followUpDateValidate = false;
+      this.formGroup.controls['followup_date'].clearValidators();
       this.openModal(this.option8);
     }
     else if(status_code_value.description == "Global"){
+      this.formGroup.controls['closed'].disable();
+      this.followUpDateValidate = false;
+      this.formGroup.controls['followup_date'].clearValidators();
       this.openModal(this.option9);
     }
     else if(status_code_value.description == "Hospice"){
+      this.formGroup.controls['closed'].disable();
+      this.followUpDateValidate = false;
+      this.formGroup.controls['followup_date'].clearValidators();
       this.openModal(this.option10);
     }
     else if(status_code_value.description == "Inclusive/bundled/global"){
-      this.openModal(this.option5);
+      this.formGroup.controls['closed'].disable();
+      this.followUpDateValidate = false;
+      this.formGroup.controls['followup_date'].clearValidators();
+      this.openModal(this.option11);
     }
     else if(status_code_value.description == "In-process"){
-      this.openModal(this.option5);
+      this.followUpDateValidate = true;
+      this.formGroup.controls['followup_date'].setValidators([Validators.required]);
+      this.openModal(this.option12);
       let date = new Date();
 
       let updatedDate = new Date(date.setDate(date.getDate() + 7));
@@ -607,27 +643,51 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
       this.model = formattedDate;
     }
     else if(status_code_value.description == "Medical records"){
+      this.formGroup.controls['closed'].disable();
+      this.followUpDateValidate = false;
+      this.formGroup.controls['followup_date'].clearValidators();
       this.openModal(this.option5);
     }
     else if(status_code_value.description == "No claim on file or Claim not on file"){
+      this.formGroup.controls['closed'].disable();
+      this.followUpDateValidate = false;
+      this.formGroup.controls['followup_date'].clearValidators();
       this.openModal(this.option5);
     }
     else if(status_code_value.description == "Offset Adjustment"){
+      this.formGroup.controls['closed'].disable();
+      this.followUpDateValidate = false;
+      this.formGroup.controls['followup_date'].clearValidators();
       this.openModal(this.option5);
     }
     else if(status_code_value.description == "Claim Paid to Provider"){
+      this.formGroup.controls['closed'].disable();
+      this.followUpDateValidate = false;
+      this.formGroup.controls['followup_date'].clearValidators();
       this.openModal(this.option5);
     }
     else if(status_code_value.description == "Patient can’t be identified"){
+      this.formGroup.controls['closed'].disable();
+      this.followUpDateValidate = false;
+      this.formGroup.controls['followup_date'].clearValidators();
       this.openModal(this.option5);
     }
     else if(status_code_value.description == "Required W9 form"){
+      this.formGroup.controls['closed'].disable();
+      this.followUpDateValidate = false;
+      this.formGroup.controls['followup_date'].clearValidators();
       this.openModal(this.option5);
     }
-    else if(status_code_value.description == "Voicemail"){
+    else if(status_code_value.description == "Voice mail"){
+      this.followUpDateValidate = true;
+      this.formGroup.controls['followup_date'].setValidators([Validators.required]);
+      this.followUpDateValidate = true;
       this.openModal(this.option5);
     }
     else if(status_code_value.description == "Claim Paid to PT"){
+      this.formGroup.controls['closed'].disable();
+      this.followUpDateValidate = false;
+      this.formGroup.controls['followup_date'].clearValidators();
       this.openModal(this.option5);
     }
   }
@@ -1188,13 +1248,13 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
 
         ]),
         sub_status_code: new FormControl('', [
-          Validators.required
+
         ]),
         associates: new FormControl('', [
           Validators.required
         ]),
         followup_date: new FormControl('', [
-          Validators.required
+
         ]),
         closed: new FormControl(null, [
           Validators.required

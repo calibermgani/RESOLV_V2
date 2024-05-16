@@ -705,6 +705,7 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
   audit_claim_data: any = [];
   //Assign Table data and `total values
   public assign_page_data(data: any) {
+    console.log('Claim Notes',data);
     if (data) {
       this.GridrowData1 = data.data;
       this.myGrid_1.api?.setRowData(this.GridrowData1);
@@ -719,8 +720,7 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
       this.loader.stop();
       this.autoSizeAll();
     }
-    if(data)
-    {this.table_datas = data.data;
+    if(data){this.table_datas = data.data;
       this.audit_claim_data = data.audit_claim_data;
       this.total = data.total;
 

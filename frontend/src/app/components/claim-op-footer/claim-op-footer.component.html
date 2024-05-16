@@ -10,13 +10,13 @@
               (change)="status_code_changed($event)" [config]="config" [options]="options" dropdownPosition="bottom" ></ngx-select-dropdown>
           </div>
         </div>
-        <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
+        <!-- <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
           <div class="form-group" style="margin-bottom: 10px;">
             <label>Sub Status Code<span class="ar-red">*</span></label>
             <ngx-select-dropdown formControlName="sub_status_code"  [config]="config"  [disabled]="claimed() || fclaim()"
               [options]="sub_options"></ngx-select-dropdown>
           </div>
-        </div>
+        </div> -->
         <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12" *ngIf="router.url != '/followup'">
           <div class="form-group" style="margin-bottom: 10px;">
             <label>Associates<span class="ar-red">*</span></label>
@@ -26,7 +26,7 @@
         </div>
         <div class="col-md-3 col-sm-3 col-lg-3 col-xs-12">
           <div class="form-group" style="margin-bottom: 10px;" *ngIf="router.url == '/followup'">
-            <label>Followup Date<span class="ar-red">*</span></label>
+            <label>Followup Date<span class="ar-red" *ngIf="this.followUpDateValidate" >*</span></label>
             <!-- <input class="form-control followupDateField" id="myInput" placeholder="MM-DD-YYYY"
               formControlName="followup_date" [minDate]="minDate" [(ngModel)]="model" ngbDatepicker
               #followup_date="ngbDatepicker" (click)="followup_date.toggle()"
@@ -78,7 +78,7 @@
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center" style="margin-bottom: 20px;margin-top:30px;"
   *ngIf="tab_status == false">
   <!-- <button type="button" class="btn btn-default text-center btn-md btn-flat" (click)="modal.dismiss()" style="min-width: 80px;">Cancel</button> -->
-  <button type="button" [disabled]="!modalform.valid || !note_validation"
+  <button type="button" [disabled]="formGroup.invalid || !note_validation"
     class="btn btn-info text-center btn-md btn-flat" (click)="save_alert_function(alert_modal);"
     style="min-width: 80px;">Save</button>
   <!-- followup_process();finish_followup(); -->
@@ -685,8 +685,7 @@
     <table class="table-striped1 table table-bordered">
       <thead>
         <tr>
-          <th class="font600 text-center line-height-24" colspan="24" style="background-color: blue;color: #fff;">Claim
-            denied as Duplicate Claim/Service</th>
+          <th class="font600 text-center line-height-24" colspan="24" style="background-color: blue;color: #fff;">Claim applied towards Patient's Deductible</th>
         </tr>
       </thead>
       <tbody>
@@ -920,14 +919,15 @@
 <ng-template #option9 let-modal>
   <div class="modal-header">
     <button type="button" class="close" (click)="modalRef?.hide();" aria-label="Close">
-    <p aria-hidden="true" style="font-size: 15px;margin-bottom: 0px;margin-top: 5px;">Close</p></button>
+      <p aria-hidden="true" style="font-size: 15px;margin-bottom: 0px;margin-top: 5px;">Close</p>
+    </button>
     <ul class="nav nav-tabs no-border">
-       <li class="testClass">
-          <a href="#{main_tab}" data-toggle="tab" class="no-padding">
+      <li class="testClass">
+        <a href="#{main_tab}" data-toggle="tab" class="no-padding">
           <!-- <h4 class="modal-title list-heading">Guide</h4> -->
-          </a>
-       </li>
-       <!-- <li class="testClass" >
+        </a>
+      </li>
+      <!-- <li class="testClass" >
        <a data-toggle="tab">
           <button type="button" class="close" aria-label="Close">
           <span aria-hidden="true">×</span></button>
@@ -935,13 +935,12 @@
        </a>
        </li> -->
     </ul>
- </div>
+  </div>
   <div class="table-responsive" style="padding:0 5px;margin: 15px;height: 400px;">
     <table class="table-striped1 table table-bordered">
       <thead>
         <tr>
-          <th class="font600 text-center line-height-24" colspan="24" style="background-color: blue;color: #fff;">Claim
-            applied towards Patient's Deductible</th>
+          <th class="font600 text-center line-height-24" colspan="24" style="background-color: blue;color: #fff;">Claim is in process / Claim is in review / claim under process</th>
         </tr>
       </thead>
       <tbody>
@@ -975,65 +974,47 @@
           <td class="text-center" colspan="20">May I know whether it is Annual or Life time Deductible for the PT?
           </td>
         </tr>
-
-
         <tr>
           <td class="text-center" colspan="4">7</td>
-          <td class="text-center" colspan="20">If Annual - May I know what is the Annual Deductible amount and how much PT
+          <td class="text-center" colspan="20">If Annual - May I know what is the Annual Deductible amount and how much
+            PT
             has met so far?
-
           </td>
         </tr>
-
         <tr>
           <td class="text-center" colspan="4">8</td>
-          <td class="text-center" colspan="20">If Lifetime Deductible - May I know what is the total Lifetime Deductible and
+          <td class="text-center" colspan="20">If Lifetime Deductible - May I know what is the total Lifetime Deductible
+            and
             how much Pt has met so far?
-
-
           </td>
         </tr>
-
         <tr>
           <td class="text-center" colspan="4">9</td>
-          <td class="text-center" colspan="20">May I know whether the Deductible is applied towards Pt's In-network or Out
+          <td class="text-center" colspan="20">May I know whether the Deductible is applied towards Pt's In-network or
+            Out
             of Network Deductible
-
-
-
           </td>
         </tr>
-
         <tr>
           <td class="text-center" colspan="4">10</td>
           <td class="text-center" colspan="20">May I know whether the Deductible is applied towards Pt's Individual or
             Family Deductible
-
           </td>
         </tr>
-
         <tr>
           <td class="text-center" colspan="4">10</td>
           <td class="text-center" colspan="20">Could you please fax a copy of EOB to Provider's office?
-
-
-
-
-
           </td>
         </tr>
-
         <tr>
           <td class="text-center" colspan="4">11</td>
           <td class="text-center" colspan="20">May I have the claim# and call ref#
-
-
           </td>
         </tr>
 
       </tbody>
     </table>
- </div>
+  </div>
 </ng-template>
 
 <ng-template #option10 let-modal>
@@ -1226,6 +1207,223 @@
           </td>
         </tr>
 
+
+      </tbody>
+    </table>
+ </div>
+</ng-template>
+
+<ng-template #option11 let-modal>
+  <div class="modal-header">
+    <button type="button" class="close" (click)="modalRef?.hide();" aria-label="Close">
+    <p aria-hidden="true" style="font-size: 15px;margin-bottom: 0px;margin-top: 5px;">Close</p></button>
+    <ul class="nav nav-tabs no-border">
+       <li class="testClass">
+          <a href="#{main_tab}" data-toggle="tab" class="no-padding">
+          <!-- <h4 class="modal-title list-heading">Guide</h4> -->
+          </a>
+       </li>
+       <!-- <li class="testClass" >
+       <a data-toggle="tab">
+          <button type="button" class="close" aria-label="Close">
+          <span aria-hidden="true">×</span></button>
+          <h4 class="modal-title list-heading">Option 1</h4>
+       </a>
+       </li> -->
+    </ul>
+ </div>
+  <div class="table-responsive" style="padding:0 5px;margin: 15px;height: 400px;">
+    <table class="table-striped1 table table-bordered">
+      <thead>
+        <tr>
+          <th class="font600 text-center line-height-24" colspan="24" style="background-color: blue;color: #fff;">Claim processed towards Offset</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center" colspan="4">1</td>
+          <td class="text-center" colspan="20">May I know when the claim was processed?
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4">2</td>
+          <td class="text-center" colspan="20">May I know the allowed amount and offset amount on the claim?
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4">3</td>
+          <td class="text-center" colspan="20">May I know whether all CPTs were applied towards Offset?</td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4">4</td>
+          <td class="text-center" colspan="20">May I know is there any Patient responsibility (Copay/Coins/Ded)
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4">5</td>
+          <td class="text-center" colspan="20">May I have the overpaid claim details?
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4">6</td>
+          <td class="text-center" colspan="20">PT Acct#, Name, DOS, BA, AA and Overpaid amount</td>
+        </tr>
+        <tr>
+        <tr>
+          <td colspan="4">7</td>
+          <td class="text-center" colspan="20" style="background: yellow;">If Overpaid visit found in S/W</td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4">8</td>
+          <td class="text-center" colspan="20">May I have a copy of current DOS EOB to be faxed to Provider office?</td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4">9</td>
+          <td class="text-center" colspan="20">May I have the Claim# and Call ref#</td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4">10</td>
+          <td class="text-center" colspan="20">End Action: Document notes and suggest payment posting team to verify EOB and adjust payment accordingly in S/W</td>
+        </tr>
+
+        <tr>
+          <td colspan="4">11</td>
+          <td class="text-center" colspan="20" style="background: yellow;">If Overpaid visit not found in S/W</td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4">12</td>
+          <td class="text-center" colspan="20">May I have a copy of Overpaid EOB and current DOS EOB to be faxed to Provider office?</td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4">13</td>
+          <td class="text-center" colspan="20">May I have the Claim# and Call ref#</td>
+        </tr>
+        <tr>
+          <td colspan="4">14</td>
+          <td class="text-center" colspan="20">End Action: Document notes and suggest payment posting team to verify overpaid EOB and current EOB and take action accordingly</td>
+        </tr>
+
+      </tbody>
+    </table>
+ </div>
+</ng-template>
+
+<ng-template #option12 let-modal>
+  <div class="modal-header">
+    <button type="button" class="close" (click)="modalRef?.hide();" aria-label="Close">
+    <p aria-hidden="true" style="font-size: 15px;margin-bottom: 0px;margin-top: 5px;">Close</p></button>
+    <ul class="nav nav-tabs no-border">
+       <li class="testClass">
+          <a href="#{main_tab}" data-toggle="tab" class="no-padding"></a>
+       </li>
+    </ul>
+ </div>
+  <div class="table-responsive" style="padding:0 5px;margin: 15px;height: 400px;">
+    <table class="table-striped1 table table-bordered">
+      <thead>
+        <tr>
+          <th class="font600 text-center line-height-24" colspan="24" style="background-color: blue;color: #fff;">Claim Paid to Provider</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center" colspan="4">1</td>
+          <td class="text-center" colspan="20">May I know the Claim received date?</td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4">2</td>
+          <td class="text-center" colspan="20">May I know the claim processed date and paid date?
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4">3</td>
+          <td class="text-center" colspan="20">May I know the claim allowed amount?
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4">4</td>
+          <td class="text-center" colspan="20">May I know the paid amount and CPT's paid?
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4">5</td>
+          <td class="text-center" colspan="20">May I know the CPT code break up details?
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4">6</td>
+          <td class="text-center" colspan="20">May I know is there any patient responsibility (Co-pay, Deductible, Co-ins)
+          </td>
+        </tr>
+        <tr>
+        <tr>
+          <td colspan="4">7</td>
+          <td class="text-center" colspan="20">May I know the mode of payment whether it is EFT or Check or Provider's credit card?</td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4"></td>
+          <td class="text-center" colspan="10" style="background: yellow;">Check</td>
+          <td class="text-center" colspan="10" style="background: yellow;">EFT or CC</td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4"></td>
+          <td class="text-center" colspan="10">May I know the the check#</td>
+          <td class="text-center" colspan="10">May I know the EFT#	</td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4"></td>
+          <td class="text-center" colspan="10">May I know whether it is single check or bulk check</td>
+          <td class="text-center" colspan="10">May I know the EFT amount (single or bulk)</td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4"></td>
+          <td class="text-center" colspan="10">If it is Bulk check : May I know the bulk check amount</td>
+          <td class="text-center" colspan="10">If bulk EFT: May I know the total amount transferred</td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4"></td>
+          <td class="text-center" colspan="10">May I know the check issued date</td>
+          <td class="text-center" colspan="10">May I know the EFT Date	</td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4"></td>
+          <td class="text-center" colspan="10">May I know the address to which check was issued? (verify Provider's address in Box 33 in CMS 1500 claim form)</td>
+          <td class="text-center" colspan="10"></td>
+        </tr>
+
+        <tr>
+          <td colspan="4">8</td>
+          <td class="text-center" colspan="20" style="background: yellow;">If check mailing address is wrong then inform the rep that check mailing address is wrong and ask her to stop the payment and request them to resend check with correct mailing address
+          </td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4"></td>
+          <td class="text-center" colspan="20">Compare the check date with current calling Date</td>
+        </tr>
+        <tr>
+          <td class="text-center" colspan="4">9</td>
+          <td class="text-center" colspan="20">If Current date is within 30 days from check date - get the claim# and call ref#</td>
+        </tr>
+        <tr>
+          <td colspan="4">10</td>
+          <td class="text-center" colspan="20">If current date is beyond 30 days from check date - ask rep - May I know the check status?</td>
+        </tr>
+        <tr>
+          <td colspan="4"></td>
+          <td class="text-center" colspan="20" style="background: yellow;">If Check is already cashed by the Provider</td>
+        </tr>
+        <tr>
+          <td colspan="4"></td>
+          <td class="text-center" colspan="20" style="background: yellow;">May I know the check cashed date?</td>
+        </tr>
+        <tr>
+          <td colspan="4"></td>
+          <td class="text-center" colspan="20" style="background: yellow;">Could you please fax a copy of cancelled check and EOB to Provider's office?		</td>
+        </tr>
+        <tr>
+          <td colspan="4"></td>
+          <td class="text-center" colspan="20" style="background: yellow;">Verify Provider's Fax# or Provider's mailing address to Ins to receive cancelled check copy and EOB		</td>
+        </tr>
 
       </tbody>
     </table>

@@ -629,13 +629,13 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
     else if(status_code_value.description == "Co-ordination of Benefits"){
       this.followUpDateValidate = true;
       this.formGroup.controls['followup_date'].setValidators([Validators.required]);
-      this.openModal(this.option5);
+      this.openModal(this.option9);
     }
     else if(status_code_value.description == "Coverage terminated"){
       this.formGroup.controls['closed'].disable();
       this.followUpDateValidate = false;
       this.formGroup.controls['followup_date'].clearValidators();
-      this.openModal(this.option6);
+      this.openModal(this.option7);
     }
     else if(status_code_value.description == "Deductible"){
       this.formGroup.controls['closed'].disable();

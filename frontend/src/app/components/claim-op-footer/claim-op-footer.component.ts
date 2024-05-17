@@ -515,6 +515,18 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
   @ViewChild('option10') option10!: TemplateRef<any>;
   @ViewChild('option11') option11!: TemplateRef<any>;
   @ViewChild('option12') option12!: TemplateRef<any>;
+  @ViewChild('option13') option13!: TemplateRef<any>;
+  @ViewChild('option14') option14!: TemplateRef<any>;
+
+  @ViewChild('option15') option15!: TemplateRef<any>;
+  @ViewChild('option16') option16!: TemplateRef<any>;
+
+  @ViewChild('option17') option17!: TemplateRef<any>;
+  @ViewChild('option18') option18!: TemplateRef<any>;
+  @ViewChild('option19') option19!: TemplateRef<any>;
+  @ViewChild('option20') option20!: TemplateRef<any>;
+
+
   selectedOptions:any
   //Handle Claim Code Changed event
   followUpDateValidate : boolean = false;
@@ -586,7 +598,7 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
     // console.log('Form control status',this.formGroup.value['status_code']);
     let status_code_value = this.formGroup.value['status_code'];
     console.log('INside',status_code_value.description);
-    if(status_code_value.description == "Claim Not On File"){
+    if(status_code_value.description == "Additional information"){
       this.openModal(this.option1);
       let date = new Date();
 
@@ -600,19 +612,19 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
       this.formGroup.controls['closed'].disable();
       this.followUpDateValidate = false;
       this.formGroup.controls['followup_date'].clearValidators();
-      this.openModal(this.option2);
+      this.openModal(this.option4);
     }
     else if(status_code_value.description == "Claim denied for lack of Primary EOB"){
       this.formGroup.controls['closed'].disable();
       this.followUpDateValidate = false;
       this.formGroup.controls['followup_date'].clearValidators();
-      this.openModal(this.option3);
+      this.openModal(this.option2);
     }
     else if(status_code_value.description == "Claim has been forwarded to pricing center"){
       this.formGroup.controls['closed'].disable();
       this.followUpDateValidate = false;
       this.formGroup.controls['followup_date'].clearValidators();
-      this.openModal(this.option4);
+      this.openModal(this.option3);
     }
     else if(status_code_value.description == "Co-ordination of Benefits"){
       this.followUpDateValidate = true;
@@ -671,49 +683,51 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
       this.formGroup.controls['closed'].disable();
       this.followUpDateValidate = false;
       this.formGroup.controls['followup_date'].clearValidators();
-      this.openModal(this.option5);
+      this.openModal(this.option13);
     }
     else if(status_code_value.description == "No claim on file or Claim not on file"){
-      this.formGroup.controls['closed'].disable();
-      this.followUpDateValidate = false;
-      this.formGroup.controls['followup_date'].clearValidators();
-      this.openModal(this.option5);
+      // this.formGroup.controls['closed'].disable();
+      // this.followUpDateValidate = false;
+      // this.formGroup.controls['followup_date'].clearValidators();
+      this.followUpDateValidate = true;
+      this.formGroup.controls['followup_date'].setValidators([Validators.required]);
+      this.openModal(this.option14);
     }
     else if(status_code_value.description == "Offset Adjustment"){
       this.formGroup.controls['closed'].disable();
       this.followUpDateValidate = false;
       this.formGroup.controls['followup_date'].clearValidators();
-      this.openModal(this.option5);
+      this.openModal(this.option15);
     }
     else if(status_code_value.description == "Claim Paid to Provider"){
       this.formGroup.controls['closed'].disable();
       this.followUpDateValidate = false;
       this.formGroup.controls['followup_date'].clearValidators();
-      this.openModal(this.option5);
+      this.openModal(this.option16);
     }
     else if(status_code_value.description == "Patient can’t be identified"){
       this.formGroup.controls['closed'].disable();
       this.followUpDateValidate = false;
       this.formGroup.controls['followup_date'].clearValidators();
-      this.openModal(this.option5);
+      this.openModal(this.option17);
     }
     else if(status_code_value.description == "Required W9 form"){
       this.formGroup.controls['closed'].disable();
       this.followUpDateValidate = false;
       this.formGroup.controls['followup_date'].clearValidators();
-      this.openModal(this.option5);
+      this.openModal(this.option18);
     }
     else if(status_code_value.description == "Voice mail"){
       this.followUpDateValidate = true;
       this.formGroup.controls['followup_date'].setValidators([Validators.required]);
       this.followUpDateValidate = true;
-      this.openModal(this.option5);
+      this.openModal(this.option19);
     }
     else if(status_code_value.description == "Claim Paid to PT"){
       this.formGroup.controls['closed'].disable();
       this.followUpDateValidate = false;
       this.formGroup.controls['followup_date'].clearValidators();
-      this.openModal(this.option5);
+      this.openModal(this.option20);
     }
   }
   // ShowQuestions(event:any){
@@ -838,7 +852,9 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
           else if (this.selected_claim_data['claims_notes'] != '' && this.selected_claim_data['claims_notes'] != undefined && this.selected_claim_data['claims_notes'] != null) {
             note_val = this.selected_claim_data['claims_notes'];
           }
-          this.selected_claim_data.followup_date = [this.result.month,this.result.day,this.result.year];
+          if(this.result){
+            this.selected_claim_data.followup_date = [this.result?.month,this.result?.day,this.result?.year];
+          }
           this.notes_details.push({ note: note_val, claim: this.selected_claim_data, type: 'claimpresent', claim_no: this.selected_claim_data['claim_no'] });
           //this.notes_details.patchValue({user:user_id,note:notes,claim:claim_id,type:command_type,claim_no:claim_id['claim_no']});
           //this.note_validation=true;
@@ -1341,7 +1357,7 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
   fclaim() {
     return this.fclaims;
   }
-   result:any;
+   result:any = {};
   check_follow_date() {
     let f_date: any;
     this.formGroup.get("followup_date")?.valueChanges.subscribe((selectedValue: any) => {

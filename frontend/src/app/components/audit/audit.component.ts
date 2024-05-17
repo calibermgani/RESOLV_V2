@@ -709,7 +709,7 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
     if (data) {
       this.GridrowData1 = data.data;
       this.myGrid_1.api?.setRowData(this.GridrowData1);
-      // this.myGrid_1.api?.sizeColumnsToFit();
+      this.myGrid_1.api?.sizeColumnsToFit();
       this.gridApi_1.closeToolPanel();
       this.loader.stop();
       console.log('GridData', this.GridrowData1);
@@ -897,6 +897,9 @@ export class AuditComponent implements OnInit, OnDestroy, AfterViewInit {
           this.GridrowData3 = this.allocated_claims;
           console.log('GridrowData3',this.GridrowData3);
           this.myGrid_3.api.setRowData(this.GridrowData3);
+          setTimeout(() => {
+            this.myGrid_3.api?.sizeColumnsToFit();
+          }, 1000);
           this.gridApi_3.closeToolPanel();
           this.loader.stop();
           //this.autoSizeAll();
@@ -4410,7 +4413,7 @@ console.log("Total page:", totalPages);
       field: 'claim_no',
       headerName: 'Claim No',
       sortable: true, // Set the `sortable` property to a boolean value
-      width: 90,
+      // width: 90,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;
@@ -4433,7 +4436,7 @@ console.log("Total page:", totalPages);
       field: 'dos',
       headerName: 'DOS',
       sortable: true,
-      width: 102,
+      // width: 102,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;
@@ -4456,7 +4459,7 @@ console.log("Total page:", totalPages);
       field: 'age',
       headerName: 'Age',
       sortable: true,
-       width: 60,
+      //  width: 60,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;
@@ -4479,7 +4482,7 @@ console.log("Total page:", totalPages);
       field: 'acct_no',
       headerName: 'Acc No',
       sortable: true,
-       width: 80,
+      //  width: 80,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;
@@ -4502,7 +4505,7 @@ console.log("Total page:", totalPages);
       field: 'patient_name',
       headerName: 'Patient Name',
       sortable: true,
-       width:150,
+      //  width:150,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;
@@ -4526,7 +4529,7 @@ console.log("Total page:", totalPages);
       field: 'rendering_prov',
       headerName: 'Rendering Provider',
       sortable: true,
-       width: 147,
+      //  width: 147,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;
@@ -4548,7 +4551,7 @@ console.log("Total page:", totalPages);
       field: 'responsibility',
       headerName: 'Responsibility',
       sortable: true,
-       width: 115,
+      //  width: 115,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;
@@ -4570,7 +4573,7 @@ console.log("Total page:", totalPages);
       field: 'billed_submit_date',
       headerName: 'BillSubmit Date',
       sortable: true,
-       width:125,
+      //  width:125,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;
@@ -4592,7 +4595,7 @@ console.log("Total page:", totalPages);
       field: 'denial_code',
       headerName: 'Denial Code',
       sortable: true,
-       width: 105,
+      //  width: 105,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;
@@ -4614,7 +4617,7 @@ console.log("Total page:", totalPages);
       field: 'statuscode',
       headerName: 'Status Code',
       sortable: true,
-       width: 83,
+      //  width: 83,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;
@@ -4636,7 +4639,7 @@ console.log("Total page:", totalPages);
       field: 'substatuscode',
       headerName: 'Sub Status Code',
       sortable: true,
-       width: 128,
+      //  width: 128,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;
@@ -4658,7 +4661,7 @@ console.log("Total page:", totalPages);
       field: 'total_charges',
       headerName: 'Total Charges',
       sortable: true,
-       width: 115,
+      //  width: 115,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;
@@ -4680,7 +4683,7 @@ console.log("Total page:", totalPages);
       field: 'total_ar',
       headerName: 'Total AR',
       sortable: true,
-       width: 90,
+      //  width: 90,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;
@@ -4702,7 +4705,7 @@ console.log("Total page:", totalPages);
       field: 'claim_Status',
       headerName: 'Claim Status',
       sortable: true,
-       width: 106,
+      //  width: 106,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;
@@ -4724,7 +4727,7 @@ console.log("Total page:", totalPages);
       field: 'claims_notes',
       headerName: 'Claim Note',
       sortable: true,
-       width: 100,
+      //  width: 100,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;
@@ -4746,7 +4749,7 @@ console.log("Total page:", totalPages);
       field: 'executive_work_date',
       headerName: 'Executive w.Date',
       sortable: true,
-       width: 133,
+      //  width: 133,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;
@@ -4768,7 +4771,7 @@ console.log("Total page:", totalPages);
       field: 'assigned_to',
       headerName: 'User | Date',
       sortable: true,
-       width: 130,
+      //  width: 130,
       cellStyle:(params:any):any=>{
         let x = params.node.data;
         let result = x.error_type;

@@ -227,6 +227,7 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
           this.status_code_changed(data);
           let associate_data = { type: 'Assign', associate: this.selected_claim_data['followup_associate'] };
 
+          console.log('associate_data 1', associate_data);
           this.get_associate_name(associate_data);
 
           // this.formGroup.patchValue({
@@ -321,13 +322,37 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
       if (this.router.url == '/audit') {
         this.formGroup.controls['associates'].enable();
       }
+      console.log('Value',this.selected_claim_data['status_code']);
+
       if (this.selected_claim_data['status_code'] != '' && this.selected_claim_data['status_code'] != undefined && this.selected_claim_data['status_code'] != null) {
+        console.log('insds');
+
         //  alert('test '+this.selected_claim_data['followup_date']);
-        let status_id = this.status_codes_data.find((v:any) => v.id == this.selected_claim_data['status_code']);
-        let substatus_id = this.sub_status_codes_data[status_id['id']];
-        let data = { type: 'initialisation', status_code: status_id['id'], sub_status_id: substatus_id };
+        console.log('status Code Data',this.status_codes_data);
+        console.log('sub status Code Data',this.sub_status_codes_data);
+
+        let status_id :any;
+        this.status_codes_data.find((v:any) =>{
+          console.log(v.id, this.selected_claim_data['status_code']);
+          if(v.id == this.selected_claim_data['status_code']){
+            status_id = v;
+          }
+        });
+        console.log('Status ID',status_id);
+        let substatus_id : any
+        if(status_id){
+          substatus_id = this.sub_status_codes_data[status_id['id']];
+        }
+        console.log('Sub Status ID',substatus_id);
+
+        let data :any
+        if(status_id != undefined && substatus_id != undefined){
+          data = { type: 'initialisation', status_code: status_id['id'], sub_status_id: substatus_id };
+        }
         this.status_code_changed(data);
         let associate_data = { type: 'Assign', associate: this.selected_claim_data['followup_associate'] };
+
+        console.log('associate_data', associate_data);
 
         this.get_associate_name(associate_data);
         if (this.selected_claim_data['followup_date'] == null) {
@@ -494,9 +519,9 @@ export class ClaimOpFooterComponent implements OnInit, OnDestroy {
   //Handle Claim Code Changed event
   followUpDateValidate : boolean = false;
   public status_code_changed(event: any) {
-    console.log('event', event.type);
+    console.log('event', event);
 
-    if (event.value != undefined) {
+    if (event?.value != undefined) {
       let sub_status: any = this.sub_status_codes_data[event.value.id];
 
       let sub_status_option = [];

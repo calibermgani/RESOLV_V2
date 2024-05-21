@@ -356,6 +356,15 @@ export class DashboardComponent implements OnInit {
               {
                 label: "5/16"
               },
+              {
+                label: "5/17"
+              },
+              {
+                label: "5/20"
+              },
+              {
+                label: "5/21"
+              },
               // {
               //   label: "3/18"
               // },
@@ -408,6 +417,15 @@ export class DashboardComponent implements OnInit {
               {
                 value: "56"
               },
+              {
+                value: "17"
+              },
+              {
+                value: "20"
+              },
+              {
+                value: "21"
+              },
               // {
               //   value: "39"
               // },
@@ -458,6 +476,12 @@ export class DashboardComponent implements OnInit {
               {
                 value: "46"
               },
+              {
+                value: "50"
+              },
+              {
+                value: "55"
+              },
               // {
               //   value: "51"
               // },
@@ -507,6 +531,12 @@ export class DashboardComponent implements OnInit {
               },
               {
                 value: "59"
+              },
+              {
+                value: "40"
+              },
+              {
+                value: "45"
               },
               // {
               //   value: "39"

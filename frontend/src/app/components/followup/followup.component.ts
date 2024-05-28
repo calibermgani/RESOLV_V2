@@ -3184,7 +3184,8 @@ public updatenotes(type:any){
   public rowClassRules: RowClassRules = {
     // row style function
     "appear_red": (params:any) => {
-      var numSickDays = params.data.touch;
+      console.log(params)
+      var numSickDays = params.data.claim_no;
 
 
       // if(numSickDays >0){
@@ -3194,7 +3195,7 @@ public updatenotes(type:any){
       //     this.myGrid_1.api.ensureIndexVisible(params.rowIndex, 'top');
       //   },1000);
       // }
-      return numSickDays > 0;
+      return numSickDays == 9006 || 9007 ? true : false;
     },
     "appear_yellow": (params: any) => {
       // console.log(params);

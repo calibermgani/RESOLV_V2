@@ -3195,7 +3195,7 @@ public updatenotes(type:any){
       //     this.myGrid_1.api.ensureIndexVisible(params.rowIndex, 'top');
       //   },1000);
       // }
-      return numSickDays == 9006 || 9007 ? true : false;
+      return false;
     },
     "appear_yellow": (params: any) => {
       // console.log(params);

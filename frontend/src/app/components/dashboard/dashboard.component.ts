@@ -365,18 +365,18 @@ export class DashboardComponent implements OnInit {
               {
                 label: "5/21"
               },
-              // {
-              //   label: "3/18"
-              // },
-              // {
-              //   label: "3/19"
-              // },
-              // {
-              //   label: "3/20"
-              // },
-              // {
-              //   label: "3/21"
-              // }
+              {
+                label: "5/22"
+              },
+              {
+                label: "5/23"
+              },
+              {
+                label: "5/24"
+              },
+              {
+                label: "5/27"
+              }
             ]
           }
         ],
@@ -426,15 +426,18 @@ export class DashboardComponent implements OnInit {
               {
                 value: "21"
               },
-              // {
-              //   value: "39"
-              // },
-              // {
-              //   value: "50"
-              // },
-              // {
-              //   value: "51"
-              // }
+              {
+                value: "39"
+              },
+              {
+                value: "50"
+              },
+              {
+                value: "51"
+              },
+              {
+                value: "41"
+              }
             ]
           },
           {
@@ -482,15 +485,18 @@ export class DashboardComponent implements OnInit {
               {
                 value: "55"
               },
-              // {
-              //   value: "51"
-              // },
-              // {
-              //   value: "56"
-              // },
-              // {
-              //   value: "29"
-              // }
+              {
+                value: "51"
+              },
+              {
+                value: "36"
+              },
+              {
+                value: "29"
+              },
+              {
+                value: "39"
+              }
             ]
           },
           {
@@ -538,15 +544,18 @@ export class DashboardComponent implements OnInit {
               {
                 value: "45"
               },
-              // {
-              //   value: "39"
-              // },
-              // {
-              //   value: "45"
-              // },
-              // {
-              //   value: "37"
-              // }
+              {
+                value: "39"
+              },
+              {
+                value: "45"
+              },
+              {
+                value: "37"
+              },
+              {
+                value: "38"
+              }
             ]
           }
         ],

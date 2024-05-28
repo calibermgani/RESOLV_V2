@@ -3186,6 +3186,15 @@ public updatenotes(type:any){
     "appear_red": (params:any) => {
       console.log(params)
       var numSickDays = params.data.claim_no;
+      console.log(numSickDays);
+      console.log(typeof(numSickDays));
+
+      if(numSickDays == '9001' || numSickDays == '9003'){
+        return true;
+      }
+      else{
+        return false;
+      }
 
 
       // if(numSickDays >0){
@@ -3195,7 +3204,7 @@ public updatenotes(type:any){
       //     this.myGrid_1.api.ensureIndexVisible(params.rowIndex, 'top');
       //   },1000);
       // }
-      return false;
+      // return numSickDays == '184882' || '190238' ? true : false;
     },
     "appear_yellow": (params: any) => {
       // console.log(params);
